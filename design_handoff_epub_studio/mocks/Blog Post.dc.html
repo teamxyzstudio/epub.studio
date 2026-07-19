@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF7F2">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Archivo:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Literata:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#FAF7F2;color:#17130E}
+body{font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#17130E;text-decoration:none}
+a:hover{color:#FF2E63}
+@media (prefers-reduced-motion: reduce){*{transition-duration:.01ms !important;animation:none !important}}
+</style>
+</helmet>
+<div style="min-height:100dvh;display:flex;flex-direction:column">
+  <header style="position:sticky;top:0;z-index:40;background:rgba(250,247,242,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(23,19,14,.14)">
+    <div style="display:flex;align-items:center;gap:24px;padding:0 clamp(16px,4vw,48px);height:60px">
+      <a href="Home.dc.html" style="display:flex;align-items:center;gap:9px;white-space:nowrap" style-focus="outline:2px solid #FF2E63;outline-offset:3px">
+        <svg width="24" height="24" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5.5" fill="#17130E"></rect><rect x="6" y="7" width="12" height="2.2" rx="1.1" fill="#FAF7F2"></rect><rect x="6" y="11" width="9" height="2.2" rx="1.1" fill="#FF2E63"></rect><rect x="6" y="15" width="11" height="2.2" rx="1.1" fill="#FAF7F2"></rect></svg>
+        <span style="font-family:'Instrument Serif',serif;font-size:22px;letter-spacing:-.01em">Epub Studio<span style="color:#FF2E63">.</span></span>
+      </a>
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex;gap:22px;font-size:14px;font-weight:500">
+          <a href="Home.dc.html#tools" style-focus="outline:2px solid #FF2E63;outline-offset:3px">All tools</a>
+          <a href="Style%20Studio.dc.html" style-focus="outline:2px solid #FF2E63;outline-offset:3px">Style Studio</a>
+          <a href="Blog.dc.html" style="color:#FF2E63" style-focus="outline:2px solid #FF2E63;outline-offset:3px">Blog</a>
+        </nav>
+        <span style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E675D">free · no signup · in your browser</span>
+      </sc-if>
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <a href="Blog.dc.html" style="margin-left:auto;font-size:13px;font-weight:500;color:#6E675D" style-focus="outline:2px solid #FF2E63;outline-offset:2px">← Blog</a>
+      </sc-if>
+    </div>
+    <div style="height:3px;background:rgba(23,19,14,.08)"><div style="{{ progressBar }}"></div></div>
+  </header>
+
+  <main style="flex:1;width:100%;max-width:1140px;margin:0 auto;padding:clamp(28px,4vw,52px) clamp(16px,4vw,48px) clamp(48px,6vw,80px);display:flex;gap:clamp(28px,4vw,56px);align-items:flex-start">
+    <article style="flex:1;min-width:0;max-width:720px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E675D;margin-bottom:14px"><a href="Blog.dc.html" style="color:#6E675D" style-focus="outline:2px solid #FF2E63;outline-offset:2px">Blog</a> / Formats explained</div>
+      <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(32px,4.5vw,52px);line-height:1.08;letter-spacing:-.015em;margin:0 0 16px;text-wrap:balance">EPUB vs PDF vs MOBI: which format should your book be in?</h1>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid rgba(23,19,14,.14);margin-bottom:26px">
+        <span style="width:38px;height:38px;border-radius:50%;background:#17130E;color:#FAF7F2;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600">M</span>
+        <div style="flex:1;min-width:160px"><div style="font-size:13.5px;font-weight:600">Mara Ellison</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#6E675D">Jul 14, 2026 · 9 min read</div></div>
+        <button onClick="{{ copyLink }}" style="min-height:40px;padding:8px 14px;border:1.5px solid rgba(23,19,14,.22);border-radius:999px;background:none;font-family:'Archivo',sans-serif;font-size:12.5px;font-weight:600;color:#17130E;cursor:pointer" style-hover="border-color:#FF2E63;color:#FF2E63" style-focus="outline:2px solid #FF2E63;outline-offset:2px">{{ copyLabel }}</button>
+      </div>
+
+      <div style="font-family:'Literata',serif;font-size:17.5px;line-height:1.75;color:#26211A">
+        <p style="margin:0 0 1.3em;text-wrap:pretty">You finished the manuscript. Now someone asks for “the file,” and you discover there are at least three answers — <strong style="font-weight:600">EPUB</strong>, <strong style="font-weight:600">PDF</strong>, and <strong style="font-weight:600">MOBI</strong> — each behaving differently on every screen it touches. The good news: the choice is simpler than it looks, because the formats disagree on exactly one thing.</p>
+        <p style="margin:0 0 1.3em;text-wrap:pretty">That one thing is <em>who controls the page</em>. Get that, and every “which format?” question answers itself.</p>
+
+        <h2 id="reflow" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:1.65em;line-height:1.15;letter-spacing:-.01em;margin:1.6em 0 .5em;scroll-margin-top:90px">Reflowable vs fixed: the only distinction that matters</h2>
+        <p style="margin:0 0 1.3em;text-wrap:pretty">An <strong style="font-weight:600">EPUB</strong> is reflowable — the text pours itself into whatever screen it meets, like water. The reader picks the font size; the book re-typesets itself instantly. A <strong style="font-weight:600">PDF</strong> is the opposite: every line break, every margin is frozen at the moment of export. It is a photograph of a page.</p>
+        <div style="margin:0 0 1.3em;padding:18px 20px;background:#FFFDF9;border:1px solid rgba(23,19,14,.14);border-radius:10px;font-family:'Archivo',sans-serif;font-size:14px;line-height:1.6">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#6E675D;margin-bottom:8px">The rule of thumb</div>
+          Text people will <strong>read</strong> → EPUB. Layouts people must <strong>see exactly</strong> (contracts, cookbooks, print proofs) → PDF. Old Kindle in the drawer → convert to it, don’t author in it.
+        </div>
+        <p style="margin:0 0 1.3em;text-wrap:pretty">MOBI is the odd one out: Amazon’s legacy format, retired for new submissions since 2021. It still matters only because millions of older Kindles read nothing else. Treat it as an output target, never a source of truth.</p>
+
+        <h2 id="compare" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:1.65em;line-height:1.15;letter-spacing:-.01em;margin:1.6em 0 .5em;scroll-margin-top:90px">The three formats, side by side</h2>
+        <div style="font-family:'Archivo',sans-serif;font-size:13.5px;border:1px solid rgba(23,19,14,.16);border-radius:10px;overflow:hidden;margin:0 0 1.3em">
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;background:#17130E;color:#FAF7F2;font-weight:600;font-size:12.5px"><span style="padding:10px 12px"></span><span style="padding:10px 12px">EPUB</span><span style="padding:10px 12px">PDF</span><span style="padding:10px 12px">MOBI</span></div>
+          <sc-for list="{{ tableRows }}" as="r" hint-placeholder-count="5">
+            <div style="{{ r.style }}"><span style="padding:10px 12px;font-weight:600">{{ r.k }}</span><span style="padding:10px 12px;color:#454037">{{ r.a }}</span><span style="padding:10px 12px;color:#454037">{{ r.b }}</span><span style="padding:10px 12px;color:#454037">{{ r.c }}</span></div>
+          </sc-for>
+        </div>
+
+        <h2 id="choose" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:1.65em;line-height:1.15;letter-spacing:-.01em;margin:1.6em 0 .5em;scroll-margin-top:90px">So which one should your book be in?</h2>
+        <p style="margin:0 0 1.3em;text-wrap:pretty">Author in EPUB. It is the only format of the three that is an open standard, the only one every store accepts, and the only one that respects your reader’s eyes. From a clean EPUB you can generate a PDF for print, an AZW3 for a Kindle, or a compressed copy for email — in seconds, with nothing lost.</p>
+        <p style="margin:0 0 1.3em;text-wrap:pretty">Going the other way — starting from a PDF — is archaeology. The converter has to guess where paragraphs end and which lines are headings. Our <a href="EPUB%20to%20PDF.dc.html" style="color:#C41E4F;text-decoration:underline;text-underline-offset:3px">PDF to EPUB tool</a> is good at that guessing, and <a href="Style%20Studio.dc.html" style="color:#C41E4F;text-decoration:underline;text-underline-offset:3px">Style Studio</a> lets you repair the typesetting afterwards. But if you have the manuscript, always export EPUB first.</p>
+        <blockquote style="margin:0 0 1.3em;padding:4px 0 4px 22px;border-left:3px solid #FF2E63;font-style:italic;color:#454037">A PDF is a photograph of a page. An EPUB is the page itself.</blockquote>
+        <p style="margin:0;text-wrap:pretty">That’s the whole decision. One open, reflowable source file; disposable copies in every other format your readers need.</p>
+      </div>
+
+      <div style="margin-top:32px;border:1px solid rgba(23,19,14,.16);border-radius:14px;background:#FFFDF9;padding:22px;display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <div style="flex:1;min-width:220px">
+          <div style="font-family:'Instrument Serif',serif;font-size:22px;letter-spacing:-.01em;margin-bottom:4px">Try it on your own book</div>
+          <div style="font-size:13.5px;color:#6E675D">Convert between all three formats free — no signup, files deleted after an hour.</div>
+        </div>
+        <a href="EPUB%20to%20PDF.dc.html" style="flex:none;background:#FF2E63;color:#fff;border-radius:10px;padding:13px 22px;font-size:14.5px;font-weight:600;min-height:48px;display:flex;align-items:center" style-hover="box-shadow:0 5px 16px rgba(255,46,99,.35);color:#fff" style-focus="outline:2px solid #17130E;outline-offset:2px">Open the converter →</a>
+      </div>
+
+      <div style="margin-top:36px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6E675D;border-bottom:1px solid rgba(23,19,14,.14);padding-bottom:8px;margin-bottom:14px">Keep reading</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:12px">
+          <sc-for list="{{ related }}" as="p" hint-placeholder-count="3">
+            <a href="Blog%20Post.dc.html" style="display:flex;flex-direction:column;gap:6px;background:#FFFDF9;border:1px solid rgba(23,19,14,.14);border-radius:10px;padding:16px;color:#17130E;transition:border-color .15s" style-hover="border-color:#FF2E63;color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:2px">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6E675D">{{ p.cat }} · {{ p.read }}</span>
+              <span style="font-family:'Instrument Serif',serif;font-size:18.5px;line-height:1.2">{{ p.title }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </article>
+
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <aside style="flex:none;width:250px;position:sticky;top:88px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E675D;margin-bottom:12px">On this page</div>
+        <nav style="display:flex;flex-direction:column;gap:2px;border-left:1px solid rgba(23,19,14,.14)">
+          <sc-for list="{{ toc }}" as="t" hint-placeholder-count="3">
+            <a href="{{ t.href }}" style="{{ t.style }}" style-hover="color:#FF2E63" style-focus="outline:2px solid #FF2E63;outline-offset:2px">{{ t.label }}</a>
+          </sc-for>
+        </nav>
+        <div style="margin-top:28px;border:1px solid rgba(23,19,14,.16);border-radius:12px;padding:16px;background:#FFFDF9">
+          <div style="font-size:13.5px;font-weight:600;margin-bottom:4px">Tools mentioned</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+            <a href="EPUB%20to%20PDF.dc.html" style="font-size:13px;color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:2px"><span style="color:#FF2E63">→</span> PDF to EPUB</a>
+            <a href="EPUB%20to%20PDF.dc.html" style="font-size:13px;color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:2px"><span style="color:#FF2E63">→</span> EPUB to PDF</a>
+            <a href="Style%20Studio.dc.html" style="font-size:13px;color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:2px"><span style="color:#FF2E63">→</span> Style Studio</a>
+          </div>
+        </div>
+      </aside>
+    </sc-if>
+  </main>
+
+  <footer style="border-top:1px solid rgba(23,19,14,.14);padding:20px clamp(16px,4vw,48px);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E675D;max-width:1240px;margin:0 auto;width:100%">
+    <span><a href="Home.dc.html" style="color:#6E675D">Epub Studio</a> — free online EPUB tools</span>
+    <span><a href="Home.dc.html#tools" style="color:#6E675D">All tools</a> · <a href="Blog.dc.html" style="color:#6E675D">Blog</a> · About · Privacy</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { isMobile: typeof window !== 'undefined' && window.innerWidth < 760, progress: 0, active: 'reflow', copied: false };
+  componentDidMount() {
+    this._rs = () => this.setState({ isMobile: window.innerWidth < 760 });
+    window.addEventListener('resize', this._rs);
+    this._sc = () => {
+      const d = document.documentElement;
+      const max = d.scrollHeight - d.clientHeight;
+      const progress = max > 0 ? d.scrollTop / max : 0;
+      let active = 'reflow';
+      ['reflow', 'compare', 'choose'].forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < 140) active = id; });
+      this.setState({ progress, active });
+    };
+    window.addEventListener('scroll', this._sc, { passive: true });
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._rs); window.removeEventListener('scroll', this._sc); }
+  renderVals() {
+    const S = this.state;
+    const rows = [
+      { k: 'Text', a: 'Reflows', b: 'Fixed', c: 'Reflows' },
+      { k: 'Standard', a: 'Open (W3C)', b: 'Open (ISO)', c: 'Proprietary' },
+      { k: 'Reader font control', a: 'Full', b: 'None', c: 'Partial' },
+      { k: 'Best on', a: 'Everything', b: 'Print & desktop', c: 'Old Kindles' },
+      { k: 'Status in 2026', a: 'The standard', b: 'For fixed layouts', c: 'Legacy only' }
+    ];
+    const tableRows = rows.map((r, i) => ({ ...r, style: `display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;background:${i % 2 ? 'rgba(23,19,14,.03)' : '#FFFDF9'};border-top:1px solid rgba(23,19,14,.1)` }));
+    const tocItems = [
+      { id: 'reflow', label: 'Reflowable vs fixed' },
+      { id: 'compare', label: 'Side-by-side comparison' },
+      { id: 'choose', label: 'Which one for your book' }
+    ];
+    const toc = tocItems.map(t => ({
+      href: '#' + t.id, label: t.label,
+      style: `padding:7px 0 7px 14px;font-size:13px;line-height:1.4;color:${S.active === t.id ? '#FF2E63' : '#454037'};font-weight:${S.active === t.id ? 600 : 400};border-left:2px solid ${S.active === t.id ? '#FF2E63' : 'transparent'};margin-left:-1.5px;transition:color .15s,border-color .15s`
+    }));
+    return {
+      isMobile: S.isMobile, isDesktop: !S.isMobile,
+      progressBar: `height:100%;width:${S.progress * 100}%;background:#FF2E63;transition:width .1s linear`,
+      tableRows, toc,
+      copyLink: () => { this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 1600); },
+      copyLabel: S.copied ? 'Link copied ✓' : 'Share',
+      related: [
+        { cat: 'Kindle', read: '5 min', title: 'Send any EPUB to your Kindle in 2026' },
+        { cat: 'How-to', read: '6 min', title: 'How to convert EPUB to PDF without losing formatting' },
+        { cat: 'Fix it', read: '6 min', title: '“This file is corrupt”: fixing EPUBs that readers reject' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

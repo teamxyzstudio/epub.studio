@@ -1,0 +1,74 @@
+---
+/** Four-column footer from mocks/Home.dc.html. */
+import { footerColumns } from '../data/tools.js';
+---
+
+<footer class="site-footer">
+  <div class="cols">
+    {
+      footerColumns.map((col) => (
+        <div>
+          <div class="col-label">{col.label}</div>
+          <div class="col-links">
+            {col.links.map((l) => (
+              <a href={l.href} class="focus-ring-2">
+                {l.n}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class="baseline">
+    <span>Epub Studio — free online EPUB tools</span>
+    <span>epub.studio</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: clamp(28px, 4vw, 48px) clamp(16px, 4vw, 48px) clamp(28px, 4vw, 44px);
+    max-width: 1240px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+    gap: 24px;
+  }
+
+  .col-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e675d;
+    margin-bottom: 10px;
+  }
+
+  .col-links {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .col-links a {
+    font-size: 13.5px;
+    color: #17130e;
+  }
+
+  .baseline {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #6e675d;
+  }
+</style>

@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import { SITE_NAME, SITE_DESCRIPTION, OG_IMAGE, THEME_COLOR } from '../data/site.js';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Absolute path for the canonical URL, e.g. "/epub-to-pdf". */
+  path?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  /** Any number of JSON-LD objects to emit as <script type="application/ld+json">. */
+  jsonLd?: unknown[];
+  noindex?: boolean;
+  bodyClass?: string;
+}
+
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  path = Astro.url.pathname,
+  ogImage = OG_IMAGE,
+  ogType = 'website',
+  jsonLd = [],
+  noindex = false,
+  bodyClass = '',
+} = Astro.props;
+
+const canonical = new URL(path, Astro.site).href;
+const ogImageUrl = new URL(ogImage, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content={THEME_COLOR} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Assets, per README §Assets -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Epub Studio — free online EPUB tools" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} — Blog`} href="/rss.xml" />
+
+    {
+      jsonLd.map((block) => (
+        <script type="application/ld+json" set:html={JSON.stringify(block)} />
+      ))
+    }
+
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+  </body>
+</html>

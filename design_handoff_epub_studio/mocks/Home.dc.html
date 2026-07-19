@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF7F2">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Archivo:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#FAF7F2;color:#17130E}
+body{font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#17130E;text-decoration:none}
+a:hover{color:#FF2E63}
+@media (prefers-reduced-motion: reduce){*{transition-duration:.01ms !important;animation:none !important}}
+</style>
+</helmet>
+<div style="min-height:100dvh;display:flex;flex-direction:column;padding-bottom:{{ pageBottomPad }}">
+  <header style="position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:24px;padding:0 clamp(16px,4vw,48px);height:60px;background:rgba(250,247,242,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(23,19,14,.14)">
+    <a href="#top" style="display:flex;align-items:center;gap:9px;white-space:nowrap" style-focus="outline:2px solid #FF2E63;outline-offset:3px"><svg width="24" height="24" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5.5" fill="#17130E"></rect><rect x="6" y="7" width="12" height="2.2" rx="1.1" fill="#FAF7F2"></rect><rect x="6" y="11" width="9" height="2.2" rx="1.1" fill="#FF2E63"></rect><rect x="6" y="15" width="11" height="2.2" rx="1.1" fill="#FAF7F2"></rect></svg><span style="font-family:'Instrument Serif',serif;font-size:22px;letter-spacing:-.01em">Epub Studio<span style="color:#FF2E63">.</span></span></a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:22px;font-size:14px;font-weight:500">
+        <a href="#tools" style-focus="outline:2px solid #FF2E63;outline-offset:3px">All tools</a>
+        <a href="EPUB%20to%20PDF.dc.html" style-focus="outline:2px solid #FF2E63;outline-offset:3px">EPUB to PDF</a>
+        <a href="Style%20Studio.dc.html" style-focus="outline:2px solid #FF2E63;outline-offset:3px">Style Studio</a>
+        <a href="Blog.dc.html" style-focus="outline:2px solid #FF2E63;outline-offset:3px">Blog</a>
+      </nav>
+      <span style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E675D">free · no signup · in your browser</span>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <span style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6E675D">free · no signup</span>
+    </sc-if>
+  </header>
+
+  <main id="top" style="flex:1">
+    <section style="padding:clamp(28px,5vw,64px) clamp(16px,4vw,48px) clamp(24px,3vw,40px);max-width:1240px;margin:0 auto;width:100%">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px);align-items:center">
+        <div style="flex:1 1 460px;min-width:280px">
+          <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(42px,6.5vw,84px);line-height:1.02;letter-spacing:-.015em;margin:0 0 18px;text-wrap:balance">Convert any ebook.<br>Keep it <em style="color:#FF2E63">beautiful</em>.</h1>
+          <p style="font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:#6E675D;margin:0;max-width:52ch;text-wrap:pretty">Free EPUB tools that run in your browser. No signup, and your files are deleted after an hour.</p>
+        </div>
+        <div style="flex:0 1 400px;min-width:260px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px">
+          <div style="{{ heroCard }}">
+            <div style="{{ heroTitle }}"></div>
+            <sc-for list="{{ heroLines }}" as="ln" hint-placeholder-count="8">
+              <div style="{{ ln }}"></div>
+            </sc-for>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#6E675D;display:flex;gap:8px;align-items:center">
+            <span style="{{ segEpub }}">.epub</span><span>→</span><span style="{{ segPdf }}">.pdf</span><span>→</span><span style="{{ segAzw }}">.azw3</span>
+          </div>
+        </div>
+      </div>
+
+      <label for="hero-file" style="{{ dropZone }}" style-hover="border-color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:3px">
+        <input id="hero-file" type="file" onChange="{{ onFileInput }}" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none"></input>
+        <div style="font-family:'Instrument Serif',serif;font-size:clamp(22px,2.4vw,30px);letter-spacing:-.01em">{{ dropHeadline }}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#6E675D;margin-top:6px">{{ dropSub }}</div>
+      </label>
+      <sc-if value="{{ hasFile }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;background:#17130E;color:#FAF7F2;padding:6px 10px;border-radius:6px">{{ fileName }}</span>
+          <span style="font-size:13.5px;color:#6E675D">{{ suggestLabel }}</span>
+          <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="0">
+            <a href="{{ s.href }}" style="font-size:13.5px;font-weight:600;border:1.5px solid #FF2E63;color:#FF2E63;padding:6px 12px;border-radius:999px" style-hover="background:#FF2E63;color:#fff" style-focus="outline:2px solid #FF2E63;outline-offset:3px">{{ s.n }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+    </section>
+
+    <section id="tools" style="max-width:1240px;margin:0 auto;width:100%;padding:clamp(16px,2vw,28px) clamp(16px,4vw,48px) clamp(40px,5vw,72px);scroll-margin-top:70px">
+      <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+        <div style="margin-top:clamp(28px,3.5vw,52px)">
+          <div style="display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(23,19,14,.14);padding-bottom:10px;margin-bottom:18px">
+            <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.01em;margin:0">{{ g.label }}</h2>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E675D">{{ g.count }}</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:12px">
+            <sc-for list="{{ g.tools }}" as="t" hint-placeholder-count="5">
+              <a href="{{ t.href }}" style="display:flex;flex-direction:column;gap:8px;background:#FFFDF9;border:1px solid rgba(23,19,14,.14);border-radius:10px;padding:16px 16px 14px;min-height:44px;transition:border-color .15s,transform .15s;color:#17130E" style-hover="border-color:#FF2E63;transform:translateY(-2px);color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:2px">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.02em;color:#6E675D;display:flex;gap:6px;align-items:center"><span style="background:rgba(23,19,14,.07);padding:2px 6px;border-radius:4px">{{ t.a }}</span><span style="color:#FF2E63;font-weight:500">{{ t.arrow }}</span><span style="background:rgba(23,19,14,.07);padding:2px 6px;border-radius:4px">{{ t.b }}</span></span>
+                <span style="font-size:15.5px;font-weight:600;letter-spacing:-.005em">{{ t.n }}</span>
+                <span style="font-size:13px;line-height:1.45;color:#6E675D;text-wrap:pretty">{{ t.d }}</span>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="border-top:1px solid rgba(23,19,14,.14);border-bottom:1px solid rgba(23,19,14,.14)">
+      <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:1px;background:rgba(23,19,14,.14)">
+        <div style="background:#FAF7F2;padding:22px clamp(16px,3vw,40px);font-size:15px"><span style="font-weight:600">Free, no signup.</span><span style="color:#6E675D"> Every tool, every file size.</span></div>
+        <div style="background:#FAF7F2;padding:22px clamp(16px,3vw,40px);font-size:15px"><span style="font-weight:600">Files deleted after 1 hour.</span><span style="color:#6E675D"> Automatically, every time.</span></div>
+        <div style="background:#FAF7F2;padding:22px clamp(16px,3vw,40px);font-size:15px"><span style="font-weight:600">Works in your browser.</span><span style="color:#6E675D"> Nothing to install.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="padding:clamp(28px,4vw,48px) clamp(16px,4vw,48px) clamp(28px,4vw,44px);max-width:1240px;margin:0 auto;width:100%">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:24px">
+      <sc-for list="{{ footCols }}" as="c" hint-placeholder-count="4">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E675D;margin-bottom:10px">{{ c.label }}</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+              <a href="{{ l.href }}" style="font-size:13.5px;color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:2px">{{ l.n }}</a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:28px;padding-top:16px;border-top:1px solid rgba(23,19,14,.14);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E675D">
+      <span>Epub Studio — free online EPUB tools</span>
+      <span>epub.studio</span>
+    </div>
+  </footer>
+
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <nav style="position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;background:rgba(250,247,242,.96);backdrop-filter:blur(10px);border-top:1px solid rgba(23,19,14,.14);padding-bottom:env(safe-area-inset-bottom)">
+      <a href="#tools" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 7px;min-height:44px;color:#FF2E63" style-focus="outline:2px solid #FF2E63;outline-offset:-2px"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="6" height="6" rx="1"></rect><rect x="11" y="3" width="6" height="6" rx="1"></rect><rect x="3" y="11" width="6" height="6" rx="1"></rect><rect x="11" y="11" width="6" height="6" rx="1"></rect></svg><span style="font-size:10.5px;font-weight:600">Tools</span></a>
+      <a href="EPUB%20to%20PDF.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 7px;min-height:44px;color:#6E675D" style-focus="outline:2px solid #FF2E63;outline-offset:-2px"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10h12M12 6l4 4-4 4"></path></svg><span style="font-size:10.5px;font-weight:500">Convert</span></a>
+      <a href="Style%20Studio.dc.html" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 7px;min-height:44px;color:#6E675D" style-focus="outline:2px solid #FF2E63;outline-offset:-2px"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h12M4 10h12M4 14h7"></path><circle cx="14" cy="14" r="2.4"></circle></svg><span style="font-size:10.5px;font-weight:500">Studio</span></a>
+    </nav>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroCycleSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:3.8,&quot;min&quot;:1.5,&quot;max&quot;:8,&quot;step&quot;:0.1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero animation&quot;}}">
+class Component extends DCLogic {
+  state = { isMobile: typeof window !== 'undefined' && window.innerWidth < 760, dragging: false, fileName: null, fmt: 0 };
+  componentDidMount() {
+    this._rs = () => this.setState({ isMobile: window.innerWidth < 760 });
+    window.addEventListener('resize', this._rs);
+    this._over = (e) => { e.preventDefault(); if (!this.state.dragging) this.setState({ dragging: true }); };
+    this._leave = (e) => { if (!e.relatedTarget) this.setState({ dragging: false }); };
+    this._drop = (e) => { e.preventDefault(); const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; this.setState({ dragging: false }); if (f) this.pick(f.name); };
+    window.addEventListener('dragover', this._over);
+    window.addEventListener('dragleave', this._leave);
+    window.addEventListener('drop', this._drop);
+    const rm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const secs = this.props.heroCycleSeconds ?? 3.8;
+    if (!rm.matches) this._t = setInterval(() => this.setState(s => ({ fmt: (s.fmt + 1) % 3 })), secs * 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this._t);
+    window.removeEventListener('resize', this._rs);
+    window.removeEventListener('dragover', this._over);
+    window.removeEventListener('dragleave', this._leave);
+    window.removeEventListener('drop', this._drop);
+  }
+  pick(name) { this.setState({ fileName: name }); }
+  renderVals() {
+    const S = this.state, TOOL = 'EPUB%20to%20PDF.dc.html';
+    const fromEpub = [
+      { n: 'EPUB to PDF', d: 'Turn a reflowable ebook into a fixed, printable PDF.', a: 'EPUB', b: 'PDF' },
+      { n: 'EPUB to MOBI', d: 'For older Kindles that only read MOBI.', a: 'EPUB', b: 'MOBI' },
+      { n: 'EPUB to AZW3 (Kindle)', d: 'The format modern Kindles like best.', a: 'EPUB', b: 'AZW3' },
+      { n: 'EPUB to DOCX', d: 'Edit your book in Word or Google Docs.', a: 'EPUB', b: 'DOCX' },
+      { n: 'EPUB to TXT', d: 'Just the text, nothing else.', a: 'EPUB', b: 'TXT' }
+    ];
+    const toEpub = [
+      { n: 'PDF to EPUB', d: 'Make a fixed PDF reflow on any screen.', a: 'PDF', b: 'EPUB' },
+      { n: 'DOCX to EPUB', d: 'From manuscript to ebook in one step.', a: 'DOCX', b: 'EPUB' },
+      { n: 'MOBI to EPUB', d: 'Move old Kindle books to an open format.', a: 'MOBI', b: 'EPUB' },
+      { n: 'AZW3 to EPUB', d: 'Read Kindle files in any app.', a: 'AZW3', b: 'EPUB' },
+      { n: 'TXT to EPUB', d: 'Plain text in, proper ebook out.', a: 'TXT', b: 'EPUB' },
+      { n: 'Markdown to EPUB', d: 'Write in Markdown, publish as a book.', a: 'MD', b: 'EPUB' },
+      { n: 'HTML to EPUB', d: 'Save web pages as an ebook.', a: 'HTML', b: 'EPUB' },
+      { n: 'FB2 to EPUB', d: 'Convert FictionBook files.', a: 'FB2', b: 'EPUB' },
+      { n: 'CBZ to EPUB', d: 'Comic archives, readable anywhere.', a: 'CBZ', b: 'EPUB' }
+    ];
+    const utils = [
+      { n: 'Online EPUB Reader', d: 'Open and read any EPUB right here.', a: 'EPUB', b: 'READ' },
+      { n: 'Metadata Editor', d: 'Fix the title, author and cover info.', a: 'EPUB', b: 'META' },
+      { n: 'Cover Editor', d: 'Replace or crop the cover image.', a: 'EPUB', b: 'COVER' },
+      { n: 'EPUB Validator', d: 'Find out why a reader rejects your file.', a: 'EPUB', b: 'CHECK' },
+      { n: 'EPUB Compressor', d: 'Shrink images to make the file smaller.', a: 'EPUB', b: 'ZIP' },
+      { n: 'Merge EPUBs', d: 'Combine several books into one file.', a: 'EPUB+', b: 'EPUB' },
+      { n: 'Split EPUB', d: 'Break a book apart by chapters.', a: 'EPUB', b: 'EPUBS' }
+    ];
+    const deco = (list) => list.map(t => ({ ...t, arrow: '→', href: TOOL }));
+    const groups = [
+      { label: 'Convert from EPUB', count: '5 tools', tools: deco(fromEpub) },
+      { label: 'Convert to EPUB', count: '9 tools', tools: deco(toEpub) },
+      { label: 'EPUB utilities', count: '7 tools', tools: deco(utils) }
+    ];
+    // hero living book
+    const fmts = [
+      { bg: '#FFFDF9', pad: '30px 28px', rad: '8px', bar: 'rgba(23,19,14,.72)', shadow: '0 1px 0 rgba(23,19,14,.1), 0 12px 32px rgba(23,19,14,.08)', border: '1px solid rgba(23,19,14,.16)', widths: [58, 100, 93, 97, 86, 99, 91, 64], align: 'flex-start' },
+      { bg: '#FFFFFF', pad: '42px 38px', rad: '2px', bar: '#20242a', shadow: '0 2px 0 rgba(23,19,14,.14), 0 16px 40px rgba(23,19,14,.12)', border: '1px solid rgba(23,19,14,.22)', widths: [46, 100, 100, 100, 100, 100, 100, 38], align: 'flex-start' },
+      { bg: '#15181C', pad: '34px 26px', rad: '20px', bar: '#C9D1D9', shadow: '0 0 0 7px #2A2E35, 0 18px 44px rgba(23,19,14,.25)', border: '1px solid #000', widths: [52, 96, 100, 90, 98, 84, 95, 58], align: 'flex-start' }
+    ];
+    const f = fmts[S.fmt];
+    const heroCard = `width:min(100%,340px);height:300px;display:flex;flex-direction:column;gap:13px;align-items:${f.align};background:${f.bg};padding:${f.pad};border-radius:${f.rad};box-shadow:${f.shadow};border:${f.border};transition:all 1s cubic-bezier(.4,0,.2,1);overflow:hidden`;
+    const heroTitle = `height:13px;width:${f.widths[0]}%;background:${f.bar};border-radius:3px;margin-bottom:6px;transition:all 1s cubic-bezier(.4,0,.2,1)`;
+    const heroLines = f.widths.slice(1).map((w, i) => `height:7px;width:${w}%;background:${f.bar};opacity:${0.85 - i * 0.02};border-radius:2.5px;transition:all 1s cubic-bezier(.4,0,.2,1);transition-delay:${i * 55}ms`);
+    const seg = (i) => S.fmt === i ? 'color:#FF2E63;font-weight:500;transition:color .4s' : 'color:#6E675D;transition:color .4s';
+    // drop zone
+    const dz = S.dragging;
+    const dropZone = `position:relative;display:block;margin-top:clamp(26px,3.5vw,44px);border:2px dashed ${dz ? '#FF2E63' : 'rgba(23,19,14,.3)'};background:${dz ? 'rgba(255,46,99,.05)' : '#FFFDF9'};border-radius:14px;padding:clamp(26px,4vw,44px) clamp(16px,3vw,40px);text-align:center;cursor:pointer;transition:border-color .2s,background .2s,transform .2s;transform:${dz ? 'scale(1.01)' : 'none'}`;
+    const dropHeadline = dz ? 'Drop it.' : (S.isMobile ? 'Tap to choose a file' : 'Drop a file anywhere on this page');
+    const dropSub = dz ? 'we’ll take it from here' : '.epub · .pdf · .docx · .mobi · .azw3 · .txt · .md · .html · .fb2 · .cbz';
+    // suggestions
+    const TOOLHREF = TOOL;
+    let suggestions = [], suggestLabel = '';
+    if (S.fileName) {
+      const ext = (S.fileName.split('.').pop() || '').toLowerCase();
+      const map = { epub: ['EPUB to PDF', 'EPUB to AZW3 (Kindle)', 'EPUB to DOCX'], pdf: ['PDF to EPUB'], docx: ['DOCX to EPUB'], mobi: ['MOBI to EPUB'], azw3: ['AZW3 to EPUB'], txt: ['TXT to EPUB'], md: ['Markdown to EPUB'], html: ['HTML to EPUB'], fb2: ['FB2 to EPUB'], cbz: ['CBZ to EPUB'] };
+      const names = map[ext];
+      if (names) { suggestLabel = 'Looks like ' + ext.toUpperCase() + ' — try:'; suggestions = names.map(n => ({ n, href: TOOLHREF })); }
+      else { suggestLabel = 'We don’t recognize .' + ext + ' — pick a tool below.'; }
+    }
+    const footCols = [
+      { label: 'Convert from EPUB', links: fromEpub.map(t => ({ n: t.n, href: TOOL })) },
+      { label: 'Convert to EPUB', links: toEpub.map(t => ({ n: t.n, href: TOOL })) },
+      { label: 'Utilities', links: utils.map(t => ({ n: t.n, href: TOOL })) },
+      { label: 'Epub Studio', links: [{ n: 'Style Studio', href: 'Style%20Studio.dc.html' }, { n: 'Blog', href: 'Blog.dc.html' }, { n: 'Identity', href: 'Identity.dc.html' }, { n: 'About', href: '#top' }, { n: 'Privacy', href: '#top' }] }
+    ];
+    return {
+      isMobile: S.isMobile, isDesktop: !S.isMobile,
+      pageBottomPad: S.isMobile ? '76px' : '0px',
+      heroCard, heroTitle, heroLines,
+      segEpub: seg(0), segPdf: seg(1), segAzw: seg(2),
+      dropZone, dropHeadline, dropSub,
+      hasFile: !!S.fileName, fileName: S.fileName || '', suggestLabel, suggestions,
+      onFileInput: (e) => { const fl = e.target.files && e.target.files[0]; if (fl) this.pick(fl.name); },
+      groups, footCols
+    };
+  }
+}
+</script>
+</body>
+</html>

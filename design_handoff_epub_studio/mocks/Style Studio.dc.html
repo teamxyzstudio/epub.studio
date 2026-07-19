@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF7F2">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Archivo:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@300..700&amp;family=Crimson+Pro:wght@300..700&amp;family=EB+Garamond:wght@400..700&amp;family=Lora:wght@400..700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@300..700&amp;family=Bitter:wght@300..700&amp;family=Merriweather:wght@300;400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&amp;family=Source+Sans+3:wght@300..700&amp;family=Nunito+Sans:wght@300..700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#FAF7F2;color:#17130E;overscroll-behavior:none}
+body{font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#17130E;text-decoration:none}
+a:hover{color:#FF2E63}
+input[type=range]{accent-color:#FF2E63;width:100%;min-height:28px;margin:0}
+input[type=range]:focus-visible{outline:2px solid #FF2E63;outline-offset:3px}
+input[type=color]{border:1px solid rgba(23,19,14,.25);border-radius:6px;width:34px;height:28px;padding:1px;background:none;cursor:pointer}
+@font-face{font-family:'OpenDyslexic';src:url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/otf/OpenDyslexic-Regular.otf') format('opentype');font-display:swap}
+@media (prefers-reduced-motion: reduce){*{transition-duration:.01ms !important;animation:none !important}}
+</style>
+</helmet>
+<div style="height:100dvh;display:flex;flex-direction:column;overflow:hidden">
+  <header style="flex:none;display:flex;align-items:center;gap:14px;padding:0 clamp(12px,2vw,24px);height:56px;background:rgba(250,247,242,.96);border-bottom:1px solid rgba(23,19,14,.14);z-index:60">
+    <a href="Home.dc.html" style="display:flex;align-items:center;gap:8px;white-space:nowrap" style-focus="outline:2px solid #FF2E63;outline-offset:3px">
+      <svg width="22" height="22" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5.5" fill="#17130E"></rect><rect x="6" y="7" width="12" height="2.2" rx="1.1" fill="#FAF7F2"></rect><rect x="6" y="11" width="9" height="2.2" rx="1.1" fill="#FF2E63"></rect><rect x="6" y="15" width="11" height="2.2" rx="1.1" fill="#FAF7F2"></rect></svg>
+      <span style="font-family:'Instrument Serif',serif;font-size:20px">Epub Studio<span style="color:#FF2E63">.</span></span>
+    </a>
+    <span style="font-size:13.5px;font-weight:600;border-left:1px solid rgba(23,19,14,.18);padding-left:14px">Style Studio</span>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#6E675D;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ srcLabel }}</span>
+    <button onMouseDown="{{ rawOn }}" onMouseUp="{{ rawOff }}" onMouseLeave="{{ rawOff }}" onTouchStart="{{ rawOn }}" onTouchEnd="{{ rawOff }}" style="{{ rawBtn }}" style-focus="outline:2px solid #FF2E63;outline-offset:2px">{{ rawLabel }}</button>
+  </header>
+
+  <div style="{{ bodyStyle }}">
+    <div style="{{ previewWrap }}" onMouseMove="{{ onPvMove }}">
+      <div style="{{ pageCard }}" lang="en">
+        <sc-if value="{{ showRuler }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ rulerStyle }}"></div>
+        </sc-if>
+        <h1 style="{{ h1Style }}">{{ bookTitle }}</h1>
+        <div style="{{ bylineStyle }}">{{ bookAuthor }}</div>
+        <h2 style="{{ h2Style }}">I.</h2>
+        <sc-for list="{{ paraList }}" as="p" hint-placeholder-count="4">
+          <p style="{{ p.style }}">{{ p.content }}</p>
+        </sc-for>
+        <div style="{{ figStyle }}">— illustration —</div>
+        <p style="{{ lastParaStyle }}">{{ lastPara }}</p>
+        <div style="margin-top:1.4em"><a href="#notes" style="{{ linkStyle }}">Chapter notes →</a></div>
+      </div>
+      <div style="{{ pvFooter }}">
+        <button onClick="{{ prevPage }}" aria-label="Previous page" style="{{ pgBtn }}" style-focus="outline:2px solid #FF2E63;outline-offset:2px">←</button>
+        <span style="min-width:110px;text-align:center">{{ progressLabel }}</span>
+        <button onClick="{{ nextPage }}" aria-label="Next page" style="{{ pgBtn }}" style-focus="outline:2px solid #FF2E63;outline-offset:2px">→</button>
+      </div>
+    </div>
+
+    <div style="{{ panelStyle }}">
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <div onPointerDown="{{ sheetDown }}" style="flex:none;display:flex;justify-content:center;padding:10px 0 4px;cursor:grab;touch-action:none">
+          <button onClick="{{ sheetCycle }}" aria-label="Expand settings" style="width:64px;height:6px;border-radius:3px;background:rgba(23,19,14,.25);border:none;cursor:grab;padding:0" style-focus="outline:2px solid #FF2E63;outline-offset:4px"></button>
+        </div>
+      </sc-if>
+      <div style="{{ dlBarStyle }}">
+        <button onClick="{{ doDownload }}" style="flex:1;display:flex;justify-content:space-between;align-items:center;gap:10px;background:#FF2E63;color:#fff;border:none;border-radius:10px;padding:13px 16px;font-family:'Archivo',sans-serif;font-size:15px;font-weight:600;cursor:pointer;min-height:48px" style-hover="box-shadow:0 5px 16px rgba(255,46,99,.35)" style-focus="outline:2px solid #17130E;outline-offset:2px"><span style="white-space:nowrap">{{ dlLabel }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:400;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0">{{ dlMeta }}</span></button>
+      </div>
+
+      <div style="flex:1;overflow-y:auto;padding:14px 16px 28px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <span style="font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#6E675D">Presets</span>
+          <span style="{{ presetChip }}">{{ presetName }}</span>
+        </div>
+        <div style="{{ presetRow }}">
+          <sc-for list="{{ presets }}" as="pr" hint-placeholder-count="5">
+            <button onClick="{{ pr.on }}" style="{{ pr.card }}" style-focus="outline:2px solid #FF2E63;outline-offset:2px">
+              <span style="{{ pr.thumb }}">{{ pr.sample }}</span>
+              <span style="font-size:12.5px;font-weight:600;color:#17130E">{{ pr.name }}</span>
+              <span style="font-size:10.5px;line-height:1.35;color:#6E675D">{{ pr.desc }}</span>
+            </button>
+          </sc-for>
+        </div>
+
+        <div style="margin-top:22px;padding:12px 12px 4px;border:1px solid rgba(23,19,14,.16);border-radius:12px;background:#FFFDF9">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="width:8px;height:8px;border-radius:2px;background:#FF2E63"></span>
+            <span style="font-size:13px;font-weight:700">Saved into your book</span>
+            <button onClick="{{ resetAll }}" title="Reset to preset" style="margin-left:auto;background:none;border:none;font-size:12px;color:#6E675D;cursor:pointer;text-decoration:underline;min-height:32px" style-hover="color:#FF2E63" style-focus="outline:2px solid #FF2E63;outline-offset:2px">Reset to preset</button>
+          </div>
+          <p style="margin:4px 0 0;font-size:11.5px;line-height:1.45;color:#6E675D">These become the book’s default look. Reading apps may let readers override them.</p>
+
+          <div style="{{ secHead }}"><span>Typeface</span><button onClick="{{ resetType }}" title="Reset typeface" style="{{ resetBtn }}" style-focus="outline:2px solid #FF2E63;outline-offset:2px">↺</button></div>
+          <sc-for list="{{ fontGroups }}" as="fg" hint-placeholder-count="3">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#6E675D;margin:12px 0 6px">{{ fg.label }}</div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <sc-for list="{{ fg.fonts }}" as="f" hint-placeholder-count="4">
+                <button onClick="{{ f.on }}" style="{{ f.row }}" style-focus="outline:2px solid #FF2E63;outline-offset:-2px">
+                  <span style="{{ f.spec }}">{{ f.name }}</span>
+                  <span style="{{ f.dot }}"></span>
+                </button>
+              </sc-for>
+            </div>
+          </sc-for>
+          <sc-for list="{{ typeToggles }}" as="t" hint-placeholder-count="2">
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;min-height:44px">
+              <div style="flex:1"><div style="font-size:13.5px;font-weight:500">{{ t.label }}</div><sc-if value="{{ t.hasHint }}" hint-placeholder-val="{{ false }}"><div style="font-size:11.5px;color:#6E675D;margin-top:2px;line-height:1.4">{{ t.hint }}</div></sc-if></div>
+              <button onClick="{{ t.on }}" role="switch" style="{{ t.track }}" style-focus="outline:2px solid #FF2E63;outline-offset:3px"><span style="{{ t.knob }}"></span></button>
+            </div>
+          </sc-for>
+          <div style="padding:6px 0 12px">
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;font-weight:500;margin-bottom:4px"><span>Boldness</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#6E675D">{{ weightOut }}</span></div>
+            <input type="range" min="300" max="700" step="10" value="{{ weightVal }}" onInput="{{ onWeight }}" aria-label="Boldness"></input>
+          </div>
+
+          <div style="{{ secHead }}"><span>Text settings</span><button onClick="{{ resetText }}" title="Reset text settings" style="{{ resetBtn }}" style-focus="outline:2px solid #FF2E63;outline-offset:2px">↺</button></div>
+          <sc-for list="{{ sliders }}" as="s" hint-placeholder-count="4">
+            <div style="padding:7px 0">
+              <div style="display:flex;justify-content:space-between;font-size:13.5px;font-weight:500;margin-bottom:4px"><span>{{ s.label }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#6E675D">{{ s.out }}</span></div>
+              <input type="range" min="{{ s.min }}" max="{{ s.max }}" step="{{ s.step }}" value="{{ s.val }}" onInput="{{ s.on }}" aria-label="{{ s.label }}"></input>
+            </div>
+          </sc-for>
+          <div style="padding:8px 0 2px">
+            <div style="font-size:13.5px;font-weight:500;margin-bottom:6px">Paragraphs</div>
+            <div style="{{ segWrap }}"><sc-for list="{{ paraSeg }}" as="o" hint-placeholder-count="2"><button onClick="{{ o.on }}" style="{{ o.style }}" style-focus="outline:2px solid #FF2E63;outline-offset:-2px">{{ o.label }}</button></sc-for></div>
+            <div style="padding:8px 0 2px">
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;color:#6E675D;margin-bottom:3px"><span>{{ paraSubLabel }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px">{{ paraSubOut }}</span></div>
+              <input type="range" min="0" max="3" step="0.1" value="{{ paraSubVal }}" onInput="{{ onParaSub }}" aria-label="{{ paraSubLabel }}"></input>
+            </div>
+          </div>
+          <div style="padding:8px 0 2px">
+            <div style="font-size:13.5px;font-weight:500;margin-bottom:6px">Alignment</div>
+            <div style="{{ segWrap }}"><sc-for list="{{ alignSeg }}" as="o" hint-placeholder-count="2"><button onClick="{{ o.on }}" style="{{ o.style }}" style-focus="outline:2px solid #FF2E63;outline-offset:-2px">{{ o.label }}</button></sc-for></div>
+          </div>
+          <sc-for list="{{ textToggles }}" as="t" hint-placeholder-count="2">
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;min-height:44px">
+              <div style="flex:1"><div style="font-size:13.5px;font-weight:500">{{ t.label }}</div><sc-if value="{{ t.hasHint }}" hint-placeholder-val="{{ false }}"><div style="font-size:11.5px;color:#6E675D;margin-top:2px;line-height:1.4">{{ t.hint }}</div></sc-if></div>
+              <button onClick="{{ t.on }}" role="switch" style="{{ t.track }}" style-focus="outline:2px solid #FF2E63;outline-offset:3px"><span style="{{ t.knob }}"></span></button>
+            </div>
+          </sc-for>
+          <div style="padding:8px 0 12px">
+            <div style="font-size:13.5px;font-weight:500;margin-bottom:6px">Heading size</div>
+            <div style="{{ segWrap }}"><sc-for list="{{ headSeg }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.on }}" style="{{ o.style }}" style-focus="outline:2px solid #FF2E63;outline-offset:-2px">{{ o.label }}</button></sc-for></div>
+          </div>
+
+          <div style="{{ secHead }}"><span>Color &amp; theme</span><button onClick="{{ resetColor }}" title="Reset colors" style="{{ resetBtn }}" style-focus="outline:2px solid #FF2E63;outline-offset:2px">↺</button></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;padding:8px 0 4px">
+            <sc-for list="{{ themeChips }}" as="th" hint-placeholder-count="6">
+              <button onClick="{{ th.on }}" style="{{ th.style }}" style-focus="outline:2px solid #FF2E63;outline-offset:2px">{{ th.label }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ isCustomTheme }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:8px;padding:8px 0;border-top:1px dashed rgba(23,19,14,.15);margin-top:6px">
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px"><input type="color" value="{{ cBg }}" onInput="{{ onCBg }}" aria-label="Background color"></input><span style="flex:1">Background</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6E675D">{{ cBg }}</span></div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px"><input type="color" value="{{ cText }}" onInput="{{ onCText }}" aria-label="Text color"></input><span style="flex:1">Text</span><span style="{{ contrastBadge }}">{{ contrastLabel }}</span></div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px"><input type="color" value="{{ cLink }}" onInput="{{ onCLink }}" aria-label="Link color"></input><span style="flex:1">Links</span><span style="{{ linkBadge }}">{{ linkContrastLabel }}</span></div>
+              <sc-if value="{{ contrastFails }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size:11.5px;line-height:1.45;color:#B3261E">Low contrast — this will be hard to read. It’s saved anyway, but consider a darker text color.</div>
+              </sc-if>
+            </div>
+          </sc-if>
+          <sc-for list="{{ colorToggles }}" as="t" hint-placeholder-count="1">
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;min-height:44px">
+              <div style="flex:1"><div style="font-size:13.5px;font-weight:500">{{ t.label }}</div><sc-if value="{{ t.hasHint }}" hint-placeholder-val="{{ false }}"><div style="font-size:11.5px;color:#6E675D;margin-top:2px;line-height:1.4">{{ t.hint }}</div></sc-if></div>
+              <button onClick="{{ t.on }}" role="switch" style="{{ t.track }}" style-focus="outline:2px solid #FF2E63;outline-offset:3px"><span style="{{ t.knob }}"></span></button>
+            </div>
+          </sc-for>
+
+          <div style="{{ secHead }}"><span>Layout</span><button onClick="{{ resetLayout }}" title="Reset layout" style="{{ resetBtn }}" style-focus="outline:2px solid #FF2E63;outline-offset:2px">↺</button></div>
+          <div style="padding:8px 0 2px">
+            <div style="font-size:13.5px;font-weight:500;margin-bottom:6px">Page margins</div>
+            <div style="{{ segWrap }}"><sc-for list="{{ marginSeg }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.on }}" style="{{ o.style }}" style-focus="outline:2px solid #FF2E63;outline-offset:-2px">{{ o.label }}</button></sc-for></div>
+          </div>
+          <div style="padding:10px 0 14px">
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;font-weight:500;margin-bottom:4px"><span>Line length</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#6E675D">{{ measureOut }}</span></div>
+            <input type="range" min="40" max="95" step="1" value="{{ measureVal }}" onInput="{{ onMeasure }}" aria-label="Line length"></input>
+            <div style="position:relative;height:4px;margin-top:2px;border-radius:2px;background:linear-gradient(to right,rgba(23,19,14,.08) 0%,rgba(23,19,14,.08) 36%,rgba(255,46,99,.35) 36%,rgba(255,46,99,.35) 64%,rgba(23,19,14,.08) 64%)"></div>
+            <div style="font-size:10.5px;color:#6E675D;margin-top:3px">60–75 characters per line is comfortable</div>
+          </div>
+
+          <button onClick="{{ toggleBook }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;border-top:1px solid rgba(23,19,14,.12);padding:12px 0;font-family:'Archivo',sans-serif;font-size:13.5px;font-weight:600;color:#17130E;cursor:pointer;min-height:44px" style-hover="color:#FF2E63" style-focus="outline:2px solid #FF2E63;outline-offset:-2px"><span>Book details</span><span style="{{ bookChev }}">＋</span></button>
+          <sc-if value="{{ bookOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:10px;padding:0 0 14px">
+              <label style="font-size:12px;color:#6E675D">Title<input type="text" value="{{ bookTitle }}" onChange="{{ onTitle }}" style="display:block;width:100%;margin-top:4px;padding:10px;font-size:16px;font-family:'Archivo',sans-serif;border:1px solid rgba(23,19,14,.25);border-radius:8px;background:#fff;color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:1px"></input></label>
+              <label style="font-size:12px;color:#6E675D">Author<input type="text" value="{{ bookAuthor }}" onChange="{{ onAuthor }}" style="display:block;width:100%;margin-top:4px;padding:10px;font-size:16px;font-family:'Archivo',sans-serif;border:1px solid rgba(23,19,14,.25);border-radius:8px;background:#fff;color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:1px"></input></label>
+              <div style="display:flex;gap:10px;align-items:flex-end">
+                <label style="font-size:12px;color:#6E675D;flex:1">Language<input type="text" value="en" style="display:block;width:100%;margin-top:4px;padding:10px;font-size:16px;font-family:'Archivo',sans-serif;border:1px solid rgba(23,19,14,.25);border-radius:8px;background:#fff;color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:1px"></input></label>
+                <button style="border:1px dashed rgba(23,19,14,.3);background:none;border-radius:8px;padding:10px 12px;font-size:12.5px;font-family:'Archivo',sans-serif;color:#6E675D;cursor:pointer;min-height:44px" style-hover="border-color:#FF2E63;color:#FF2E63" style-focus="outline:2px solid #FF2E63;outline-offset:2px">Replace cover…</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="margin-top:16px;padding:12px 12px 6px;border:1px dashed rgba(23,19,14,.25);border-radius:12px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="width:8px;height:8px;border-radius:50%;border:1.5px solid #6E675D"></span>
+            <span style="font-size:13px;font-weight:700;color:#454037">Preview only</span>
+          </div>
+          <p style="margin:4px 0 6px;font-size:11.5px;line-height:1.45;color:#6E675D">Just for this preview — not saved in the file.</p>
+          <div style="padding:8px 0 2px">
+            <div style="font-size:13.5px;font-weight:500;margin-bottom:6px">View</div>
+            <div style="{{ segWrap }}"><sc-for list="{{ viewSeg }}" as="o" hint-placeholder-count="2"><button onClick="{{ o.on }}" style="{{ o.style }}" style-focus="outline:2px solid #FF2E63;outline-offset:-2px">{{ o.label }}</button></sc-for></div>
+          </div>
+          <sc-if value="{{ showColsCtl }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:8px 0 2px">
+              <div style="font-size:13.5px;font-weight:500;margin-bottom:6px">Columns</div>
+              <div style="{{ segWrap }}"><sc-for list="{{ colSeg }}" as="o" hint-placeholder-count="2"><button onClick="{{ o.on }}" style="{{ o.style }}" style-focus="outline:2px solid #FF2E63;outline-offset:-2px">{{ o.label }}</button></sc-for></div>
+            </div>
+          </sc-if>
+          <sc-for list="{{ pvToggles }}" as="t" hint-placeholder-count="2">
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;min-height:44px">
+              <div style="flex:1"><div style="font-size:13.5px;font-weight:500">{{ t.label }}</div><sc-if value="{{ t.hasHint }}" hint-placeholder-val="{{ false }}"><div style="font-size:11.5px;color:#6E675D;margin-top:2px;line-height:1.4">{{ t.hint }}</div></sc-if></div>
+              <button onClick="{{ t.on }}" role="switch" style="{{ t.track }}" style-focus="outline:2px solid #FF2E63;outline-offset:3px"><span style="{{ t.knob }}"></span></button>
+            </div>
+          </sc-for>
+          <div style="padding:8px 0 2px">
+            <div style="font-size:13.5px;font-weight:500;margin-bottom:6px">Preview theme</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{ pvThemeChips }}" as="th" hint-placeholder-count="6">
+                <button onClick="{{ th.on }}" style="{{ th.style }}" style-focus="outline:2px solid #FF2E63;outline-offset:2px">{{ th.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="padding:10px 0 12px">
+            <div style="font-size:13.5px;font-weight:500;margin-bottom:6px">Progress indicator</div>
+            <div style="{{ segWrap }}"><sc-for list="{{ progSeg }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.on }}" style="{{ o.style }}" style-focus="outline:2px solid #FF2E63;outline-offset:-2px">{{ o.label }}</button></sc-for></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;startPreset&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Classic novel&quot;,&quot;options&quot;:[&quot;Classic novel&quot;,&quot;Modern&quot;,&quot;Compact&quot;,&quot;Airy&quot;,&quot;Accessible&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Demo&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const base = {
+      font: 'Literata', keepOriginal: false, embed: false, weight: 400,
+      size: 18, lh: 1.6, ls: 0, ws: 0, paraStyle: 'indent', indent: 1.4, gap: 0.9,
+      align: 'justify', hyph: true, dropCaps: true, headings: 'standard',
+      theme: 'paper', cBg: '#FFFFFF', cText: '#1A1814', cLink: '#C41E4F', dimImages: true,
+      margins: 'Medium', measure: 66, title: 'The Time Machine', author: 'H. G. Wells'
+    };
+    let saved = null;
+    try { saved = JSON.parse(sessionStorage.getItem('epubstudio-style-v1')); } catch (e) {}
+    const startPreset = props.startPreset || 'Classic novel';
+    this.state = {
+      isMobile: typeof window !== 'undefined' && window.innerWidth < 760,
+      s: saved || { ...base, ...this.presetDef(startPreset) },
+      preset: saved ? (saved._preset || 'Custom') : startPreset,
+      view: 'Paginated', cols: 1, ruler: false, fixation: false, pvTheme: 'Follow saved', prog: 'Page x of y',
+      raw: false, page: 3, rulerY: 200, bookOpen: false, sheetPx: 150, downloaded: false
+    };
+  }
+  presetDef(name) {
+    const d = {
+      'Classic novel': { font: 'EB Garamond', size: 19, lh: 1.55, ls: 0, ws: 0, align: 'justify', hyph: true, paraStyle: 'indent', indent: 1.4, gap: 0.9, dropCaps: true, headings: 'standard', margins: 'Medium', measure: 64, weight: 400 },
+      'Modern': { font: 'Source Sans 3', size: 18, lh: 1.7, ls: 0, ws: 0, align: 'left', hyph: false, paraStyle: 'space', indent: 1.4, gap: 1.0, dropCaps: false, headings: 'standard', margins: 'Medium', measure: 66, weight: 400 },
+      'Compact': { font: 'Literata', size: 15.5, lh: 1.4, ls: 0, ws: 0, align: 'left', hyph: false, paraStyle: 'space', indent: 1.2, gap: 0.6, dropCaps: false, headings: 'subtle', margins: 'Narrow', measure: 74, weight: 400 },
+      'Airy': { font: 'Lora', size: 21, lh: 1.9, ls: 0.1, ws: 0.5, align: 'left', hyph: false, paraStyle: 'space', indent: 1.4, gap: 1.4, dropCaps: false, headings: 'strong', margins: 'Wide', measure: 58, weight: 400 },
+      'Accessible': { font: 'Atkinson Hyperlegible', size: 20, lh: 1.75, ls: 0.3, ws: 1, align: 'left', hyph: false, paraStyle: 'space', indent: 1.4, gap: 1.1, dropCaps: false, headings: 'standard', margins: 'Medium', measure: 60, weight: 400 }
+    };
+    return d[name] || d['Classic novel'];
+  }
+  persist(s, preset) { try { sessionStorage.setItem('epubstudio-style-v1', JSON.stringify({ ...s, _preset: preset })); } catch (e) {} }
+  set(patch) { this.setState(st => { const s = { ...st.s, ...patch }; this.persist(s, 'Custom'); return { s, preset: 'Custom' }; }); }
+  applyPreset(name) { this.setState(st => { const s = { ...st.s, ...this.presetDef(name) }; this.persist(s, name); return { s, preset: name, _lastPreset: name }; }); this._last = name; }
+  componentDidMount() {
+    this._rs = () => this.setState({ isMobile: window.innerWidth < 760 });
+    window.addEventListener('resize', this._rs);
+    this._last = this.state.preset === 'Custom' ? 'Classic novel' : this.state.preset;
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._rs); }
+  sheetDown = (e) => {
+    e.preventDefault();
+    const startY = e.clientY, startH = this.state.sheetPx;
+    const move = (ev) => this.setState({ sheetPx: Math.max(120, Math.min(window.innerHeight * 0.9, startH + (startY - ev.clientY))) });
+    const up = () => {
+      window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up);
+      const h = this.state.sheetPx, wh = window.innerHeight;
+      const snaps = [150, wh * 0.52, wh * 0.88];
+      const best = snaps.reduce((a, b) => Math.abs(b - h) < Math.abs(a - h) ? b : a);
+      this.setState({ sheetPx: best });
+    };
+    window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
+  };
+  renderVals() {
+    const S = this.state, s = S.s, ACC = '#FF2E63', INK = '#17130E', MUT = '#6E675D';
+    const themes = {
+      paper: { bg: '#FEFCF7', text: '#1A1814', link: '#C41E4F', dark: false },
+      cream: { bg: '#F6EDDC', text: '#3B2F20', link: '#8A5A2B', dark: false },
+      mist: { bg: '#EDF0F3', text: '#232A31', link: '#33586E', dark: false },
+      dusk: { bg: '#2A2D33', text: '#E8E6E1', link: '#F08CA4', dark: true },
+      ink: { bg: '#000000', text: '#DFDCD5', link: '#FF7A9C', dark: true }
+    };
+    const savedTheme = s.theme === 'custom' ? { bg: s.cBg, text: s.cText, link: s.cLink, dark: this.lum(s.cBg) < 0.35 } : themes[s.theme];
+    const pvMap = { 'Paper': 'paper', 'Cream': 'cream', 'Mist': 'mist', 'Dusk': 'dusk', 'Ink': 'ink' };
+    const T = S.pvTheme === 'Follow saved' ? savedTheme : themes[pvMap[S.pvTheme]];
+    const raw = S.raw;
+    const marginPad = { Narrow: '28px 26px', Medium: '46px 48px', Wide: '64px 68px' }[s.margins];
+    const fam = s.keepOriginal ? 'Georgia, "Times New Roman", serif' : `'${s.font}', serif`;
+    const desk = T.dark ? '#0E0F12' : '#EAE4DA';
+    const paginated = S.view === 'Paginated';
+    const cols = S.isMobile ? 1 : S.cols;
+    const cardW = `min(94%, calc(${s.measure * cols}ch + ${cols === 2 ? '64px' : '0px'} + ${s.margins === 'Wide' ? '136px' : s.margins === 'Narrow' ? '52px' : '96px'}))`;
+    const pageCard = raw
+      ? `position:relative;background:#fff;color:#000;font-family:'Times New Roman',serif;font-size:16px;line-height:1.3;text-align:left;width:min(94%,720px);padding:24px;margin:20px auto;border:1px solid rgba(0,0,0,.2);${paginated ? 'height:calc(100% - 88px);overflow:hidden' : ''}`
+      : `position:relative;background:${T.bg};color:${T.text};font-family:${fam};font-weight:${s.weight};font-size:${s.size}px;line-height:${s.lh};letter-spacing:${s.ls}px;word-spacing:${s.ws}px;text-align:${s.align === 'justify' ? 'justify' : 'left'};${s.hyph && s.align === 'justify' ? 'hyphens:auto;-webkit-hyphens:auto;' : ''}width:${cardW};padding:${marginPad};margin:${S.isMobile ? '12px auto' : '28px auto'};border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,${T.dark ? '.5' : '.12'}), 0 14px 40px rgba(0,0,0,${T.dark ? '.45' : '.1'});${cols === 2 ? `column-count:2;column-gap:64px;` : ''}${paginated ? 'height:calc(100% - 96px);overflow:hidden' : ''};transition:background .25s,color .25s`;
+    // headings
+    const hf = { subtle: [1.35, 1.1], standard: [1.9, 1.35], strong: [2.5, 1.6] }[s.headings];
+    const h1Style = raw ? 'font-size:24px;font-weight:700;margin:0 0 4px' : `font-size:${hf[0]}em;font-weight:${Math.min(700, s.weight + 200)};line-height:1.15;margin:0 0 .2em;letter-spacing:-.01em;text-align:${s.align === 'justify' ? 'left' : 'left'}`;
+    const bylineStyle = raw ? 'font-size:14px;margin:0 0 16px' : `font-size:.85em;opacity:.65;margin:0 0 2.2em;text-align:left`;
+    const h2Style = raw ? 'font-size:18px;font-weight:700;margin:0 0 8px' : `font-size:${hf[1]}em;font-weight:${Math.min(700, s.weight + 200)};margin:0 0 1em;text-align:left`;
+    // paragraphs
+    const paras = [
+      'The Time Traveller (for so it will be convenient to speak of him) was expounding a recondite matter to us. His pale grey eyes shone and twinkled, and his usually pale face was flushed and animated. The fire burnt brightly, and the soft radiance of the incandescent lights caught the bubbles that flashed and passed in our glasses.',
+      'Our chairs, being his patents, embraced and caressed us rather than submitted to be sat upon, and there was that luxurious after-dinner atmosphere, when thought runs gracefully free of the trammels of precision. And he put it to us in this way — marking the points with a lean forefinger — as we sat and lazily admired his earnestness over this new paradox.',
+      '“You must follow me carefully. I shall have to controvert one or two ideas that are almost universally accepted. The geometry, for instance, they taught you at school is founded on a misconception.”',
+      '“Is not that rather a large thing to expect us to begin upon?” said Filby, an argumentative person with red hair.'
+    ];
+    const boldW = Math.min(700, s.weight + 250);
+    const fixate = (txt) => {
+      if (!S.fixation || raw) return txt;
+      return txt.split(' ').map((w, i) => {
+        const n = Math.max(1, Math.ceil(w.length * 0.45));
+        return React.createElement('span', { key: i }, React.createElement('span', { style: { fontWeight: boldW } }, w.slice(0, n)), w.slice(n), i < 900 ? ' ' : '');
+      });
+    };
+    const pStyleBase = raw ? 'margin:0 0 8px' : (s.paraStyle === 'indent' ? `margin:0;text-indent:${s.indent}em` : `margin:0 0 ${s.gap}em`);
+    const paraList = paras.slice(0, 3).map((txt, i) => {
+      let content;
+      if (i === 0 && s.dropCaps && !raw) {
+        const first = txt[0], rest = txt.slice(1);
+        content = [React.createElement('span', { key: 'dc', style: { float: 'left', fontSize: '3.1em', lineHeight: '.82', padding: '.06em .08em 0 0', fontWeight: Math.min(700, s.weight + 200) } }, first), fixate(rest)];
+      } else content = fixate(txt);
+      const st = (i === 0 && s.paraStyle === 'indent' && !raw) ? (raw ? pStyleBase : `margin:0`) : pStyleBase;
+      return { style: st, content };
+    });
+    const figStyle = raw ? 'margin:10px 0;padding:18px;border:1px solid #ccc;text-align:center;font-size:12px;color:#888' : `margin:1.4em 0;padding:2.2em 1em;border:1px solid ${T.dark ? 'rgba(255,255,255,.2)' : 'rgba(0,0,0,.15)'};border-radius:2px;text-align:center;font-size:.72em;letter-spacing:.12em;text-transform:uppercase;opacity:${T.dark && s.dimImages ? '.45' : '.75'};background:${T.dark ? 'rgba(255,255,255,.05)' : 'rgba(0,0,0,.04)'};transition:opacity .25s`;
+    const linkStyle = raw ? 'color:blue;text-decoration:underline;font-size:14px' : `color:${T.link};text-decoration:underline;text-underline-offset:3px;font-size:.9em`;
+    // ruler
+    const lineH = s.size * s.lh;
+    const rulerStyle = `position:absolute;left:0;right:0;top:${S.rulerY}px;height:${lineH}px;background:rgba(255,46,99,.08);border-top:1px solid rgba(255,46,99,.35);border-bottom:1px solid rgba(255,46,99,.35);pointer-events:none;z-index:5`;
+    // progress
+    const total = Math.max(24, Math.round(224 * (s.size / 18) * (1.6 / s.lh)));
+    const page = Math.min(S.page, total);
+    const progressLabel = S.prog === 'None' ? '' : S.prog === 'Percent' ? Math.round((page / total) * 100) + '%' : `Page ${page} of ${total}`;
+    // seg builder
+    const seg = (opts, cur, fn) => opts.map((label, i) => ({
+      label, on: () => fn(label),
+      style: `flex:1;min-height:40px;padding:8px 4px;border:none;cursor:pointer;font-family:'Archivo',sans-serif;font-size:12.5px;font-weight:${cur === label ? 600 : 400};background:${cur === label ? INK : 'transparent'};color:${cur === label ? '#FAF7F2' : INK};border-left:${i > 0 ? '1px solid rgba(23,19,14,.18)' : 'none'};transition:background .15s`
+    }));
+    const toggle = (label, val, fn, hint) => ({
+      label, hasHint: !!hint, hint: hint || '',
+      on: fn,
+      track: `flex:none;width:46px;height:27px;border-radius:14px;border:none;cursor:pointer;padding:2.5px;display:flex;background:${val ? ACC : 'rgba(23,19,14,.22)'};transition:background .18s;justify-content:${val ? 'flex-end' : 'flex-start'}`,
+      knob: 'width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .18s'
+    });
+    // fonts
+    const groups = [
+      { label: 'Serif', list: ['Literata', 'Crimson Pro', 'EB Garamond', 'Lora', 'Source Serif 4', 'Merriweather', 'Bitter'] },
+      { label: 'Sans', list: ['Inter', 'Source Sans 3', 'Nunito Sans'] },
+      { label: 'Accessibility', list: ['Atkinson Hyperlegible', 'OpenDyslexic'] }
+    ];
+    const fontGroups = groups.map(g => ({
+      label: g.label,
+      fonts: g.list.map(name => {
+        const sel = s.font === name && !s.keepOriginal;
+        return {
+          name, on: () => this.set({ font: name, keepOriginal: false }),
+          row: `display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:44px;padding:8px 10px;border:1px solid ${sel ? ACC : 'rgba(23,19,14,.14)'};border-radius:9px;background:${sel ? 'rgba(255,46,99,.06)' : 'transparent'};cursor:pointer;text-align:left;transition:border-color .15s`,
+          spec: `font-family:'${name}',serif;font-size:16.5px;color:${INK}`,
+          dot: `flex:none;width:10px;height:10px;border-radius:50%;background:${sel ? ACC : 'transparent'};border:1.5px solid ${sel ? ACC : 'rgba(23,19,14,.3)'}`
+        };
+      })
+    }));
+    // sliders
+    const mk = (label, key, min, max, step, out) => ({ label, min, max, step, val: s[key], out, on: (e) => this.set({ [key]: parseFloat(e.target.value) }) });
+    const sliders = [
+      mk('Text size', 'size', 12, 28, 0.5, `${s.size}px · ${Math.round(s.size * 0.75)}pt`),
+      mk('Space between lines', 'lh', 1.2, 2.2, 0.05, s.lh.toFixed(2)),
+      mk('Space between letters', 'ls', -0.5, 2, 0.1, s.ls.toFixed(1) + 'px'),
+      mk('Space between words', 'ws', 0, 6, 0.5, s.ws.toFixed(1) + 'px')
+    ];
+    // presets
+    const presetsMeta = [
+      { name: 'Classic novel', desc: 'Serif, justified, indents, drop caps' },
+      { name: 'Modern', desc: 'Sans, left-aligned, block paragraphs' },
+      { name: 'Compact', desc: 'Smaller, tighter — study docs' },
+      { name: 'Airy', desc: 'Large, tall lines, wide margins' },
+      { name: 'Accessible', desc: 'Hyperlegible, high contrast, larger' }
+    ];
+    const presets = presetsMeta.map(p => {
+      const d = this.presetDef(p.name), sel = S.preset === p.name;
+      return {
+        name: p.name, desc: p.desc, on: () => this.applyPreset(p.name),
+        card: `display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;border:1.5px solid ${sel ? ACC : 'rgba(23,19,14,.16)'};background:${sel ? 'rgba(255,46,99,.05)' : '#FFFDF9'};border-radius:11px;padding:10px;cursor:pointer;min-width:${S.isMobile ? '150px' : '0'};transition:border-color .15s`,
+        thumb: `display:block;width:100%;height:44px;overflow:hidden;font-family:'${d.font}',serif;font-size:8.5px;line-height:${d.lh};text-align:${d.align === 'justify' ? 'justify' : 'left'};color:${INK};opacity:.8;border-bottom:1px solid rgba(23,19,14,.1);padding-bottom:4px`,
+        sample: 'It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of light.'
+      };
+    });
+    // theme chips
+    const themeNames = ['paper', 'cream', 'mist', 'dusk', 'ink'];
+    const chip = (label, sel, on, bg, fg) => ({ label, on, style: `min-height:40px;padding:7px 13px;border-radius:999px;border:1.5px solid ${sel ? ACC : 'rgba(23,19,14,.2)'};background:${bg};color:${fg};font-family:'Archivo',sans-serif;font-size:12.5px;font-weight:${sel ? 600 : 400};cursor:pointer;transition:border-color .15s` });
+    const themeChips = themeNames.map(n => chip(n[0].toUpperCase() + n.slice(1), s.theme === n, () => this.set({ theme: n }), themes[n].bg, themes[n].text))
+      .concat([chip('Custom…', s.theme === 'custom', () => this.set({ theme: 'custom' }), '#FFFDF9', INK)]);
+    const pvThemeChips = ['Follow saved', 'Paper', 'Cream', 'Mist', 'Dusk', 'Ink'].map(n => {
+      const sel = S.pvTheme === n, th = n === 'Follow saved' ? null : themes[pvMap[n]];
+      return chip(n, sel, () => this.setState({ pvTheme: n }), th ? th.bg : '#FFFDF9', th ? th.text : INK);
+    });
+    // contrast
+    const ratio = this.contrast(s.cBg, s.cText), lratio = this.contrast(s.cBg, s.cLink);
+    const badge = (r) => {
+      const label = r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : 'Fails';
+      const col = r >= 4.5 ? '#1B7F4D' : '#B3261E';
+      return { label: label + ' · ' + r.toFixed(1) + ':1', style: `font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 8px;border-radius:5px;color:#fff;background:${col}` };
+    };
+    const cb = badge(ratio), lb = badge(lratio);
+    // layout containers
+    const bodyStyle = S.isMobile ? 'flex:1;position:relative;overflow:hidden' : 'flex:1;display:flex;overflow:hidden';
+    const previewWrap = S.isMobile
+      ? `position:absolute;inset:0;overflow-y:auto;background:${desk};padding-bottom:${S.sheetPx + 16}px;transition:background .25s`
+      : `flex:1;position:relative;overflow-y:auto;background:${desk};transition:background .25s;display:flex;flex-direction:column`;
+    const panelStyle = S.isMobile
+      ? `position:absolute;left:0;right:0;bottom:0;height:${S.sheetPx}px;z-index:50;display:flex;flex-direction:column;background:#FAF7F2;border-radius:18px 18px 0 0;box-shadow:0 -8px 32px rgba(23,19,14,.18);padding-bottom:env(safe-area-inset-bottom);transition:height .25s cubic-bezier(.3,.9,.3,1)`
+      : 'flex:none;width:390px;display:flex;flex-direction:column;background:#FAF7F2;border-left:1px solid rgba(23,19,14,.14)';
+    const dlBarStyle = `flex:none;display:flex;padding:${S.isMobile ? '4px 16px 10px' : '12px 16px'};${S.isMobile ? '' : 'order:99;border-top:1px solid rgba(23,19,14,.14);'}background:#FAF7F2`;
+    const presetRow = S.isMobile ? 'display:flex;gap:10px;overflow-x:auto;padding-bottom:6px' : 'display:grid;grid-template-columns:1fr 1fr;gap:10px';
+    const pvFooter = `flex:none;display:flex;align-items:center;justify-content:center;gap:14px;padding:8px 0 ${S.isMobile ? '18px' : '14px'};font-family:'IBM Plex Mono',monospace;font-size:12px;color:${T.dark ? 'rgba(255,255,255,.65)' : MUT};${S.isMobile ? '' : ''}`;
+    const outName = (s.title || 'book').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.epub';
+    const mb = (1.16 + (s.embed ? 0.24 : 0)).toFixed(1);
+    return {
+      isMobile: S.isMobile,
+      srcLabel: 'sample.pdf → ' + outName,
+      rawOn: () => this.setState({ raw: true }), rawOff: () => this.setState({ raw: false }),
+      rawBtn: `margin-left:auto;min-height:38px;padding:7px 14px;border-radius:999px;border:1.5px solid ${raw ? ACC : 'rgba(23,19,14,.25)'};background:${raw ? ACC : 'transparent'};color:${raw ? '#fff' : INK};font-family:'Archivo',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap;user-select:none;-webkit-user-select:none`,
+      rawLabel: raw ? 'Raw conversion' : 'Hold to compare',
+      bodyStyle, previewWrap, panelStyle, dlBarStyle, presetRow, pvFooter,
+      pageCard, h1Style, bylineStyle, h2Style, paraList, figStyle, linkStyle,
+      lastParaStyle: pStyleBase, lastPara: fixate(paras[3]),
+      showRuler: S.ruler && !raw, rulerStyle,
+      onPvMove: (e) => { if (S.ruler) { const r = e.currentTarget.getBoundingClientRect(); this.setState({ rulerY: Math.max(0, e.clientY - r.top + e.currentTarget.scrollTop - 40) }); } },
+      prevPage: () => this.setState(st => ({ page: Math.max(1, st.page - 1) })),
+      nextPage: () => this.setState(st => ({ page: Math.min(total, st.page + 1) })),
+      pgBtn: `min-width:44px;min-height:44px;border-radius:9px;border:1px solid ${T.dark ? 'rgba(255,255,255,.25)' : 'rgba(23,19,14,.2)'};background:transparent;color:${T.dark ? '#fff' : INK};cursor:pointer;font-size:15px;visibility:${paginated ? 'visible' : 'hidden'}`,
+      progressLabel,
+      presets, presetChip: `font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 9px;border-radius:5px;background:${S.preset === 'Custom' ? INK : 'rgba(255,46,99,.12)'};color:${S.preset === 'Custom' ? '#FAF7F2' : '#C41E4F'}`,
+      presetName: S.preset,
+      secHead: `display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:${MUT};border-top:1px solid rgba(23,19,14,.12);margin-top:14px;padding-top:12px`,
+      resetBtn: `background:none;border:none;font-size:15px;color:${MUT};cursor:pointer;min-width:32px;min-height:32px`,
+      resetAll: () => this.applyPreset(this._last || 'Classic novel'),
+      resetType: () => this.set({ font: this.presetDef(this._last).font, keepOriginal: false, embed: false, weight: 400 }),
+      resetText: () => { const d = this.presetDef(this._last); this.set({ size: d.size, lh: d.lh, ls: d.ls, ws: d.ws, paraStyle: d.paraStyle, align: d.align, hyph: d.hyph, dropCaps: d.dropCaps, headings: d.headings }); },
+      resetColor: () => this.set({ theme: 'paper', dimImages: true }),
+      resetLayout: () => { const d = this.presetDef(this._last); this.set({ margins: d.margins, measure: d.measure }); },
+      fontGroups,
+      typeToggles: [
+        toggle('Keep original fonts', s.keepOriginal, () => this.set({ keepOriginal: !s.keepOriginal }), 'Uses whatever survived the conversion.'),
+        toggle('Embed font in file', s.embed, () => this.set({ embed: !s.embed }), s.embed ? 'Adds ~240 KB. Looks identical everywhere.' : '+ ~240 KB. Off: readers use their closest match.')
+      ],
+      weightVal: s.weight, weightOut: String(s.weight), onWeight: (e) => this.set({ weight: parseInt(e.target.value, 10) }),
+      sliders,
+      segWrap: 'display:flex;border:1px solid rgba(23,19,14,.22);border-radius:9px;overflow:hidden',
+      paraSeg: seg(['First-line indent', 'Space between'], s.paraStyle === 'indent' ? 'First-line indent' : 'Space between', (l) => this.set({ paraStyle: l === 'First-line indent' ? 'indent' : 'space' })),
+      paraSubLabel: s.paraStyle === 'indent' ? 'Indent depth' : 'Gap between paragraphs',
+      paraSubOut: (s.paraStyle === 'indent' ? s.indent : s.gap).toFixed(1) + 'em',
+      paraSubVal: s.paraStyle === 'indent' ? s.indent : s.gap,
+      onParaSub: (e) => this.set(s.paraStyle === 'indent' ? { indent: parseFloat(e.target.value) } : { gap: parseFloat(e.target.value) }),
+      alignSeg: seg(['Left', 'Justified'], s.align === 'justify' ? 'Justified' : 'Left', (l) => { const j = l === 'Justified'; this.set({ align: j ? 'justify' : 'left', hyph: j ? true : s.hyph }); }),
+      textToggles: [
+        toggle('Hyphenation', s.hyph, () => this.set({ hyph: !s.hyph }), s.align === 'justify' ? 'Recommended with justified text — it evens out word spacing.' : null),
+        toggle('Drop caps on chapters', s.dropCaps, () => this.set({ dropCaps: !s.dropCaps }), null)
+      ],
+      headSeg: seg(['Subtle', 'Standard', 'Strong'], s.headings[0].toUpperCase() + s.headings.slice(1), (l) => this.set({ headings: l.toLowerCase() })),
+      themeChips, isCustomTheme: s.theme === 'custom',
+      cBg: s.cBg, cText: s.cText, cLink: s.cLink,
+      onCBg: (e) => this.set({ cBg: e.target.value }), onCText: (e) => this.set({ cText: e.target.value }), onCLink: (e) => this.set({ cLink: e.target.value }),
+      contrastBadge: cb.style, contrastLabel: cb.label, linkBadge: lb.style, linkContrastLabel: lb.label,
+      contrastFails: ratio < 4.5,
+      colorToggles: [toggle('Dim images in dark themes', s.dimImages, () => this.set({ dimImages: !s.dimImages }), null)],
+      marginSeg: seg(['Narrow', 'Medium', 'Wide'], s.margins, (l) => this.set({ margins: l })),
+      measureVal: s.measure, measureOut: s.measure + ' characters', onMeasure: (e) => this.set({ measure: parseInt(e.target.value, 10) }),
+      toggleBook: () => this.setState(st => ({ bookOpen: !st.bookOpen })), bookOpen: S.bookOpen,
+      bookChev: `font-size:16px;color:${ACC};transition:transform .2s;transform:rotate(${S.bookOpen ? '45deg' : '0deg'})`,
+      bookTitle: s.title, bookAuthor: s.author,
+      onTitle: (e) => this.set({ title: e.target.value }), onAuthor: (e) => this.set({ author: e.target.value }),
+      viewSeg: seg(['Paginated', 'Continuous'], S.view, (l) => this.setState({ view: l })),
+      showColsCtl: !S.isMobile,
+      colSeg: seg(['1 column', '2 columns'], S.cols === 1 ? '1 column' : '2 columns', (l) => this.setState({ cols: l === '1 column' ? 1 : 2 })),
+      pvToggles: [
+        toggle('Focus ruler', S.ruler, () => this.setState(st => ({ ruler: !st.ruler })), 'Highlights the line under your cursor.'),
+        toggle('Fixation bolding', S.fixation, () => this.setState(st => ({ fixation: !st.fixation })), 'Bolds the start of each word as a reading aid.')
+      ],
+      pvThemeChips,
+      progSeg: seg(['Percent', 'Page x of y', 'None'], S.prog, (l) => this.setState({ prog: l })),
+      sheetDown: this.sheetDown,
+      sheetCycle: () => this.setState(st => { const wh = window.innerHeight; const snaps = [150, wh * 0.52, wh * 0.88]; const i = snaps.findIndex(x => Math.abs(x - st.sheetPx) < 40); return { sheetPx: snaps[(i + 1) % 3] }; }),
+      doDownload: () => { this.setState({ downloaded: true }); setTimeout(() => this.setState({ downloaded: false }), 1800); },
+      dlLabel: S.downloaded ? 'Preparing… ✓' : 'Download EPUB',
+      dlMeta: outName + ' · ' + mb + ' MB'
+    };
+  }
+  lum(hex) {
+    const c = hex.replace('#', '');
+    const f = (i) => { let v = parseInt(c.substr(i, 2), 16) / 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+    return 0.2126 * f(0) + 0.7152 * f(2) + 0.0722 * f(4);
+  }
+  contrast(a, b) { const l1 = this.lum(a), l2 = this.lum(b); return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05); }
+}
+</script>
+</body>
+</html>

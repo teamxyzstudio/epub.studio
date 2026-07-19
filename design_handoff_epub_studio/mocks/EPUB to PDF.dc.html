@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF7F2">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Archivo:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#FAF7F2;color:#17130E}
+body{font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#17130E;text-decoration:none}
+a:hover{color:#FF2E63}
+@keyframes retype{0%{transform:scaleX(.2);opacity:.3}60%{transform:scaleX(1.04)}100%{transform:scaleX(1);opacity:1}}
+@keyframes tick{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion: reduce){*{transition-duration:.01ms !important;animation:none !important}}
+</style>
+</helmet>
+<div style="min-height:100dvh;display:flex;flex-direction:column;padding-bottom:{{ pageBottomPad }}">
+  <header style="position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:24px;padding:0 clamp(16px,4vw,48px);height:60px;background:rgba(250,247,242,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(23,19,14,.14)">
+    <a href="Home.dc.html" style="display:flex;align-items:center;gap:9px;white-space:nowrap" style-focus="outline:2px solid #FF2E63;outline-offset:3px">
+      <svg width="24" height="24" viewBox="0 0 24 24"><rect x="1.5" y="1.5" width="21" height="21" rx="5.5" fill="#17130E"></rect><rect x="6" y="7" width="12" height="2.2" rx="1.1" fill="#FAF7F2"></rect><rect x="6" y="11" width="9" height="2.2" rx="1.1" fill="#FF2E63"></rect><rect x="6" y="15" width="11" height="2.2" rx="1.1" fill="#FAF7F2"></rect></svg>
+      <span style="font-family:'Instrument Serif',serif;font-size:22px;letter-spacing:-.01em">Epub Studio<span style="color:#FF2E63">.</span></span>
+    </a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;gap:22px;font-size:14px;font-weight:500">
+        <a href="Home.dc.html#tools" style-focus="outline:2px solid #FF2E63;outline-offset:3px">All tools</a>
+        <a href="Style%20Studio.dc.html" style-focus="outline:2px solid #FF2E63;outline-offset:3px">Style Studio</a>
+        <a href="Blog.dc.html" style-focus="outline:2px solid #FF2E63;outline-offset:3px">Blog</a>
+      </nav>
+      <span style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E675D">free · no signup · in your browser</span>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <span style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6E675D">EPUB → PDF</span>
+    </sc-if>
+  </header>
+
+  <main style="flex:1;max-width:920px;margin:0 auto;width:100%;padding:clamp(24px,4vw,52px) clamp(16px,4vw,48px) clamp(40px,5vw,72px)">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E675D;margin-bottom:14px"><a href="Home.dc.html#tools" style="color:#6E675D" style-focus="outline:2px solid #FF2E63;outline-offset:2px">Tools</a> / Convert from EPUB</div>
+    <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,5vw,58px);line-height:1.05;letter-spacing:-.015em;margin:0 0 10px">Convert EPUB to PDF</h1>
+    <p style="font-size:clamp(15px,1.3vw,17.5px);line-height:1.55;color:#6E675D;margin:0 0 clamp(20px,3vw,32px);max-width:60ch;text-wrap:pretty">Turn a reflowable ebook into a fixed, printable PDF — free, in your browser, no signup.</p>
+
+    <div style="background:#FFFDF9;border:1px solid rgba(23,19,14,.16);border-radius:16px;padding:clamp(18px,3vw,30px);box-shadow:0 1px 0 rgba(23,19,14,.06)">
+      <sc-if value="{{ stIdle }}" hint-placeholder-val="{{ true }}">
+        <label for="tool-file" style="{{ dropZone }}" style-hover="border-color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:3px">
+          <input id="tool-file" type="file" accept=".epub" onChange="{{ onFileInput }}" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none"></input>
+          <div style="font-family:'Instrument Serif',serif;font-size:clamp(21px,2.2vw,27px);letter-spacing:-.01em">{{ dropHeadline }}</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#6E675D;margin-top:6px">.epub · up to 100 MB</div>
+        </label>
+      </sc-if>
+      <sc-if value="{{ stFile }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;background:#17130E;color:#FAF7F2;padding:7px 11px;border-radius:6px">{{ fileName }}</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E675D">{{ fileSize }}</span>
+          <button onClick="{{ clearFile }}" style="margin-left:auto;background:none;border:none;font-family:'Archivo',sans-serif;font-size:13px;color:#6E675D;cursor:pointer;text-decoration:underline;min-height:44px;padding:0 6px" style-hover="color:#FF2E63" style-focus="outline:2px solid #FF2E63;outline-offset:2px">Choose a different file</button>
+        </div>
+        <div style="display:flex;gap:clamp(16px,3vw,36px);flex-wrap:wrap;margin-top:22px">
+          <div style="flex:1;min-width:200px">
+            <div style="font-size:13px;font-weight:600;margin-bottom:8px">Page size</div>
+            <div style="display:flex;gap:0;border:1px solid rgba(23,19,14,.22);border-radius:9px;overflow:hidden">
+              <sc-for list="{{ sizeOpts }}" as="o" hint-placeholder-count="3">
+                <button onClick="{{ o.on }}" style="{{ o.style }}" style-focus="outline:2px solid #FF2E63;outline-offset:-2px">{{ o.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="flex:1;min-width:200px">
+            <div style="font-size:13px;font-weight:600;margin-bottom:8px">Margins</div>
+            <div style="display:flex;gap:0;border:1px solid rgba(23,19,14,.22);border-radius:9px;overflow:hidden">
+              <sc-for list="{{ marginOpts }}" as="o" hint-placeholder-count="3">
+                <button onClick="{{ o.on }}" style="{{ o.style }}" style-focus="outline:2px solid #FF2E63;outline-offset:-2px">{{ o.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ startConvert }}" style="margin-top:24px;width:100%;background:#FF2E63;color:#fff;border:none;border-radius:11px;padding:16px;font-family:'Archivo',sans-serif;font-size:16.5px;font-weight:600;cursor:pointer;transition:transform .12s,box-shadow .12s" style-hover="transform:translateY(-1px);box-shadow:0 6px 18px rgba(255,46,99,.35)" style-focus="outline:2px solid #17130E;outline-offset:3px">Convert to PDF</button>
+        </sc-if>
+      </sc-if>
+      <sc-if value="{{ stWorking }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;align-items:center;padding:14px 0 6px">
+          <div style="width:min(100%,300px);display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{ workLines }}" as="w" hint-placeholder-count="6">
+              <div style="{{ w }}"></div>
+            </sc-for>
+          </div>
+          <div style="margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:#6E675D">re-typesetting · {{ pct }}%</div>
+          <div style="width:min(100%,300px);height:3px;background:rgba(23,19,14,.1);border-radius:2px;margin-top:10px;overflow:hidden"><div style="{{ barStyle }}"></div></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ stDone }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;align-items:center;padding:10px 0 4px;text-align:center">
+          <svg width="44" height="44" viewBox="0 0 44 44" style="animation:tick .45s ease-out both"><circle cx="22" cy="22" r="20" fill="none" stroke="#FF2E63" stroke-width="2.5"></circle><path d="M14 22.5l6 6 10-12" fill="none" stroke="#FF2E63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <div style="font-family:'Instrument Serif',serif;font-size:26px;margin-top:12px">Your PDF is ready</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#6E675D;margin-top:5px">{{ outName }} · {{ outSize }} · deleted from our server in 59 min</div>
+          <button onClick="{{ download }}" style="margin-top:18px;width:min(100%,340px);background:#FF2E63;color:#fff;border:none;border-radius:11px;padding:16px;font-family:'Archivo',sans-serif;font-size:16.5px;font-weight:600;cursor:pointer" style-hover="box-shadow:0 6px 18px rgba(255,46,99,.35)" style-focus="outline:2px solid #17130E;outline-offset:3px">{{ downloadLabel }}</button>
+          <button onClick="{{ clearFile }}" style="margin-top:10px;background:none;border:none;font-size:13.5px;color:#6E675D;cursor:pointer;text-decoration:underline;min-height:44px" style-hover="color:#FF2E63" style-focus="outline:2px solid #FF2E63;outline-offset:2px">Convert another file</button>
+          <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:14px;font-size:12.5px;color:#6E675D;border-top:1px solid rgba(23,19,14,.12);padding-top:12px;width:100%">Use these tools often? Add Epub Studio to your home screen.</div>
+          </sc-if>
+        </div>
+      </sc-if>
+    </div>
+
+    <section style="margin-top:clamp(36px,5vw,60px)">
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(24px,2.6vw,32px);letter-spacing:-.01em;margin:0 0 18px">How to convert EPUB to PDF</h2>
+      <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:14px">
+        <li style="background:#FFFDF9;border:1px solid rgba(23,19,14,.14);border-radius:10px;padding:16px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FF2E63">01</span><div style="font-weight:600;font-size:15px;margin:6px 0 4px">Choose your EPUB</div><div style="font-size:13.5px;line-height:1.5;color:#6E675D">Drop the file above or tap to pick one from your device.</div></li>
+        <li style="background:#FFFDF9;border:1px solid rgba(23,19,14,.14);border-radius:10px;padding:16px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FF2E63">02</span><div style="font-weight:600;font-size:15px;margin:6px 0 4px">Set page size and margins</div><div style="font-size:13.5px;line-height:1.5;color:#6E675D">A4 or Letter for printing, 6×9″ for a book-like page. Defaults work fine.</div></li>
+        <li style="background:#FFFDF9;border:1px solid rgba(23,19,14,.14);border-radius:10px;padding:16px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#FF2E63">03</span><div style="font-weight:600;font-size:15px;margin:6px 0 4px">Convert and download</div><div style="font-size:13.5px;line-height:1.5;color:#6E675D">Press Convert to PDF, then Download PDF. Your file is deleted after an hour.</div></li>
+      </ol>
+    </section>
+
+    <section style="margin-top:clamp(36px,5vw,60px)">
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(24px,2.6vw,32px);letter-spacing:-.01em;margin:0 0 14px">EPUB vs PDF — what changes</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:14px">
+        <div style="flex:1;min-width:min(260px,100%);border:1px solid rgba(23,19,14,.14);border-radius:10px;padding:18px;background:#FFFDF9">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;color:#6E675D;margin-bottom:8px">EPUB — REFLOWABLE</div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#17130E;text-wrap:pretty">Text reflows to fit any screen. Readers control text size, font and theme. Page numbers don’t exist — position is a percentage.</p>
+        </div>
+        <div style="flex:1;min-width:min(260px,100%);border:1px solid rgba(23,19,14,.14);border-radius:10px;padding:18px;background:#FFFDF9">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;color:#6E675D;margin-bottom:8px">PDF — FIXED</div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#17130E;text-wrap:pretty">Every page is frozen at the size you choose here. Perfect for printing and annotation; text no longer adapts to the screen.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:clamp(36px,5vw,60px)">
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(24px,2.6vw,32px);letter-spacing:-.01em;margin:0 0 14px">Questions</h2>
+      <div style="display:flex;flex-direction:column;border-top:1px solid rgba(23,19,14,.14)">
+        <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="5">
+          <div style="border-bottom:1px solid rgba(23,19,14,.14)">
+            <button onClick="{{ q.on }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;background:none;border:none;text-align:left;padding:15px 2px;font-family:'Archivo',sans-serif;font-size:15px;font-weight:600;color:#17130E;cursor:pointer;min-height:44px" style-hover="color:#FF2E63" style-focus="outline:2px solid #FF2E63;outline-offset:-2px"><span>{{ q.q }}</span><span style="{{ q.chev }}">＋</span></button>
+            <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0;padding:0 2px 16px;font-size:14px;line-height:1.6;color:#6E675D;max-width:65ch;text-wrap:pretty">{{ q.a }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="margin-top:clamp(36px,5vw,60px)">
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(22px,2.4vw,28px);letter-spacing:-.01em;margin:0 0 14px">Related tools</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));gap:12px">
+        <sc-for list="{{ related }}" as="t" hint-placeholder-count="4">
+          <a href="{{ t.href }}" style="display:flex;flex-direction:column;gap:6px;background:#FFFDF9;border:1px solid rgba(23,19,14,.14);border-radius:10px;padding:14px;color:#17130E;transition:border-color .15s" style-hover="border-color:#FF2E63;color:#17130E" style-focus="outline:2px solid #FF2E63;outline-offset:2px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6E675D">{{ t.a }} <span style="color:#FF2E63">→</span> {{ t.b }}</span>
+            <span style="font-size:14.5px;font-weight:600">{{ t.n }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+
+  <footer style="border-top:1px solid rgba(23,19,14,.14);padding:20px clamp(16px,4vw,48px);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#6E675D;max-width:1240px;margin:0 auto;width:100%">
+    <span><a href="Home.dc.html" style="color:#6E675D">Epub Studio</a> — free online EPUB tools</span>
+    <span><a href="Home.dc.html#tools" style="color:#6E675D">All tools</a> · About · Privacy</span>
+  </footer>
+
+  <sc-if value="{{ showStickyCta }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(250,247,242,.96);backdrop-filter:blur(10px);border-top:1px solid rgba(23,19,14,.14)">
+      <button onClick="{{ startConvert }}" style="width:100%;background:#FF2E63;color:#fff;border:none;border-radius:11px;padding:15px;font-family:'Archivo',sans-serif;font-size:16px;font-weight:600;cursor:pointer" style-focus="outline:2px solid #17130E;outline-offset:2px">Convert to PDF</button>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { isMobile: typeof window !== 'undefined' && window.innerWidth < 760, stage: 'idle', fileName: null, fileSize: '', pageSize: 'A4', margins: 'Medium', pct: 0, dragging: false, openFaq: -1, downloaded: false };
+  componentDidMount() {
+    this._rs = () => this.setState({ isMobile: window.innerWidth < 760 });
+    window.addEventListener('resize', this._rs);
+    this._over = (e) => { e.preventDefault(); if (this.state.stage === 'idle' && !this.state.dragging) this.setState({ dragging: true }); };
+    this._leave = (e) => { if (!e.relatedTarget) this.setState({ dragging: false }); };
+    this._drop = (e) => { e.preventDefault(); const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; this.setState({ dragging: false }); if (f && this.state.stage === 'idle') this.pick(f.name, f.size); };
+    window.addEventListener('dragover', this._over);
+    window.addEventListener('dragleave', this._leave);
+    window.addEventListener('drop', this._drop);
+  }
+  componentWillUnmount() { clearInterval(this._cv); window.removeEventListener('resize', this._rs); window.removeEventListener('dragover', this._over); window.removeEventListener('dragleave', this._leave); window.removeEventListener('drop', this._drop); }
+  pick(name, size) { const mb = size ? (size / 1048576).toFixed(1) + ' MB' : '2.3 MB'; this.setState({ stage: 'file', fileName: name, fileSize: mb, downloaded: false }); }
+  startConvert = () => {
+    this.setState({ stage: 'working', pct: 0 });
+    this._cv = setInterval(() => {
+      this.setState(s => {
+        const pct = Math.min(100, s.pct + 3 + Math.random() * 6);
+        if (pct >= 100) { clearInterval(this._cv); return { pct: 100, stage: 'done' }; }
+        return { pct };
+      });
+    }, 90);
+  };
+  renderVals() {
+    const S = this.state;
+    const seg = (group, key, val, opts) => opts.map((label, i) => ({
+      label,
+      on: () => this.setState({ [key]: label }),
+      style: `flex:1;min-height:44px;padding:10px 6px;border:none;cursor:pointer;font-family:'Archivo',sans-serif;font-size:13.5px;font-weight:${val === label ? 600 : 400};background:${val === label ? '#17130E' : 'transparent'};color:${val === label ? '#FAF7F2' : '#17130E'};border-left:${i > 0 ? '1px solid rgba(23,19,14,.18)' : 'none'};transition:background .15s`
+    }));
+    const dz = S.dragging;
+    const dropZone = `position:relative;display:block;border:2px dashed ${dz ? '#FF2E63' : 'rgba(23,19,14,.3)'};background:${dz ? 'rgba(255,46,99,.05)' : 'transparent'};border-radius:12px;padding:clamp(26px,4vw,42px) 16px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s`;
+    const dropHeadline = dz ? 'Drop it.' : (S.isMobile ? 'Tap to choose a file' : 'Drop your EPUB here, or click to choose');
+    // working animation
+    const workLines = [92, 100, 96, 88, 100, 70].map((w, i) => {
+      const lit = (S.pct / 100) * 6 > i;
+      return `height:7px;width:${w}%;border-radius:2.5px;transform-origin:left;background:${lit ? 'rgba(23,19,14,.75)' : 'rgba(23,19,14,.15)'};animation:${lit ? 'retype .5s ease-out both' : 'none'};transition:background .3s`;
+    });
+    const faqsData = [
+      { q: 'Will my PDF keep the book’s formatting?', a: 'Yes — chapters, headings, images and footnotes carry over. Because PDF pages are fixed, line breaks are set at the page size you choose here rather than by your reading app.' },
+      { q: 'Is there a file size limit?', a: 'Files up to 100 MB convert fine. Bigger than that, try the EPUB Compressor first — it usually shrinks image-heavy books by half.' },
+      { q: 'Are my files private?', a: 'Conversion happens on our servers over an encrypted connection, and every file is deleted automatically after one hour. We never read, index or share your books.' },
+      { q: 'Why does my PDF look different from my e-reader?', a: 'Your e-reader applies its own font and spacing. The PDF uses the book’s own stylesheet at a fixed page size. Pick 6×9″ with Medium margins for the most book-like result.' },
+      { q: 'Does this work with DRM-protected books?', a: 'No. Files with DRM can’t be opened by any converter. This tool works with DRM-free EPUBs — like the ones you export from your own writing tools or buy from DRM-free stores.' }
+    ];
+    const faqs = faqsData.map((f, i) => ({
+      q: f.q, a: f.a, open: S.openFaq === i,
+      on: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })),
+      chev: `font-size:18px;color:#FF2E63;transition:transform .2s;transform:rotate(${S.openFaq === i ? '45deg' : '0deg'})`
+    }));
+    const TOOL = 'EPUB%20to%20PDF.dc.html';
+    const related = [
+      { n: 'EPUB to DOCX', a: 'EPUB', b: 'DOCX', href: TOOL },
+      { n: 'EPUB to AZW3 (Kindle)', a: 'EPUB', b: 'AZW3', href: TOOL },
+      { n: 'PDF to EPUB', a: 'PDF', b: 'EPUB', href: TOOL },
+      { n: 'EPUB Compressor', a: 'EPUB', b: 'ZIP', href: TOOL }
+    ];
+    const outName = (S.fileName || 'book.epub').replace(/\.epub$/i, '') + '.pdf';
+    return {
+      isMobile: S.isMobile, isDesktop: !S.isMobile,
+      pageBottomPad: S.isMobile ? '90px' : '0px',
+      stIdle: S.stage === 'idle', stFile: S.stage === 'file', stWorking: S.stage === 'working', stDone: S.stage === 'done',
+      showStickyCta: S.isMobile && S.stage === 'file',
+      dropZone, dropHeadline,
+      fileName: S.fileName || '', fileSize: S.fileSize,
+      onFileInput: (e) => { const f = e.target.files && e.target.files[0]; if (f) this.pick(f.name, f.size); },
+      clearFile: () => this.setState({ stage: 'idle', fileName: null, pct: 0 }),
+      sizeOpts: seg('size', 'pageSize', S.pageSize, ['A4', 'US Letter', '6×9″']),
+      marginOpts: seg('m', 'margins', S.margins, ['Narrow', 'Medium', 'Wide']),
+      startConvert: this.startConvert,
+      pct: Math.round(S.pct), workLines,
+      barStyle: `height:100%;width:${S.pct}%;background:#FF2E63;transition:width .12s linear`,
+      outName, outSize: '1.8 MB',
+      download: () => this.setState({ downloaded: true }),
+      downloadLabel: S.downloaded ? 'Downloaded ✓' : 'Download PDF',
+      faqs, related
+    };
+  }
+}
+</script>
+</body>
+</html>

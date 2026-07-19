@@ -1,0 +1,299 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import MobileTabBar from '../components/MobileTabBar.astro';
+import HeroBook from '../components/islands/HeroBook.vue';
+import HomeDropZone from '../components/islands/HomeDropZone.vue';
+import { groups, href, suggestionsByExt, toolBySlug, allTools } from '../data/tools.js';
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '../data/site.js';
+
+// Resolve the extension → slug map into the { n, href } shape the island renders.
+const suggestionMap = Object.fromEntries(
+  Object.entries(suggestionsByExt).map(([ext, slugs]) => [
+    ext,
+    slugs.map((slug) => ({ n: toolBySlug[slug].n, href: `/${slug}` })),
+  ]),
+);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Epub Studio tools',
+    itemListElement: allTools.map((t, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: t.n,
+      url: `${SITE_URL}/${t.slug}`,
+    })),
+  },
+];
+
+const nav = [
+  { label: 'All tools', href: '#tools' },
+  { label: 'EPUB to PDF', href: '/epub-to-pdf' },
+  { label: 'Style Studio', href: '/style-studio' },
+  { label: 'Blog', href: '/blog' },
+];
+---
+
+<BaseLayout
+  title="Epub Studio — free online EPUB tools, converters and reader"
+  description={SITE_DESCRIPTION}
+  path="/"
+  jsonLd={jsonLd}
+>
+  <div class="page">
+    <SiteHeader logoHref="#top" nav={nav} />
+
+    <main id="top" class="main">
+      <section class="hero-section">
+        <div class="hero-row">
+          <div class="hero-copy">
+            <h1>Convert any ebook.<br />Keep it <em>beautiful</em>.</h1>
+            <p>
+              Free EPUB tools that run in your browser. No signup, and your files never leave your
+              device.
+            </p>
+          </div>
+          <HeroBook client:load />
+        </div>
+
+        <HomeDropZone client:load suggestionMap={suggestionMap} />
+      </section>
+
+      <section id="tools" class="tools-section">
+        {
+          groups.map((g) => (
+            <div class="group">
+              <div class="group-head">
+                <h2>{g.label}</h2>
+                <span class="group-count">{g.count}</span>
+              </div>
+              <div class="tool-grid">
+                {g.tools.map((t) => (
+                  <a href={href(t)} class="tool-card focus-ring-2">
+                    <span class="badges">
+                      <span class="badge">{t.a}</span>
+                      <span class="arrow">→</span>
+                      <span class="badge">{t.b}</span>
+                    </span>
+                    <span class="tool-name">{t.n}</span>
+                    <span class="tool-desc">{t.d}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </section>
+
+      <section class="trust">
+        <div class="trust-grid">
+          <div class="trust-cell">
+            <span class="strong">Free, no signup.</span><span class="muted">
+              Every tool, every file size.</span
+            >
+          </div>
+          <div class="trust-cell">
+            <span class="strong">Files never leave your device.</span><span class="muted">
+              Nothing is uploaded, ever.</span
+            >
+          </div>
+          <div class="trust-cell">
+            <span class="strong">Works in your browser.</span><span class="muted">
+              Nothing to install.</span
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+    <MobileTabBar active="tools" />
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+  @media (max-width: 759.98px) {
+    .page {
+      padding-bottom: 76px;
+    }
+  }
+
+  .main {
+    flex: 1;
+  }
+
+  /* --- Hero --- */
+  .hero-section {
+    padding: clamp(28px, 5vw, 64px) clamp(16px, 4vw, 48px) clamp(24px, 3vw, 40px);
+    max-width: 1240px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(24px, 4vw, 64px);
+    align-items: center;
+  }
+
+  .hero-copy {
+    flex: 1 1 460px;
+    min-width: 280px;
+  }
+
+  .hero-copy h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(42px, 6.5vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .hero-copy h1 em {
+    color: #ff2e63;
+  }
+
+  .hero-copy p {
+    font-size: clamp(16px, 1.4vw, 19px);
+    line-height: 1.55;
+    color: #6e675d;
+    margin: 0;
+    max-width: 52ch;
+    text-wrap: pretty;
+  }
+
+  /* --- Tool grid --- */
+  .tools-section {
+    max-width: 1240px;
+    margin: 0 auto;
+    width: 100%;
+    padding: clamp(16px, 2vw, 28px) clamp(16px, 4vw, 48px) clamp(40px, 5vw, 72px);
+    scroll-margin-top: 70px;
+  }
+
+  .group {
+    margin-top: clamp(28px, 3.5vw, 52px);
+  }
+
+  .group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    border-bottom: 1px solid rgba(23, 19, 14, 0.14);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+  }
+  .group-head h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(24px, 2.6vw, 34px);
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .group-count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #6e675d;
+  }
+
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: 12px;
+  }
+
+  .tool-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 16px 16px 14px;
+    min-height: 44px;
+    transition:
+      border-color 0.15s,
+      transform 0.15s;
+    color: #17130e;
+  }
+  .tool-card:hover {
+    border-color: #ff2e63;
+    transform: translateY(-2px);
+    color: #17130e;
+  }
+
+  .badges {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    color: #6e675d;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .badge {
+    background: rgba(23, 19, 14, 0.07);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .arrow {
+    color: #ff2e63;
+    font-weight: 500;
+  }
+
+  .tool-name {
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .tool-desc {
+    font-size: 13px;
+    line-height: 1.45;
+    color: #6e675d;
+    text-wrap: pretty;
+  }
+
+  /* --- Trust strip --- */
+  .trust {
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+    border-bottom: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .trust-grid {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    gap: 1px;
+    background: rgba(23, 19, 14, 0.14);
+  }
+  .trust-cell {
+    background: #faf7f2;
+    padding: 22px clamp(16px, 3vw, 40px);
+    font-size: 15px;
+  }
+  .strong {
+    font-weight: 600;
+  }
+  .muted {
+    color: #6e675d;
+  }
+</style>

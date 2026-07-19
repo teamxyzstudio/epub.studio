@@ -1,0 +1,125 @@
+---
+/**
+ * Layout for standalone prose pages (About, Privacy).
+ * Reuses the article column measure and type scale so they feel part of the
+ * same publication as the blog rather than bolted-on legal boilerplate.
+ */
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  h1: string;
+  lede?: string;
+  updated?: string;
+}
+
+const { title, description, path, h1, lede, updated } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} path={path}>
+  <div class="page">
+    <SiteHeader />
+
+    <main id="main" class="main">
+      <h1>{h1}</h1>
+      {lede && <p class="lede">{lede}</p>}
+      {updated && <p class="updated">Last updated {updated}</p>}
+
+      <div class="prose">
+        <slot />
+      </div>
+    </main>
+
+    <footer class="content-footer">
+      <span><a href="/">Epub Studio</a> — free online EPUB tools</span>
+      <span>
+        <a href="/#tools">All tools</a> · <a href="/blog">Blog</a> · <a href="/about">About</a> ·
+        <a href="/privacy">Privacy</a>
+      </span>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main {
+    flex: 1;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 48px) clamp(48px, 6vw, 80px);
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+
+  .lede {
+    font-size: clamp(15px, 1.3vw, 17.5px);
+    line-height: 1.55;
+    color: #6e675d;
+    margin: 0 0 8px;
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+
+  .updated {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #6e675d;
+    margin: 0 0 26px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(23, 19, 14, 0.14);
+  }
+
+  .content-footer {
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+    padding: 20px clamp(16px, 4vw, 48px);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #6e675d;
+    max-width: 1240px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .content-footer a {
+    color: #6e675d;
+  }
+</style>
+
+<style is:global>
+  /* Same reading treatment as a blog article. */
+  .prose h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 1.65em;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 1.6em 0 0.5em;
+    scroll-margin-top: 90px;
+  }
+  .prose h3 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 1.05em;
+    font-weight: 700;
+    margin: 1.4em 0 0.4em;
+  }
+</style>

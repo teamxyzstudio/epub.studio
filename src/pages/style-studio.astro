@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StyleStudio from '../components/islands/StyleStudio.vue';
+import '../styles/reading-fonts.css';
+
+// The handoff id is read on the client — a static page can't see the query
+// string at build time, and the book lives in IndexedDB anyway.
+---
+
+<BaseLayout
+  title="Style Studio — re-typeset your ebook before you download it"
+  description="Choose the typeface, size, spacing, theme and margins for your EPUB and see it live. Your settings are written into the book you download."
+  path="/style-studio"
+  bodyClass="studio-body"
+>
+  <div id="style-studio-root">
+    <StyleStudio client:only="vue" />
+  </div>
+</BaseLayout>
+
+<style is:global>
+  /* The studio owns the viewport — no page scrolling behind it. */
+  body.studio-body {
+    overflow: hidden;
+  }
+
+  /* Range and colour inputs, from the mock's <helmet> block. */
+  body.studio-body input[type='range'] {
+    accent-color: #ff2e63;
+    width: 100%;
+    min-height: 28px;
+    margin: 0;
+  }
+  body.studio-body input[type='range']:focus-visible {
+    outline: 2px solid #ff2e63;
+    outline-offset: 3px;
+  }
+  body.studio-body input[type='color'] {
+    border: 1px solid rgba(23, 19, 14, 0.25);
+    border-radius: 6px;
+    width: 34px;
+    height: 28px;
+    padding: 1px;
+    background: none;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  // Pass ?book=<id> to the island once it has mounted.
+  const id = new URLSearchParams(location.search).get('book');
+  if (id) {
+    document.documentElement.dataset.handoff = id;
+  }
+</script>

@@ -1,0 +1,126 @@
+---
+/**
+ * Sticky 60px site header (README §Design Tokens → Header).
+ * Values copied from the `<header>` block shared by every mock.
+ *
+ * The mocks branch on `isMobile` in JS; production uses the single 760px
+ * media query the README specifies.
+ */
+import LogoMark from './LogoMark.astro';
+
+interface NavItem {
+  label: string;
+  href: string;
+  active?: boolean;
+}
+
+interface Props {
+  logoHref?: string;
+  nav?: NavItem[];
+  /** Mono note pinned right on desktop. */
+  note?: string;
+  /** Mono note pinned right on mobile (shorter). */
+  mobileNote?: string;
+}
+
+const {
+  logoHref = '/',
+  nav = [
+    { label: 'All tools', href: '/#tools' },
+    { label: 'Style Studio', href: '/style-studio' },
+    { label: 'Blog', href: '/blog' },
+  ],
+  note = 'free · no signup · in your browser',
+  mobileNote = 'free · no signup',
+} = Astro.props;
+---
+
+<header class="site-header">
+  <a class="brand focus-ring" href={logoHref}>
+    <LogoMark size={24} />
+    <span class="wordmark">Epub Studio<span class="dot">.</span></span>
+  </a>
+
+  <nav class="nav">
+    {
+      nav.map((item) => (
+        <a href={item.href} class:list={['nav-link', 'focus-ring', { active: item.active }]}>
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <span class="note desktop-note">{note}</span>
+  <span class="note mobile-note">{mobileNote}</span>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 clamp(16px, 4vw, 48px);
+    height: 60px;
+    background: rgba(250, 247, 242, 0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(23, 19, 14, 0.14);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    white-space: nowrap;
+  }
+  .brand:hover {
+    color: #17130e;
+  }
+
+  .wordmark {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .dot {
+    color: #ff2e63;
+  }
+
+  .nav {
+    display: flex;
+    gap: 22px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* Accent-highlighted current nav item (mocks/Blog.dc.html). */
+  .nav-link.active {
+    color: #ff2e63;
+  }
+
+  .note {
+    margin-left: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #6e675d;
+  }
+  .desktop-note {
+    font-size: 12px;
+  }
+  .mobile-note {
+    display: none;
+    font-size: 11px;
+  }
+
+  @media (max-width: 759.98px) {
+    .nav,
+    .desktop-note {
+      display: none;
+    }
+    .mobile-note {
+      display: inline;
+    }
+  }
+</style>

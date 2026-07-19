@@ -1,0 +1,164 @@
+/* ---------------------------------------------------------------------------
+   Epub Studio — global stylesheet
+
+   Tailwind is loaded WITHOUT preflight on purpose. The design handoff mocks are
+   plain HTML with inline styles and no CSS reset, so they inherit user-agent
+   defaults for a handful of elements (buttons, inputs, details). Adding
+   preflight would silently shift those and break the "visually
+   indistinguishable" bar. The mocks' own base rules are replicated verbatim
+   below instead.
+--------------------------------------------------------------------------- */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* --- Self-hosted fonts (Fontsource) ------------------------------------- */
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource/archivo/400.css';
+@import '@fontsource/archivo/500.css';
+@import '@fontsource/archivo/600.css';
+@import '@fontsource/archivo/700.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+/* Blog article body (README §Type: Literata 17.5/1.75). */
+@import '@fontsource/literata/400.css';
+@import '@fontsource/literata/600.css';
+@import '@fontsource/literata/400-italic.css';
+
+/* --- Design tokens (README §Design Tokens) ------------------------------ */
+@theme {
+  --color-paper: #faf7f2;
+  --color-card: #fffdf9;
+  --color-ink: #17130e;
+  --color-graphite: #6e675d;
+  --color-body-warm: #26211a;
+  --color-accent: #ff2e63;
+  --color-accent-ink: #c41e4f;
+  --color-desk: #eae4da;
+  --color-success: #1b7f4d;
+  --color-error: #b3261e;
+
+  --font-display: 'Instrument Serif', serif;
+  --font-ui: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-read: 'Literata', Georgia, serif;
+}
+
+:root {
+  /* Mirrors of the @theme tokens for use inside plain CSS blocks. */
+  --paper: #faf7f2;
+  --card: #fffdf9;
+  --ink: #17130e;
+  --graphite: #6e675d;
+  --body-warm: #26211a;
+  --accent: #ff2e63;
+  --accent-ink: #c41e4f;
+  --border: rgba(23, 19, 14, 0.14);
+  --border-card: rgba(23, 19, 14, 0.16);
+  --border-input: rgba(23, 19, 14, 0.22);
+}
+
+/* --- Base: copied verbatim from the mocks' <helmet> block ---------------- */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #faf7f2;
+  color: #17130e;
+}
+body {
+  font-family: 'Archivo', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  color: #17130e;
+  text-decoration: none;
+}
+a:hover {
+  color: #ff2e63;
+}
+
+/* Keyframes from the tool-page mock's <helmet>. Global rather than scoped:
+   Vue renames @keyframes declared inside a scoped block, which would break the
+   inline `animation: retype ...` the progress lines rely on. */
+@keyframes retype {
+  0% {
+    transform: scaleX(0.2);
+    opacity: 0.3;
+  }
+  60% {
+    transform: scaleX(1.04);
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+@keyframes tick {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
+  }
+}
+
+/* --- Shared primitives -------------------------------------------------- */
+
+/* The mocks express hover/focus through `style-hover` / `style-focus`
+   attributes. Those become these utility classes, so the values stay in one
+   place instead of being duplicated per element. */
+.focus-ring:focus-visible {
+  outline: 2px solid #ff2e63;
+  outline-offset: 3px;
+}
+.focus-ring-2:focus-visible {
+  outline: 2px solid #ff2e63;
+  outline-offset: 2px;
+}
+.focus-ring-inset:focus-visible {
+  outline: 2px solid #ff2e63;
+  outline-offset: -2px;
+}
+
+/* Visually hidden but still reachable by assistive tech and focusable. */
+.sr-only-file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: #17130e;
+  color: #faf7f2;
+  padding: 10px 16px;
+  border-radius: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+.skip-link:focus {
+  left: 0;
+  color: #faf7f2;
+}

@@ -1,0 +1,110 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import { allTools } from '../data/tools.js';
+
+const toolCount = allTools.length;
+---
+
+<ContentPage
+  title="About — Epub Studio"
+  description="Free EPUB tools that run entirely in your browser. Why the site works this way, what it can and cannot do, and who it is for."
+  path="/about"
+  h1="About Epub Studio"
+  lede="A set of ebook tools that run on your device, not on ours — because that is both faster and none of our business."
+>
+  <p>
+    Epub Studio is {toolCount} tools for working with ebooks: converters in both directions, a reader,
+    and a set of utilities for fixing files that will not open. There is also
+    <a href="/style-studio">Style Studio</a>, which re-typesets a book — typeface, spacing, theme,
+    margins — and writes those choices into the file you download.
+  </p>
+
+  <h2>Everything runs in your browser</h2>
+
+  <p>
+    Most online converters work by uploading your file, processing it on a server, and letting you
+    download the result. That means your book sits on someone else's machine, and you are trusting a
+    promise about what happens to it there.
+  </p>
+
+  <p>
+    This site does the work locally instead. The conversion code is JavaScript that runs on your
+    device, so your file is never transmitted. It is faster for anything of a reasonable size, it
+    works with a bad connection, and it makes the privacy question moot rather than a matter of
+    trust. The <a href="/privacy">privacy page</a> spells out the details.
+  </p>
+
+  <h2>What that costs</h2>
+
+  <p>
+    Being honest about the trade-off: two things do not work this way. Writing MOBI and AZW3 requires
+    Amazon's own toolchain, which cannot run in a browser. Rather than make an exception and upload
+    your book, those pages explain what to do instead — which, since Send-to-Kindle started
+    accepting EPUB in 2022, is usually nothing at all.
+  </p>
+
+  <p>
+    Very large files are also bounded by your device's memory rather than a server's. A novel is
+    trivial; a 500 MB art book may struggle on an old phone.
+  </p>
+
+  <h2>Why EPUB</h2>
+
+  <p>
+    EPUB is an open W3C standard, which means anyone can write software that reads it and no company
+    can withdraw that. A book in EPUB will still open in software nobody has written yet. A book in a
+    proprietary format depends on a company continuing to care.
+  </p>
+
+  <p>
+    That is the argument running through most of what is here: keep your library in the open format,
+    generate device-specific copies when you need them, and treat those copies as disposable.
+  </p>
+
+  <h2>Free, and no account</h2>
+
+  <p>
+    Every tool, every file size, no sign-up. There is no paid tier and nothing held back. Since the
+    work happens on your device, serving these tools costs about as much as serving a blog.
+  </p>
+
+  <h2>Built on open source</h2>
+
+  <p>
+    This site would not exist without a lot of other people's work — among others
+    <a href="https://stuk.github.io/jszip/" rel="noopener">JSZip</a> for reading and writing the EPUB
+    container, <a href="https://mozilla.github.io/pdf.js/" rel="noopener">pdf.js</a> for text
+    extraction, <a href="https://github.com/mwilliamson/mammoth.js" rel="noopener">Mammoth</a> for
+    Word documents, and <a href="https://github.com/parallax/jsPDF" rel="noopener">jsPDF</a> for
+    typesetting PDFs. The reading typefaces are open-licensed, including
+    <a href="https://brailleinstitute.org/freefont" rel="noopener">Atkinson Hyperlegible</a> and
+    OpenDyslexic.
+  </p>
+
+  <h2>The blog</h2>
+
+  <p>
+    The <a href="/blog">blog</a> covers how ebook formats actually work, how to fix files that
+    readers reject, and how to make a book pleasant to read. It is written to be useful whether or
+    not you use any of these tools.
+  </p>
+</ContentPage>
+
+<style is:global>
+  .prose p {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.72;
+    color: #26211a;
+    margin: 0 0 1.2em;
+    text-wrap: pretty;
+  }
+  .prose a {
+    color: #c41e4f;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose a:hover {
+    color: #ff2e63;
+  }
+</style>

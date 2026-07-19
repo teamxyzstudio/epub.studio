@@ -1,0 +1,130 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+---
+
+<ContentPage
+  title="Privacy — Epub Studio"
+  description="Your files are converted inside your browser and never uploaded. No accounts, no tracking, no cookies. Here is exactly what happens to your data."
+  path="/privacy"
+  h1="Privacy"
+  lede="Your books never leave your device. This page explains exactly what that means, and what little data exists at all."
+  updated="18 July 2026"
+>
+  <p>
+    Every tool on this site runs inside your browser. When you convert a file, the work happens on
+    your own machine using JavaScript this page loaded — the file is read from disk, transformed in
+    memory, and handed back to you as a download. It is never sent to us, because there is nowhere
+    for it to be sent to.
+  </p>
+
+  <p>
+    This is not a promise about how carefully we handle uploads. It is a statement that uploads do
+    not happen. You can verify it: open your browser's developer tools, switch to the Network tab,
+    and convert something. You will see no request carrying your file.
+  </p>
+
+  <h2>What we collect</h2>
+
+  <p>
+    Nothing. There are no accounts, no analytics, no tracking pixels, no advertising scripts and no
+    cookies. We do not know who you are, what you converted, or that you were here at all.
+  </p>
+
+  <h2>What is stored on your device</h2>
+
+  <p>Two things, both local to your browser and neither transmitted anywhere:</p>
+
+  <h3>Style Studio settings</h3>
+  <p>
+    Your typeface, size, spacing and theme choices are kept in <code>sessionStorage</code> so they
+    survive a page reload and apply to the next book you open. They are discarded when you close the
+    tab.
+  </p>
+
+  <h3>Converted books awaiting styling</h3>
+  <p>
+    When a conversion produces an EPUB and you continue into Style Studio, the finished book is
+    placed in <code>IndexedDB</code> so the next page can pick it up — two separate pages cannot
+    share a file in memory any other way. Entries are deleted automatically after an hour, and you
+    can clear them at any time through your browser's site-data settings.
+  </p>
+
+  <h2>Fonts and other assets</h2>
+
+  <p>
+    All fonts are served from this site rather than from Google Fonts or another CDN. No third party
+    learns that you visited, and nothing here makes a request to a domain other than this one.
+  </p>
+
+  <h2>Formats we deliberately do not support</h2>
+
+  <p>
+    We do not convert to MOBI or AZW3. Doing so would require sending your book to a server running
+    Amazon's toolchain, and we would rather not offer a tool that quietly works differently from
+    every other one here. Those pages explain the alternatives instead.
+  </p>
+
+  <h2>Server logs</h2>
+
+  <p>
+    This site is static files served by a host. Like any web server, that host may keep standard
+    access logs — IP address, user agent, which page was requested — for operational and security
+    purposes. That is a property of being on the internet at all, and it never includes anything
+    about your files, because your files are never part of a request.
+  </p>
+
+  <h2>Your rights</h2>
+
+  <p>
+    Data protection law gives you rights to access, correct and erase personal data held about you.
+    We hold none, so there is nothing to access, correct or erase. Clearing this site's data in your
+    browser removes the two local items described above.
+  </p>
+
+  <h2>Children</h2>
+
+  <p>
+    This site is safe for anyone to use. It collects no data from any visitor, regardless of age.
+  </p>
+
+  <h2>Changes</h2>
+
+  <p>
+    If this policy ever changes, the date at the top of this page changes with it. Any change that
+    weakened the core promise — that files stay on your device — would be announced on the homepage,
+    not buried here.
+  </p>
+
+  <h2>Contact</h2>
+
+  <p>
+    Questions about any of this are welcome. Add your contact address here before publishing this
+    site.
+  </p>
+</ContentPage>
+
+<style is:global>
+  .prose p {
+    font-family: 'Literata', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.72;
+    color: #26211a;
+    margin: 0 0 1.2em;
+    text-wrap: pretty;
+  }
+  .prose code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.86em;
+    background: rgba(23, 19, 14, 0.06);
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+  .prose a {
+    color: #c41e4f;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose a:hover {
+    color: #ff2e63;
+  }
+</style>
