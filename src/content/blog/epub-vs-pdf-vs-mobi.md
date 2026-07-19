@@ -2,10 +2,11 @@
 title: 'EPUB vs PDF vs MOBI: which format should your book be in?'
 excerpt: 'Reflowable or fixed? Open or locked to one store? A plain-language tour of the three formats every author runs into — and a simple rule for choosing.'
 category: 'Formats explained'
+ogImage: '/blog-og/epub-vs-pdf-vs-mobi.png'
 date: 2026-07-14
 author:
-  name: 'Mara Ellison'
-  initial: 'M'
+  name: 'Epub Studio'
+  initial: 'E'
 featured: true
 tools:
   - pdf-to-epub
@@ -51,7 +52,7 @@ Two rows deserve more than a table cell.
 
 **"Open" is not a technicality.** EPUB is a W3C standard, and PDF has been ISO 32000 since 2008. Both are publicly specified, which means anyone can write software that reads them and no company can revoke that. MOBI never was — it is Amazon's, documented only by people who reverse-engineered it. The practical consequence shows up in a decade or two, when the format you chose determines whether your book is still openable. Open formats get read by software nobody has written yet. Proprietary ones depend on a company continuing to care.
 
-**"Reader font control" is an accessibility feature.** Roughly one reader in ten benefits materially from changing the typeface — dyslexia, low vision, or simply tired eyes at the end of a day. In an EPUB they switch to Atkinson Hyperlegible at 20pt and carry on. In a PDF they pinch and pan across a page designed for paper. When you choose PDF for something that is just prose, you are quietly excluding those readers.
+**"Reader font control" is an accessibility feature.** Roughly one reader in ten benefits materially from changing the typeface — the [British Dyslexia Association](https://www.bdadyslexia.org.uk/dyslexia) puts dyslexia alone at ten percent of the population, before counting low vision or simply tired eyes at the end of a day. In an EPUB they switch to Atkinson Hyperlegible at 20pt and carry on. In a PDF they pinch and pan across a page designed for paper. When you choose PDF for something that is just prose, you are quietly excluding those readers.
 
 ## So which one should your book be in?
 

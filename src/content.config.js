@@ -26,6 +26,12 @@ const blog = defineCollection({
     featured: z.boolean().default(false),
     /** Slugs from src/data/tools.js, rendered in the "Tools mentioned" card. */
     tools: z.array(z.string()).default([]),
+    /**
+     * Per-post social card, e.g. '/blog-og/<slug>.png'. Generated with
+     * `node scripts/og-card.mjs` — falls back to the site-wide card if absent.
+     * Not rendered inside the article (the design has no hero image).
+     */
+    ogImage: z.string().optional(),
     /** Overrides the word-count estimate when you want an exact figure. */
     readTime: z.string().optional(),
     draft: z.boolean().default(false),

@@ -2,10 +2,11 @@
 title: 'What is actually inside an EPUB file?'
 excerpt: 'Rename it to .zip and look. Understanding the five pieces makes every other ebook problem easier.'
 category: 'Formats explained'
+ogImage: '/blog-og/what-is-inside-an-epub.png'
 date: 2026-04-27
 author:
-  name: 'Priya Raman'
-  initial: 'P'
+  name: 'Epub Studio'
+  initial: 'E'
 tools:
   - epub-validator
 ---

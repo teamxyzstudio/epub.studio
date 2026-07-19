@@ -2,10 +2,11 @@
 title: 'The best fonts for ebooks (and how to choose one)'
 excerpt: 'Literata, Garamond, or Hyperlegible? What actually matters when readers can override your font.'
 category: 'Typesetting'
+ogImage: '/blog-og/best-fonts-for-ebooks.png'
 date: 2026-05-28
 author:
-  name: 'Jonah Reyes'
-  initial: 'J'
+  name: 'Epub Studio'
+  initial: 'E'
 tools:
   - epub-reader
 ---
@@ -36,7 +37,7 @@ Literata was commissioned specifically for on-screen reading and is a safe, unsh
 
 <div class="callout">
 <div class="callout-kicker">Accessibility is not a niche</div>
-Around one reader in ten benefits materially from a face designed for legibility. Atkinson Hyperlegible disambiguates commonly confused letterforms; OpenDyslexic weights the bottoms of letters to reduce rotation. Offering them costs nothing and is not a compromise for anyone else.
+Around one reader in ten benefits materially from a face designed for legibility — the <a href="https://www.bdadyslexia.org.uk/dyslexia">British Dyslexia Association</a> estimates ten percent of the population is dyslexic. Atkinson Hyperlegible disambiguates commonly confused letterforms; OpenDyslexic weights the bottoms of letters to reduce rotation. Offering them costs nothing and is not a compromise for anyone else.
 </div>
 
 ## Should you embed it?

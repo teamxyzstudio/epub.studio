@@ -2,10 +2,11 @@
 title: '"This file is corrupt": fixing EPUBs that readers reject'
 excerpt: 'The five validation errors behind most rejections, and how to repair each one with the Validator.'
 category: 'Fix it'
+ogImage: '/blog-og/fixing-corrupt-epub-files.png'
 date: 2026-06-09
 author:
-  name: 'Priya Raman'
-  initial: 'P'
+  name: 'Epub Studio'
+  initial: 'E'
 tools:
   - epub-validator
   - epub-metadata-editor

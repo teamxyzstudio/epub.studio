@@ -2,10 +2,11 @@
 title: 'MOBI is dead. Here''s what to do with your old files'
 excerpt: 'Amazon dropped MOBI support for docs. Converting your library to EPUB takes minutes.'
 category: 'Kindle'
+ogImage: '/blog-og/mobi-is-dead.png'
 date: 2026-05-12
 author:
-  name: 'Mara Ellison'
-  initial: 'M'
+  name: 'Epub Studio'
+  initial: 'E'
 tools:
   - mobi-to-epub
   - azw3-to-epub

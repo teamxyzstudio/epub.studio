@@ -1,0 +1,39 @@
+primary_keyword,url,type,status,notes
+epub converter online,/,home,live,brand + category head
+epub to pdf,/epub-to-pdf,tool,live,transactional
+epub to mobi,/epub-to-mobi,guidance,live,no browser writer — page teaches Send-to-Kindle route
+epub to azw3,/epub-to-azw3,guidance,live,no browser writer — page teaches Send-to-Kindle route
+epub to docx,/epub-to-docx,tool,live,also owns "epub to word"
+epub to txt,/epub-to-txt,tool,live,
+pdf to epub,/pdf-to-epub,tool,live,
+docx to epub,/docx-to-epub,tool,live,also owns "word to epub" (same intent)
+mobi to epub,/mobi-to-epub,tool,live,
+azw3 to epub,/azw3-to-epub,tool,live,also owns "azw to epub"
+txt to epub,/txt-to-epub,tool,live,
+markdown to epub,/markdown-to-epub,tool,live,also owns "md to epub"
+html to epub,/html-to-epub,tool,live,
+fb2 to epub,/fb2-to-epub,tool,live,
+cbz to epub,/cbz-to-epub,tool,live,
+read epub online,/epub-reader,tool,live,also owns "epub reader online"
+epub metadata editor,/epub-metadata-editor,tool,live,
+epub cover editor,/epub-cover-editor,tool,live,also owns "change epub cover"
+epub validator,/epub-validator,tool,live,transactional; blog owns "epub validation errors" phrasings
+compress epub,/epub-compressor,tool,live,transactional; blog owns the how-to phrasing
+merge epub files,/merge-epub,tool,live,
+split epub,/split-epub,tool,live,
+epub styler,/style-studio,tool,live,re-typeset / customise epub before download
+epub vs pdf vs mobi,/blog/epub-vs-pdf-vs-mobi,blog,live,featured pillar; owns format-comparison intent
+how to convert epub to pdf,/blog/convert-epub-to-pdf-without-losing-formatting,blog,live,informational phrasing of /epub-to-pdf
+send epub to kindle,/blog/send-epub-to-kindle,blog,live,also owns "read epub on kindle" intent
+ebook line spacing,/blog/ebook-line-spacing-and-line-length,blog,live,also owns "line length readability"
+convert word to epub,/blog/convert-word-to-epub,blog,live,informational phrasing of /docx-to-epub
+epub page numbers,/blog/why-page-numbers-dont-exist-in-epub,blog,live,also owns "kindle locations explained"
+epub wont open,/blog/fixing-corrupt-epub-files,blog,live,also owns "epub corrupt" / "epub validation errors" how-to
+best fonts for ebooks,/blog/best-fonts-for-ebooks,blog,live,also owns "ebook typeface"
+reduce epub file size,/blog/reduce-epub-file-size,blog,live,informational phrasing of /epub-compressor
+mobi to epub migration,/blog/mobi-is-dead,blog,live,"mobi is dead" / what to do with old mobi files
+ebook chapter openings,/blog/ebook-chapter-openings,blog,live,drop caps / first-line indents
+what is inside an epub,/blog/what-is-inside-an-epub,blog,live,epub file structure explained
+public domain ebooks,/blog/public-domain-books-worth-reading,blog,live,where to find well-made editions
+about epub studio,/about,page,live,
+epub studio privacy,/privacy,page,live,

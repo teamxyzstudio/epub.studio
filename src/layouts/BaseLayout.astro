@@ -28,6 +28,8 @@ const {
 
 const canonical = new URL(path, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
+// Per-page cards render the page title; only the site-wide card gets the tagline.
+const ogImageAlt = ogImage === OG_IMAGE ? 'Epub Studio — free online EPUB tools' : title;
 ---
 
 <!doctype html>
@@ -58,7 +60,7 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Epub Studio — free online EPUB tools" />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />

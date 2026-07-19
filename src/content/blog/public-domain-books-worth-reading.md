@@ -2,10 +2,11 @@
 title: 'Where to find well-made public domain ebooks'
 excerpt: 'Not all free editions are equal. How to tell a carefully produced text from a bad scan.'
 category: 'How-to'
+ogImage: '/blog-og/public-domain-books-worth-reading.png'
 date: 2026-04-19
 author:
-  name: 'Priya Raman'
-  initial: 'P'
+  name: 'Epub Studio'
+  initial: 'E'
 tools:
   - epub-reader
   - epub-validator

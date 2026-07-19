@@ -2,10 +2,11 @@
 title: 'Ebook chapter openings: drop caps, indents and spacing'
 excerpt: 'Chapter openings are where a converted file gives itself away. Four fixes that take a minute each.'
 category: 'Typesetting'
+ogImage: '/blog-og/ebook-chapter-openings.png'
 date: 2026-05-04
 author:
-  name: 'Jonah Reyes'
-  initial: 'J'
+  name: 'Epub Studio'
+  initial: 'E'
 ---
 
 You can usually tell an auto-converted ebook from a typeset one within a paragraph, and it is rarely the body text that gives it away. It is the chapter opening.

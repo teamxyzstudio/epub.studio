@@ -2,10 +2,11 @@
 title: 'How to reduce EPUB file size without wrecking the images'
 excerpt: 'Where the megabytes hide, and the compression settings that are invisible on e-ink screens.'
 category: 'Fix it'
+ogImage: '/blog-og/reduce-epub-file-size.png'
 date: 2026-05-19
 author:
-  name: 'Priya Raman'
-  initial: 'P'
+  name: 'Epub Studio'
+  initial: 'E'
 tools:
   - epub-compressor
   - split-epub

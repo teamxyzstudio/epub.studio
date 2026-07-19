@@ -2,10 +2,11 @@
 title: 'Line spacing and line length: why your ebook is hard to read'
 excerpt: 'The 60–75 character rule, and how to fix a wall-of-text book in Style Studio in two minutes.'
 category: 'Typesetting'
+ogImage: '/blog-og/ebook-line-spacing-and-line-length.png'
 date: 2026-06-30
 author:
-  name: 'Jonah Reyes'
-  initial: 'J'
+  name: 'Epub Studio'
+  initial: 'E'
 tools:
   - epub-reader
 ---

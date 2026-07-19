@@ -2,10 +2,11 @@
 title: 'How to convert a Word document to EPUB'
 excerpt: 'Heading styles in, chapters out. How DOCX structure maps to an ebook — and the mistakes to avoid.'
 category: 'How-to'
+ogImage: '/blog-og/convert-word-to-epub.png'
 date: 2026-06-22
 author:
-  name: 'Mara Ellison'
-  initial: 'M'
+  name: 'Epub Studio'
+  initial: 'E'
 tools:
   - docx-to-epub
   - epub-validator

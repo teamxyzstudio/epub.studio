@@ -2,10 +2,11 @@
 title: 'How to convert EPUB to PDF without losing formatting'
 excerpt: 'Page size, margins, and the two settings that decide whether your PDF looks typeset or broken.'
 category: 'How-to'
+ogImage: '/blog-og/convert-epub-to-pdf-without-losing-formatting.png'
 date: 2026-07-13
 author:
-  name: 'Mara Ellison'
-  initial: 'M'
+  name: 'Epub Studio'
+  initial: 'E'
 tools:
   - epub-to-pdf
   - epub-compressor

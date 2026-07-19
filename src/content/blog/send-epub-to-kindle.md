@@ -2,10 +2,11 @@
 title: 'How to send an EPUB to your Kindle (3 ways)'
 excerpt: 'Send-to-Kindle, USB, or AZW3 conversion — the three routes, and when each one is the right call.'
 category: 'Kindle'
+ogImage: '/blog-og/send-epub-to-kindle.png'
 date: 2026-07-08
 author:
-  name: 'Mara Ellison'
-  initial: 'M'
+  name: 'Epub Studio'
+  initial: 'E'
 tools:
   - epub-to-azw3
   - epub-to-mobi

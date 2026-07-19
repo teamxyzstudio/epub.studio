@@ -2,10 +2,11 @@
 title: 'Why page numbers don''t exist in EPUB (and what to use instead)'
 excerpt: 'Reflowable text has no fixed pages. Here''s how locations, percentages and CFIs actually work.'
 category: 'Formats explained'
+ogImage: '/blog-og/why-page-numbers-dont-exist-in-epub.png'
 date: 2026-06-15
 author:
-  name: 'Jonah Reyes'
-  initial: 'J'
+  name: 'Epub Studio'
+  initial: 'E'
 tools:
   - epub-reader
 ---
