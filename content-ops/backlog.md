@@ -11,7 +11,6 @@ Mode B (mining) appends new candidates here; writing a post moves its row to
 
 | # | Question (paraphrased, from community threads) | Primary keyword | Category | Tool CTA | Notes |
 |---|---|---|---|---|---|
-| 1 | PDF converted to EPUB is unreadable — broken paragraphs, page headers stuck in the text | pdf to epub formatting problems | Fix it | /pdf-to-epub | Informational sibling of the tool page; explain the "archaeology" mechanics |
 | 2 | Calibre added random italics/underlining after converting Word to EPUB | calibre epub conversion problems | Fix it | /docx-to-epub | Honest about Calibre; ours as the simpler path |
 | 3 | Cover shows in Calibre but no thumbnail after sideloading | epub cover not showing | Fix it | /epub-cover-editor | Root cause: cover not marked in manifest (`properties="cover-image"`) |
 | 4 | Embedded fonts distorted or ignored after uploading to Kindle | epub embedded fonts not working | Kindle | /style-studio | Style Studio embeds fonts; explain reader overrides honestly |
