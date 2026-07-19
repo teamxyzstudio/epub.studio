@@ -34,6 +34,8 @@ export const toCard = (post) => ({
   category: post.data.category,
   date: formatDate(post.data.date),
   readTime: readTime(post),
+  /** Branded card PNG, doubling as the listing thumbnail. */
+  image: post.data.ogImage || null,
 });
 
 /**

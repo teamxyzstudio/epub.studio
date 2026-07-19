@@ -129,6 +129,21 @@ const jsonLd = [
           <ShareButton client:load />
         </div>
 
+        {
+          post.data.ogImage && (
+            /* Branded hero. alt="" — it restates the h1 directly above it. */
+            <img
+              class="hero-card"
+              src={post.data.ogImage}
+              alt=""
+              width="1200"
+              height="630"
+              loading="eager"
+              decoding="async"
+            />
+          )
+        }
+
         <div class="prose">
           <Content />
         </div>
@@ -297,6 +312,16 @@ const jsonLd = [
     padding-bottom: 22px;
     border-bottom: 1px solid rgba(23, 19, 14, 0.14);
     margin-bottom: 26px;
+  }
+
+  .hero-card {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 14px;
+    box-shadow: 0 1px 0 rgba(23, 19, 14, 0.06);
+    margin: 0 0 28px;
   }
   .avatar {
     width: 38px;

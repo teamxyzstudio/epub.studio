@@ -226,8 +226,10 @@ node scripts/og-card.mjs --slug <slug> --title "<exact title>" --kicker "<catego
 ```
 
 Writes `public/blog-og/<slug>.png` (1200×630, brand-correct, text as paths).
-Set `ogImage: '/blog-og/<slug>.png'` in frontmatter. The card is social-only —
-the article layout has no hero image; never embed it in the body.
+Set `ogImage: '/blog-og/<slug>.png'` in frontmatter. The template then renders
+it in all three places automatically — og/social tags, the listing thumbnail,
+and the article hero under the byline — so never embed it in the body yourself,
+and never skip generating it (a post without a card looks bare in the listing).
 
 **Infographics (0–2 per post, only when a visual genuinely explains):** step
 flows of 3+ stages, structure anatomy ("inside an EPUB"), symptom→cause→fix

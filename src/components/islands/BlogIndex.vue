@@ -76,8 +76,18 @@ function subscribe() {
       <p>{{ featured.excerpt }}</p>
       <div class="featured-cta">Read the guide →</div>
     </div>
-    <div class="featured-art" aria-hidden="true">
-      <div class="art-row">
+    <div class="featured-art" :class="{ 'has-img': featured.image }" aria-hidden="true">
+      <img
+        v-if="featured.image"
+        class="featured-img"
+        :src="featured.image"
+        alt=""
+        width="1200"
+        height="630"
+        loading="lazy"
+        decoding="async"
+      />
+      <div v-else class="art-row">
         <div class="book book-epub">
           <span style="height: 5px; width: 70%; background: rgba(23, 19, 14, 0.6)"></span>
           <span style="height: 3.5px; width: 100%; background: rgba(23, 19, 14, 0.25)"></span>
@@ -103,6 +113,18 @@ function subscribe() {
 
   <div class="grid">
     <a v-for="p in visible" :key="p.href" :href="p.href" class="card focus-ring-2">
+      <!-- Branded card as thumbnail. alt="" — it repeats the title the card
+           already shows as text, so reading it out would be a duplicate. -->
+      <img
+        v-if="p.image"
+        class="card-img"
+        :src="p.image"
+        alt=""
+        width="1200"
+        height="630"
+        loading="lazy"
+        decoding="async"
+      />
       <div class="card-meta">
         <span class="cat">{{ p.category }}</span><span>{{ p.readTime }}</span>
       </div>
@@ -237,6 +259,22 @@ function subscribe() {
   border-radius: 10px;
   padding: 28px 20px;
 }
+/* When the post has a branded card, it fills the art panel edge to edge. */
+.featured-art.has-img {
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+  align-self: stretch;
+}
+.featured-img {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid rgba(23, 19, 14, 0.12);
+}
 .art-row {
   display: flex;
   gap: 14px;
@@ -301,6 +339,15 @@ function subscribe() {
   border-color: #ff2e63;
   transform: translateY(-2px);
   color: #17130e;
+}
+/* Thumbnail bleeds to the card edges above the padded content. */
+.card-img {
+  width: calc(100% + 40px);
+  height: auto;
+  margin: -20px -20px 14px;
+  display: block;
+  border-radius: 11px 11px 0 0;
+  border-bottom: 1px solid rgba(23, 19, 14, 0.1);
 }
 .card-meta {
   display: flex;
