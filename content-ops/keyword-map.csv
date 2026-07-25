@@ -38,5 +38,6 @@ public domain ebooks,/blog/public-domain-books-worth-reading,blog,live,where to 
 pdf to epub formatting problems,/blog/pdf-to-epub-formatting-problems,blog,live,informational fix-it phrasing of /pdf-to-epub; reconstruction mechanics
 calibre epub conversion problems,/blog/calibre-epub-conversion-problems,blog,live,fix-it; stray direct formatting from the source vs semantic-only conversion
 epub cover not showing,/blog/epub-cover-not-showing,blog,live,fix-it; cover image present but not marked in manifest (cover-image property / legacy meta)
+epub embedded fonts not working,/blog/epub-embedded-fonts-not-working,blog,live,kindle; conversion + reader font override + single-weight faux bold/italic
 about epub studio,/about,page,live,
 epub studio privacy,/privacy,page,live,

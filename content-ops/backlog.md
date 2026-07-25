@@ -11,7 +11,6 @@ Mode B (mining) appends new candidates here; writing a post moves its row to
 
 | # | Question (paraphrased, from community threads) | Primary keyword | Category | Tool CTA | Notes |
 |---|---|---|---|---|---|
-| 4 | Embedded fonts distorted or ignored after uploading to Kindle | epub embedded fonts not working | Kindle | /style-studio | Style Studio embeds fonts; explain reader overrides honestly |
 | 5 | epubcheck errors are incomprehensible | epub validation errors explained | Fix it | /epub-validator | Translate the 10 most common epubcheck messages |
 | 6 | Which source converts cleanest — Word, HTML or Markdown? | best format to convert to epub | How-to | /docx-to-epub | Comparison post; may run longer than standard |
 | 7 | EPUB works in one app, broken in another | epub compatibility problems | Fix it | /epub-validator | Strict XHTML parsing is usually the culprit |
