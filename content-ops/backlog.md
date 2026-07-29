@@ -11,7 +11,6 @@ Mode B (mining) appends new candidates here; writing a post moves its row to
 
 | # | Question (paraphrased, from community threads) | Primary keyword | Category | Tool CTA | Notes |
 |---|---|---|---|---|---|
-| 6 | Which source converts cleanest — Word, HTML or Markdown? | best format to convert to epub | How-to | /docx-to-epub | Comparison post; may run longer than standard |
 | 7 | EPUB works in one app, broken in another | epub compatibility problems | Fix it | /epub-validator | Strict XHTML parsing is usually the culprit |
 | 8 | TOC is a mess — stray bullets, wrong order, missing chapters | epub table of contents problems | Fix it | /epub-validator | nav.xhtml vs toc.ncx; converters rebuild nav docs |
 | 9 | Images missing or broken after conversion | epub images not showing | Fix it | /epub-validator | Manifest href mismatches; relative path rules |

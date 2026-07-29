@@ -40,5 +40,6 @@ calibre epub conversion problems,/blog/calibre-epub-conversion-problems,blog,liv
 epub cover not showing,/blog/epub-cover-not-showing,blog,live,fix-it; cover image present but not marked in manifest (cover-image property / legacy meta)
 epub embedded fonts not working,/blog/epub-embedded-fonts-not-working,blog,live,kindle; conversion + reader font override + single-weight faux bold/italic
 epub validation errors explained,/blog/epub-validation-errors-explained,blog,live,fix-it; decodes epubcheck message codes (PKG/OPF/RSC/HTM/NCX) — reference/decoder intent, distinct from the corrupt-file repair how-to
+best format to convert to epub,/blog/best-format-to-convert-to-epub,blog,live,how-to; comparison of DOCX vs Markdown vs HTML sources — structure fidelity, not the file extension; distinct from the single-format how-tos
 about epub studio,/about,page,live,
 epub studio privacy,/privacy,page,live,
