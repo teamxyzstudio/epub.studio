@@ -11,7 +11,6 @@ Mode B (mining) appends new candidates here; writing a post moves its row to
 
 | # | Question (paraphrased, from community threads) | Primary keyword | Category | Tool CTA | Notes |
 |---|---|---|---|---|---|
-| 8 | TOC is a mess — stray bullets, wrong order, missing chapters | epub table of contents problems | Fix it | /epub-validator | nav.xhtml vs toc.ncx; converters rebuild nav docs |
 | 9 | Images missing or broken after conversion | epub images not showing | Fix it | /epub-validator | Manifest href mismatches; relative path rules |
 | 10 | Getting an EPUB accepted by OverDrive/Libby | publish epub to libraries | How-to | /epub-validator | Store-specific rules on top of the spec |
 | 11 | Bought an ebook, can't open it elsewhere — what is DRM? | ebook drm explained | Formats explained | — (informational) | NEVER include removal instructions; policy line in skill |
