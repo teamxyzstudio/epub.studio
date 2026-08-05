@@ -37,6 +37,11 @@ Compute month-to-date counts from commit messages:
 Quotas: blog ≤ 15/month, landing ≤ 7/month. Pace = quota × (day of month /
 days in month), rounded up.
 
+August 2026 exception (one-time): 4 landing pages shipped 2026-08-05 in
+commits that predate the "landing: add" convention — treat landing_count as
+(grep count + 4) for August only. The blog convention was already in place;
+no blog adjustment.
+
 Priority order:
 1. LANDING if landing_count < 7 AND landing_count < pace(7) AND an eligible
    row exists (see LANDING TOPIC).
@@ -68,8 +73,9 @@ access, source unreachable), skip that row — never publish unverified claims.
 
 ## BLOG TOPIC
 
-From content-ops/backlog.md, current month's assigned rows (the Schedule
-line: Sep = rows 14–19, Oct = 20–25, Nov = 26–31, Dec = 32–35, Jan = 36–39):
+From content-ops/backlog.md, current month's assigned rows per the
+**Schedule** line in that file — the backlog is the single source of truth
+for the month map; never assume months not listed there:
 
 - If an assigned row is unwritten: take the lowest-numbered one (Mode A).
   Respect each row's DEDUP GATE / EXPERTISE GATE notes.

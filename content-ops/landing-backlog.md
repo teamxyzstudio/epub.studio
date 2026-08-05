@@ -26,15 +26,22 @@ spreadsheet is linked, its rows merge into this table (expected columns:
 | sigil alternative | comparison | Needs fetch-verification of Sigil's current state; theirWins: real code-level EPUB editing |
 | online epub converter | comparison | Category comparison (us vs upload-style sites); careful: transactional phrasing may belong to tool pages — check intent before writing |
 
-## Production schedule (7 pages/month, set 2026-08-05)
+## Production schedule (7 pages/month, aligned to an August 2026 start)
 
-- **Sep**: 5 reader variants below + epub-tools-for-teachers + fix-my-epub
-- **Oct**: kindle-format-guide, sigil-alternative, fanfiction-readers,
-  chromebook (verify gate), then es infra + first 3 es pages
-- **Nov**: remaining es queue + comics hub (tool-gated) + refresh buffer
+- **Aug 2026 (3 remaining of 7)**: the 4 pages shipped 2026-08-05 count
+  toward August's quota; remaining slots = read-epub-on-windows,
+  read-epub-on-android, read-epub-on-iphone
+- **Sep**: read-epub-on-linux, read-epub-on-mac, epub-tools-for-teachers,
+  fix-my-epub, kindle-format-guide, sigil-alternative, fanfiction-readers
+- **Oct**: chromebook (verify gate) · es queue continues — cbr a pdf
+  (cbz-to-pdf is live), epub a mobi, lector epub online (mine the no-pair es
+  rows first) · comics hub (tool-gated) · refresh buffer. Note: es i18n
+  infra + the first 3 es mirrors already shipped 2026-08-05
+- **Nov**: djvu a pdf (after the djvu spike lands) + next-locale decision
+  (fr vs pt, on es GSC data) + refresh rows
 - **Dec+**: next locale + quarterly-refresh supply
-- **Safety**: GSC checkpoint at week 6 and monthly after — anomalies halt
-  this lane (see CONTENT-MACHINE.md)
+- **Safety**: GSC checkpoint at week 6 from Aug 5 (≈ Sep 16) and monthly
+  after — anomalies halt this lane (see CONTENT-MACHINE.md)
 
 ## Queued from keyword research (2026-08-05) — the reader variant program
 

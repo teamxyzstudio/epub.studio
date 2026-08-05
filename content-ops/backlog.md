@@ -21,9 +21,12 @@ Volumes from `keyword-research/clusters.csv` (Semrush export, Aug 2026). Every
 row re-checks `keyword-map.csv` at write time. Row 11 above ("ebook drm
 explained", cluster volume 650) predates this research and stays where it is.
 
-**Schedule (12–15 posts/month = 5–6 rows + 7–9 mined):** Sep = rows 14–19 ·
-Oct = 20–25 · Nov = 26–31 · Dec = 32–35 · Jan = 36–39 · thereafter mined +
+**Schedule (12–15 posts/month = 5–6 rows + 7–9 mined):** Aug 2026 = rows
+14–19 (4 posts already shipped Aug 1–5 count toward August's 15) · Sep =
+20–25 · Oct = 26–31 · Nov = 32–35 · Dec = 36–39 · thereafter mined +
 quarterly-refresh rows. A mined week that matches a numbered row consumes it.
+This line is the single source of truth for the publisher routine's month
+map — realign here, never in the routine.
 
 | # | Topic | Primary keyword | Volume | Category | Tool CTA | Notes |
 |---|---|---|---|---|---|---|

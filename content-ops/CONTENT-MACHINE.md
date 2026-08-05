@@ -69,16 +69,17 @@ landing/mo is above the staged-family guardrail the research suggested
 
 | Month | Blog (12–15) | Landing (7) |
 |---|---|---|
-| **Sep 2026** | Rows 14–19 + 7–9 mined | 5 reader variants + epub-tools-for-teachers + fix-my-epub |
-| **Oct 2026** | Rows 20–25 + 7–9 mined | kindle-format-guide (pillar), sigil-alternative, fanfiction-readers, chromebook variant (verify gate), es i18n infra ships mid-month, then first 3 es pages (epub a pdf, pdf a epub, mobi a epub) |
-| **Nov 2026** | Rows 26–31 + 7–9 mined | Remaining es queue (epub a mobi, lector epub online, + cbr/djvu es pages if their tools shipped), comics hub (if ≥3 comic tools live), buffer from refresh |
-| **Dec 2026** | Rows 32–35 + mined | Supply decision: fr or pt locale (~10 pages) per es results + Q4 research refresh rows |
-| **Q1 2027** | Rows 36–39 + mined + refresh rows | Second locale continues + refresh-fed rows |
+| **Aug 2026** | Rows 14–19 + mined (4 posts already shipped Aug 1–5 count) | 3 remaining of 7 (4 shipped Aug 5): reader variants — windows, android, iphone |
+| **Sep 2026** | Rows 20–25 + 7–9 mined | linux + mac variants, epub-tools-for-teachers, fix-my-epub, kindle-format-guide, sigil-alternative, fanfiction-readers |
+| **Oct 2026** | Rows 26–31 + 7–9 mined | chromebook (verify gate) + es queue (cbr a pdf, epub a mobi, lector epub online) + comics hub (tool-gated) + refresh buffer — es infra + first 3 mirrors shipped Aug 5 |
+| **Nov 2026** | Rows 32–35 + mined | djvu a pdf (post-spike) + next-locale decision (fr vs pt, on es GSC data) + refresh rows |
+| **Dec 2026** | Rows 36–39 + mined | Next locale (~10 pages) + Q4 research refresh rows |
+| **Q1 2027** | Mined + refresh rows | Second locale continues + refresh-fed rows |
 | **Q2 2027** | Mining + refresh + enrichment-led | Third locale decision; conditional rows |
 
-Tool engineering runs alongside: azw3-to-pdf + mobi-to-pdf (Sep), cbz-to-pdf
-+ pdf-to-kindle guidance (Oct), djvu spike (Nov — unblocks the djvu es page
-and row 24), Tier-2 chains (Q4+).
+Tool engineering runs alongside: azw3-to-pdf + mobi-to-pdf + cbz-to-pdf
+SHIPPED Aug 5; pdf-to-kindle guidance (Aug–Sep, pure data); djvu spike (Oct,
+ships Nov — unblocks the djvu es page and blog row 24); Tier-2 chains (Q4+).
 
 ## Hard rules the automation must never relax
 
