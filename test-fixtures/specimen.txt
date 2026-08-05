@@ -1,0 +1,21 @@
+THE CONVERSION SPECIMEN
+
+CHAPTER 1: WHAT THIS FILE IS
+
+This is the specimen book Epub Studio uses to demonstrate its own tools. It was written for that purpose and for no other; every screenshot of a conversion on the blog that needs a book uses this one, so that the numbers you read are reproducible from the repository.
+
+A specimen has one job: to contain the things that go wrong. So this book has headings, paragraphs long enough to wrap, a list, and enough chapters to produce a real table of contents.
+
+CHAPTER 2: PARAGRAPHS AND WRAPPING
+
+A paragraph needs to be long enough to reflow before it proves anything. When a reader changes the text size, every line break in this paragraph moves; when a converter freezes it into a PDF, they stop moving. That difference — reflowable against fixed — is the whole story of ebook formats, and it is easier to show than to tell.
+
+Typesetting has vocabulary for the failures: widows, orphans, rivers. A conversion that produces them is not wrong, exactly. It is just worse than one that does not.
+
+CHAPTER 3: STRUCTURE
+
+An EPUB is a zip archive with rules. Inside this one you will find the container declaration, a package manifest, a spine that orders the chapters, and one XHTML file per chapter. The validator on this site checks exactly those things, in that order.
+
+CHAPTER 4: THE ENDING
+
+A specimen does not need a plot, but it does need an ending, because the last chapter is where broken table-of-contents entries like to point. If you can navigate here from the contents, that part works.

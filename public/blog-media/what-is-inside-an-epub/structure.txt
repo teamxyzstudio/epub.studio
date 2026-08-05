@@ -1,0 +1,14 @@
+$ unzip -l specimen.epub   (5,183 bytes total)
+       251  META-INF/container.xml
+       364  OEBPS/chapter-001.xhtml
+       845  OEBPS/chapter-002.xhtml
+       905  OEBPS/chapter-003.xhtml
+       618  OEBPS/chapter-004.xhtml
+       573  OEBPS/chapter-005.xhtml
+      1314  OEBPS/content.opf
+       682  OEBPS/nav.xhtml
+       452  OEBPS/style.css
+       986  OEBPS/toc.ncx
+        20  mimetype
+mimetype: application/epub+zip
+rootfile (from META-INF/container.xml): OEBPS/content.opf

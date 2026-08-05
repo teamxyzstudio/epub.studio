@@ -62,7 +62,22 @@ never get re-audited from scratch.
 | **AI-crawler policy** — recommend: allow retrieval/citation (ChatGPT/Claude/Perplexity referrals are real for "convert X to Y"), keep `ai-train=no` | D5: Cloudflare managed-robots setting |
 | **GSC registration** + sitemap submit | D8 monitoring + the machine's week-6 checkpoint depends on it |
 
-## Phase 2 — content-machine policy updates (encode, then automated runs inherit)
+## Phase 2 — DONE 2026-08-05
+
+- Blog skill: 500–2,500 varied word band + skeleton-variance rule encoded.
+- Artifact pipeline: `scripts/post-artifact.mjs` (make/shot/inspect, all
+  real output), `test-fixtures/` built BY our own tools (specimen.txt →
+  specimen.epub via /txt-to-epub; comic.epub via /cbz-to-epub;
+  specimen-broken.epub = deliberate container/href damage).
+- Artifact mandate: skill + routine + machine hard rule 9 — no artifact, no
+  post.
+- Retrofit: 5 posts now carry real artifacts (structure listing, validator
+  report on the broken fixture, converter done-state, compressor
+  before/after, same-book size numbers), each with `updated: 2026-08-05`.
+- Standing policy trio (no fake authors/ratings, no backdating) explicit in
+  machine hard rules 7–8.
+
+## Phase 2 — original plan (kept for the record)
 
 1. **Blog skill**: word band 900–1,400 → **500–2,500 varied by topic**;
    structure variance requirement (not every post intro→causes→fixes→CTA);

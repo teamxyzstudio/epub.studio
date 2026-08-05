@@ -114,10 +114,17 @@ hand-write schema in the body.
 
 ## Length & structure
 
-**900–1,400 words** (comparisons may reach ~1,800). The existing corpus averages
-~950 — a 2,500-word post would stick out as filler. Coverage beats count.
+**500–2,500 words, genuinely varied by topic** — a focused fix earns 500, a
+reference deep-dive earns 2,500. Do NOT converge on ~1,100: uniform length
+across a corpus is a scaled-content fingerprint (2026 SEO audit, B1). The
+length is what the topic needs; padding and truncation are both defects.
 
-Body shape (h2s only in the TOC, so make them carry the argument):
+**Vary the skeleton too.** The shape below is the default, not a die-cast:
+a reference post may be table-led, an editorial may carry no fix section, a
+short fix may be two h2s. Across any month of posts, no two consecutive
+posts should have the same heading pattern.
+
+Default body shape (h2s only in the TOC, so make them carry the argument):
 
 1. **Cold open, 2–4 paragraphs.** No heading, no throat-clearing. State the
    situation or the surprising truth immediately. Keyword appears naturally in
@@ -147,6 +154,29 @@ Body shape (h2s only in the TOC, so make them carry the argument):
 The template auto-renders: byline, reading time, TOC from h2s, "Tools mentioned"
 sidebar (from `tools:`), the end-of-article CTA card, and "Keep reading"
 (same-category posts). Never hand-build any of those in the body.
+
+## Proof-of-experience artifacts (mandatory since 2026-08-05)
+
+Every post ships **at least one real artifact** — evidence of first-hand work
+that text generation cannot fake (audit A4):
+
+- **Screenshot of a real run**: `node scripts/post-artifact.mjs shot
+  <tool-slug> <fixture> public/blog-media/<post-slug>/<name>.png` — drives
+  the live tool headless with a fixture from `test-fixtures/` and captures
+  the finished state. Requires the dev server (`ARTIFACT_BASE` to override).
+- **Real structure/output listing**: `node scripts/post-artifact.mjs inspect
+  <fixture.epub>` — quotable, headless-safe, no browser needed (the fallback
+  when the environment has no Chrome).
+- **Real numbers**: byte counts and results from the JSON the script prints —
+  quoted exactly, never rounded into fiction.
+
+Rules: the artifact is produced during THIS run (never reused from another
+post, never mocked up); captions say what tool produced it and on what file;
+alt text describes what is visibly in the image, including on-screen numbers
+verbatim; if no artifact can be produced, say so in the report and hold the
+post — a post without proof does not ship. Fixtures are made by our own
+tools (`test-fixtures/specimen.txt` → specimen.epub etc.) so every number is
+reproducible from the repository.
 
 ## Keyword use (Google explicitly calls density targets a myth)
 
@@ -309,7 +339,7 @@ would fall back to system fonts):
       need to change
 - [ ] Keyword in title (≤60 chars), first 100 words, one natural heading; no
       sentence exists just to repeat it
-- [ ] 900–1,400 words without padding; h2s carry the argument; quick-answer
+- [ ] 500–2,500 (vary genuinely by topic: a focused fix can be 500; a reference deep-dive 2,500 — do not converge on ~1,100) words without padding; h2s carry the argument; quick-answer
       callout present when the title is a question
 - [ ] Every internal link target exists; anchors 2–5 topic words; one primary
       CTA matching `tools[0]`; no fictional tools; no `/tools/` or `/guides/` paths

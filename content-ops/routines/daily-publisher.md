@@ -85,6 +85,13 @@ tests or citations, real dates. Blog author: one of the registered people in
 src/data/authors.js — alternate with the previous post's author (check the
 newest post's frontmatter); never 'Epub Studio', never an unregistered name.
 
+ARTIFACT (blog lane, mandatory): produce ≥1 real proof-of-experience
+artifact per the skill's artifact section — prefer `post-artifact.mjs shot`
+(needs a dev server: `npm run dev &`, wait for the port, set ARTIFACT_BASE);
+fall back to `post-artifact.mjs inspect` output (no browser needed) when the
+environment has no Chrome. If neither works, the post does not ship this
+run — report why. Never reuse another post's artifact; never fabricate.
+
 OG card:
 - Blog: node scripts/og-card.mjs --slug <slug> --title "<exact title>" --kicker "<category>"
 - Landing: node scripts/og-card.mjs --slug <slug> --title "<h1>" --kicker "<TYPE LABEL>" --dir public/landing-og
@@ -97,7 +104,8 @@ publish a broken build.
 
 PUBLISH (same-branch push; preflight already put you on main). Commit ONLY
 the files this page touched:
-- Blog: src/content/blog/<slug>.md, public/blog-og/<slug>.png, the two content-ops files
+- Blog: src/content/blog/<slug>.md, public/blog-og/<slug>.png, any
+  public/blog-media/<slug>/ artifacts, the two content-ops files
   → message: blog: add "<title>"
 - Landing: src/content/landing/<slug>.md, public/landing-og/<slug>.png, the two content-ops files
   → message: landing: add "<title>"

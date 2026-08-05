@@ -4,6 +4,7 @@ excerpt: 'Page size, margins, and the two settings that decide whether your PDF 
 category: 'How-to'
 ogImage: '/blog-og/convert-epub-to-pdf-without-losing-formatting.png'
 date: 2026-07-13
+updated: 2026-08-05
 author:
   name: 'Shahid Ansari'
   initial: 'S'
@@ -13,6 +14,17 @@ tools:
 ---
 
 Most "the PDF came out wrong" complaints are not conversion bugs. They are a mismatch between a book that has no pages and a format that is nothing but pages. Once you pick the page, the rest falls into place.
+
+## What a conversion actually looks like
+
+Here is [the converter](/epub-to-pdf) finishing a real run — our
+four-chapter specimen EPUB (5,183 bytes) typeset to an A4 PDF of 5,906 bytes:
+
+![The EPUB to PDF tool's finished state after converting our specimen book: "Your PDF is ready", with the download button.](/blog-media/convert-epub-to-pdf-without-losing-formatting/specimen-converted.png)
+
+A text-only book barely grows in conversion. Where the sizes diverge — and
+where the formatting questions in this post begin — is images, fonts, and the
+page-size decisions below.
 
 ## Why the output can look wrong
 

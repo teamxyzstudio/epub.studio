@@ -4,6 +4,7 @@ excerpt: 'Where the megabytes hide, and the compression settings that are invisi
 category: 'Fix it'
 ogImage: '/blog-og/reduce-epub-file-size.png'
 date: 2026-05-19
+updated: 2026-08-05
 author:
   name: 'Shahid Ansari'
   initial: 'S'
@@ -13,6 +14,18 @@ tools:
 ---
 
 A full-length novel is about 500 KB. If your book is 200 MB, the text is a rounding error and the images are the entire file.
+
+## A real before-and-after
+
+We ran an image-heavy test book through [the compressor](/epub-compressor):
+a two-page comic EPUB weighing 99,804 bytes went in, 56,026 bytes came out —
+43.9% smaller, with both pages intact:
+
+![The EPUB Compressor's finished panel: "Your smaller EPUB is ready — comic.epub · 55 KB · 2 of 2 images shrunk, 37 KB saved · never left your device".](/blog-media/reduce-epub-file-size/compressor-result.png)
+
+Nearly all of that saving came from the images, which is the pattern for
+almost every oversized EPUB — and the reason the rest of this post is mostly
+about pictures, not prose.
 
 ## Where the size actually is
 

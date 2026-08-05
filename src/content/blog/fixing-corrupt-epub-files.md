@@ -4,6 +4,7 @@ excerpt: 'The five validation errors behind most rejections, and how to repair e
 category: 'Fix it'
 ogImage: '/blog-og/fixing-corrupt-epub-files.png'
 date: 2026-06-09
+updated: 2026-08-05
 author:
   name: 'Shahid Ansari'
   initial: 'S'
@@ -15,6 +16,19 @@ tools:
 "This file is corrupt" almost never means the file is corrupt. It means a reader hit something it could not parse and gave up without telling you what. Here are the five things it usually was.
 
 Run the book through the [Validator](/epub-validator) first — it names the specific problem in a couple of seconds, all locally.
+
+## What a diagnosis looks like
+
+To keep this post honest we broke a working EPUB on purpose — deleted its
+`META-INF/container.xml` and pointed one manifest entry at a file that does
+not exist — and dropped it into [the validator on this site](/epub-validator):
+
+![The Epub Studio validator reporting an error on our deliberately broken test file: "Missing META-INF/container.xml. Readers cannot find the book without it."](/blog-media/fixing-corrupt-epub-files/validator-report.png)
+
+That first error is fatal on its own: the container file is the fixed,
+spec-mandated address every reader checks first, and without it the book
+simply does not open. The sections below go through the failures in the order
+a reader app hits them.
 
 ## 1. A broken or missing mimetype
 

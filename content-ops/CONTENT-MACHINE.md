@@ -91,7 +91,12 @@ and row 24), Tier-2 chains (Q4+).
 6. Stay in the expertise lane: ebook formats, conversion, reading, typography.
    Kindle account support, device shopping, generic PDF/Office tooling are
    permanently out of scope regardless of volume.
-7. Real dates only; updates recorded honestly.
+7. Real dates only; updates recorded honestly — never backdate, bump
+   `updated:` only on material change.
+8. No fake authors (bylines come from src/data/authors.js), no fake
+   ratings/reviews in markup, no invented reviewers.
+9. Every blog post carries ≥1 real proof-of-experience artifact produced
+   during its own run (skill's artifact section; scripts/post-artifact.mjs).
 
 ## The 12-month roadmap (tiered, volume-ordered)
 

@@ -4,6 +4,7 @@ excerpt: 'Rename it to .zip and look. Understanding the five pieces makes every 
 category: 'Formats explained'
 ogImage: '/blog-og/what-is-inside-an-epub.png'
 date: 2026-04-27
+updated: 2026-08-05
 author:
   name: 'Shahid Ansari'
   initial: 'S'
@@ -35,6 +36,35 @@ Manifest and spine are different things, and confusing them causes real bugs. Th
 <div class="callout-kicker">Why chapters are XHTML, not HTML</div>
 XHTML is XML, so parsing is strict. An unclosed tag is a fatal error rather than something the parser guesses around. It is why a chapter can render perfectly in a browser and break an e-reader.
 </div>
+
+## A real one, unzipped
+
+Here is the actual structure of a small EPUB. This one was produced by [the
+TXT converter on this site](/txt-to-epub) from a four-chapter plain-text file
+— the specimen book we keep in the site's repository so every example on this
+blog is reproducible:
+
+```
+$ unzip -l specimen.epub   (5,183 bytes total)
+       251  META-INF/container.xml
+       364  OEBPS/chapter-001.xhtml
+       845  OEBPS/chapter-002.xhtml
+       905  OEBPS/chapter-003.xhtml
+       618  OEBPS/chapter-004.xhtml
+       573  OEBPS/chapter-005.xhtml
+      1314  OEBPS/content.opf
+       682  OEBPS/nav.xhtml
+       452  OEBPS/style.css
+       986  OEBPS/toc.ncx
+        20  mimetype
+mimetype: application/epub+zip
+rootfile (from META-INF/container.xml): OEBPS/content.opf
+```
+
+Seven kinds of file, no magic: the `mimetype` marker, the container pointer,
+the package manifest (`content.opf`), one XHTML file per chapter, a
+stylesheet, and both navigation formats. Every section below is about one of
+these entries.
 
 ## Why this is worth knowing
 
