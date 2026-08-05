@@ -26,6 +26,9 @@
 @import '@fontsource/literata/600.css';
 @import '@fontsource/literata/400-italic.css';
 
+/* Long-form prose treatment shared by blog articles and landing pages. */
+@import './prose.css';
+
 /* --- Design tokens (README §Design Tokens) ------------------------------ */
 @theme {
   --color-paper: #faf7f2;

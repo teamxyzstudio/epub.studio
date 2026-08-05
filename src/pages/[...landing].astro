@@ -1,0 +1,900 @@
+---
+/**
+ * Landing-page template — the SEO program's four page types (audience,
+ * comparison, pillar, variant), driven by src/content/landing/*.md and
+ * produced via .claude/skills/epub-landing-writer.
+ *
+ * Rest-param route: named routes ([slug].astro tool pages) win priority, so
+ * these flat URLs coexist with tool slugs; keyword-map.csv keeps the sets
+ * disjoint.
+ */
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import LogoMark from '../components/LogoMark.astro';
+import ToolRunner from '../components/islands/ToolRunner.vue';
+import ArticleChrome from '../components/islands/ArticleChrome.vue';
+import { getToolPage } from '../data/tool-pages.js';
+import { toolBySlug } from '../data/tools.js';
+import { readTime, tocFrom } from '../lib/posts.js';
+import { SITE_URL, SITE_NAME, OG_IMAGE } from '../data/site.js';
+
+export async function getStaticPaths() {
+  const pages = await getCollection(
+    'landing',
+    ({ data }) => import.meta.env.DEV || !data.draft,
+  );
+  return pages.map((page) => ({ params: { landing: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const d = page.data;
+const { Content, headings } = await render(page);
+const path = `/${page.id}`;
+
+const TYPE_LABEL = {
+  audience: 'Tools for a job',
+  comparison: 'Comparison',
+  pillar: 'Guide',
+  variant: 'How-to',
+};
+
+const embed = d.embedTool ? getToolPage(d.embedTool) : null;
+const shelf = d.tools.map((slug) => toolBySlug[slug]).filter(Boolean);
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const postById = new Map(posts.map((p) => [p.id, p]));
+const guideCard = (id) => {
+  const p = postById.get(id);
+  return p
+    ? { href: `/blog/${p.id}`, title: p.data.title, category: p.data.category, read: readTime(p) }
+    : null;
+};
+const guides = d.guides.map(guideCard).filter(Boolean);
+const clusters = d.clusters
+  .map((c) => ({ label: c.label, id: slugify(c.label), posts: c.posts.map(guideCard).filter(Boolean) }))
+  .filter((c) => c.posts.length > 0);
+
+function slugify(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+const isPillar = d.type === 'pillar';
+const toc = isPillar
+  ? [...tocFrom(headings), ...clusters.map((c) => ({ id: c.id, label: c.label }))]
+  : [];
+const tocTools = shelf.slice(0, 3).map((t) => ({ name: t.n, href: `/${t.slug}` }));
+
+const ogImage = d.ogImage || OG_IMAGE;
+const ctaHref = embed ? `/${embed.slug}` : shelf[0] ? `/${shelf[0].slug}` : '/style-studio';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: d.h1,
+    description: d.excerpt,
+    url: `${SITE_URL}${path}`,
+    datePublished: d.date.toISOString(),
+    dateModified: (d.updated || d.date).toISOString(),
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      logo: { '@type': 'ImageObject', url: `${SITE_URL}/icon-512.png` },
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: SITE_NAME, item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: TYPE_LABEL[d.type], item: `${SITE_URL}${path}` },
+      { '@type': 'ListItem', position: 3, name: d.h1, item: `${SITE_URL}${path}` },
+    ],
+  },
+  ...(d.faqs.length
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: d.faqs.map((f) => ({
+            '@type': 'Question',
+            name: f.q,
+            acceptedAnswer: { '@type': 'Answer', text: f.a },
+          })),
+        },
+      ]
+    : []),
+  ...(d.howTo.length
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'HowTo',
+          name: d.howToTitle || d.h1,
+          step: d.howTo.map((s, i) => ({
+            '@type': 'HowToStep',
+            position: i + 1,
+            name: s.t,
+            text: s.d,
+          })),
+        },
+      ]
+    : []),
+];
+
+const contract = `
+IMPECCABLE DIRECTION CONTRACT — landing program
+THESIS: A landing page here is a workbench, not a brochure: the visitor's job is
+named in serif and the working tool sits in the first viewport. Refuses the
+category default of screenshot hero + icon-card feature grid.
+OWN-WORLD: The Typesetter's Desk — Paper ground, Card panels, hairline ink
+borders, one Electric Pink thread, Instrument Serif display over Archivo, Plex
+Mono metadata, re-typeset-line bar art. Flat by default; borders rule.
+STORY: A searcher with a job recognizes their task in the headline, drops a
+file into the live tool, reads honest edges (including where rivals win), and
+leaves with a converted book or a bookmarked hub.
+FIRST VIEWPORT: mono wayfinding line; job-naming h1 + lede; full-width Card
+panel with the live drop zone directly beneath. The accent action is
+stage-gated: Pink Ink link at rest, the pink CTA arrives with a chosen file;
+never more than one accent action visible.
+FORM: Brief-pinned composition — established-world extension per confirmed
+shape brief; no concept roll (not a new world).
+FINISH: unreviewed and undocumented is unfinished; this build ends with the
+finish review, the verdict, and DESIGN.md
+`;
+---
+
+<BaseLayout
+  title={d.title}
+  description={d.excerpt}
+  path={path}
+  ogImage={ogImage}
+  jsonLd={jsonLd}
+>
+  <div class="page">
+    <Fragment set:html={`<!--${contract}-->`} />
+
+    {
+      isPillar ? (
+        <header class="article-header">
+          <div class="header-row">
+            <a class="brand focus-ring" href="/">
+              <LogoMark size={24} />
+              <span class="wordmark">
+                Epub Studio<span class="dot">.</span>
+              </span>
+            </a>
+            <nav class="nav">
+              <a href="/#tools" class="focus-ring">
+                All tools
+              </a>
+              <a href="/style-studio" class="focus-ring">
+                Style Studio
+              </a>
+              <a href="/blog" class="focus-ring">
+                Blog
+              </a>
+            </nav>
+            <span class="note">free · no signup · in your browser</span>
+          </div>
+          <div class="progress-track" />
+        </header>
+      ) : (
+        <SiteHeader />
+      )
+    }
+
+    <main id="main" class:list={[isPillar ? 'main-pillar' : 'main-std']}>
+      <article class:list={[isPillar ? 'article' : 'column']}>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/" class="focus-ring-2">Epub Studio</a> / {TYPE_LABEL[d.type]}
+        </nav>
+
+        <h1>{d.h1}</h1>
+        <p class="lede">{d.excerpt}</p>
+
+        {
+          embed && (
+            <div class="tool-card">
+              <ToolRunner
+                client:load
+                slug={embed.slug}
+                accept={d.embedAccept || embed.accept}
+                dropHeadline={d.embedHeadline || embed.dropHeadline}
+                dropHeadlineMobile={d.embedHeadlineMobile}
+                dropSub={d.embedDropSub || embed.dropSub}
+                cta={embed.cta}
+                doneTitle={embed.doneTitle}
+                downloadLabel={embed.downloadLabel}
+                options={embed.options}
+                mode={embed.mode}
+              />
+              <div class="embed-note">
+                Runs in your browser — the file never leaves your device.
+                <a href={`/${embed.slug}`} class="focus-ring-2">About this tool →</a>
+              </div>
+            </div>
+          )
+        }
+
+        <div class="prose">
+          <Content />
+        </div>
+
+        {
+          d.howTo.length > 0 && (
+            <section class="block">
+              <h2 class="howto-h2">{d.howToTitle || 'How it works'}</h2>
+              <ol class:list={['howto', { 'howto--four': d.howTo.length === 4 }]}>
+                {d.howTo.map((step, i) => (
+                  <li>
+                    <span class="step-num">{String(i + 1).padStart(2, '0')}</span>
+                    <div class="step-title">{step.t}</div>
+                    <div class="step-body">{step.d}</div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )
+        }
+
+        {
+          d.comparison && (
+            <section class="block">
+              <h2>Epub Studio vs {d.comparison.competitor}, honestly</h2>
+              <div class="table-wrap">
+                <table class="compare">
+                  <thead>
+                    <tr>
+                      <th />
+                      <th>Epub Studio</th>
+                      <th>{d.comparison.competitor}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {d.comparison.rows.map((row) => (
+                      <tr>
+                        <td>{row.aspect}</td>
+                        <td>{row.us}</td>
+                        <td>{row.them}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="their-wins">
+                <h3 class="tw-kicker">Where {d.comparison.competitor} is better</h3>
+                <ul>
+                  {d.comparison.theirWins.map((w) => (
+                    <li>{w}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <p class="sources">
+                Claims checked against{' '}
+                {d.comparison.sources.map((s, i) => (
+                  <Fragment>
+                    {i > 0 && ' · '}
+                    <a href={s.url} rel="noopener" class="focus-ring-2">
+                      {s.label}
+                    </a>{' '}
+                    (as of {s.asOf})
+                  </Fragment>
+                ))}
+                . Tell us if something is out of date.
+              </p>
+            </section>
+          )
+        }
+
+        {
+          clusters.map((cluster) => (
+            <section class="block" id={cluster.id}>
+              <h2>{cluster.label}</h2>
+              <div class="kr-grid">
+                {cluster.posts.map((p) => (
+                  <a href={p.href} class="kr-card focus-ring-2">
+                    <span class="kr-meta">
+                      {p.category} · {p.read}
+                    </span>
+                    <span class="kr-title">{p.title}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+
+        {
+          shelf.length > 0 && (
+            <section class="block">
+              <h2 class="related-h2">The tools for this</h2>
+              <div class="shelf">
+                {shelf.map((t) => (
+                  <a href={`/${t.slug}`} class="shelf-card focus-ring-2">
+                    <span class="badges">
+                      <span class="badge">{t.a}</span>
+                      <span class="arrow">→</span>
+                      <span class="badge">{t.b}</span>
+                    </span>
+                    <span class="shelf-name">{t.n}</span>
+                    <span class="shelf-desc">{t.d}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )
+        }
+
+        {
+          guides.length > 0 && (
+            <section class="block">
+              <h2 class="related-h2">From the blog</h2>
+              <div class="kr-grid">
+                {guides.map((p) => (
+                  <a href={p.href} class="kr-card focus-ring-2">
+                    <span class="kr-meta">
+                      {p.category} · {p.read}
+                    </span>
+                    <span class="kr-title">{p.title}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )
+        }
+
+        {
+          d.faqs.length > 0 && (
+            <section class="block">
+              <h2>Questions</h2>
+              <div class="faq">
+                {d.faqs.map((f) => (
+                  <details class="faq-item">
+                    <summary class="focus-ring-inset">
+                      <span>{f.q}</span>
+                      <span class="chev">＋</span>
+                    </summary>
+                    <p>{f.a}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )
+        }
+
+        <div class="cta-card">
+          <div class="cta-copy">
+            <div class="cta-title">Every book leaves beautiful</div>
+            <div class="cta-sub">
+              Convert free in your browser, then set the typography in Style Studio — your choices
+              are written into the file you download.
+            </div>
+          </div>
+          <a href={ctaHref} class="cta-button focus-ring-ink">Open the converter →</a>
+        </div>
+      </article>
+
+      {isPillar && <ArticleChrome client:load toc={toc} tools={tocTools} />}
+    </main>
+
+    <footer class="tool-footer">
+      <span><a href="/">Epub Studio</a> — free online EPUB tools</span>
+      <span>
+        <a href="/#tools">All tools</a> · <a href="/blog">Blog</a> ·
+        <a href="/about">About</a> · <a href="/privacy">Privacy</a>
+      </span>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+  @media (max-width: 759.98px) {
+    .page {
+      padding-bottom: 90px;
+    }
+  }
+
+  /* --- Standard shell (tool-page skeleton, 920px) --- */
+  .main-std {
+    flex: 1;
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: clamp(24px, 4vw, 52px) clamp(16px, 4vw, 48px) clamp(40px, 5vw, 72px);
+  }
+  .main-std .column {
+    min-width: 0;
+  }
+
+  /* --- Pillar shell (article layout, 1140px + TOC rail) --- */
+  .main-pillar {
+    flex: 1;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 48px) clamp(48px, 6vw, 80px);
+    display: flex;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: flex-start;
+  }
+  .article {
+    flex: 1;
+    min-width: 0;
+    max-width: 720px;
+  }
+
+  .article-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(250, 247, 242, 0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 clamp(16px, 4vw, 48px);
+    height: 60px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    white-space: nowrap;
+  }
+  .brand:hover {
+    color: #17130e;
+  }
+  .wordmark {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .dot {
+    color: #ff2e63;
+  }
+  .nav {
+    display: flex;
+    gap: 22px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .note {
+    margin-left: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #6e675d;
+  }
+  .progress-track {
+    height: 3px;
+    background: rgba(23, 19, 14, 0.08);
+  }
+  @media (max-width: 759.98px) {
+    .nav,
+    .note {
+      display: none;
+    }
+  }
+
+  /* --- Head block --- */
+  .breadcrumb {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #6e675d;
+    margin-bottom: 14px;
+  }
+  .breadcrumb a {
+    color: #6e675d;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+
+  .lede {
+    font-size: clamp(15px, 1.3vw, 17.5px);
+    line-height: 1.55;
+    color: #6e675d;
+    margin: 0 0 clamp(20px, 3vw, 32px);
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+
+  /* --- Embedded runner --- */
+  .tool-card {
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.16);
+    border-radius: 16px;
+    padding: clamp(18px, 3vw, 30px);
+    box-shadow: 0 1px 0 rgba(23, 19, 14, 0.06);
+    margin-bottom: clamp(28px, 4vw, 44px);
+  }
+  /* The runner's stage CTAs (Convert / Style it / Download) inherit Pink Ink
+     here so one journey wears one fill and the label clears AA — scoped to
+     landing pages; the mock-pinned tool pages keep their Electric CTA. */
+  .tool-card :global(.cta) {
+    background: #c41e4f;
+  }
+  .tool-card :global(.cta:hover:not(:disabled)) {
+    box-shadow: 0 6px 18px rgba(196, 30, 79, 0.35);
+  }
+
+  .embed-note {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: #6e675d;
+  }
+  .embed-note a {
+    /* Pink Ink at rest: the first viewport's accent action, AA-clean at 11.5px. */
+    color: #c41e4f;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .embed-note a:hover {
+    color: #17130e;
+  }
+
+  /* --- Section rhythm (tool-page vocabulary) --- */
+  .block {
+    margin-top: clamp(36px, 5vw, 60px);
+  }
+  .block h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(24px, 2.6vw, 32px);
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+  .block h2.related-h2 {
+    font-size: clamp(22px, 2.4vw, 28px);
+  }
+  .block h2.howto-h2 {
+    margin-bottom: 18px;
+  }
+
+  .howto {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    gap: 14px;
+  }
+  /* Four steps read as a 2×2, not 3+1 with an orphan. */
+  @media (min-width: 760px) {
+    .howto--four {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .howto li {
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .step-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    /* Pink Ink, not Electric Pink: 12px text must clear WCAG AA (4.5:1). */
+    color: #c41e4f;
+  }
+  .step-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 6px 0 4px;
+  }
+  .step-body {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: #6e675d;
+  }
+
+  /* --- Comparison --- */
+  .table-wrap {
+    overflow-x: auto;
+  }
+  .compare {
+    font-family: 'Archivo', sans-serif;
+    font-size: 13.5px;
+    border: 1px solid rgba(23, 19, 14, 0.16);
+    border-radius: 10px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    width: 100%;
+    min-width: 520px;
+  }
+  .compare thead {
+    background: #17130e;
+    color: #faf7f2;
+  }
+  .compare th {
+    padding: 10px 12px;
+    font-weight: 600;
+    font-size: 12.5px;
+    text-align: left;
+  }
+  .compare td {
+    padding: 10px 12px;
+    color: #454037;
+    border-top: 1px solid rgba(23, 19, 14, 0.1);
+    vertical-align: top;
+  }
+  .compare tbody tr:nth-child(odd) {
+    background: #fffdf9;
+  }
+  .compare tbody tr:nth-child(even) {
+    background: rgba(23, 19, 14, 0.03);
+  }
+  .compare td:first-child {
+    font-weight: 600;
+    color: #17130e;
+  }
+
+  .their-wins {
+    margin-top: 14px;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    background: #fffdf9;
+    padding: 16px 18px;
+  }
+  .tw-kicker {
+    margin: 0 0 8px;
+    font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6e675d;
+  }
+  .their-wins ul {
+    margin: 0;
+    padding-left: 1.2em;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #17130e;
+  }
+  .their-wins li {
+    margin-bottom: 4px;
+  }
+
+  .sources {
+    margin: 12px 0 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: #6e675d;
+  }
+  .sources a {
+    color: #6e675d;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .sources a:hover {
+    color: #c41e4f;
+  }
+
+  /* --- Shelf (tool cards) --- */
+  .shelf {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: 12px;
+  }
+  .shelf-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 16px 16px 14px;
+    color: #17130e;
+    transition:
+      border-color 0.15s,
+      transform 0.15s;
+  }
+  .shelf-card:hover {
+    border-color: #ff2e63;
+    transform: translateY(-2px);
+    color: #17130e;
+  }
+  .badges {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    color: #6e675d;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .badge {
+    background: rgba(23, 19, 14, 0.07);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .arrow {
+    color: #ff2e63;
+    font-weight: 500;
+  }
+  .shelf-name {
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .shelf-desc {
+    font-size: 13px;
+    line-height: 1.45;
+    color: #6e675d;
+    text-wrap: pretty;
+  }
+
+  /* --- Guide / cluster cards --- */
+  .kr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: 12px;
+  }
+  .kr-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 16px;
+    color: #17130e;
+    transition: border-color 0.15s;
+  }
+  .kr-card:hover {
+    border-color: #ff2e63;
+    color: #17130e;
+  }
+  .kr-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #6e675d;
+  }
+  .kr-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 18.5px;
+    line-height: 1.2;
+  }
+
+  /* --- FAQ --- */
+  .faq {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .faq-item {
+    border-bottom: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .faq-item summary {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 2px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #17130e;
+    cursor: pointer;
+    min-height: 44px;
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item summary:hover {
+    color: #c41e4f;
+  }
+  .chev {
+    font-size: 18px;
+    color: #ff2e63;
+    transition: transform 0.2s;
+    transform: rotate(0deg);
+    flex: none;
+  }
+  .faq-item[open] .chev {
+    transform: rotate(45deg);
+  }
+  .faq-item p {
+    margin: 0;
+    padding: 0 2px 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6e675d;
+    max-width: 65ch;
+    text-wrap: pretty;
+  }
+
+  /* --- End CTA --- */
+  .cta-card {
+    margin-top: clamp(36px, 5vw, 60px);
+    border: 1px solid rgba(23, 19, 14, 0.16);
+    border-radius: 14px;
+    background: #fffdf9;
+    padding: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+  .cta-copy {
+    flex: 1;
+    min-width: 220px;
+  }
+  .cta-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .cta-sub {
+    font-size: 13.5px;
+    color: #6e675d;
+  }
+  .cta-button {
+    flex: none;
+    /* Pink Ink fill: white label clears AA (≈5.6:1); Electric Pink is 3.56:1. */
+    background: #c41e4f;
+    color: #fff;
+    border-radius: 10px;
+    padding: 13px 22px;
+    font-size: 14.5px;
+    font-weight: 600;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+  .cta-button:hover {
+    box-shadow: 0 5px 16px rgba(196, 30, 79, 0.35);
+    color: #fff;
+  }
+  .focus-ring-ink:focus-visible {
+    outline: 2px solid #17130e;
+    outline-offset: 2px;
+  }
+
+  /* --- Footer --- */
+  .tool-footer {
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+    padding: 20px clamp(16px, 4vw, 48px);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #6e675d;
+    max-width: 1240px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .tool-footer a {
+    color: #6e675d;
+  }
+</style>

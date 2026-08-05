@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-05T00:00:00Z",
+  "title": "Design System: Epub Studio",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#FAF7F2", "tonalRamp": ["#57503F", "#6E675D", "#8C8577", "#ABA495", "#C9C3B5", "#E2DDD2", "#F1EDE5", "#FAF7F2"] },
+      "card": { "role": "neutral", "displayName": "Card", "canonical": "#FFFDF9", "tonalRamp": ["#5C5642", "#7A7460", "#999280", "#B8B1A0", "#D4CEC0", "#EBE6DB", "#F8F5EE", "#FFFDF9"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#17130E", "tonalRamp": ["#080604", "#17130E", "#2B2519", "#453D2E", "#635A4A", "#8A8172", "#B5ADA0", "#E2DCD2"] },
+      "graphite": { "role": "neutral", "displayName": "Graphite", "canonical": "#6E675D", "tonalRamp": ["#151310", "#2C2822", "#443F36", "#58524A", "#6E675D", "#948D82", "#BCB6AC", "#E5E1DA"] },
+      "body-warm": { "role": "neutral", "displayName": "Body Warm", "canonical": "#26211A", "tonalRamp": ["#0C0A08", "#26211A", "#3D362C", "#574E40", "#736A5A", "#948B7B", "#BAB2A5", "#E5E0D8"] },
+      "accent": { "role": "primary", "displayName": "Electric Pink", "canonical": "#FF2E63", "tonalRamp": ["#330412", "#5C0823", "#870D35", "#B31447", "#DE1D57", "#FF2E63", "#FF7FA0", "#FFD1DE"] },
+      "accent-ink": { "role": "primary", "displayName": "Pink Ink", "canonical": "#C41E4F", "tonalRamp": ["#2E0713", "#4F0C20", "#711130", "#96163F", "#C41E4F", "#D9486F", "#EA8AA4", "#F7CBD8"] },
+      "desk": { "role": "neutral", "displayName": "Desk", "canonical": "#EAE4DA", "tonalRamp": ["#4A4335", "#645C4B", "#807766", "#9C9483", "#B8B0A0", "#D2CABD", "#EAE4DA", "#F6F2EB"] },
+      "success": { "role": "semantic", "displayName": "Success Green", "canonical": "#1B7F4D", "tonalRamp": ["#062B18", "#0C4527", "#125F37", "#1B7F4D", "#2FA265", "#57BD85", "#8DD6AC", "#CBEEDA"] },
+      "error": { "role": "semantic", "displayName": "Error Red", "canonical": "#B3261E", "tonalRamp": ["#2E0906", "#4F100B", "#711711", "#921E17", "#B3261E", "#CC4A42", "#E28680", "#F5CDCA"] },
+      "border": { "role": "neutral", "displayName": "Hairline Border", "canonical": "rgba(23, 19, 14, 0.14)" },
+      "border-card": { "role": "neutral", "displayName": "Card Border", "canonical": "rgba(23, 19, 14, 0.16)" },
+      "border-input": { "role": "neutral", "displayName": "Input Border", "canonical": "rgba(23, 19, 14, 0.22)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only; italic + Electric Pink for the emphasized word." },
+      "headline": { "displayName": "Headline", "purpose": "Page h1s — tool pages, articles, content pages." },
+      "title": { "displayName": "Title", "purpose": "Section h2s and serif card titles (22px listing / 18.5px related)." },
+      "body": { "displayName": "Body", "purpose": "Archivo working text; UI copy 13–15.5px, ledes up to 17.5px, 52–65ch measure." },
+      "label": { "displayName": "Label / Mono", "purpose": "IBM Plex Mono for filenames, formats, kickers (UPPERCASE +0.08em), dates, counts." },
+      "reading": { "displayName": "Reading", "purpose": "Literata article body, 720px column, Body Warm color." }
+    },
+    "shadows": [
+      { "name": "hairline", "value": "0 1px 0 rgba(23,19,14,.06)", "purpose": "Barely-there grounding under 16px-radius feature cards." },
+      { "name": "floating", "value": "0 14px 40px rgba(23,19,14,.12)", "purpose": "Elements detached from the page: living-book hero, Style Studio page preview." },
+      { "name": "studio-page", "value": "0 1px 3px rgba(0,0,0,.12), 0 14px 40px rgba(0,0,0,.1)", "purpose": "The typeset page resting on the desk canvas." },
+      { "name": "sheet", "value": "0 -8px 32px rgba(23,19,14,.18)", "purpose": "Mobile bottom sheet rising over the preview." },
+      { "name": "cta-glow", "value": "0 6px 18px rgba(255,46,99,.35)", "purpose": "Hover-only on accent CTAs, paired with translateY(-1px). The one colored shadow." }
+    ],
+    "motion": [
+      { "name": "micro", "value": "0.15s", "purpose": "Hover and state micro-interactions (border color, transform)." },
+      { "name": "theme", "value": "0.25s", "purpose": "Theme and color changes (Style Studio page, desk canvas)." },
+      { "name": "morph", "value": "1s cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "The living-book format morph; 55ms stagger per skeleton line." },
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for all larger transitions." },
+      { "name": "reduced-motion", "value": "@media (prefers-reduced-motion: reduce) → freeze all", "purpose": "Every animation is gated; the hero morph timer never starts." }
+    ],
+    "breakpoints": [
+      { "name": "mobile-max", "value": "759.98px" },
+      { "name": "desktop", "value": "760px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one accent-filled action per view; hover lifts 1px with the pink glow.",
+      "html": "<button class=\"ds-btn-primary\">Convert to PDF</button>",
+      "css": ".ds-btn-primary { background: #FF2E63; color: #fff; border: none; border-radius: 11px; padding: 16px 32px; font-family: 'Archivo', system-ui, sans-serif; font-size: 16.5px; font-weight: 600; cursor: pointer; transition: transform 0.12s, box-shadow 0.12s; } .ds-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(255,46,99,.35); } .ds-btn-primary:focus-visible { outline: 2px solid #17130E; outline-offset: 3px; }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip-filter",
+      "description": "Category filter pills; selected fills Electric Pink.",
+      "html": "<div class=\"ds-chip-row\"><button class=\"ds-chip ds-chip--on\">All</button><button class=\"ds-chip\">How-to</button><button class=\"ds-chip\">Fix it</button></div>",
+      "css": ".ds-chip-row { display: flex; gap: 8px; } .ds-chip { min-height: 40px; padding: 8px 15px; border-radius: 999px; border: 1.5px solid rgba(23,19,14,.2); background: transparent; color: #17130E; font-family: 'Archivo', system-ui, sans-serif; font-size: 13px; font-weight: 400; cursor: pointer; transition: all 0.15s; } .ds-chip:hover { border-color: #FF2E63; color: #FF2E63; } .ds-chip--on, .ds-chip--on:hover { border-color: #FF2E63; background: #FF2E63; color: #fff; font-weight: 600; } .ds-chip:focus-visible { outline: 2px solid #FF2E63; outline-offset: 2px; }"
+    },
+    {
+      "name": "Segmented Control",
+      "kind": "custom",
+      "refersTo": "segment-selected",
+      "description": "Option groups (page size, margins, alignment); selected segment fills with Ink.",
+      "html": "<div class=\"ds-seg\"><button class=\"ds-seg__btn ds-seg__btn--on\">A4</button><button class=\"ds-seg__btn\">US Letter</button><button class=\"ds-seg__btn\">6×9″</button></div>",
+      "css": ".ds-seg { display: flex; border: 1px solid rgba(23,19,14,.22); border-radius: 9px; overflow: hidden; width: 320px; } .ds-seg__btn { flex: 1; min-height: 44px; padding: 10px 6px; border: none; border-left: 1px solid rgba(23,19,14,.18); background: transparent; color: #17130E; font-family: 'Archivo', system-ui, sans-serif; font-size: 13.5px; font-weight: 400; cursor: pointer; transition: background 0.15s; } .ds-seg__btn:first-child { border-left: none; } .ds-seg__btn--on { background: #17130E; color: #FAF7F2; font-weight: 600; } .ds-seg__btn:focus-visible { outline: 2px solid #FF2E63; outline-offset: -2px; }"
+    },
+    {
+      "name": "Toggle Switch",
+      "kind": "custom",
+      "refersTo": "button-primary",
+      "description": "Boolean settings; Electric Pink track when on.",
+      "html": "<div class=\"ds-toggle-row\"><button class=\"ds-toggle ds-toggle--on\" role=\"switch\" aria-checked=\"true\"><span class=\"ds-toggle__knob\"></span></button><button class=\"ds-toggle\" role=\"switch\" aria-checked=\"false\"><span class=\"ds-toggle__knob\"></span></button></div>",
+      "css": ".ds-toggle-row { display: flex; gap: 12px; align-items: center; } .ds-toggle { width: 46px; height: 27px; border-radius: 14px; border: none; cursor: pointer; padding: 2.5px; display: flex; justify-content: flex-start; background: rgba(23,19,14,.22); transition: background 0.18s; } .ds-toggle--on { background: #FF2E63; justify-content: flex-end; } .ds-toggle__knob { width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); } .ds-toggle:focus-visible { outline: 2px solid #FF2E63; outline-offset: 3px; }"
+    },
+    {
+      "name": "Tool Card",
+      "kind": "card",
+      "refersTo": "card-tool",
+      "description": "The grid unit of the tool catalogue; hover lifts 2px and turns the border pink.",
+      "html": "<a class=\"ds-card-tool\" href=\"#\"><span class=\"ds-card-tool__badges\"><span class=\"ds-badge\">EPUB</span><span class=\"ds-card-tool__arrow\">→</span><span class=\"ds-badge\">PDF</span></span><span class=\"ds-card-tool__name\">EPUB to PDF</span><span class=\"ds-card-tool__desc\">Turn a reflowable ebook into a fixed, printable PDF.</span></a>",
+      "css": ".ds-card-tool { display: flex; flex-direction: column; gap: 8px; width: 260px; background: #FFFDF9; border: 1px solid rgba(23,19,14,.14); border-radius: 10px; padding: 16px 16px 14px; color: #17130E; text-decoration: none; transition: border-color 0.15s, transform 0.15s; } .ds-card-tool:hover { border-color: #FF2E63; transform: translateY(-2px); } .ds-card-tool:focus-visible { outline: 2px solid #FF2E63; outline-offset: 2px; } .ds-card-tool__badges { display: flex; gap: 6px; align-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.02em; color: #6E675D; } .ds-badge { background: rgba(23,19,14,.07); padding: 2px 6px; border-radius: 4px; } .ds-card-tool__arrow { color: #FF2E63; font-weight: 500; } .ds-card-tool__name { font-family: 'Archivo', system-ui, sans-serif; font-size: 15.5px; font-weight: 600; letter-spacing: -0.005em; } .ds-card-tool__desc { font-family: 'Archivo', system-ui, sans-serif; font-size: 13px; line-height: 1.45; color: #6E675D; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Form fields; pink focus outline per the Focus System.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"The Time Machine\" />",
+      "css": ".ds-input { display: block; width: 280px; padding: 11px 12px; font-family: 'Archivo', system-ui, sans-serif; font-size: 14px; color: #17130E; background: #FAF7F2; border: 1px solid rgba(23,19,14,.22); border-radius: 9px; } .ds-input::placeholder { color: #6E675D; } .ds-input:focus-visible { outline: 2px solid #FF2E63; outline-offset: 1px; }"
+    },
+    {
+      "name": "Drop Zone",
+      "kind": "custom",
+      "refersTo": "card-tool",
+      "description": "The file invitation: dashed border, serif headline, mono format list; drag-over turns it pink.",
+      "html": "<div class=\"ds-dropzone\"><div class=\"ds-dropzone__headline\">Drop your EPUB here, or click to choose</div><div class=\"ds-dropzone__sub\">.epub · up to 100 MB</div></div>",
+      "css": ".ds-dropzone { width: 420px; border: 2px dashed rgba(23,19,14,.3); background: #FFFDF9; border-radius: 12px; padding: 34px 16px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.2s; } .ds-dropzone:hover { border-color: #FF2E63; background: rgba(255,46,99,.05); transform: scale(1.01); } .ds-dropzone__headline { font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #17130E; } .ds-dropzone__sub { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #6E675D; margin-top: 6px; }"
+    },
+    {
+      "name": "Filename Chip",
+      "kind": "chip",
+      "refersTo": "badge-format",
+      "description": "Ink-filled mono chip that names the user's file wherever it travels.",
+      "html": "<span class=\"ds-filechip\">the-time-machine.epub</span>",
+      "css": ".ds-filechip { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 13px; background: #17130E; color: #FAF7F2; padding: 7px 11px; border-radius: 6px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Typesetter's Desk",
+    "overview": "Every surface is a warm paper studio where books are re-set by hand. The desk canvas that book previews rest on, the re-typeset-line mark — three text bars, the middle one shorter and pink — the serif that speaks only in display sizes, the mono that annotates like a typesetter's margin notes: all of it belongs to one craftsperson's workspace. The system is warm, literate, precise, honest — bookish warmth carried by paper tones, typographic precision carried by exact spacing and hairline borders, and honesty carried by an interface that never decorates what it cannot do. Density is calm: generous fluid padding, one-column reading measures, grids that breathe. Expression concentrates in typography and in a single electric thread of pink; everything else stays quiet so the user's book — the actual object of the product — is the most vivid thing on the desk. The confirmed anti-reference is the generic converter-SaaS look: purple-blue gradients, glassmorphism, emoji-studded feature grids, ad-slot clutter, and dark-pattern upload buttons.",
+    "keyCharacteristics": [
+      "Paper-warm neutrals; one electric-pink accent used sparingly",
+      "Instrument Serif display voice over Archivo workhorse body",
+      "IBM Plex Mono for everything file-, format-, or data-shaped",
+      "Flat surfaces structured by 1px borders and paper→card background steps",
+      "Quiet precision, warm touch: small, exact interaction responses",
+      "A single 760px breakpoint; fluid clamp() everywhere between 390–1440"
+    ],
+    "rules": [
+      { "name": "The One Pink Rule", "body": "#FF2E63 is the only accent in the system and it is used sparingly — an arrow, a dot, a selected state, one CTA per view. If pink stops being rare, it stops meaning anything. New accent hues are prohibited.", "section": "colors" },
+      { "name": "The Paper Step Rule", "body": "Hierarchy is built by stepping Paper → Card and drawing a 1px border, never by tinting surfaces with hue or stacking shadows.", "section": "colors" },
+      { "name": "The Serif Never Sets Body Rule", "body": "Instrument Serif exists only at display and heading sizes. It never sets a paragraph, a label, or a control.", "section": "typography" },
+      { "name": "The Mono Is Metadata Rule", "body": "If it's a filename, a format, a size, a date, a count, or a kicker — it's Plex Mono. If it's prose — it never is.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. A shadow is a statement that something floats (book card, page preview, sheet, sticky bars) or responds (CTA hover glow) — never ambient decoration on resting cards.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do run the Focus System on every new interactive element (2px #FF2E63, correct offset, Ink-on-accent) — WCAG 2.1 AA is binding.",
+      "Do gate every animation behind prefers-reduced-motion (0.15s micro / 0.25s theme / 1s cubic-bezier(.4,0,.2,1) morphs are the tempo set).",
+      "Do use mono + uppercase + 0.08em for every kicker, and mono chips for every filename (Ink bg, Paper text, 6px radius).",
+      "Do keep touch targets ≥44px on mobile and reuse the 760px breakpoint — never introduce a second one.",
+      "Do draw illustration as re-typeset-line bar art or 1.6px stroke SVG, in-palette."
+    ],
+    "donts": [
+      "Don't introduce a second accent hue, gradients, glassmorphism, or colored surface tints — the converter-SaaS look is the confirmed anti-reference.",
+      "Don't put resting shadows on flat cards; borders carry structure (Flat-By-Default Rule).",
+      "Don't set body text in Instrument Serif, or prose in Plex Mono.",
+      "Don't use stock photography, emoji in UI, or icon fonts; imagery is generated brand art (OG pipeline) or inline SVG.",
+      "Don't fabricate visual proof — no invented logos, star ratings, testimonial avatars, or press badges anywhere (product commitment)."
+    ]
+  }
+}

@@ -116,7 +116,7 @@ function wordmark(x, baseline, fontSize) {
 }
 
 /** Blog post card. */
-function blogCard({ title, kicker }) {
+function blogCard({ title, kicker, footer = 'epub.studio/blog · free · in your browser' }) {
   const marginX = 80;
   const maxTitleWidth = 690;
 
@@ -137,11 +137,9 @@ function blogCard({ title, kicker }) {
   parts.push(mark(marginX, 64, 44));
   parts.push(wordmark(marginX + 58, 98, 38));
 
-  // Kicker: CATEGORY · BLOG
+  // Kicker, rendered verbatim (callers append " · BLOG" for blog cards).
   parts.push(
-    textPath(FONTS.mono, `${kicker.toUpperCase()} · BLOG`, marginX, 208, 21, GRAPHITE, {
-      tracking: 90,
-    }),
+    textPath(FONTS.mono, kicker.toUpperCase(), marginX, 208, 21, GRAPHITE, { tracking: 90 }),
   );
 
   // Title block, vertically centred in the remaining space.
@@ -159,9 +157,7 @@ function blogCard({ title, kicker }) {
   }
 
   // Footer
-  parts.push(
-    textPath(FONTS.mono, 'epub.studio/blog · free · in your browser', marginX, 566, 22, GRAPHITE),
-  );
+  parts.push(textPath(FONTS.mono, footer, marginX, 566, 22, GRAPHITE));
 
   // Motif
   parts.push(pageMotif(880, 190, 300, 390, 8));
@@ -249,7 +245,7 @@ if (args.includes('--site')) {
       console.warn('skip (no title):', f);
       continue;
     }
-    const svg = blogCard({ title: post.title, kicker: post.category || 'Blog' });
+    const svg = blogCard({ title: post.title, kicker: `${post.category || 'Blog'} · BLOG` });
     await render(svg, path.join(ROOT, `public/blog-og/${slug}.png`));
     ensureOgImageField(path.join(BLOG_DIR, f), slug);
   }
@@ -257,9 +253,18 @@ if (args.includes('--site')) {
   const slug = flag('slug');
   const title = flag('title');
   const kicker = flag('kicker') || 'Blog';
+  // Landing pages write to their own directory via --dir public/landing-og.
+  const dir = flag('dir') || 'public/blog-og';
   if (!slug || !title) {
-    console.error('Usage: og-card.mjs --slug <slug> --title "<title>" [--kicker "<category>"] | --all | --site');
+    console.error('Usage: og-card.mjs --slug <slug> --title "<title>" [--kicker "<label>"] [--dir <public subdir>] | --all | --site');
     process.exit(1);
   }
-  await render(blogCard({ title, kicker }), path.join(ROOT, `public/blog-og/${slug}.png`));
+  const isBlog = dir === 'public/blog-og';
+  const footer = isBlog
+    ? 'epub.studio/blog · free · in your browser'
+    : 'epub.studio · free · in your browser';
+  await render(
+    blogCard({ title, kicker: isBlog ? `${kicker} · BLOG` : kicker, footer }),
+    path.join(ROOT, dir, `${slug}.png`),
+  );
 }

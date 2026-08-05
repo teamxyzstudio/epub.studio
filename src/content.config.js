@@ -38,4 +38,66 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+export const LANDING_TYPES = ['audience', 'comparison', 'pillar', 'variant'];
+
+/**
+ * Landing pages — the SEO program's four page types (audience, comparison,
+ * pillar, variant). Flat URLs at the site root; every page is registered in
+ * content-ops/keyword-map.csv and produced via .claude/skills/epub-landing-writer.
+ *
+ * The embedded tool runner is the page's proof: `embedTool` names a slug from
+ * src/data/tools.js and the template mounts the real converter there.
+ */
+const landing = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/landing' }),
+  schema: z.object({
+    title: z.string(),
+    /** The h1; may differ from <title> for length. */
+    h1: z.string(),
+    /** Meta description, 140–160 chars. */
+    excerpt: z.string(),
+    type: z.enum(LANDING_TYPES),
+    primaryKeyword: z.string(),
+    date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
+    ogImage: z.string().optional(),
+    /** Tool slug whose runner embeds as the page's working proof. */
+    embedTool: z.string().optional(),
+    /** Overrides the drop-zone invitation line. */
+    embedHeadline: z.string().optional(),
+    /** Touch-phrased variant shown under 760px (defaults to the runner's). */
+    embedHeadlineMobile: z.string().optional(),
+    /** Widens the runner's accepted extensions when the engine allows it. */
+    embedAccept: z.string().optional(),
+    /** Overrides the drop-zone's mono format line (must match embedAccept). */
+    embedDropSub: z.string().optional(),
+    /** Tool slugs for the shelf grid (audience pages, rails elsewhere). */
+    tools: z.array(z.string()).default([]),
+    /** Blog post ids for the guides rail. */
+    guides: z.array(z.string()).default([]),
+    /** Pillar hubs: labeled clusters of blog post ids. */
+    clusters: z
+      .array(z.object({ label: z.string(), posts: z.array(z.string()) }))
+      .default([]),
+    /** Comparison pages: verified, dated claims. */
+    comparison: z
+      .object({
+        competitor: z.string(),
+        rows: z.array(
+          z.object({ aspect: z.string(), us: z.string(), them: z.string() }),
+        ),
+        /** The honest "where the other tool is better" list — mandatory. */
+        theirWins: z.array(z.string()).min(1),
+        sources: z.array(
+          z.object({ label: z.string(), url: z.string(), asOf: z.string() }),
+        ),
+      })
+      .optional(),
+    howToTitle: z.string().optional(),
+    howTo: z.array(z.object({ t: z.string(), d: z.string() })).default([]),
+    faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { blog, landing };

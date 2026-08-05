@@ -125,10 +125,11 @@ onBeforeUnmount(() => {
     border-color 0.15s;
 }
 .toc-link:hover {
-  color: #ff2e63;
+  color: #c41e4f;
 }
 .toc-link.on {
-  color: #ff2e63;
+  /* Pink Ink for the 13px label (AA); the accent bar stays Electric Pink. */
+  color: #c41e4f;
   font-weight: 600;
   border-left-color: #ff2e63;
 }

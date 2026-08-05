@@ -13,6 +13,8 @@ const props = defineProps({
   slug: { type: String, required: true },
   accept: { type: String, default: '.epub' },
   dropHeadline: { type: String, required: true },
+  /** Touch-phrased invitation under 760px; landing pages override it. */
+  dropHeadlineMobile: { type: String, default: 'Tap to choose a file' },
   dropSub: { type: String, required: true },
   cta: { type: String, required: true },
   doneTitle: { type: String, required: true },
@@ -217,7 +219,7 @@ const workLines = computed(() =>
           <template v-if="dragging">Drop it.</template>
           <template v-else>
             <span class="on-desktop">{{ dropHeadline }}</span>
-            <span class="on-mobile">Tap to choose a file</span>
+            <span class="on-mobile">{{ dropHeadlineMobile }}</span>
           </template>
         </div>
         <div class="dz-sub">{{ dropSub }}</div>
