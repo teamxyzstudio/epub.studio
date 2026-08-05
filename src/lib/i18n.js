@@ -58,6 +58,8 @@ export const TOOL_CHROME = {
       { label: 'About', href: '/about' },
       { label: 'Privacy', href: '/privacy' },
     ],
+    /** Link to this page's other-locale twin, when one exists. */
+    switch: { label: 'En español', lang: 'es' },
     header: {}, // SiteHeader's own English defaults apply
   },
   es: {
@@ -73,6 +75,7 @@ export const TOOL_CHROME = {
       { label: 'Acerca de', href: '/about' },
       { label: 'Privacidad', href: '/privacy' },
     ],
+    switch: { label: 'In English', lang: 'en' },
     header: {
       nav: [
         { label: 'Herramientas', href: '/#tools' },

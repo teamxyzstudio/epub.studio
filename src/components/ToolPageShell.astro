@@ -19,6 +19,12 @@ interface Props {
 }
 
 const { page, path, jsonLd, chrome, alternates = [], runnerUi = {} } = Astro.props;
+
+// The language switcher renders only when this page's twin actually exists —
+// a switcher that dead-ends on untranslated pages is worse than none.
+const twin = chrome.switch
+  ? alternates.find((a) => a.hreflang === chrome.switch.lang)
+  : undefined;
 ---
 
 
@@ -34,9 +40,23 @@ const { page, path, jsonLd, chrome, alternates = [], runnerUi = {} } = Astro.pro
     <SiteHeader {...chrome.header} mobileNote={`${page.a} → ${page.b}`} />
 
     <main id="main" class="main">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/#tools" class="focus-ring-2">{chrome.breadcrumbRoot}</a> / {page.group}
-      </nav>
+      <div class="crumb-row">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/#tools" class="focus-ring-2">{chrome.breadcrumbRoot}</a> / {page.group}
+        </nav>
+        {
+          twin && (
+            <a
+              class="lang-switch focus-ring-2"
+              href={twin.href}
+              hreflang={twin.hreflang}
+              lang={chrome.switch.lang}
+            >
+              {chrome.switch.label} →
+            </a>
+          )
+        }
+      </div>
 
       <h1>{page.h1}</h1>
       <p class="lede">{page.lede}</p>
@@ -183,14 +203,30 @@ const { page, path, jsonLd, chrome, alternates = [], runnerUi = {} } = Astro.pro
     padding: clamp(24px, 4vw, 52px) clamp(16px, 4vw, 48px) clamp(40px, 5vw, 72px);
   }
 
+  .crumb-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
   .breadcrumb {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
     color: #6e675d;
-    margin-bottom: 14px;
   }
   .breadcrumb a {
     color: #6e675d;
+  }
+  .lang-switch {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    /* Pink Ink: text-level accent, AA-clean at 12px. */
+    color: #c41e4f;
+  }
+  .lang-switch:hover {
+    color: #17130e;
   }
 
   h1 {
