@@ -104,6 +104,27 @@ export const toEpub = [
     slug: 'fb2-to-epub',
   },
   {
+    n: 'AZW3 to PDF',
+    d: 'Turn a DRM-free Kindle book into a printable PDF.',
+    a: 'AZW3',
+    b: 'PDF',
+    slug: 'azw3-to-pdf',
+  },
+  {
+    n: 'MOBI to PDF',
+    d: 'Rescue an old MOBI file as a fixed, printable PDF.',
+    a: 'MOBI',
+    b: 'PDF',
+    slug: 'mobi-to-pdf',
+  },
+  {
+    n: 'CBZ to PDF',
+    d: 'Turn a comic archive into a PDF you can read anywhere.',
+    a: 'CBZ',
+    b: 'PDF',
+    slug: 'cbz-to-pdf',
+  },
+  {
     n: 'CBZ to EPUB',
     d: 'Comic archives, readable anywhere.',
     a: 'CBZ',

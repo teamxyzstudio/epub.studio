@@ -34,7 +34,7 @@ comparison:
       us: 'Files never leave your device — verifiable in DevTools'
       them: 'Also local — your library stays on your machine'
     - aspect: 'Scope'
-      us: '19 focused tools, one job per page'
+      us: '22 focused tools, one job per page'
       them: 'One application that does everything, deeply configurable'
     - aspect: 'Kindle formats'
       us: 'Reads MOBI/AZW3; for output we teach the Send-to-Kindle route'

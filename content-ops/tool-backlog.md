@@ -8,7 +8,7 @@ runner is the proof, and a page whose runner can't do the job does not ship
 
 ## The engine graph (why most of these are cheap)
 
-Our converters are not 19 separate programs — they are parsers and builders
+Our converters are not two dozen separate programs — they are parsers and builders
 joined in the middle:
 
 - **Parsers (read → book model):** epub, mobi/prc, azw3/azw, fb2, cbz, txt,
@@ -20,6 +20,10 @@ browser: mobi/azw3 **writers** (those stay guidance pages teaching
 Send-to-Kindle). New parsers (djvu, lit, pdb) are real engineering.
 
 ## Tier 1 — build now (chains exist, volume proven)
+
+**SHIPPED 2026-08-05:** /azw3-to-pdf, /mobi-to-pdf, /cbz-to-pdf (registry
+`chain()` landed — parse leg → EPUB → build leg). /pdf-to-kindle guidance
+remains queued.
 
 | Slug | Pair | Volume | Engine | Policy / notes |
 |---|---|---|---|---|

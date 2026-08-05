@@ -44,6 +44,7 @@ const COMMON = {
 const groupOf = (slug) => {
   if (slug.startsWith('epub-to-')) return 'Convert from EPUB';
   if (slug.endsWith('-to-epub')) return 'Convert to EPUB';
+  if (slug.endsWith('-to-pdf')) return 'Convert to PDF';
   return 'EPUB utilities';
 };
 
@@ -102,6 +103,159 @@ const pages = {
       COMMON.drm,
     ],
     related: ['epub-to-docx', 'epub-to-azw3', 'pdf-to-epub', 'epub-compressor'],
+  },
+
+  'azw3-to-pdf': {
+    h1: 'Convert AZW3 to PDF',
+    lede: 'Turn a DRM-free Kindle book into a fixed, printable PDF — free, in your browser, no signup.',
+    accept: '.azw3,.azw',
+    dropHeadline: 'Drop your AZW3 here, or click to choose',
+    dropSub: '.azw3 · .azw · up to 100 MB',
+    cta: 'Convert to PDF',
+    doneTitle: 'Your PDF is ready',
+    downloadLabel: 'Download PDF',
+    options: [SIZE_OPTS, MARGIN_OPTS],
+    howToTitle: 'How to convert AZW3 to PDF',
+    howTo: [
+      {
+        t: 'Choose your AZW3',
+        d: 'Drop a DRM-free .azw3 or .azw file above — one you sideloaded, exported, or bought DRM-free.',
+      },
+      {
+        t: 'Set page size and margins',
+        d: 'A4 or Letter for printing, 6×9″ for a book-like page. Defaults work fine.',
+      },
+      {
+        t: 'Convert and download',
+        d: 'The book is unpacked to EPUB, then typeset as a PDF — all on your device.',
+      },
+    ],
+    explainerTitle: 'The DRM question, answered honestly',
+    explainer: [
+      {
+        kicker: 'WORKS — DRM-FREE FILES',
+        body: 'Sideloaded books, files from DRM-free stores, and your own exports open fine. The converter reads the AZW3 container directly in your browser.',
+      },
+      {
+        kicker: 'BLOCKED — KINDLE STORE BOOKS',
+        body: 'Most books bought from the Kindle store carry DRM, and no converter can open them — this one included. We don’t remove DRM, here or anywhere.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Why does my Kindle store book fail to convert?',
+        a: 'It is almost certainly DRM-protected. DRM-locked files cannot be opened by any converter, and removing DRM is not something this site does. The tool works on DRM-free files: sideloaded books, DRM-free store purchases, and files you produced yourself.',
+      },
+      {
+        q: 'What about KFX files?',
+        a: 'KFX is Amazon’s newest download format and stays locked to Kindle apps. This tool reads AZW3 and AZW. If you have a DRM-free MOBI instead, the MOBI to PDF tool takes it.',
+      },
+      COMMON.size,
+      COMMON.privacy,
+      COMMON.free,
+    ],
+    related: ['mobi-to-pdf', 'azw3-to-epub', 'epub-to-pdf', 'epub-reader'],
+  },
+
+  'mobi-to-pdf': {
+    h1: 'Convert MOBI to PDF',
+    lede: 'Rescue an old MOBI file as a fixed, printable PDF — free, in your browser, no signup.',
+    accept: '.mobi,.prc',
+    dropHeadline: 'Drop your MOBI here, or click to choose',
+    dropSub: '.mobi · .prc · up to 100 MB',
+    cta: 'Convert to PDF',
+    doneTitle: 'Your PDF is ready',
+    downloadLabel: 'Download PDF',
+    options: [SIZE_OPTS, MARGIN_OPTS],
+    howToTitle: 'How to convert MOBI to PDF',
+    howTo: [
+      {
+        t: 'Choose your MOBI',
+        d: 'Drop the .mobi or .prc file above — the format is retired, but the files still open fine.',
+      },
+      {
+        t: 'Set page size and margins',
+        d: 'A4 or Letter for printing, 6×9″ for a book-like page.',
+      },
+      {
+        t: 'Convert and download',
+        d: 'The book is unpacked to EPUB, then typeset as a PDF — all on your device.',
+      },
+    ],
+    explainerTitle: 'MOBI vs PDF — what changes',
+    explainer: [
+      {
+        kicker: 'MOBI — RETIRED, REFLOWABLE',
+        body: 'A Palm-era format Amazon retired in 2022. Text reflows, styling is minimal, and fewer and fewer apps open it.',
+      },
+      {
+        kicker: 'PDF — FIXED, UNIVERSAL',
+        body: 'Every page frozen at the size you choose, readable on anything with a screen, printable forever.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Would EPUB be a better target than PDF?',
+        a: 'If you want to keep reading on an e-reader, yes — EPUB stays reflowable, and the MOBI to EPUB tool does that conversion. Choose PDF when you want printing, annotation, or a file that renders identically everywhere.',
+      },
+      COMMON.drm,
+      COMMON.size,
+      COMMON.privacy,
+      COMMON.free,
+    ],
+    related: ['mobi-to-epub', 'azw3-to-pdf', 'epub-to-pdf', 'epub-reader'],
+  },
+
+  'cbz-to-pdf': {
+    h1: 'Convert CBZ to PDF',
+    lede: 'Turn a comic book archive into a PDF you can read and share anywhere — free, in your browser.',
+    accept: '.cbz',
+    dropHeadline: 'Drop your CBZ here, or click to choose',
+    dropSub: '.cbz · up to 100 MB',
+    cta: 'Convert to PDF',
+    doneTitle: 'Your PDF is ready',
+    downloadLabel: 'Download PDF',
+    options: [SIZE_OPTS],
+    howToTitle: 'How to convert CBZ to PDF',
+    howTo: [
+      {
+        t: 'Choose your CBZ',
+        d: 'Drop the comic archive above. Pages stay in their reading order.',
+      },
+      {
+        t: 'Pick a page size',
+        d: 'A4 works for most comics; 6×9″ gives a digest-sized page.',
+      },
+      {
+        t: 'Convert and download',
+        d: 'Every page is placed onto a PDF page — all on your device, nothing uploaded.',
+      },
+    ],
+    explainerTitle: 'CBZ vs PDF — what changes',
+    explainer: [
+      {
+        kicker: 'CBZ — A ZIP OF PAGES',
+        body: 'A comic archive is simply images in a zip, named in reading order. Comic apps read it natively; most other software does not.',
+      },
+      {
+        kicker: 'PDF — READS ANYWHERE',
+        body: 'The same pages, wrapped in a format every phone, tablet and laptop opens without a special app.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'What about CBR files?',
+        a: 'CBR is the same idea inside a RAR archive, which browsers cannot unpack. Convert the CBR to CBZ first with a desktop tool (or re-zip the images), then drop it here. Renaming the extension is not enough — the container really is different.',
+      },
+      {
+        q: 'Will image quality drop?',
+        a: 'No. Your pages are placed into the PDF as-is, not recompressed. The PDF is roughly the size of the original archive.',
+      },
+      COMMON.size,
+      COMMON.privacy,
+      COMMON.free,
+    ],
+    related: ['cbz-to-epub', 'epub-to-pdf', 'epub-compressor', 'epub-reader'],
   },
 
   'epub-to-mobi': {

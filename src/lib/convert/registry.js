@@ -36,6 +36,26 @@ export const PRODUCES_EPUB = new Set([
   'cbz-to-epub',
 ]);
 
+/**
+ * Compose two engines into one: the first leg produces an EPUB, the second
+ * consumes it. Progress maps 0–50% to the parse leg, 50–100% to the build
+ * leg. This is what makes azw3/mobi/cbz→pdf one-line entries — the middle
+ * format is always EPUB, which both sides already speak.
+ */
+const chain = (firstLoader, secondLoader) => async () => {
+  const [first, second] = await Promise.all([firstLoader(), secondLoader()]);
+  return async (file, options = {}, onProgress = () => {}) => {
+    const mid = await first(file, options, (p) => onProgress(p / 2));
+    const midFile = new File([mid.blob], mid.filename, {
+      type: 'application/epub+zip',
+    });
+    return second(midFile, options, (p) => onProgress(50 + p / 2));
+  };
+};
+
+const toEpub = (name) => () => import('./to-epub.js').then((m) => m[name]);
+const toPdf = () => import('./epub-to-pdf.js').then((m) => m.epubToPdf);
+
 const engines = {
   'epub-to-pdf': () => import('./epub-to-pdf.js').then((m) => m.epubToPdf),
   'epub-to-docx': () => import('./from-epub.js').then((m) => m.epubToDocx),
@@ -50,6 +70,10 @@ const engines = {
   'cbz-to-epub': () => import('./to-epub.js').then((m) => m.cbzToEpub),
   'mobi-to-epub': () => import('./to-epub.js').then((m) => m.mobiToEpub),
   'azw3-to-epub': () => import('./to-epub.js').then((m) => m.mobiToEpub),
+
+  'azw3-to-pdf': chain(toEpub('mobiToEpub'), toPdf),
+  'mobi-to-pdf': chain(toEpub('mobiToEpub'), toPdf),
+  'cbz-to-pdf': chain(toEpub('cbzToEpub'), toPdf),
 
   'epub-metadata-editor': () => import('./utilities.js').then((m) => m.editMetadata),
   'epub-cover-editor': () => import('./utilities.js').then((m) => m.replaceCover),

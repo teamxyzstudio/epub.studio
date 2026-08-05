@@ -151,6 +151,35 @@ Twelve-month shape if cadence holds: ~100 blog posts (52 mined + rows +
 refreshes), ~22 landing pages, ~10 tools, one full locale — against a
 researched 395k/mo English + 23k in-domain l10n opportunity.
 
+## Automation readiness (audited 2026-08-05)
+
+The daily publisher routine lives at `content-ops/routines/daily-publisher.md`.
+What already works unattended: both content lanes are data+markdown (no code
+changes per page), the sitemap regenerates on every build (@astrojs/sitemap),
+OG cards are scripted, and guidance-type tool pages are pure data
+(`NO_ENGINE` + tools.js). Gaps, in priority order:
+
+1. **Deploy confirmation (critical, unknown).** The repo contains no CI/CD
+   config; if the host (Vercel/Netlify/CF Pages) auto-deploys main via Git
+   integration, nothing is needed — CONFIRM this once. If not, add a deploy
+   workflow; a pushed post that never goes live is silent failure.
+2. **CI safety net (cheap).** A GitHub Action running `npm ci && npm run
+   build` on push to main guards the site against any broken push, not just
+   the routine's.
+3. **Registry chain support (~20 lines, unlocks 3 tools).** A `chain()`
+   helper composing parser→builder engines makes azw3-to-pdf, mobi-to-pdf
+   and cbz-to-pdf one-line registry entries (all their engines exist).
+   pdf-to-kindle needs zero engine work (NO_ENGINE pattern).
+4. **Spanish i18n infrastructure (the real project; blocks Oct es pages).**
+   Astro i18n routing (/es/ prefix), hreflang in the base layout, UI string
+   extraction from the Vue islands (ToolRunner et al. hardcode English), and
+   locale support in the landing collection. Until it lands, the routine
+   auto-skips es rows by design.
+5. **GSC checkpoint automation (optional).** A `scripts/gsc-check.mjs` with
+   a Search Console service account that writes `content-ops/HALT-LANDING`
+   on coverage anomalies would close the loop; until then the checkpoint is
+   manual and the HALT file is the kill switch.
+
 ## Current state (2026-08-05)
 
 - 54 intents live in keyword-map; ~172k/mo of the researched volume already
