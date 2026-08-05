@@ -146,9 +146,12 @@ A warm paper stack with one electric thread through it.
   outlines, arrows, the wordmark's full stop, the mark's middle bar, progress
   fills, primary CTAs. Its job is *direction* — it points at the one thing
   that matters on a screen.
-- **Pink Ink** (#C41E4F): Electric Pink's readable sibling for text on light
-  backgrounds — in-body links, the "Featured" chip label. Use it whenever
-  pink must be read rather than seen.
+- **Pink Ink** (#C41E4F): Electric Pink's readable sibling wherever pink must
+  be read rather than seen — in-body links, chip labels, hover states, and any
+  fill that carries a text label (buttons, CTAs: white on Pink Ink clears
+  WCAG AA at ≈5.6:1; white on Electric Pink fails at ≈3.6:1). Electric Pink
+  stays for pure decoration: bars, borders, glyphs, dots, tints, and
+  large-text accents (≥24px, where 3:1 suffices).
 
 ### Neutral
 - **Paper** (#FAF7F2): the page background everywhere.

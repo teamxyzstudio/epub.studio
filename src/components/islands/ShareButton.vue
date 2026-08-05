@@ -58,6 +58,6 @@ const label = computed(() => {
 }
 .share:hover {
   border-color: #ff2e63;
-  color: #ff2e63;
+  color: #c41e4f;
 }
 </style>

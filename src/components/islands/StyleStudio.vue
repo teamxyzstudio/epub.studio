@@ -1044,7 +1044,7 @@ watch(() => s.align, (a) => { if (a === 'justify' && !s.hyph) s.hyph = true; });
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  background: #ff2e63;
+  background: #c41e4f;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -1056,7 +1056,7 @@ watch(() => s.align, (a) => { if (a === 'justify' && !s.hyph) s.hyph = true; });
   min-height: 48px;
 }
 .dl:hover:not(:disabled) {
-  box-shadow: 0 5px 16px rgba(255, 46, 99, 0.35);
+  box-shadow: 0 5px 16px rgba(196, 30, 79, 0.35);
 }
 .dl:disabled {
   opacity: 0.7;
@@ -1257,7 +1257,7 @@ watch(() => s.align, (a) => { if (a === 'justify' && !s.hyph) s.hyph = true; });
   min-height: 32px;
 }
 .reset-all:hover {
-  color: #ff2e63;
+  color: #c41e4f;
 }
 
 .sec-head {
@@ -1478,7 +1478,7 @@ watch(() => s.align, (a) => { if (a === 'justify' && !s.hyph) s.hyph = true; });
   min-height: 44px;
 }
 .book-toggle:hover {
-  color: #ff2e63;
+  color: #c41e4f;
 }
 .chev {
   font-size: 16px;

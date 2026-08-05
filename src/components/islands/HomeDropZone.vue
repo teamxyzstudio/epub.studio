@@ -174,12 +174,12 @@ const suggestLabel = computed(() => {
   font-size: 13.5px;
   font-weight: 600;
   border: 1.5px solid #ff2e63;
-  color: #ff2e63;
+  color: #c41e4f;
   padding: 6px 12px;
   border-radius: 999px;
 }
 .pill:hover {
-  background: #ff2e63;
+  background: #c41e4f;
   color: #fff;
 }
 </style>

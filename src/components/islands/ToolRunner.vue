@@ -466,7 +466,7 @@ const workLines = computed(() =>
   padding: 0 6px;
 }
 .linkish:hover {
-  color: #ff2e63;
+  color: #c41e4f;
 }
 .linkish.center {
   margin: 10px auto 0;
@@ -562,7 +562,7 @@ const workLines = computed(() =>
   width: 100%;
   display: block;
   text-align: center;
-  background: #ff2e63;
+  background: #c41e4f;
   color: #fff;
   border: none;
   border-radius: 11px;
@@ -577,7 +577,7 @@ const workLines = computed(() =>
 }
 .cta:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(255, 46, 99, 0.35);
+  box-shadow: 0 6px 18px rgba(196, 30, 79, 0.35);
 }
 .cta:disabled {
   opacity: 0.5;
@@ -607,7 +607,7 @@ const workLines = computed(() =>
 }
 .secondary-dl:hover {
   border-color: #ff2e63;
-  color: #ff2e63;
+  color: #c41e4f;
 }
 
 .handoff-note {

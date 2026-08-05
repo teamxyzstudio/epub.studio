@@ -180,8 +180,8 @@ function subscribe() {
   transition: all 0.15s;
 }
 .chip.on {
-  border-color: #ff2e63;
-  background: #ff2e63;
+  border-color: #c41e4f;
+  background: #c41e4f;
   color: #fff;
   font-weight: 600;
 }
@@ -246,7 +246,7 @@ function subscribe() {
   margin-top: 14px;
   font-size: 13.5px;
   font-weight: 600;
-  color: #ff2e63;
+  color: #c41e4f;
 }
 
 .featured-art {
@@ -388,7 +388,7 @@ function subscribe() {
 }
 .read {
   font-weight: 600;
-  color: #ff2e63;
+  color: #c41e4f;
 }
 
 .empty {
@@ -417,7 +417,7 @@ function subscribe() {
 }
 .older:hover {
   border-color: #ff2e63;
-  color: #ff2e63;
+  color: #c41e4f;
 }
 
 /* --- Newsletter --- */
@@ -473,7 +473,7 @@ function subscribe() {
   padding: 13px 20px;
   border: none;
   border-radius: 10px;
-  background: #ff2e63;
+  background: #c41e4f;
   color: #fff;
   font-family: 'Archivo', sans-serif;
   font-size: 14.5px;
@@ -482,7 +482,7 @@ function subscribe() {
   min-height: 48px;
 }
 .news-form button:hover {
-  box-shadow: 0 5px 16px rgba(255, 46, 99, 0.4);
+  box-shadow: 0 5px 16px rgba(196, 30, 79, 0.4);
 }
 .news-form button:focus-visible {
   outline: 2px solid #faf7f2;
