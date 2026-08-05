@@ -22,7 +22,8 @@ import { SITE_URL, SITE_NAME, OG_IMAGE } from '../data/site.js';
 export async function getStaticPaths() {
   const pages = await getCollection(
     'landing',
-    ({ data }) => import.meta.env.DEV || !data.draft,
+    // Root route renders English only; localized entries get locale routes.
+    ({ data }) => (import.meta.env.DEV || !data.draft) && data.locale === 'en',
   );
   return pages.map((page) => ({ params: { landing: page.id }, props: { page } }));
 }

@@ -13,6 +13,10 @@ interface Props {
   jsonLd?: unknown[];
   noindex?: boolean;
   bodyClass?: string;
+  /** Page language; drives <html lang> and og:locale. */
+  lang?: string;
+  /** hreflang alternates, site-relative hrefs (see lib/i18n.js). */
+  alternates?: { hreflang: string; href: string }[];
 }
 
 const {
@@ -24,6 +28,8 @@ const {
   jsonLd = [],
   noindex = false,
   bodyClass = '',
+  lang = 'en',
+  alternates = [],
 } = Astro.props;
 
 const canonical = new URL(path, Astro.site).href;
@@ -33,7 +39,7 @@ const ogImageAlt = ogImage === OG_IMAGE ? 'Epub Studio — free online EPUB tool
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -43,6 +49,11 @@ const ogImageAlt = ogImage === OG_IMAGE ? 'Epub Studio — free online EPUB tool
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {
+      alternates.map((a) => (
+        <link rel="alternate" hreflang={a.hreflang} href={new URL(a.href, Astro.site).href} />
+      ))
+    }
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Assets, per README §Assets -->
@@ -53,6 +64,7 @@ const ogImageAlt = ogImage === OG_IMAGE ? 'Epub Studio — free online EPUB tool
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
     <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

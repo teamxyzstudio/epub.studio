@@ -25,6 +25,9 @@ epub styler,/style-studio,tool,live,re-typeset / customise epub before download
 azw3 to pdf,/azw3-to-pdf,tool,live,"chain azw3→epub→pdf; DRM-free only; owns ""kindle to pdf"" phrasings"
 mobi to pdf,/mobi-to-pdf,tool,live,chain mobi→epub→pdf; DRM-free only
 cbz to pdf,/cbz-to-pdf,tool,live,CBZ-only accept (CBR needs desktop unrar); honest FAQ
+epub a pdf,/es/epub-to-pdf,tool,live,es mirror of /epub-to-pdf; hreflang paired
+pdf a epub,/es/pdf-to-epub,tool,live,es mirror of /pdf-to-epub; hreflang paired
+mobi a epub,/es/mobi-to-epub,tool,live,es mirror of /mobi-to-epub; widened accept incl. azw3
 epub vs pdf vs mobi,/blog/epub-vs-pdf-vs-mobi,blog,live,featured pillar; owns format-comparison intent
 how to convert epub to pdf,/blog/convert-epub-to-pdf-without-losing-formatting,blog,live,informational phrasing of /epub-to-pdf
 send epub to kindle,/blog/send-epub-to-kindle,blog,live,also owns "read epub on kindle" intent

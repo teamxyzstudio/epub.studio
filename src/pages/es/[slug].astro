@@ -1,0 +1,64 @@
+---
+/**
+ * Spanish tool pages (/es/<slug>) — same shell, Spanish content + chrome.
+ * Twin of ../[slug].astro; keep getStaticPaths/jsonLd changes in sync.
+ */
+import ToolPageShell from '../../components/ToolPageShell.astro';
+import { getToolPageEs, esToolSlugs } from '../../data/tool-pages.es.js';
+import { RUNNER_UI, TOOL_CHROME, toolAlternates } from '../../lib/i18n.js';
+import { SITE_URL } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return esToolSlugs.map((slug) => ({ params: { slug }, props: { page: getToolPageEs(slug) } }));
+}
+
+const { page } = Astro.props;
+const { slug } = Astro.params;
+const path = `/es/${slug}`;
+const alternates = toolAlternates(slug, ['en', 'es']);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: 'es',
+    mainEntity: page.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    inLanguage: 'es',
+    name: page.howToTitle,
+    step: page.howTo.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.t,
+      text: s.d,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Herramientas', item: `${SITE_URL}/#tools` },
+      { '@type': 'ListItem', position: 2, name: page.group, item: `${SITE_URL}/#tools` },
+      { '@type': 'ListItem', position: 3, name: page.h1, item: `${SITE_URL}${path}` },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: page.h1,
+    inLanguage: 'es',
+    applicationCategory: 'UtilitiesApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  },
+];
+---
+
+<ToolPageShell {page} {path} {jsonLd} chrome={TOOL_CHROME.es} {alternates} runnerUi={RUNNER_UI.es} />

@@ -1,0 +1,468 @@
+---
+/**
+ * The tool page — one implementation shared by every locale route.
+ * /[slug].astro (English) and /es/[slug].astro (Spanish) are thin wrappers
+ * that pass a content `page`, the locale `chrome`, and hreflang `alternates`.
+ * Layout and every value come from mocks/EPUB to PDF.dc.html.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from './SiteHeader.astro';
+import ToolRunner from './islands/ToolRunner.vue';
+
+interface Props {
+  page: Record<string, any>;
+  path: string;
+  jsonLd: unknown[];
+  chrome: Record<string, any>;
+  alternates?: { hreflang: string; href: string }[];
+  runnerUi?: Record<string, string>;
+}
+
+const { page, path, jsonLd, chrome, alternates = [], runnerUi = {} } = Astro.props;
+---
+
+
+<BaseLayout
+  title={page.seoTitle}
+  description={page.lede}
+  path={path}
+  jsonLd={jsonLd}
+  lang={chrome.lang}
+  alternates={alternates}
+>
+  <div class="page">
+    <SiteHeader {...chrome.header} mobileNote={`${page.a} → ${page.b}`} />
+
+    <main id="main" class="main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/#tools" class="focus-ring-2">{chrome.breadcrumbRoot}</a> / {page.group}
+      </nav>
+
+      <h1>{page.h1}</h1>
+      <p class="lede">{page.lede}</p>
+
+      {
+        page.mode === 'guidance' ? (
+          /* No browser-side writer exists for this format. Rather than a dead
+             button, the card explains the situation and gives the working route. */
+          <div class="tool-card guidance">
+            <div class="guidance-kicker">{page.guidance.kicker}</div>
+            <h2 class="guidance-title">{page.guidance.title}</h2>
+            {page.guidance.body.map((para) => (
+              <p class="guidance-body">{para}</p>
+            ))}
+            <div class="guidance-actions">
+              {page.guidance.actions.map((a, i) => (
+                <a
+                  href={a.href}
+                  class:list={['guidance-btn', { primary: i === 0 }, 'focus-ring-2']}
+                >
+                  {a.label} →
+                </a>
+              ))}
+            </div>
+            <p class="guidance-fallback">{page.guidance.fallback}</p>
+          </div>
+        ) : (
+          <div class="tool-card">
+            <ToolRunner
+              client:load
+              slug={page.slug}
+              accept={page.accept}
+              dropHeadline={page.dropHeadline}
+              dropSub={page.dropSub}
+              cta={page.cta}
+              doneTitle={page.doneTitle}
+              downloadLabel={page.downloadLabel}
+              dropHeadlineMobile={page.dropHeadlineMobile}
+              options={page.options}
+              ui={runnerUi}
+              mode={page.mode}
+            />
+          </div>
+        )
+      }
+
+      <section class="block">
+        <h2 class="howto-h2">{page.howToTitle}</h2>
+        <ol class="howto">
+          {
+            page.howTo.map((step, i) => (
+              <li>
+                <span class="step-num">{String(i + 1).padStart(2, '0')}</span>
+                <div class="step-title">{step.t}</div>
+                <div class="step-body">{step.d}</div>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      {
+        page.explainer && (
+          <section class="block">
+            <h2>{page.explainerTitle}</h2>
+            <div class="explainer">
+              {page.explainer.map((card) => (
+                <div class="explain-card">
+                  <div class="explain-kicker">{card.kicker}</div>
+                  <p>{card.body}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      <section class="block">
+        <h2>{chrome.questionsH2}</h2>
+        <div class="faq">
+          {
+            page.faqs.map((f) => (
+              <details class="faq-item">
+                <summary class="focus-ring-inset">
+                  <span>{f.q}</span>
+                  <span class="chev">＋</span>
+                </summary>
+                <p>{f.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="block">
+        <h2 class="related-h2">{chrome.relatedH2}</h2>
+        <div class="related">
+          {
+            page.related.map((t) => (
+              <a href={t.href ?? `/${t.slug}`} class="related-card focus-ring-2">
+                <span class="related-fmt">
+                  {t.a} <span class="arrow">→</span> {t.b}
+                </span>
+                <span class="related-name">{t.n}</span>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+    </main>
+
+    <footer class="tool-footer">
+      <span><a href="/">Epub Studio</a> — {chrome.footerTagline}</span>
+      <span>
+        {chrome.footerLinks.map((l, i) => (
+          <>
+            {i > 0 && ' · '}
+            <a href={l.href}>{l.label}</a>
+          </>
+        ))}
+      </span>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+  @media (max-width: 759.98px) {
+    .page {
+      padding-bottom: 90px;
+    }
+  }
+
+  .main {
+    flex: 1;
+    max-width: 920px;
+    margin: 0 auto;
+    width: 100%;
+    padding: clamp(24px, 4vw, 52px) clamp(16px, 4vw, 48px) clamp(40px, 5vw, 72px);
+  }
+
+  .breadcrumb {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #6e675d;
+    margin-bottom: 14px;
+  }
+  .breadcrumb a {
+    color: #6e675d;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 10px;
+  }
+
+  .lede {
+    font-size: clamp(15px, 1.3vw, 17.5px);
+    line-height: 1.55;
+    color: #6e675d;
+    margin: 0 0 clamp(20px, 3vw, 32px);
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+
+  .tool-card {
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.16);
+    border-radius: 16px;
+    padding: clamp(18px, 3vw, 30px);
+    box-shadow: 0 1px 0 rgba(23, 19, 14, 0.06);
+  }
+
+  /* --- Guidance card (formats with no browser-side writer) --- */
+  .guidance-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #6e675d;
+    margin-bottom: 10px;
+  }
+  .guidance-title {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(22px, 2.4vw, 28px);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+  .guidance-body {
+    margin: 0 0 12px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #17130e;
+    max-width: 62ch;
+    text-wrap: pretty;
+  }
+  .guidance-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0 16px;
+  }
+  .guidance-btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(23, 19, 14, 0.25);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #17130e;
+  }
+  .guidance-btn:hover {
+    border-color: #ff2e63;
+    color: #c41e4f;
+  }
+  .guidance-btn.primary {
+    background: #c41e4f;
+    border-color: #c41e4f;
+    color: #fff;
+  }
+  .guidance-btn.primary:hover {
+    box-shadow: 0 5px 16px rgba(196, 30, 79, 0.35);
+    color: #fff;
+  }
+  .guidance-fallback {
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px solid rgba(23, 19, 14, 0.12);
+    font-size: 13px;
+    line-height: 1.55;
+    color: #6e675d;
+    max-width: 62ch;
+  }
+
+  .block {
+    margin-top: clamp(36px, 5vw, 60px);
+  }
+  .block h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(24px, 2.6vw, 32px);
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+  .block h2.related-h2 {
+    font-size: clamp(22px, 2.4vw, 28px);
+  }
+  /* The how-to heading carries 18px, not the 14px the other h2s use. */
+  .block h2.howto-h2 {
+    margin-bottom: 18px;
+  }
+
+  /* --- How to --- */
+  .howto {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    gap: 14px;
+  }
+  .howto li {
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .step-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #c41e4f;
+  }
+  .step-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 6px 0 4px;
+  }
+  .step-body {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: #6e675d;
+  }
+
+  /* --- Explainer --- */
+  .explainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .explain-card {
+    flex: 1;
+    min-width: min(260px, 100%);
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 18px;
+    background: #fffdf9;
+  }
+  .explain-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: #6e675d;
+    margin-bottom: 8px;
+  }
+  .explain-card p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #17130e;
+    text-wrap: pretty;
+  }
+
+  /* --- FAQ ---
+     <details> rather than the mock's JS accordion: the answers stay in the DOM
+     when collapsed, so they are crawlable and match the FAQPage schema. */
+  .faq {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .faq-item {
+    border-bottom: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .faq-item summary {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 2px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #17130e;
+    cursor: pointer;
+    min-height: 44px;
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item summary:hover {
+    color: #c41e4f;
+  }
+  .chev {
+    font-size: 18px;
+    color: #ff2e63;
+    transition: transform 0.2s;
+    transform: rotate(0deg);
+    flex: none;
+  }
+  .faq-item[open] .chev {
+    transform: rotate(45deg);
+  }
+  .faq-item p {
+    margin: 0;
+    padding: 0 2px 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6e675d;
+    max-width: 65ch;
+    text-wrap: pretty;
+  }
+
+  /* --- Related --- */
+  .related {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+    gap: 12px;
+  }
+  .related-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 14px;
+    color: #17130e;
+    transition: border-color 0.15s;
+  }
+  .related-card:hover {
+    border-color: #ff2e63;
+    color: #17130e;
+  }
+  .related-fmt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #6e675d;
+  }
+  .related-fmt .arrow {
+    color: #ff2e63;
+  }
+  .related-name {
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+
+  /* --- Footer --- */
+  .tool-footer {
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+    padding: 20px clamp(16px, 4vw, 48px);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #6e675d;
+    max-width: 1240px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .tool-footer a {
+    color: #6e675d;
+  }
+</style>

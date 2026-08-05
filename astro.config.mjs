@@ -8,7 +8,17 @@ import { SITE_URL } from './src/data/site.js';
 
 export default defineConfig({
   site: SITE_URL,
-  integrations: [vue(), sitemap()],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es'],
+    routing: { prefixDefaultLocale: false },
+  },
+  integrations: [
+    vue(),
+    // The i18n block makes the sitemap emit xhtml:link alternates for
+    // /x ↔ /es/x pairs automatically.
+    sitemap({ i18n: { defaultLocale: 'en', locales: { en: 'en', es: 'es' } } }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

@@ -170,11 +170,15 @@ OG cards are scripted, and guidance-type tool pages are pure data
    helper composing parser→builder engines makes azw3-to-pdf, mobi-to-pdf
    and cbz-to-pdf one-line registry entries (all their engines exist).
    pdf-to-kindle needs zero engine work (NO_ENGINE pattern).
-4. **Spanish i18n infrastructure (the real project; blocks Oct es pages).**
-   Astro i18n routing (/es/ prefix), hreflang in the base layout, UI string
-   extraction from the Vue islands (ToolRunner et al. hardcode English), and
-   locale support in the landing collection. Until it lands, the routine
-   auto-skips es rows by design.
+4. **Spanish i18n infrastructure — SHIPPED 2026-08-05.** /es/ routing via
+   src/pages/es/[slug].astro over a shared ToolPageShell (no template fork);
+   hreflang en/es/x-default in BaseLayout + sitemap xhtml alternates; runner
+   UI strings locale-aware (lib/i18n.js, `ui` prop; option chips render
+   translated labels over engine-matched values); landing schema carries
+   `locale`. First three es tool pages live and probe-verified end-to-end.
+   Remaining for later locales/lanes: es landing route template (with the
+   first es landing page), reader-mode runner strings (blocks "lector epub
+   online"), Style Studio stays English (recorded gap).
 5. **GSC checkpoint automation (optional).** A `scripts/gsc-check.mjs` with
    a Search Console service account that writes `content-ops/HALT-LANDING`
    on coverage anomalies would close the loop; until then the checkpoint is

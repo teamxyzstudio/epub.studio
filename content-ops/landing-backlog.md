@@ -71,22 +71,28 @@ Tier 3 candidates once the five ship: read epub on chromebook (390), and a
 | comic book formats guide (cbz/cbr hub) | pillar | after cbz-to-pdf + images-to-cbz ship | Clusters: cbz pairs ≈7k combined + "what is cbr" post; hub only when ≥3 comic tools exist |
 | read epub on chromebook | variant | after the 5 reader variants ship + GSC check | 390/mo facet; thin — verify demand held |
 
-## Localization program (separate lane, gated on i18n infrastructure)
+## Localization program — INFRA SHIPPED 2026-08-05, gate OPEN
 
 In-domain volumes from `keyword-research/localization.csv`: **es 13,180**,
-zh 3,040, fr 2,830, pt 1,450. Spanish first. Localized pages mirror existing
-English URLs (per-keyword `intent_pair` column maps each to its tool), which
-needs hreflang + routing + translated UI strings before any page ships —
-engineering prerequisite, tracked in CONTENT-MACHINE.md.
+zh 3,040, fr 2,830, pt 1,450. Spanish first. Localized pages mirror English
+URLs at /es/<same-slug>; hreflang pairs mechanically (BaseLayout + sitemap
+alternates). Runner UI is locale-aware (lib/i18n.js). Spanish TOOL mirrors
+are data entries in src/data/tool-pages.es.js (engineering/agent lane, not
+the markdown routine); es landing/blog markdown uses the schema's `locale`
+field when that queue starts (es landing ROUTE template still pending —
+build it with the first es landing page).
+
+**Shipped 2026-08-05:** /es/epub-to-pdf, /es/pdf-to-epub, /es/mobi-to-epub
+(the Oct queue's first three, early — verified end-to-end in Spanish).
 
 Spanish launch queue (top in-domain pairs; mirror the English tool page,
 locally written — never machine-translated boilerplate):
 
 | es page | Mirrors | es volume |
 |---|---|---|
-| epub a pdf | /epub-to-pdf | 2,730 |
-| pdf a epub | /pdf-to-epub | 2,150 |
-| mobi a epub | /mobi-to-epub | 1,370 |
+| ~~epub a pdf~~ | /epub-to-pdf | 2,730 — SHIPPED |
+| ~~pdf a epub~~ | /pdf-to-epub | 2,150 — SHIPPED |
+| ~~mobi a epub~~ | /mobi-to-epub | 1,370 — SHIPPED |
 | cbr a pdf | (cbz-to-pdf, once live) | 1,060 |
 | djvu a pdf | (djvu-to-pdf, once live) | 580 |
 | epub a mobi | /epub-to-mobi guidance | 530 |

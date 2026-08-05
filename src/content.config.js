@@ -61,6 +61,8 @@ const landing = defineCollection({
     date: z.coerce.date(),
     updated: z.coerce.date().optional(),
     ogImage: z.string().optional(),
+    /** Page language; en renders at /<slug>, others at /<locale>/<slug>. */
+    locale: z.enum(['en', 'es']).default('en'),
     /** Tool slug whose runner embeds as the page's working proof. */
     embedTool: z.string().optional(),
     /** Overrides the drop-zone invitation line. */

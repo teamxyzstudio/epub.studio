@@ -8,13 +8,16 @@
  */
 import { computed, onBeforeUnmount, onMounted, ref, reactive } from 'vue';
 import { getEngine, PRODUCES_EPUB } from '../../lib/convert/registry.js';
+import { RUNNER_UI } from '../../lib/i18n.js';
 
 const props = defineProps({
   slug: { type: String, required: true },
   accept: { type: String, default: '.epub' },
   dropHeadline: { type: String, required: true },
   /** Touch-phrased invitation under 760px; landing pages override it. */
-  dropHeadlineMobile: { type: String, default: 'Tap to choose a file' },
+  dropHeadlineMobile: { type: String, default: '' },
+  /** Locale overrides for the runner's own chrome (see lib/i18n.js). */
+  ui: { type: Object, default: () => ({}) },
   dropSub: { type: String, required: true },
   cta: { type: String, required: true },
   doneTitle: { type: String, required: true },
@@ -38,6 +41,10 @@ const handoffPending = ref(false);
 const meta = reactive({ title: '', creator: '', language: '', publisher: '' });
 
 const producesEpub = PRODUCES_EPUB.has(props.slug);
+
+/** Merged UI strings: English defaults under any locale overrides. */
+const T = computed(() => ({ ...RUNNER_UI.en, ...props.ui }));
+const mobileHeadline = computed(() => props.dropHeadlineMobile || T.value.tapToChoose);
 
 const choice = reactive(
   Object.fromEntries(props.options.map((o) => [o.key, o.value ?? o.choices[0]])),
@@ -174,7 +181,7 @@ async function run() {
     }
   } catch (e) {
     console.error(e);
-    error.value = e?.message || 'Something went wrong converting this file.';
+    error.value = e?.message || T.value.errorFallback;
     stage.value = 'file';
   }
 }
@@ -216,10 +223,10 @@ const workLines = computed(() =>
           @change="onFileInput"
         />
         <div class="dz-headline">
-          <template v-if="dragging">Drop it.</template>
+          <template v-if="dragging">{{ T.dropIt }}</template>
           <template v-else>
             <span class="on-desktop">{{ dropHeadline }}</span>
-            <span class="on-mobile">{{ dropHeadlineMobile }}</span>
+            <span class="on-mobile">{{ mobileHeadline }}</span>
           </template>
         </div>
         <div class="dz-sub">{{ dropSub }}</div>
@@ -231,7 +238,7 @@ const workLines = computed(() =>
       <div class="file-row">
         <span v-for="f in files" :key="f.name" class="filename">{{ f.name }}</span>
         <span v-if="!isMulti" class="filesize">{{ fileSize }}</span>
-        <button class="linkish focus-ring-2" @click="clearFile">Choose a different file</button>
+        <button class="linkish focus-ring-2" @click="clearFile">{{ T.chooseDifferent }}</button>
       </div>
 
       <p v-if="error" class="error" role="alert">{{ error }}</p>
@@ -248,7 +255,7 @@ const workLines = computed(() =>
               :class="{ on: choice[o.key] === c, first: i === 0 }"
               @click="choice[o.key] = c"
             >
-              {{ c }}
+              {{ o.labels?.[i] ?? c }}
             </button>
           </div>
         </div>
@@ -294,7 +301,7 @@ const workLines = computed(() =>
         <div class="work-lines">
           <div v-for="(s, i) in workLines" :key="i" :style="s"></div>
         </div>
-        <div class="work-pct">re-typesetting · {{ Math.round(pct) }}%</div>
+        <div class="work-pct">{{ T.working }} · {{ Math.round(pct) }}%</div>
         <div class="bar"><div class="bar-fill" :style="{ width: pct + '%' }"></div></div>
       </div>
     </template>
@@ -321,13 +328,13 @@ const workLines = computed(() =>
             stroke-linejoin="round"
           />
         </svg>
-        <div class="done-title">{{ report.ok ? 'This EPUB is valid' : 'Problems found' }}</div>
+        <div class="done-title">{{ report.ok ? T.validOk : T.validBad }}</div>
         <ul class="issues">
           <li v-for="(iss, i) in report.issues" :key="i" :class="iss.level">
             <span class="issue-level">{{ iss.level }}</span>{{ iss.message }}
           </li>
         </ul>
-        <button class="linkish center focus-ring-2" @click="clearFile">Check another file</button>
+        <button class="linkish center focus-ring-2" @click="clearFile">{{ T.checkAnother }}</button>
       </div>
 
       <!-- Download -->
@@ -346,7 +353,7 @@ const workLines = computed(() =>
         <div class="done-title">{{ doneTitle }}</div>
         <div class="done-meta">
           {{ result.filename }} · {{ result.size
-          }}<template v-if="result.note"> · {{ result.note }}</template> · never left your device
+          }}<template v-if="result.note"> · {{ result.note }}</template> · {{ T.neverLeft }}
         </div>
         <!-- For EPUB output, styling is the primary path; the raw download
              stays available for anyone who just wants the file. -->
@@ -356,9 +363,9 @@ const workLines = computed(() =>
             class="cta download focus-ring-ink"
             :href="`/style-studio?book=${handoffId}`"
           >
-            Style it before downloading →
+            {{ T.styleIt }}
           </a>
-          <span v-else-if="handoffPending" class="handoff-note">Preparing your book…</span>
+          <span v-else-if="handoffPending" class="handoff-note">{{ T.preparing }}</span>
 
           <a
             class="secondary-dl focus-ring-2"
@@ -366,7 +373,7 @@ const workLines = computed(() =>
             :download="result.filename"
             @click="downloaded = true"
           >
-            {{ downloaded ? 'Downloaded ✓' : 'Download without styling' }}
+            {{ downloaded ? T.downloaded : T.downloadPlain }}
           </a>
         </template>
 
