@@ -1,0 +1,131 @@
+cluster,volume,keywords,lane,target,top_keywords,facet_volumes,note
+job:reader,65500,843,owned-enrich+landing-variant,/epub-reader,online epub reader; how to view epub files; how to open epub files; how to open an epub file; how to open .epub files,windows:9220; android:5750; ios:3070; browser:2260; linux:1930; nook:1790; mac:1330; ereader:590; chromebook:390; phone:360; kobo:170,parent owned; windows/android/ios/mac/linux facets are variant pages embedding the reader
+topic:kindle,39960,1747,blog,,nook vs kindle vs; kindle books download; icloud for kindle; download books for free on kindle; kindle book download,nook:4860; mac:3610; ios:3460; windows:2530; browser:340; phone:210; kobo:140; ereader:80; chromebook:20; android:20,"long-tail kindle content feed; mine per-question, stay in format/transfer lane"
+topic:epub-general,37820,458,owned-enrich,/,epub format converter; epub file format; epub files; epub docs; epub epub,ios:1150; android:530; windows:470; browser:240; mac:220; linux:70; chromebook:20; phone:20,head terms owned by home + tool hub; long tail feeds blog
+pair:epub-to-pdf,29510,225,owned-enrich,/epub-to-pdf,online epub to pdf converter; how to convert epub to pdf; convert .epub to .pdf; zamzar epub to pdf converter; zamzar epub to pdf,mac:90; android:60; ios:20; windows:20; nook:10,
+topic:ebook-general,27230,772,owned-enrich,/,cbr file type; cbr file format; .djvu; ebook converter; djvu file,ios:1590; android:540; windows:420; mac:370; phone:60; chromebook:40; linux:40,hub + epub-vs-pdf-vs-mobi own the heads
+topic:device-nook,16620,924,monitor,,barnes & noble nook e readers; best free program to get books on my nook reddit; nook internet browser; nook browse internet; free ebooks for nook,nook:11370; phone:2290; windows:850; ios:800; mac:500; android:430; browser:360; chromebook:20,B&N ecosystem peripheral; one editorial possible
+topic:kindle-app,14330,443,blog,,kindle mac app store; kindle app pc; kindle app mac; kindle windows app; kindle mac app,mac:4030; windows:3170; ios:2270; nook:850; phone:130; android:50; chromebook:20; ereader:10,kindle app usage questions; ours only where files/formats involved
+pair:pdf-to-epub,13280,183,owned-enrich,/pdf-to-epub,pdf to epub conversion; how to convert pdf to epub; pdf to epub converter free; pdf into epub; convert pdf file to epub,android:160; mac:130; ios:70; kobo:60; windows:30; linux:20,
+topic:kindle-formats,10350,91,owned-enrich,/blog/send-epub-to-kindle,epub on kindle; epub format on kindle; epub en kindle; amazon kindle and epub; kindle en epub,ios:20,"plus epub-vs-pdf-vs-mobi; consider dedicated ""kindle formats explained"""
+topic:kindle-locations,9070,170,owned-enrich,/blog/why-page-numbers-dont-exist-in-epub,what does loc in kindle mean; what does the loc mean on kindle; what does loc mean on kindle; what does loc on kindle mean; kindle loc meaning,mac:80; ios:60; windows:50,"big owned intent: ""what does loc mean on kindle"" phrasings"
+topic:what-is-epub,8860,49,blog,what-is-an-epub-file,what is an epub file; what is a epub format; what is a epub; what is .epub; what is epub file,,UNOWNED definitional head (~8.9k); beginner explainer distinct from structure post
+job:cover,7290,100,owned-enrich,/epub-cover-editor,epub cover converter; epub cover change; epub cover changer; online converter epub cover; epub change cover,ios:30; kobo:20,
+topic:question,7260,275,blog,,how to save word document as epub; what is djvu file; what is djvu format; what is a djvu; how to convert epub to pages,ios:1790; windows:150; mac:100; android:40; phone:20,question feed for weekly mined posts
+topic:get-books,7100,97,blog,free-ebooks-legally,best free kindle books; kindle store free books; amazon kindle unlimited free; amazon free ebooks; barnes and noble free ebooks,ios:350; nook:80; android:40; mac:40; windows:30,where to get free ebooks legally: KU/Prime/Libby/Gutenberg/Standard Ebooks
+pair:epub-to-kindle,6130,30,owned-enrich,/blog/send-epub-to-kindle,epub format to kindle; how to send epub to kindle; how to send an epub to kindle; epub kindle format; epub to kindle format,mac:70; kobo:20,guidance owned
+topic:device-ereader,6040,162,blog,,android ereader; linux ereader; ereader linux; windows ereader; ereader apple,ereader:2480; android:1470; linux:800; windows:770; ios:420; mac:100,ereader-general questions feed
+brand:app:google-play-books,5420,174,blog,google-play-books-epub,google play books ebooks; google play books ebook; what is google play books; google play books for pc; google play books app for android,windows:470; android:230; ios:80; browser:60; mac:60; kobo:40; ereader:20,upload/export epub with Play Books — how-to gap
+brand:app:apple-books,5190,102,blog,apple-books-epub,apple books app for ipad; apple books:; apple books app for iphone; apple books online; apple books ipad,ios:1900; ereader:100; mac:20; windows:20,epub on Apple Books/iPhone how-to gap
+pair:kindle-to-pdf,4650,85,tool-new,azw3-to-pdf,convert kindle file to pdf; convert kindle book to pdf; how to turn a kindle book into a pdf; kindle format to pdf; kindle book to pdf,windows:60; mac:20; android:10,azw3/mobi→epub→pdf chain exists; honest DRM stance mandatory
+topic:send-to-kindle,4230,199,owned-enrich,/blog/send-epub-to-kindle,how to put an epub on kindle; how do you put books on a kindle; how to put a pdf on kindle; how to put epubs on kindle; amazon kindle send to,nook:470; kobo:310; ios:260; mac:190; android:20; windows:10,
+pair:djvu-to-pdf,4150,42,tool-new,djvu-to-pdf,djvu into pdf; djvu in pdf; djvu to pdf converter; djvu pdf; convert djvu pdf online,linux:30; windows:20,djvu.js renders client-side; scan-book adjacent; validate effort
+topic:acsm,4120,384,blog,what-is-an-acsm-file,acsm to epub; epub acsm to epub; acsm to epub converter; acsm file to kindle; acsm kindle,mac:160; windows:90; android:70; kobo:60; ios:50; nook:20; chromebook:0; linux:0; ereader:0; phone:0,"explainer: ACSM is a license, not the book; ADE flow; no DRM circumvention"
+topic:device-kobo,3990,223,blog,read-epub-on-kobo,sending books to kobo; kobo to epub; kobo how to get books; kobo epub transfer; epub ebooks for kobo,kobo:3870; ios:50; windows:40; phone:30,kobo loves epub; transfer how-to
+pair:docx-to-epub,3430,49,owned-enrich,/docx-to-epub,word to epub; docx to epub; convert word to epub; convert doc to epub; doc to epub converter,,
+brand:app:ibooks,3340,153,blog,apple-books-epub,apple ibooks; ibooks from itunes; ibooks iphone; ibooks apple; where is ibooks on ipad,ios:730; mac:10; ereader:10,merge with apple books post
+peripheral:kindle-account,3310,88,peripheral,,sign in to amazon kindle; kindle cloud reader to kindle; kindle cloud reader'; kindle ereader login; kindle cloud reader website,ios:70; windows:60; ereader:30; browser:20; phone:0; chromebook:0,account support; not our lane
+topic:comparison,3170,39,owned-enrich,/blog/epub-vs-pdf-vs-mobi,epub vs pdf; pdf vs epub; pdf or epub; epub or pdf; azw3 vs epub,ios:40,
+pair:pdf-to-kindle,3020,132,tool-guidance,pdf-to-kindle,pdf to kindle converter; pdf in kindle format; kindle pdf to kindle; sending pdf to kindle scribe; upload pdf to my kindle,mac:60; android:20; ios:20,guidance page: Send-to-Kindle supports pdf; or pdf→epub→send route
+pair:kindle-to-epub,2920,10,owned-enrich,/azw3-to-epub,kindle to epub; kindle file format epub; kindle format in epub; kindle format epub; kindle in epub,,honest DRM framing on the existing page + faq
+job:create,2890,106,blog,how-to-create-an-epub,how to create an epub file; how to make an epub file; how to create epub file; how do you make an epub file; how do i create an epub file,ios:40; mac:30,step-by-step beginner make-an-epub guide; routes to docx/md tools
+pair:cbz-to-pdf,2620,36,tool-new,cbz-to-pdf,cbr in pdf; cbr pdf; cbr into pdf; convert cbr into pdf; convert from cbr to pdf,mac:20,comic archive → pdf; images pipeline exists
+brand:app:adobe-digital-editions,2240,105,blog,adobe-digital-editions-guide,adobe digital editions to pdf; adobe digital editions for kobo; adobe digital editions ebooks; adobe digital editions ebook reader; adobe digital editions ebook,kobo:170; ios:70; windows:60; nook:30; phone:20; ereader:10,ADE + acsm ecosystem explainer
+job:edit,2060,26,owned-enrich,/epub-metadata-editor,epub editor; the editor is the authors extra epub; edit epub; epub editor online; how to edit epub files,mac:10,edit intent splits across our editors
+pair:mobi-to-epub,1990,39,owned-enrich,/mobi-to-epub,convert mobi to epub; how to convert mobi to epub; change mobi to epub; how to change mobi to epub; how to convert from mobi to epub,mac:10,
+pair:epub-to-docx,1840,22,owned-enrich,/epub-to-docx,epub to docx; epub to word; epub to doc; epub word; epub doc,,
+pair:epub-to-mobi,1800,34,owned-enrich,/epub-to-mobi,transform epub to mobi; convertio epub mobi; changing epub to mobi; calibre convert epub to mobi; how to convert epub to mobi format,mac:20; ios:0,
+brand:app:calibre,1800,44,owned-enrich,/calibre-alternative,calibre epub converter; calibre e-book manager; calibre pdf epub; resize cover calibre; reduce epub size calibre,kobo:280; android:20; mac:10,
+topic:formats-info,1420,16,owned-enrich,/blog/epub-vs-pdf-vs-mobi,ebook file types; ebook file formats; ebook file type; what is an ebook file; what are the different ebook formats,ios:110; android:40,
+pair:mobi-to-pdf,1390,23,tool-new,mobi-to-pdf,mobi pdf; mobi in pdf; mobi into pdf; mobi to pdf file; mobi extension to pdf,,mobi→epub→pdf chain exists
+scope:audiobook,1340,27,scope-new,listen,epub to audiobook; epub to mp3; epub to mp3 software; epub to audio; convert epub to audiobook,nook:40; ios:30; android:20; mac:0,epub/pdf → audio via browser TTS; phase-2 product lane
+pair:cbz-to-epub,1260,15,owned-enrich,/cbz-to-epub,cbz to epub; cbr to epub; cbr cbz to epub; convert cbz to epub; convert cbr to epub,,
+brand:app:play-books,980,28,blog,,googleplay books; upload epub to play books; upload books to play books; search play books; play books web,android:60; windows:40; ereader:20; ios:20; browser:10,reader-app ecosystem question feed
+peripheral:kindle-support,980,54,peripheral,,do you need wifi to read a book on kindle; sync kindle without wifi; show covers on lock screen kindle; read kindle without wifi; nook vs kindle battery life,ios:100; nook:20,
+topic:troubleshoot,920,53,owned-enrich,/blog/fixing-corrupt-epub-files,fix epub; kindle store not working on my kindle; send to kindle is not working; send to kindle for mac not working; send email to kindle not working,mac:140; nook:100; ios:80; phone:20,fix-it family owns most phrasings
+pair:pdf-to-mobi,820,16,tool-new,pdf-to-mobi,pdf mobi; converter pdf para mobi; pdf converter mobi; convert pdf mobi; conversion pdf mobi,,auto: unowned pair
+pair:html-to-epub,810,21,owned-enrich,/html-to-epub,webpage to epub; html to epub; webpage to epub online; webpage to epub extension; python html to epub,,
+pair:pdf-to-cbz,800,17,monitor,,pdf to cbr; pdf cbr; convert pdf to cbr; convert pdf cbr; pdf to cbz online,mac:70,niche reverse comic pair
+brand:app:sigil,760,16,blog,,sigil epub; sigil ebook; sigil ebook software; sigil epub software; sigil epub download,mac:20,reader-app ecosystem question feed
+topic:drm-info,650,35,blog,ebook-drm-explained,what is drm in kindle; ebooks and drm; drm for ebooks; what is drm on kindle books; unlock drm kindle,mac:20,"what DRM is, what is legal; no circumvention"
+pair:azw3-to-epub,630,7,owned-enrich,/azw3-to-epub,convert azw3 to epub; azw to epub; azw epub; converting azw to epub; azw converter to epub,,
+pair:pdf-to-ibooks,580,34,monitor,pdf-to-ibooks,save pdf to ibooks; pdf in ibooks ipad; move pdf to ibooks; how to upload a pdf to ibooks; how to send pdf to ibooks,ios:140; mac:50,auto: unowned pair
+job:compress,560,12,owned-enrich,/epub-compressor,compress epub; epub compress; shrink epub size; send to kindle maximum file size; send to kindle max file size,,
+peripheral:kindle-shopping,500,39,peripheral,,how to buy books on kindle for iphone; what is best kindle or nook; update 1st generation kindle; price of nook vs kindle; kindle nook price,ios:130; nook:100; mac:40; windows:20,
+pair:mobi-to-kindle,450,6,owned-enrich,/blog/send-epub-to-kindle,mobi kindle; mobi to kindle; mobi format kindle; mobi file to kindle; mobi file format kindle,,
+job:styling,450,14,owned-enrich,/style-studio,formatting for epub; fixed layout epub; fixed layout ebook; epub formatting; fixed layout epub example,ios:20,
+job:validate,430,16,owned-enrich,/epub-validator,epub validator; epub checker; validate epub online; validate epub file; online epub checker,mac:20,
+job:metadata,410,8,owned-enrich,/epub-metadata-editor,epub metadata editor; epub edit metadata; edit epub metadata; metadata epub editor; how to edit ebook metadata,,
+pair:kindle-to-mobi,350,3,monitor,kindle-to-mobi,kindle mobi; kindle file mobi; kindle mobi files,,auto: unowned pair
+job:merge,350,6,owned-enrich,/merge-epub,merge epub; epub merge; merge cbz files online; how to merge cbz files; how to join kindle unlimited on ipad,ios:20,
+brand:converter:onlineconvert,310,3,landing-comparison,,onlineconverter.com change epub cover; onlineconverter.come/change-epub-cover; onlineconverter com epub,,competitor page only if volume justifies
+pair:cbz-to-kindle,250,5,monitor,cbz-to-kindle,cbr format kindle; cbr cbz kindle; cbz to kindle; cbz to kindle converter; cbr to kindle fire,,auto: unowned pair
+pair:fb2-to-pdf,220,11,monitor,fb2-to-pdf,fb2 pdf; how to convert fb2 to pdf; from fb2 to pdf; fb2 pdf converter; convert from fb2 to pdf,,auto: unowned pair
+pair:wattpad-to-epub,210,3,monitor,wattpad-to-epub,wattpad to epub; wattpad to epub converter online; wattpad to epub converter free,,auto: unowned pair
+pair:epub-to-html,180,4,monitor,epub-to-html,epub to html; how to convert epub to html; epub to html converter online; epub to html online,,auto: unowned pair
+pair:ibooks-to-pdf,160,4,monitor,ibooks-to-pdf,convert ibook to pdf; turn ibook into pdf; convert an ibook to pdf; ibooks pdf,,auto: unowned pair
+pair:epub-to-cbz,150,4,monitor,epub-to-cbz,epub to cbz; epub to cbz converter; epub to cbr converter; calibre convert epub to cbz,,auto: unowned pair
+pair:docx-to-kindle,140,7,monitor,docx-to-kindle,microsoft word send to kindle; how to convert word document to kindle format; doc to kindle format converter; doc to kindle format; doc to kindle converter online,,auto: unowned pair
+brand:author-tool:kdp,130,7,landing-audience,,can i change my book cover on kdp after publishing; what is digital rights management on kdp; how to convert pdf to kdp; convert pdf to kdp format; amazon kdp file formats,,self-publisher adjacency; Style Studio angle
+brand:converter:epubor,120,4,landing-comparison,,epubor kindle converter; epubor kindle usb; epubor ebook manager; epubor kindle transfer,,competitor page only if volume justifies
+pair:epub-to-azw3,110,2,owned-enrich,/epub-to-azw3,converter epub to azw3; epub to azw3,,
+pair:lit-to-epub,110,1,monitor,lit-to-epub,lit to epub,,auto: unowned pair
+pair:epub-to-ibooks,110,7,owned-enrich,/blog/send-epub-to-kindle,import epub to ibooks; import epub into ibooks; epub to ipad ibooks; epub format ibooks; adding epub to ibooks,ios:20,
+pair:kindle-to-cbz,100,2,monitor,kindle-to-cbz,kindle cbr; kindle comic converter cbz,,auto: unowned pair
+pair:zip-to-epub,100,2,monitor,zip-to-epub,zip to epub; fb2 zip to epub,,auto: unowned pair
+pair:pdf-to-fb2,100,5,monitor,pdf-to-fb2,pdf to fb2 converter online; pdf to fb2 converter; pdf to fb2 convert online; pdf to fb2 convert; converter pdf to fb2,,auto: unowned pair
+pair:epub-to-image,90,1,monitor,epub-to-image,epub image converter,,auto: unowned pair
+pair:docx-to-mobi,90,5,monitor,docx-to-mobi,word to mobi conversion; docx to mobi converter online; doc to mobi conversion; convert word file to mobi; how to convert a word doc to mobi,,auto: unowned pair
+pair:lit-to-pdf,80,13,monitor,lit-to-pdf,how to convert lit file into pdf; convert lit to pdf free; convert from lit to pdf; lit to pdf free; lit files to pdf,,auto: unowned pair
+brand:app:koreader,70,2,blog,,koreader change book cover; koreader usb mode,,reader-app ecosystem question feed
+pair:azw3-to-pdf,70,4,monitor,azw3-to-pdf,kindle kfx to pdf; how to convert kindle kfx to pdf; convert kindle kfx to pdf; kindle kfx to pdf converter online,,auto: unowned pair
+pair:audiobook-to-epub,60,3,monitor,audiobook-to-epub,convert mp3 to epub format; convert mp3 to epub; audio epub,,auto: unowned pair
+pair:image-to-cbz,60,3,monitor,image-to-cbz,jpg to cbr converter; convert images to cbz; convert images to cbr,,auto: unowned pair
+brand:app:readera,60,3,blog,,readera change cover; readera - book reader pdf epub word; is readera available for ios,ios:20,reader-app ecosystem question feed
+pair:fb2-to-docx,50,3,monitor,fb2-to-docx,convert fb2 to word; convert fb2 to docx; convert fb2 to doc online free,,auto: unowned pair
+pair:fb2-to-kindle,50,3,monitor,fb2-to-kindle,fb2 converter kindle; convert fb2 to kindle format; fb2 to kindle converter online,,auto: unowned pair
+pair:zip-to-cbz,50,4,monitor,zip-to-cbz,zip to cbr converter; rar to cbr converter; how to convert zip to cbz; .rar to cbz,,auto: unowned pair
+pair:google-docs-to-epub,40,1,monitor,google-docs-to-epub,google doc to epub,,auto: unowned pair
+pair:fb2-to-epub,40,4,owned-enrich,/fb2-to-epub,convert from fb2 to epub; converter fb2 epub; convert fb2 to epub online; .fb2 to epub,,
+brand:converter:convertio,30,1,landing-comparison,,convertio epub,,competitor page only if volume justifies
+pair:djvu-to-mobi,30,2,monitor,djvu-to-mobi,convert djvu mobi; how to convert djvu to mobi,,auto: unowned pair
+pair:fb2-to-mobi,30,2,monitor,fb2-to-mobi,convert fb2 to mobi; how to convert fb2 to mobi,,auto: unowned pair
+pair:fb2-to-txt,30,2,monitor,fb2-to-txt,convert fb2 to txt; fb2 to txt online,,auto: unowned pair
+pair:lit-to-kindle,30,2,monitor,lit-to-kindle,convert lit to kindle format; convert lit to kindle,,auto: unowned pair
+pair:djvu-to-epub,30,3,monitor,djvu-to-epub,how to convert djvu to epub; converter djvu to epub; .djvu to epub,,auto: unowned pair
+brand:app:lithium,30,4,blog,,lithium epub reader windows 11; lithium epub reader pc; lithium epub reader download; lithium epub reader github,windows:20,reader-app ecosystem question feed
+pair:image-to-epub,20,1,monitor,image-to-epub,add image to epub,,auto: unowned pair
+pair:cbz-to-mobi,20,1,monitor,cbz-to-mobi,cbz to mobi converter,,auto: unowned pair
+pair:epub-to-zip,20,2,monitor,epub-to-zip,compress epub to zip; epub zip format,,auto: unowned pair
+pair:djvu-to-txt,20,1,monitor,djvu-to-txt,convert djvu to txt,,auto: unowned pair
+pair:mobi-to-docx,20,1,monitor,mobi-to-docx,convert mobi file to word,,auto: unowned pair
+pair:odt-to-mobi,20,1,monitor,odt-to-mobi,convert odt to mobi,,auto: unowned pair
+pair:pdf-to-djvu,20,2,monitor,pdf-to-djvu,convert pdf to djvu online; a pdf to djvu,,auto: unowned pair
+pair:html-to-kindle,20,1,monitor,html-to-kindle,convert webpage to kindle format,,auto: unowned pair
+pair:djvu-to-kindle,20,1,monitor,djvu-to-kindle,djvu format kindle,,auto: unowned pair
+pair:epub-to-rtf,20,1,monitor,epub-to-rtf,epub to rtf converter,,auto: unowned pair
+brand:author-tool:kindle-create,20,1,landing-audience,,how to add book cover in kindle create,,self-publisher adjacency; Style Studio angle
+brand:source:libby,20,1,blog,free-ebooks-legally,how to download books from libby to ipad,ios:20,legit sources roundup
+brand:source:gutenberg,20,1,blog,free-ebooks-legally,how to download gutenberg books to ipad,ios:20,legit sources roundup
+pair:audiobook-to-kindle,20,1,monitor,audiobook-to-kindle,how to send mp3 to kindle,,auto: unowned pair
+brand:author-tool:ingramspark,20,1,landing-audience,,ingramspark epub validator,,self-publisher adjacency; Style Studio angle
+brand:source:standard-ebooks,20,1,blog,free-ebooks-legally,is standard ebooks legit,,legit sources roundup
+pair:kindle-to-fb2,20,1,monitor,kindle-to-fb2,kindle fb2 format,,auto: unowned pair
+pair:kindle-to-docx,20,1,monitor,kindle-to-docx,kindle to word,,auto: unowned pair
+pair:odt-to-epub,20,1,monitor,odt-to-epub,open office to epub,,auto: unowned pair
+job:split,20,1,owned-enrich,/split-epub,split epub into multiple books,,
+brand:converter:zamzar,20,1,landing-comparison,,zamzar epub pdf,,competitor page only if volume justifies
+pair:rtf-to-kindle,20,2,monitor,rtf-to-kindle,convert rtf to kindle format; convert rtf to kindle,,auto: unowned pair
+pair:epub-to-djvu,10,1,monitor,epub-to-djvu,convert epub to djvu,,auto: unowned pair
+pair:epub-to-pdb,10,1,monitor,epub-to-pdb,convert epub to pdb,,auto: unowned pair
+pair:rtf-to-fb2,10,1,monitor,rtf-to-fb2,convert rtf to fb2,,auto: unowned pair
+pair:txt-to-kindle,10,1,monitor,txt-to-kindle,convert txt to kindle,,auto: unowned pair
+pair:djvu-to-image,10,1,monitor,djvu-to-image,djvu to jpg converter,,auto: unowned pair
+pair:image-to-mobi,10,1,monitor,image-to-mobi,jpg to mobi converter,,auto: unowned pair
+pair:pdb-to-epub,10,1,monitor,pdb-to-epub,pdb to epub converter,,auto: unowned pair
+pair:docx-to-fb2,10,1,monitor,docx-to-fb2,word to fb2 converter online,,auto: unowned pair
+pair:lit-to-mobi,0,1,monitor,lit-to-mobi,lit file to mobi,,auto: unowned pair
+pair:cbz-to-image,0,2,monitor,cbz-to-image,.cbr file converter to .jpg; .cbr file converter to .jpeg,,auto: unowned pair
+pair:djvu-to-docx,0,1,monitor,djvu-to-docx,.djvu to ms word converter,,auto: unowned pair
+pair:mobi-to-ibooks,0,1,monitor,mobi-to-ibooks,.mobi into ibooks,,auto: unowned pair
+brand:app:fbreader,0,2,blog,,2.8.11 fbreader windows; 2.8.11 fbreader,windows:0,reader-app ecosystem question feed
