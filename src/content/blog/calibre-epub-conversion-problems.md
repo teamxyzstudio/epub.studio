@@ -5,8 +5,8 @@ category: 'Fix it'
 ogImage: '/blog-og/calibre-epub-conversion-problems.png'
 date: 2026-07-20
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 tools:
   - docx-to-epub
   - epub-validator

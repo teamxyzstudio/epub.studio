@@ -23,6 +23,21 @@ const jsonLd = [
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/apple-touch-icon.png`,
+    email: 'epubstudioteam@gmail.com',
+    founder: [
+      {
+        '@type': 'Person',
+        name: 'Mofid Ansari',
+        url: `${SITE_URL}/authors/mofid-ansari`,
+        sameAs: ['https://www.linkedin.com/in/ansarimofid/'],
+      },
+      {
+        '@type': 'Person',
+        name: 'Shahid Ansari',
+        url: `${SITE_URL}/authors/shahid-ansari`,
+        sameAs: ['https://www.linkedin.com/in/ansarishahid/'],
+      },
+    ],
   },
   {
     '@context': 'https://schema.org',

@@ -1,0 +1,182 @@
+---
+/**
+ * Author profile pages — the "Who" of E-E-A-T. One per registered author,
+ * listing their bio, real profile link, and every post they signed.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import { allAuthors } from '../../data/authors.js';
+import { getPosts } from '../../lib/posts.js';
+import { SITE_URL, SITE_NAME } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return allAuthors.map((author) => ({ params: { slug: author.slug }, props: { author } }));
+}
+
+const { author } = Astro.props;
+const posts = (await getPosts()).filter((p) => p.data.author.name === author.name);
+
+const fmt = (d) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    mainEntity: {
+      '@type': 'Person',
+      name: author.name,
+      url: `${SITE_URL}/authors/${author.slug}`,
+      sameAs: [author.linkedin],
+      description: author.bio,
+      worksFor: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    },
+  },
+];
+
+const nav = [
+  { label: 'All tools', href: '/#tools' },
+  { label: 'Style Studio', href: '/style-studio' },
+  { label: 'Blog', href: '/blog', active: true },
+];
+---
+
+<BaseLayout
+  title={`${author.name} — Epub Studio`}
+  description={author.bio.slice(0, 155)}
+  path={`/authors/${author.slug}`}
+  jsonLd={jsonLd}
+>
+  <div class="page">
+    <SiteHeader nav={nav} mobileNote="author" />
+    <main id="main" class="main">
+      <div class="kicker">AUTHOR</div>
+      <div class="head">
+        <span class="avatar" aria-hidden="true">{author.initial}</span>
+        <h1>{author.name}</h1>
+      </div>
+      <p class="bio">{author.bio}</p>
+      <p class="links">
+        <a href={author.linkedin} rel="me noopener" target="_blank" class="focus-ring-2">
+          LinkedIn →
+        </a>
+      </p>
+
+      <h2>Posts by {author.name.split(' ')[0]}</h2>
+      <ul class="posts">
+        {
+          posts.map((p) => (
+            <li>
+              <a href={`/blog/${p.id}`} class="focus-ring-2">
+                {p.data.title}
+              </a>
+              <span class="date">{fmt(p.data.date)}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  .main {
+    flex: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+    padding: clamp(32px, 6vw, 72px) clamp(16px, 4vw, 48px);
+  }
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: #c41e4f;
+    margin-bottom: 14px;
+  }
+  .head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .avatar {
+    flex: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #17130e;
+    color: #fffdf9;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 24px;
+  }
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(30px, 4.5vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+  .bio {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: #454037;
+    max-width: 62ch;
+    margin: 0 0 10px;
+  }
+  .links {
+    margin: 0 0 34px;
+  }
+  .links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: #c41e4f;
+  }
+  .links a:hover {
+    color: #17130e;
+  }
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 26px;
+    margin: 0 0 12px;
+  }
+  .posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .posts li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(23, 19, 14, 0.1);
+  }
+  .posts a {
+    font-size: 15px;
+    font-weight: 500;
+    color: #17130e;
+  }
+  .posts a:hover {
+    color: #c41e4f;
+  }
+  .date {
+    flex: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: #6e675d;
+  }
+</style>

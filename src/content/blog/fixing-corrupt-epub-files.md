@@ -5,8 +5,8 @@ category: 'Fix it'
 ogImage: '/blog-og/fixing-corrupt-epub-files.png'
 date: 2026-06-09
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Shahid Ansari'
+  initial: 'S'
 tools:
   - epub-validator
   - epub-metadata-editor

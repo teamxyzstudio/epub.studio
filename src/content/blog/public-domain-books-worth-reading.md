@@ -5,8 +5,8 @@ category: 'How-to'
 ogImage: '/blog-og/public-domain-books-worth-reading.png'
 date: 2026-04-19
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 tools:
   - epub-reader
   - epub-validator

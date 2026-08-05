@@ -5,8 +5,8 @@ category: 'Typesetting'
 ogImage: '/blog-og/ebook-chapter-openings.png'
 date: 2026-05-04
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Shahid Ansari'
+  initial: 'S'
 ---
 
 You can usually tell an auto-converted ebook from a typeset one within a paragraph, and it is rarely the body text that gives it away. It is the chapter opening.

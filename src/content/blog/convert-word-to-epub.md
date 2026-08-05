@@ -5,8 +5,8 @@ category: 'How-to'
 ogImage: '/blog-og/convert-word-to-epub.png'
 date: 2026-06-22
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 tools:
   - docx-to-epub
   - epub-validator

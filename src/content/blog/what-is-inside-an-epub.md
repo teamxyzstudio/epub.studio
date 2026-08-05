@@ -5,8 +5,8 @@ category: 'Formats explained'
 ogImage: '/blog-og/what-is-inside-an-epub.png'
 date: 2026-04-27
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Shahid Ansari'
+  initial: 'S'
 tools:
   - epub-validator
 ---

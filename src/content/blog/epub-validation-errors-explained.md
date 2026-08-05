@@ -5,8 +5,8 @@ category: 'Fix it'
 ogImage: '/blog-og/epub-validation-errors-explained.png'
 date: 2026-07-26
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Shahid Ansari'
+  initial: 'S'
 tools:
   - epub-validator
   - epub-metadata-editor

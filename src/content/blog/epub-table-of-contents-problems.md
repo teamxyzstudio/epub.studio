@@ -5,8 +5,8 @@ category: 'Fix it'
 ogImage: '/blog-og/epub-table-of-contents-problems.png'
 date: 2026-08-03
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 tools:
   - epub-validator
   - epub-to-docx

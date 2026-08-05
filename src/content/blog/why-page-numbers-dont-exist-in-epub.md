@@ -5,8 +5,8 @@ category: 'Formats explained'
 ogImage: '/blog-og/why-page-numbers-dont-exist-in-epub.png'
 date: 2026-06-15
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 tools:
   - epub-reader
 ---

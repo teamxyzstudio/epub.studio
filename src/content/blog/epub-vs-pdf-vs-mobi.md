@@ -5,8 +5,8 @@ category: 'Formats explained'
 ogImage: '/blog-og/epub-vs-pdf-vs-mobi.png'
 date: 2026-07-14
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 featured: true
 tools:
   - pdf-to-epub

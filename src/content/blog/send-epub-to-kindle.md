@@ -5,8 +5,8 @@ category: 'Kindle'
 ogImage: '/blog-og/send-epub-to-kindle.png'
 date: 2026-07-08
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 tools:
   - epub-to-azw3
   - epub-to-mobi

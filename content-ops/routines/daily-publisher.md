@@ -81,7 +81,9 @@ line: Sep = rows 14–19, Oct = 20–25, Nov = 26–31, Dec = 32–35, Jan = 36�
 
 Write per the relevant skill: schema-valid frontmatter, people-first gates,
 internal links only to targets that exist on main right now, no fabricated
-tests or citations, real dates.
+tests or citations, real dates. Blog author: one of the registered people in
+src/data/authors.js — alternate with the previous post's author (check the
+newest post's frontmatter); never 'Epub Studio', never an unregistered name.
 
 OG card:
 - Blog: node scripts/og-card.mjs --slug <slug> --title "<exact title>" --kicker "<category>"

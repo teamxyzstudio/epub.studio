@@ -5,8 +5,8 @@ category: 'Fix it'
 ogImage: '/blog-og/epub-compatibility-problems.png'
 date: 2026-08-02
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 tools:
   - epub-validator
   - epub-metadata-editor

@@ -1,0 +1,42 @@
+---
+/**
+ * Contact page — the accountability surface E-E-A-T asks for (audit A2).
+ */
+import ContentPage from '../layouts/ContentPage.astro';
+
+const email = 'epubstudioteam@gmail.com';
+---
+
+<ContentPage
+  title="Contact — Epub Studio"
+  description="How to reach the people who build Epub Studio: bug reports, broken conversions, corrections, and everything else."
+  path="/contact"
+  h1="Contact"
+  lede="Epub Studio is built by two people who read what you send."
+>
+  <h2>Email</h2>
+  <p>
+    <a href={`mailto:${email}`}>{email}</a> — for broken conversions, wrong
+    answers in a guide, accessibility problems, or anything else. Corrections
+    get priority: if a post says something your own test contradicts, we want
+    to know.
+  </p>
+
+  <h2>Reporting a conversion problem</h2>
+  <p>
+    Everything on this site runs in your browser, so we never see your files —
+    which also means we can't reproduce a failure from logs, because there are
+    none. The most useful report includes: the tool's URL, what you dropped in
+    (format and rough size), what you expected, and what happened instead. If
+    the file isn't private, attaching it helps enormously; if it is, the
+    error message shown on the page is the next best thing.
+  </p>
+
+  <h2>Who you're writing to</h2>
+  <p>
+    The site is built and maintained by
+    <a href="/authors/mofid-ansari">Mofid Ansari</a> and
+    <a href="/authors/shahid-ansari">Shahid Ansari</a>. No support tiers, no
+    ticket system — a small inbox, read by the people who wrote the code.
+  </p>
+</ContentPage>

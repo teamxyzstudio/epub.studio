@@ -5,8 +5,8 @@ category: 'Kindle'
 ogImage: '/blog-og/epub-embedded-fonts-not-working.png'
 date: 2026-07-25
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 tools:
   - style-studio
   - epub-validator

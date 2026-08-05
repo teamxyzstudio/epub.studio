@@ -29,8 +29,10 @@ of whether a human or a model wrote it. Every rule below serves that.
    people, or "as reviewed by" lines. This includes fake experience — never
    write "we tested" / "we converted a 40 MB file" unless that test actually
    happened in this session or is recorded in the repo.
-3. **Byline is the organization.** `author: { name: 'Epub Studio', initial: 'E' }`
-   — always. No invented personal authors, no "Reviewed by". The template
+3. **Byline is a real registered person.** `author.name` must be one of the
+   people in `src/data/authors.js` with the matching `initial` — alternate
+   with the newest post's author. Never 'Epub Studio' (retired 2026-08-05),
+   never an unregistered or invented name, no fake "Reviewed by". The template
    renders the byline from frontmatter; never write a byline line in the body.
    (/about carries the "how this blog is made" disclosure that backs this up.)
 4. **Dates are honest.** `date` = the real day the post is published — never
@@ -89,8 +91,8 @@ ogImage: '/blog-og/<slug>.png' # generated in the delivery step
 date: 2026-07-19               # the REAL publish date, YYYY-MM-DD
 updated: 2026-08-01            # only on substantive refresh — never for cosmetic edits
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'   # or 'Shahid Ansari' — alternate; must exist in src/data/authors.js
+  initial: 'M'           # matching initial from authors.js
 tools:                         # 1–3 slugs from the Link targets list; drives the "Tools mentioned" sidebar
   - epub-validator
 draft: false                   # true when the post should build but not publish

@@ -56,6 +56,7 @@ export const TOOL_CHROME = {
     footerLinks: [
       { label: 'All tools', href: '/#tools' },
       { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' },
       { label: 'Privacy', href: '/privacy' },
     ],
     /** Link to this page's other-locale twin, when one exists. */
@@ -73,6 +74,7 @@ export const TOOL_CHROME = {
     footerLinks: [
       { label: 'Todas las herramientas', href: '/#tools' },
       { label: 'Acerca de', href: '/about' },
+      { label: 'Contacto', href: '/contact' },
       { label: 'Privacidad', href: '/privacy' },
     ],
     switch: { label: 'In English', lang: 'en' },

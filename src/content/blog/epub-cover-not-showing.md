@@ -5,8 +5,8 @@ category: 'Fix it'
 ogImage: '/blog-og/epub-cover-not-showing.png'
 date: 2026-07-22
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Shahid Ansari'
+  initial: 'S'
 tools:
   - epub-cover-editor
   - epub-metadata-editor

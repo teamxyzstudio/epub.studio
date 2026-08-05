@@ -5,8 +5,8 @@ category: 'Fix it'
 ogImage: '/blog-og/pdf-to-epub-formatting-problems.png'
 date: 2026-07-19
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Shahid Ansari'
+  initial: 'S'
 tools:
   - pdf-to-epub
   - epub-metadata-editor

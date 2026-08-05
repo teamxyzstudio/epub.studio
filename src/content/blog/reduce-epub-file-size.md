@@ -5,8 +5,8 @@ category: 'Fix it'
 ogImage: '/blog-og/reduce-epub-file-size.png'
 date: 2026-05-19
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Shahid Ansari'
+  initial: 'S'
 tools:
   - epub-compressor
   - split-epub

@@ -5,8 +5,8 @@ category: 'Fix it'
 ogImage: '/blog-og/epub-images-not-showing.png'
 date: 2026-08-04
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Shahid Ansari'
+  initial: 'S'
 tools:
   - epub-validator
 draft: false

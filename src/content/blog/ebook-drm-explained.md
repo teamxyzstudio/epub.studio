@@ -5,8 +5,8 @@ category: 'Formats explained'
 ogImage: '/blog-og/ebook-drm-explained.png'
 date: 2026-08-05
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 tools: []
 ---
 

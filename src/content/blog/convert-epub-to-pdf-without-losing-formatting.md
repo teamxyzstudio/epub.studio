@@ -5,8 +5,8 @@ category: 'How-to'
 ogImage: '/blog-og/convert-epub-to-pdf-without-losing-formatting.png'
 date: 2026-07-13
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Shahid Ansari'
+  initial: 'S'
 tools:
   - epub-to-pdf
   - epub-compressor

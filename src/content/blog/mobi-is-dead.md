@@ -5,8 +5,8 @@ category: 'Kindle'
 ogImage: '/blog-og/mobi-is-dead.png'
 date: 2026-05-12
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 tools:
   - mobi-to-epub
   - azw3-to-epub

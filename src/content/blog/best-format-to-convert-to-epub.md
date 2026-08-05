@@ -5,8 +5,8 @@ category: 'How-to'
 ogImage: '/blog-og/best-format-to-convert-to-epub.png'
 date: 2026-07-29
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Shahid Ansari'
+  initial: 'S'
 tools:
   - docx-to-epub
   - markdown-to-epub

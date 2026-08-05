@@ -5,8 +5,8 @@ category: 'Typesetting'
 ogImage: '/blog-og/best-fonts-for-ebooks.png'
 date: 2026-05-28
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Mofid Ansari'
+  initial: 'M'
 tools:
   - epub-reader
 ---

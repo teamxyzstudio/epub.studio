@@ -5,8 +5,8 @@ category: 'Typesetting'
 ogImage: '/blog-og/ebook-line-spacing-and-line-length.png'
 date: 2026-06-30
 author:
-  name: 'Epub Studio'
-  initial: 'E'
+  name: 'Shahid Ansari'
+  initial: 'S'
 tools:
   - epub-reader
 ---

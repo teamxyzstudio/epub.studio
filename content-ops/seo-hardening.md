@@ -35,7 +35,23 @@ never get re-audited from scratch.
 7. **es parity**: everything above applies to `/es/` routes (the audit
    predates i18n).
 
-## Phase 1 — blocked on owner decisions (needs your input)
+## Phase 1 — RESOLVED 2026-08-05 (inputs received)
+
+- **Authors: DONE** — Mofid Ansari + Shahid Ansari in `src/data/authors.js`
+  (site-grounded bios, real LinkedIn sameAs); all 23 posts re-bylined
+  (alternating); linked bylines + Person JSON-LD + `/authors/` profile pages;
+  blog skill and routine now require registered authors.
+- **Contact: DONE** — `/contact` (epubstudioteam@gmail.com) + footer links
+  site-wide + Organization LD email/founders.
+- **AI disclosure: DONE** — /about "Who runs this site" + strengthened
+  editorial-standards section (named bylines, epubcheck verification, no
+  fabricated tests, corrections invited).
+- **AI-crawler policy: user-confirmed already allowed** (retrieval permitted).
+- **GSC: user-confirmed registered.**
+- **www → apex 301: steps handed to owner** (Cloudflare dashboard; see chat
+  2026-08-05). Verify post-deploy: `curl -sI https://www.epub.studio/ | grep -i location`.
+
+## Phase 1 — original decision table (kept for the record)
 
 | Decision | What unblocks |
 |---|---|

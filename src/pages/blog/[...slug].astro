@@ -7,16 +7,17 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import LogoMark from '../../components/LogoMark.astro';
 import ArticleChrome from '../../components/islands/ArticleChrome.vue';
+import { authorByName } from '../../data/authors.js';
 import ShareButton from '../../components/islands/ShareButton.vue';
 import { getPosts, readTime, formatDate, tocFrom } from '../../lib/posts.js';
 import { toolBySlug } from '../../data/tools.js';
 import { SITE_URL, SITE_NAME, OG_IMAGE } from '../../data/site.js';
 
 /**
- * Posts carry an organization byline ("Epub Studio") rather than invented
- * personal authors — asserting a named human author or reviewer who does not
+ * Posts carry real named authors (src/data/authors.js) with /authors/ pages
+ * and Person JSON-LD; unregistered names fall back to a plain byline — never
  * exist is exactly the kind of fabricated E-E-A-T signal Google's people-first
- * guidance penalises. Swap to Person entries only when real named authors join.
+ * an invented persona.
  */
 
 export async function getStaticPaths() {
@@ -62,7 +63,13 @@ const jsonLd = [
     author: {
       '@type': post.data.author.name === SITE_NAME ? 'Organization' : 'Person',
       name: post.data.author.name,
+      // Registered humans point at their profile page; the org fallback
+      // keeps the site URL. Spread LAST so the profile URL wins.
       url: SITE_URL,
+      ...(authorByName(post.data.author.name) && {
+        url: `${SITE_URL}/authors/${authorByName(post.data.author.name).slug}`,
+        sameAs: [authorByName(post.data.author.name).linkedin],
+      }),
     },
     publisher: {
       '@type': 'Organization',
@@ -121,7 +128,20 @@ const jsonLd = [
         <div class="byline">
           <span class="avatar" aria-hidden="true">{post.data.author.initial}</span>
           <div class="byline-text">
-            <div class="author">{post.data.author.name}</div>
+            <div class="author">
+              {
+                authorByName(post.data.author.name) ? (
+                  <a
+                    class="author-link focus-ring-2"
+                    href={`/authors/${authorByName(post.data.author.name).slug}`}
+                  >
+                    {post.data.author.name}
+                  </a>
+                ) : (
+                  post.data.author.name
+                )
+              }
+            </div>
             <div class="dateline">
               {formatDate(post.data.date)} · {readTime(post)} read
             </div>
@@ -184,6 +204,7 @@ const jsonLd = [
       <span><a href="/">Epub Studio</a> — free online EPUB tools</span>
       <span>
         <a href="/#tools">All tools</a> · <a href="/blog">Blog</a> · <a href="/about">About</a> ·
+        <a href="/contact">Contact</a>
         <a href="/privacy">Privacy</a>
       </span>
     </footer>
