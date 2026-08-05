@@ -43,5 +43,6 @@ epub validation errors explained,/blog/epub-validation-errors-explained,blog,liv
 best format to convert to epub,/blog/best-format-to-convert-to-epub,blog,live,how-to; comparison of DOCX vs Markdown vs HTML sources — structure fidelity, not the file extension; distinct from the single-format how-tos
 epub compatibility problems,/blog/epub-compatibility-problems,blog,live,fix-it; same file renders in lenient readers but breaks in strict ones — XHTML/XML well-formedness + manifest/spine mismatches; distinct from corrupt-file repair and epubcheck-code decode
 epub table of contents problems,/blog/epub-table-of-contents-problems,blog,live,fix-it; nav.xhtml vs toc.ncx vs spine drift — stray bullets/wrong order/missing chapters; distinct from epubcheck-code decode and corrupt-file repair
+epub images not showing,/blog/epub-images-not-showing,blog,live,fix-it; images present but misaddressed after conversion — manifest href vs XHTML img src relative-path drift; distinct from cover-not-showing (cover manifest flag)
 about epub studio,/about,page,live,
 epub studio privacy,/privacy,page,live,

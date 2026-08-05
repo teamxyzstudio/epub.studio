@@ -11,7 +11,6 @@ Mode B (mining) appends new candidates here; writing a post moves its row to
 
 | # | Question (paraphrased, from community threads) | Primary keyword | Category | Tool CTA | Notes |
 |---|---|---|---|---|---|
-| 9 | Images missing or broken after conversion | epub images not showing | Fix it | /epub-validator | Manifest href mismatches; relative path rules |
 | 10 | Getting an EPUB accepted by OverDrive/Libby | publish epub to libraries | How-to | /epub-validator | Store-specific rules on top of the spec |
 | 11 | Bought an ebook, can't open it elsewhere — what is DRM? | ebook drm explained | Formats explained | — (informational) | NEVER include removal instructions; policy line in skill |
 | 12 | Typo found in an already-published ebook — fix and re-upload workflow | fix typo in published ebook | How-to | /epub-metadata-editor | Honest: content editing needs Calibre/Sigil; we cover metadata + revalidation |
