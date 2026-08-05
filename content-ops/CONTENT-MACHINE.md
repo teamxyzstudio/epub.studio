@@ -184,6 +184,18 @@ OG cards are scripted, and guidance-type tool pages are pure data
    on coverage anomalies would close the loop; until then the checkpoint is
    manual and the HALT file is the kill switch.
 
+## SEO hardening (external audit, 2026-08-05)
+
+`content-ops/seo-hardening.md` maps the external audit to phases: Phase 0
+(code fixes — 404 page is the P0), Phase 1 (owner decisions: author identity,
+contact email, www redirect, AI-crawler policy, GSC), Phase 2 (skill/policy
+updates: word-band variance, proof artifacts), Phase 3 (original-data
+flagship, Lighthouse CI, off-site). **Sequencing rule: Phase 0 + Phase 1 land
+before the September throttle-up** — the audit's scaled-content risk is the
+anonymous-uniform fingerprint, and authors + artifacts + variance are what
+make the chosen cadence defensible. E-E-A-T additions (bylines, editorial
+standards, contact) become part of the machine's fabric, not one-off fixes.
+
 ## Current state (2026-08-05)
 
 - 54 intents live in keyword-map; ~172k/mo of the researched volume already

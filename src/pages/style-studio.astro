@@ -14,6 +14,41 @@ import '../styles/reading-fonts.css';
   bodyClass="studio-body"
 >
   <div id="style-studio-root">
+    <!-- Server-rendered intro: crawlers and no-JS visitors get the real
+         story (audit B3 — this page was ~40 words); the app hides it via
+         :has(.studio) the moment the island mounts. Same content promise,
+         different rendering — not cloaking. -->
+    <section class="ss-intro" aria-label="About Style Studio">
+      <div class="ss-kicker">STYLE STUDIO</div>
+      <h1>Re-typeset your ebook before you download it</h1>
+      <p>
+        Style Studio is a typography workbench for EPUB files. Drop a book in
+        (or arrive from any converter on this site via “Style it before
+        downloading”) and set the typeface, text size, line spacing, margins,
+        paragraph style and reading theme — with the actual book, live, as
+        the preview. Nothing here is a mockup: the page you read while
+        adjusting is your book, rendered in your browser.
+      </p>
+      <p>
+        When it reads the way you want, download. Your choices are written
+        into the EPUB’s own stylesheet, so the file carries its typography to
+        any reader app — Kindle (via Send-to-Kindle), Kobo, Apple Books,
+        anything that opens an EPUB. The original file never leaves your
+        device: the whole studio runs client-side, like every tool on this
+        site.
+      </p>
+      <ul>
+        <li>Serif and sans-serif book faces, sized in real steps</li>
+        <li>Line spacing, line length and margins with live reflow</li>
+        <li>Paragraph style: indents or spacing, drop caps where they fit</li>
+        <li>Light, sepia and dark reading themes</li>
+        <li>Settings embedded in the downloaded EPUB — not an export note</li>
+      </ul>
+      <p>
+        <a href="/#tools">Start from a converter →</a> or open Style Studio
+        with an EPUB you already have.
+      </p>
+    </section>
     <StyleStudio client:only="vue" />
   </div>
 </BaseLayout>
@@ -22,6 +57,55 @@ import '../styles/reading-fonts.css';
   /* The studio owns the viewport — no page scrolling behind it. */
   body.studio-body {
     overflow: hidden;
+  }
+
+  /* Server-rendered intro (crawlers, no-JS): hidden once the app mounts. */
+  .ss-intro {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(32px, 6vw, 72px) clamp(16px, 4vw, 48px);
+    font-family: 'Archivo', sans-serif;
+    color: #17130e;
+  }
+  #style-studio-root:has(.studio) .ss-intro {
+    display: none;
+  }
+  .ss-intro .ss-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: #c41e4f;
+    margin-bottom: 12px;
+  }
+  .ss-intro h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 50px);
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+    margin: 0 0 14px;
+  }
+  .ss-intro p {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: #454037;
+    margin: 0 0 14px;
+    max-width: 62ch;
+  }
+  .ss-intro ul {
+    margin: 0 0 14px;
+    padding-left: 20px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #454037;
+  }
+  .ss-intro a {
+    color: #c41e4f;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .ss-intro a:hover {
+    color: #17130e;
   }
 
   /* Range and colour inputs, from the mock's <helmet> block. */

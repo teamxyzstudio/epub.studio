@@ -9,7 +9,10 @@ import { RUNNER_UI, TOOL_CHROME, toolAlternates } from '../../lib/i18n.js';
 import { SITE_URL } from '../../data/site.js';
 
 export function getStaticPaths() {
-  return esToolSlugs.map((slug) => ({ params: { slug }, props: { page: getToolPageEs(slug) } }));
+  return esToolSlugs.map((slug) => ({
+    params: { slug },
+    props: { page: { ...getToolPageEs(slug), ogImage: `/tool-og/es/${slug}.png` } },
+  }));
 }
 
 const { page } = Astro.props;

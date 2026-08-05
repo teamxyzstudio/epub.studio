@@ -57,7 +57,15 @@ const jsonLd = [
         </p>
       </div>
 
-      <BlogIndex client:load posts={cards} featured={featured} categories={CATEGORIES} />
+      <!-- pageSize covers every post: the whole archive is crawlable from this
+           page's server HTML (audit D3); revisit with static pagination past ~40. -->
+      <BlogIndex
+        client:load
+        posts={cards}
+        featured={featured}
+        categories={CATEGORIES}
+        pageSize={cards.length}
+      />
     </main>
 
     <footer class="blog-footer">

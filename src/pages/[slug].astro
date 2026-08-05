@@ -10,7 +10,10 @@ import { TOOL_CHROME, toolAlternates } from '../lib/i18n.js';
 import { SITE_URL } from '../data/site.js';
 
 export function getStaticPaths() {
-  return toolSlugs.map((slug) => ({ params: { slug }, props: { page: getToolPage(slug) } }));
+  return toolSlugs.map((slug) => ({
+    params: { slug },
+    props: { page: { ...getToolPage(slug), ogImage: `/tool-og/${slug}.png` } },
+  }));
 }
 
 const { page } = Astro.props;
