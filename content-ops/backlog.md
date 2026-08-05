@@ -11,8 +11,7 @@ Mode B (mining) appends new candidates here; writing a post moves its row to
 
 | # | Question (paraphrased, from community threads) | Primary keyword | Category | Tool CTA | Notes |
 |---|---|---|---|---|---|
-| 10 | Getting an EPUB accepted by OverDrive/Libby | publish epub to libraries | How-to | /epub-validator | Store-specific rules on top of the spec |
-| 11 | Bought an ebook, can't open it elsewhere — what is DRM? | ebook drm explained | Formats explained | — (informational) | NEVER include removal instructions; policy line in skill |
+| 10 | Getting an EPUB accepted by OverDrive/Libby | publish epub to libraries | How-to | /epub-validator | Store-specific rules on top of the spec. GATE (recorded 2026-08-05): platform claims need fetch-verified primary sources; the sandboxed publisher run's network policy denies external fetches — write in a session with web access |
 | 12 | Typo found in an already-published ebook — fix and re-upload workflow | fix typo in published ebook | How-to | /epub-metadata-editor | Honest: content editing needs Calibre/Sigil; we cover metadata + revalidation |
 | 13 | Fixed-layout EPUB keeps failing in Kindle Previewer | fixed layout epub problems | Formats explained | — (informational) | Low priority; no fixed-layout tooling here |
 
@@ -33,7 +32,7 @@ quarterly-refresh rows. A mined week that matches a numbered row consumes it.
 | 16 | Kindle formats explained (AZW/AZW3/KFX/EPUB) | kindle file format | 10,350 | Formats explained | /azw3-to-epub | DEDUP GATE: must add reference structure beyond /blog/send-epub-to-kindle and /blog/epub-vs-pdf-vs-mobi or becomes enrichment of those |
 | 17 | Where to get free ebooks legally | free ebooks | 7,100 | Roundup | /epub-reader | KU, Prime Reading, Libby/OverDrive, Gutenberg, Standard Ebooks; strengthens public-domain post; NEVER piracy sources |
 | 18 | Google Play Books and EPUB (upload/export) | google play books epub | 6,400 | How-to | /epub-reader | Includes play-books cluster |
-| 19 | The ACSM file explained | what is an acsm file | 4,120 | Formats explained | — (informational) | A license file, not the book; Adobe Digital Editions flow; policy: no DRM circumvention |
+| 19 | The ACSM file explained | what is an acsm file | 4,120 | Formats explained | — (informational) | A license file, not the book; Adobe Digital Editions flow; policy: no DRM circumvention. DEDUP GATE vs /blog/ebook-drm-explained (owns the DRM overview; gave acsm one line) — this post is the acsm/ADE specifics only |
 | 20 | Reading EPUB on Kobo | read epub on kobo | 3,990 | How-to | /epub-reader | Kobo reads EPUB natively; transfer routes |
 | 21 | How to create an EPUB (step by step) | how to create an epub | 2,890 | How-to | /docx-to-epub | Beginner make-your-first-epub; routes to docx/markdown tools; distinct from best-format comparison |
 | 22 | Adobe Digital Editions survival guide | adobe digital editions | 2,240 | How-to | — (informational) | DEDUP GATE vs row 19 — write second, link, don't overlap |
