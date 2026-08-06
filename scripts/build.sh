@@ -21,4 +21,6 @@ else
   exit 1
 fi
 
-exec npx astro build "$@"
+npx astro build "$@"
+# Human-readable sitemaps (crawlers don't care; the people checking them do).
+node "$(dirname "$0")/format-sitemaps.mjs"

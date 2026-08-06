@@ -8,6 +8,9 @@ import { SITE_URL } from './src/data/site.js';
 
 export default defineConfig({
   site: SITE_URL,
+  // Canonicals, internal links, and the sitemap must agree on one URL form.
+  // Everything site-side is slashless; this makes the sitemap match.
+  trailingSlash: 'never',
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
