@@ -50,6 +50,7 @@ best format to convert to epub,/blog/best-format-to-convert-to-epub,blog,live,ho
 epub compatibility problems,/blog/epub-compatibility-problems,blog,live,fix-it; same file renders in lenient readers but breaks in strict ones — XHTML/XML well-formedness + manifest/spine mismatches; distinct from corrupt-file repair and epubcheck-code decode
 epub table of contents problems,/blog/epub-table-of-contents-problems,blog,live,fix-it; nav.xhtml vs toc.ncx vs spine drift — stray bullets/wrong order/missing chapters; distinct from epubcheck-code decode and corrupt-file repair
 epub images not showing,/blog/epub-images-not-showing,blog,live,fix-it; images present but misaddressed after conversion — manifest href vs XHTML img src relative-path drift; distinct from cover-not-showing (cover manifest flag)
+what is an epub file,/blog/what-is-an-epub-file,blog,live,definitional head (row 14); distinct from /blog/what-is-inside-an-epub (structure deep-dive) — links it as the next step
 epub tools for self-publishers,/epub-tools-for-self-publishers,landing,live,audience page; embeds docx-to-epub runner
 calibre alternative,/calibre-alternative,landing,live,comparison; claims verified vs calibre-ebook.com Aug 2026; theirWins mandatory
 epub format,/epub-format-guide,landing,live,pillar hub; clusters the blog by Understand/Fix/Make/Kindle

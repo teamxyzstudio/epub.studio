@@ -30,7 +30,7 @@ map — realign here, never in the routine.
 
 | # | Topic | Primary keyword | Volume | Category | Tool CTA | Notes |
 |---|---|---|---|---|---|---|
-| 14 | What an EPUB file actually is (beginner) | what is an epub file | 8,860 | Formats explained | /epub-reader | UNOWNED head. Distinct from /blog/what-is-inside-an-epub (structure deep-dive) — this is the definitional intent; link the deep-dive as the next step |
+| 14 | ~~What an EPUB file actually is (beginner)~~ | what is an epub file | 8,860 | Formats explained | /epub-to-pdf | SHIPPED 2026-08-06 → /blog/what-is-an-epub-file. CTA changed from /epub-reader at write time: /epub-reader has no engine in src/lib/convert/registry.js — dropping a file errors "This tool is not wired up yet" (reproduced headless this run). Rows 15/17/18/20 + the reader landing variants share this CTA — wire the reader before writing them |
 | 15 | Reading EPUB in Apple Books (iPhone/iPad/Mac) | apple books epub | 8,530 | How-to | /epub-reader | Merges apple-books + ibooks clusters; covers AirDrop/Files import |
 | 16 | Kindle formats explained (AZW/AZW3/KFX/EPUB) | kindle file format | 10,350 | Formats explained | /azw3-to-epub | DEDUP GATE: must add reference structure beyond /blog/send-epub-to-kindle and /blog/epub-vs-pdf-vs-mobi or becomes enrichment of those |
 | 17 | Where to get free ebooks legally | free ebooks | 7,100 | Roundup | /epub-reader | KU, Prime Reading, Libby/OverDrive, Gutenberg, Standard Ebooks; strengthens public-domain post; NEVER piracy sources |
