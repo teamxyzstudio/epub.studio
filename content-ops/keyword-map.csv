@@ -56,6 +56,7 @@ calibre alternative,/calibre-alternative,landing,live,comparison; claims verifie
 epub format,/epub-format-guide,landing,live,pillar hub; clusters the blog by Understand/Fix/Make/Kindle
 epub to pdf mac,/convert-epub-to-pdf-on-mac,landing,live,variant; distinct-intent PASS (platform); parent /epub-to-pdf
 ebook drm explained,/blog/ebook-drm-explained,blog,live,formats explained; factual what-the-lock-is explainer (four postures table; key-vs-format mechanism); no removal content ever; acsm gets one line — full acsm story stays with row 19
+kindle file format,/blog/kindle-file-format,blog,live,kindle (row 16); format-family reference — era table + PalmDB mechanism + magic-byte identification; distinct from send how-to and epub-vs-pdf-vs-mobi comparison and mobi-is-dead migration workflow
 about epub studio,/about,page,live,now names the two builders + editorial standards (SEO audit A2/A3)
 epub studio privacy,/privacy,page,live,
 contact epub studio,/contact,page,live,accountability surface; epubstudioteam@gmail.com
