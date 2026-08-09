@@ -66,7 +66,7 @@ Tiers 1–2 or when a mined week matches one.
 
 | # | Topic | Primary keyword | Volume | Category | Tool CTA | Notes |
 |---|---|---|---|---|---|---|
-| 32 | What is a CBR/CBZ file (comic archives) | what is a cbr file | ~2,900 | Formats explained | /cbz-to-epub | Pairs with the comic tool family; covers cbr-vs-cbz, where they come from |
+| 32 | ~~What is a CBR/CBZ file (comic archives)~~ | what is a cbr file | ~2,900 | Formats explained | /cbz-to-epub | SHIPPED 2026-08-09 → /blog/what-is-a-cbr-file (Mode B: Aug rows 15/17/18 reader-gated — /epub-reader engine still unwired in registry.js, error reproduced headless this run — and 19 egress-gated; mined week matched this Tier 3 row per the schedule rule). Origin-history claims cut rather than cited (egress proxy blocks fetch verification); post is mechanism + first-hand artifacts only |
 | 33 | Nook vs Kindle in 2026 | nook vs kindle | ~1,100 | Editorial comparison | /epub-reader | Format lens (EPUB vs AZW), not shopping specs; links row 29 |
 | 34 | Moving your Nook library to a Kindle | nook books on kindle | ~1,100 | How-to | /blog/send-epub-to-kindle | DRM-honest: what moves, what doesn't, why |
 | 35 | What a Kindle actually is (formats-first beginner) | what does a kindle do | ~1,250 | Formats explained | /blog/send-epub-to-kindle | EXPERTISE GATE: write the ecosystem/formats angle only — no device shopping |
