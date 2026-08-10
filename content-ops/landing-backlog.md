@@ -14,6 +14,7 @@ spreadsheet is linked, its rows merge into this table (expected columns:
 | /calibre-alternative | comparison | calibre alternative | 2026-08-05 |
 | /epub-format-guide | pillar | epub format | 2026-08-05 (carve-out: no embedded runner — Read mode per brief; validator carries the CTA) |
 | /convert-epub-to-pdf-on-mac | variant | epub to pdf mac | 2026-08-05 (distinct-intent: PASS — platform changes the task: no-install route, Finder/Downloads specifics, managed-Mac case) |
+| /read-epub-on-windows | variant | read epub on windows | 2026-08-10 (distinct-intent: PASS — Windows lost native EPUB with Edge's 2019 e-book removal; default-app confusion is the page's story; parent /epub-reader; owns "ereader for windows" phrasings) |
 
 ## Queued
 
@@ -28,9 +29,9 @@ spreadsheet is linked, its rows merge into this table (expected columns:
 
 ## Production schedule (7 pages/month, aligned to an August 2026 start)
 
-- **Aug 2026 (3 remaining of 7)**: the 4 pages shipped 2026-08-05 count
-  toward August's quota; remaining slots = read-epub-on-windows,
-  read-epub-on-android, read-epub-on-iphone
+- **Aug 2026 (2 remaining of 7)**: the 4 pages shipped 2026-08-05 count
+  toward August's quota; read-epub-on-windows shipped 2026-08-10;
+  remaining slots = read-epub-on-android, read-epub-on-iphone
 - **Sep**: read-epub-on-linux, read-epub-on-mac, epub-tools-for-teachers,
   fix-my-epub, kindle-format-guide, sigil-alternative, fanfiction-readers
 - **Oct**: chromebook (verify gate) · es queue continues — cbr a pdf
@@ -52,7 +53,7 @@ searcher's real situation, not just the phrasing. Each embeds the live reader.
 
 | Keyword | Type | Facet volume | Notes |
 |---|---|---|---|
-| read epub on windows | variant | 9,220 | Windows lost native EPUB when Edge dropped it (2019) — the "why won't it open" story; default-app confusion; parent /epub-reader |
+| ~~read epub on windows~~ | variant | 9,220 | SHIPPED 2026-08-10 — Windows lost native EPUB when Edge dropped it (2019); default-app confusion is the page's story; parent /epub-reader |
 | read epub on android | variant | 5,750 | App landscape vs no-install browser route |
 | read epub on iphone | variant | 3,070 | Books is built in — honest page says so, then serves the no-Apple-ID / shared-device case |
 | read epub on linux | variant | 1,930 | Foliate/Calibre landscape + browser route |
