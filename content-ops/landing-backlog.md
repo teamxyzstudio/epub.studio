@@ -16,6 +16,7 @@ spreadsheet is linked, its rows merge into this table (expected columns:
 | /convert-epub-to-pdf-on-mac | variant | epub to pdf mac | 2026-08-05 (distinct-intent: PASS — platform changes the task: no-install route, Finder/Downloads specifics, managed-Mac case) |
 | /read-epub-on-windows | variant | read epub on windows | 2026-08-10 (distinct-intent: PASS — Windows lost native EPUB with Edge's 2019 e-book removal; default-app confusion is the page's story; parent /epub-reader; owns "ereader for windows" phrasings) |
 | /read-epub-on-android | variant | read epub on android | 2026-08-11 (distinct-intent: PASS — no guaranteed .epub handler on Android; system-picker/touch flow, work-profile no-install case; parent /epub-reader; owns "android ereader" phrasings) |
+| /read-epub-on-iphone | variant | read epub on iphone | 2026-08-12 (distinct-intent: PASS — Books is built in and the page says so honestly; serves the shared-device / no-Apple-ID / managed-phone cases; parent /epub-reader; owns "iphone ereader" phrasings) |
 
 ## Queued
 
@@ -30,10 +31,10 @@ spreadsheet is linked, its rows merge into this table (expected columns:
 
 ## Production schedule (7 pages/month, aligned to an August 2026 start)
 
-- **Aug 2026 (1 remaining of 7)**: the 4 pages shipped 2026-08-05 count
+- **Aug 2026 (COMPLETE — 7 of 7)**: the 4 pages shipped 2026-08-05 count
   toward August's quota; read-epub-on-windows shipped 2026-08-10;
-  read-epub-on-android shipped 2026-08-11; remaining slot =
-  read-epub-on-iphone
+  read-epub-on-android shipped 2026-08-11; read-epub-on-iphone shipped
+  2026-08-12
 - **Sep**: read-epub-on-linux, read-epub-on-mac, epub-tools-for-teachers,
   fix-my-epub, kindle-format-guide, sigil-alternative, fanfiction-readers
 - **Oct**: chromebook (verify gate) · es queue continues — cbr a pdf
@@ -57,7 +58,7 @@ searcher's real situation, not just the phrasing. Each embeds the live reader.
 |---|---|---|---|
 | ~~read epub on windows~~ | variant | 9,220 | SHIPPED 2026-08-10 — Windows lost native EPUB when Edge dropped it (2019); default-app confusion is the page's story; parent /epub-reader |
 | ~~read epub on android~~ | variant | 5,750 | SHIPPED 2026-08-11 — no guaranteed .epub handler on Android; app landscape vs no-install browser route; parent /epub-reader |
-| read epub on iphone | variant | 3,070 | Books is built in — honest page says so, then serves the no-Apple-ID / shared-device case |
+| ~~read epub on iphone~~ | variant | 3,070 | SHIPPED 2026-08-12 — Books is built in, the page says so honestly, then serves the no-Apple-ID / shared-device / managed-phone cases; parent /epub-reader |
 | read epub on linux | variant | 1,930 | Foliate/Calibre landscape + browser route |
 | read epub on mac | variant | 1,330 | Books built in; same honest framing as iPhone |
 
