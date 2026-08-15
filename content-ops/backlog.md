@@ -38,7 +38,7 @@ map — realign here, never in the routine.
 | 18 | Google Play Books and EPUB (upload/export) | google play books epub | 6,400 | How-to | /epub-reader | Includes play-books cluster |
 | 19 | The ACSM file explained | what is an acsm file | 4,120 | Formats explained | — (informational) | A license file, not the book; Adobe Digital Editions flow; policy: no DRM circumvention. DEDUP GATE vs /blog/ebook-drm-explained (owns the DRM overview; gave acsm one line) — this post is the acsm/ADE specifics only. GATE (recorded 2026-08-08): the post is nearly all Adobe/ADE platform claims and the publisher run's egress proxy blocks all fetches (adobe.com, overdrive, library FAQs all denied) — plus no real .acsm artifact is producible here; write in a session with web access, same class as row 10's gate |
 | 20 | Reading EPUB on Kobo | read epub on kobo | 3,990 | How-to | /epub-reader | Kobo reads EPUB natively; transfer routes |
-| 21 | How to create an EPUB (step by step) | how to create an epub | 2,890 | How-to | /docx-to-epub | Beginner make-your-first-epub; routes to docx/markdown tools; distinct from best-format comparison |
+| 21 | ~~How to create an EPUB (step by step)~~ | how to create an epub | 2,890 | How-to | /docx-to-epub | SHIPPED 2026-08-15 → /blog/create-an-epub (Mode B mined match: Aug rows 15/17/18 still reader-gated — /epub-reader engine absent from registry.js, verified this run — and 10/19 still egress-gated, proxy 403 on all fetches; creation family in topic:question feed matched this row per the schedule rule: "how to epub" 90 + "what is the best free ebook creator" 50 + pdf-to-ebook tails. Top mined question "how to save word document as epub" 320 is OWNED by /blog/convert-word-to-epub → refresh candidate, recorded below. Full create loop reproduced live this run with two screenshot artifacts + real structure listing; no external claims needed) |
 | 22 | Adobe Digital Editions survival guide | adobe digital editions | 2,240 | How-to | — (informational) | DEDUP GATE vs row 19 — write second, link, don't overlap |
 
 ## Tier 2 — queued from cluster sub-mining (2026-08-05)
@@ -95,6 +95,7 @@ question from these instead of (or alongside) Reddit mining.
 | How do I read EPUB on my Kindle now? | /blog/send-epub-to-kindle | Expand (device table, troubleshooting section) |
 | Image-heavy EPUB is 300 MB and gets rejected | /blog/reduce-epub-file-size | Expand (KDP delivery-fee maths is already in) |
 | Which format should my book be in? | /blog/epub-vs-pdf-vs-mobi | Pillar — keep current |
+| How do I save a Word document as EPUB? (320/mo, top of topic:question feed 2026-08-15) | /blog/convert-word-to-epub | Expand/refresh that post — strongest un-gated refresh candidate from the Aug 15 mining pass |
 
 ## Removed from the inherited seed list
 
