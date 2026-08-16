@@ -73,7 +73,7 @@ Tiers 1–2 or when a mined week matches one.
 | 36 | Kindle and iCloud don't sync (and what does) | icloud for kindle | ~610 | How-to | — (informational) | Quirky real confusion; Whispersync vs iCloud |
 | 37 | Sigil: what it is, when to use it | sigil epub editor | ~600 | Tool guide | /epub-metadata-editor | Feeds the queued sigil-alternative landing page; honest "when Sigil beats us" |
 | 38 | kepub vs EPUB (Kobo's dialect) | kepub vs epub | ~150 | Formats explained | /epub-to-pdf | Sharp expertise; links row 20 (Kobo) |
-| 39 | EPUB 2 vs EPUB 3 | epub 2 vs epub 3 | ~90 | Formats explained | /epub-validator | Authority post; our validator speaks both — natural fit |
+| 39 | ~~EPUB 2 vs EPUB 3~~ | epub 2 vs epub 3 | ~90 | Formats explained | /epub-validator | SHIPPED 2026-08-16 → /blog/epub-2-vs-epub-3 (Mode B: Aug rows 15/17/18 still reader-gated — /epub-reader engine absent from registry.js, verified this run — and 10/19 still egress-gated, proxy 403 on all fetches; feed's bigger questions owned/tool-gated: word-to-epub 320 owned, djvu family ~800 waits on the djvu tool per row 24, Pages/Kindle rows unverifiable offline. The one candidate fully provable in-repo: specimen.epub rebuilt as faithful EPUB 2.0 this run, both versions validated live — clean pass vs version warning, two screenshots — nav/NCX quoted from the real archives) |
 
 Folded, not new rows: "add PDF to Apple Books / Play Books" → sections in rows
 15/18; "create epub from html/website" → /html-to-epub enrichment; "pdf to
