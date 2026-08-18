@@ -1,19 +1,19 @@
 ---
 /**
- * §2.7 — the people behind the site. External profile links only; internal
- * links are deliberately absent so the section reads as attribution rather
- * than navigation.
+ * The people behind the site, for /about.
+ *
+ * Renders no heading of its own so the host page keeps its own prose rhythm.
+ * Names link to their author pages; the only other links are external
+ * profiles, which is the whole point of the section.
  */
-import HomeSection from './HomeSection.astro';
-import { BUILT_BY } from '../data/home-content.js';
-import { allAuthors } from '../data/authors.js';
+import { allAuthors, TEAM } from '../data/authors.js';
 import { authorPhoto } from '../lib/author-photo.js';
 
 const people = allAuthors.map((a) => ({ ...a, photo: authorPhoto(a.slug) }));
 ---
 
-<HomeSection id="built-by" kicker="BUILT BY" title={BUILT_BY.title}>
-  <p class="intro">{BUILT_BY.intro}</p>
+<div class="built-by">
+  <p class="intro">{TEAM.intro}</p>
 
   <div class="people">
     {
@@ -22,7 +22,7 @@ const people = allAuthors.map((a) => ({ ...a, photo: authorPhoto(a.slug) }));
           {/* A real photograph when public/authors/<slug>.* exists, the
               initial otherwise. No stock image ever stands in for a person.
               alt="" because the name is right beside it — a screen reader
-              reading it twice is noise. Below the fold, so lazy. */}
+              reading it twice is noise. */}
           {a.photo ? (
             <img
               class="avatar"
@@ -39,10 +39,12 @@ const people = allAuthors.map((a) => ({ ...a, photo: authorPhoto(a.slug) }));
             </span>
           )}
           <div class="who">
-            <span class="name">{a.name}</span>
+            <a href={`/authors/${a.slug}`} class="name focus-ring-2">
+              {a.name}
+            </a>
             <p class="bio">{a.bio}</p>
             {/* Anchors name the person: several links reading "LinkedIn" would
-                be indistinguishable to a screen reader running through the page. */}
+                be indistinguishable to a screen reader running through them. */}
             <span class="profiles">
               {a.links.map((l) => (
                 <a href={l.href} rel="me noopener" target="_blank" class="profile focus-ring-2">
@@ -56,24 +58,30 @@ const people = allAuthors.map((a) => ({ ...a, photo: authorPhoto(a.slug) }));
     }
   </div>
 
-  <p class="why">{BUILT_BY.why}</p>
-</HomeSection>
+  <p class="why">{TEAM.why}</p>
+</div>
 
 <style>
+  /* Scoped rules beat the host page's global `.prose p` on specificity, so
+     these paragraphs keep the card treatment rather than the reading serif. */
+  .built-by {
+    margin: 0 0 1.2em;
+  }
+
   .intro {
-    margin: 0 0 20px;
+    margin: 0 0 16px;
+    font-family: 'Archivo', system-ui, sans-serif;
     font-size: 15.5px;
     line-height: 1.65;
     color: #26211a;
-    max-width: 66ch;
     text-wrap: pretty;
   }
 
   .people {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 12px;
-    margin-bottom: clamp(20px, 3vw, 28px);
+    margin-bottom: 20px;
   }
   .person {
     display: flex;
@@ -105,13 +113,20 @@ const people = allAuthors.map((a) => ({ ...a, photo: authorPhoto(a.slug) }));
   }
   .name {
     display: block;
+    font-family: 'Archivo', system-ui, sans-serif;
     font-size: 15.5px;
     font-weight: 600;
     letter-spacing: -0.005em;
+    color: #17130e;
+    text-decoration: none;
     margin-bottom: 6px;
+  }
+  .name:hover {
+    color: #c41e4f;
   }
   .bio {
     margin: 0 0 10px;
+    font-family: 'Archivo', system-ui, sans-serif;
     font-size: 14px;
     line-height: 1.6;
     color: #454037;
@@ -127,6 +142,7 @@ const people = allAuthors.map((a) => ({ ...a, photo: authorPhoto(a.slug) }));
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
     color: #c41e4f;
+    text-decoration: none;
   }
   .profile:hover {
     color: #17130e;
@@ -134,13 +150,12 @@ const people = allAuthors.map((a) => ({ ...a, photo: authorPhoto(a.slug) }));
 
   .why {
     margin: 0;
-    padding-top: clamp(18px, 2.5vw, 24px);
+    padding-top: 20px;
     border-top: 1px solid rgba(23, 19, 14, 0.14);
     font-family: 'Literata', Georgia, serif;
     font-size: 16px;
     line-height: 1.72;
     color: #26211a;
-    max-width: 66ch;
     text-wrap: pretty;
   }
 </style>

@@ -17,7 +17,8 @@
  *   /blog
  *
  * External links, 2: the W3C EPUB specification and Amazon's Send to Kindle
- * documentation. The two LinkedIn profiles in BUILT_BY are profile links.
+ * documentation. (The team's profile links moved to /about with the
+ * "Who runs this site" section.)
  *
  * The privacy section, the how-it-works steps and the alternatives comparison
  * carry no links at all, by design.
@@ -476,30 +477,4 @@ export const BLOG_INTRO = {
     { href: '/blog', t: 'the blog' },
     ' holds the rest.',
   ],
-};
-
-// --- 2.7 Built by ---------------------------------------------------------
-
-/**
- * People, from src/data/authors.js — real names, real bios, real profile
- * links. Nothing here is invented.
- *
- * TODO: verify — the founders should supply real photographs to replace the
- * initial avatars, and a first-hand sentence on what prompted them to build
- * the site. Neither is fabricated here.
- */
-export const BUILT_BY = {
-  title: 'Who builds Epub Studio',
-  intro:
-    'Epub Studio is built and maintained by two people, named here because a tool that asks you ' +
-    'to trust it about your files should say who is behind it.',
-  /* The "why" below describes design decisions that are verifiable in the
-     product itself, not an anecdote nobody can check. */
-  why:
-    'Epub Studio exists because the obvious way to build an ebook converter — upload the file, ' +
-    'process it on a server, mail back a link — means asking people to hand over unpublished ' +
-    'manuscripts and confidential documents to a stranger’s machine. Every tool here is built the ' +
-    'other way round instead. That constraint is kept even where it costs a feature: MOBI and ' +
-    'AZW3 cannot be written in a browser, so those pages explain the route that works rather than ' +
-    'quietly uploading your book to make the button light up.',
 };

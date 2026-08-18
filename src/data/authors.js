@@ -56,3 +56,29 @@ export const AUTHORS = Object.fromEntries(
 
 export const authorByName = (name) => AUTHORS[name];
 export const allAuthors = Object.values(AUTHORS);
+
+
+/**
+ * The team blurb that introduces those people on /about. Lives here rather
+ * than with page content because it is about the same two humans as AUTHORS,
+ * and both are rendered by the same component.
+ *
+ * TODO: verify — the founders should supply real photographs (drop them at
+ * public/authors/<slug>.jpg; see lib/author-photo.js) and, if they want one, a
+ * first-hand sentence on what prompted them to build the site. Neither is
+ * fabricated here.
+ */
+export const TEAM = {
+  intro:
+    'Epub Studio is built and maintained by two people, named here because a tool that asks you ' +
+    'to trust it about your files should say who is behind it.',
+  /* The "why" below describes design decisions that are verifiable in the
+     product itself, not an anecdote nobody can check. */
+  why:
+    'Epub Studio exists because the obvious way to build an ebook converter — upload the file, ' +
+    'process it on a server, mail back a link — means asking people to hand over unpublished ' +
+    'manuscripts and confidential documents to a stranger’s machine. Every tool here is built the ' +
+    'other way round instead. That constraint is kept even where it costs a feature: MOBI and ' +
+    'AZW3 cannot be written in a browser, so those pages explain the route that works rather than ' +
+    'quietly uploading your book to make the button light up.',
+};
