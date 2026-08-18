@@ -17,6 +17,7 @@ import HomeFaq from '../components/HomeFaq.astro';
 import HomeFreshness from '../components/HomeFreshness.astro';
 import { groups, href, suggestionsByExt, toolBySlug, allTools } from '../data/tools.js';
 import { HOW_IT_WORKS, faqPlain } from '../data/home-content.js';
+import { allAuthors } from '../data/authors.js';
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '../data/site.js';
 
 // Resolve the extension → slug map into the { n, href } shape the island renders.
@@ -35,20 +36,14 @@ const jsonLd = [
     url: SITE_URL,
     logo: `${SITE_URL}/apple-touch-icon.png`,
     email: 'epubstudioteam@gmail.com',
-    founder: [
-      {
-        '@type': 'Person',
-        name: 'Mofid Ansari',
-        url: `${SITE_URL}/authors/mofid-ansari`,
-        sameAs: ['https://www.linkedin.com/in/ansarimofid/'],
-      },
-      {
-        '@type': 'Person',
-        name: 'Shahid Ansari',
-        url: `${SITE_URL}/authors/shahid-ansari`,
-        sameAs: ['https://www.linkedin.com/in/ansarishahid/'],
-      },
-    ],
+    // Driven from data/authors.js so a profile URL exists in exactly one
+    // place and this block cannot drift from the visible "Built by" section.
+    founder: allAuthors.map((a) => ({
+      '@type': 'Person',
+      name: a.name,
+      url: `${SITE_URL}/authors/${a.slug}`,
+      sameAs: a.sameAs,
+    })),
   },
   {
     '@context': 'https://schema.org',

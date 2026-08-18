@@ -24,11 +24,15 @@ import { allAuthors } from '../data/authors.js';
           <div class="who">
             <span class="name">{a.name}</span>
             <p class="bio">{a.bio}</p>
-            {/* Anchor names the person: two links reading "LinkedIn" would be
-                indistinguishable to a screen reader running through the page. */}
-            <a href={a.linkedin} rel="me noopener" target="_blank" class="profile focus-ring-2">
-              {a.name} on LinkedIn →
-            </a>
+            {/* Anchors name the person: several links reading "LinkedIn" would
+                be indistinguishable to a screen reader running through the page. */}
+            <span class="profiles">
+              {a.links.map((l) => (
+                <a href={l.href} rel="me noopener" target="_blank" class="profile focus-ring-2">
+                  {l.site ? l.label : `${a.name} on ${l.label}`} →
+                </a>
+              ))}
+            </span>
           </div>
         </div>
       ))
@@ -91,6 +95,12 @@ import { allAuthors } from '../data/authors.js';
     line-height: 1.6;
     color: #454037;
     text-wrap: pretty;
+  }
+  .profiles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
   }
   .profile {
     font-family: 'IBM Plex Mono', monospace;
