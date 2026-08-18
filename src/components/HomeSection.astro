@@ -1,0 +1,68 @@
+---
+/**
+ * Shared shell for the long-form homepage sections below the tool grid.
+ * One place for the measure, the heading scale and the mono kicker, so the
+ * new content reads as one band of the page rather than ten separate designs.
+ */
+interface Props {
+  id: string;
+  kicker: string;
+  title: string;
+  /** Paper band instead of the default card band, to separate neighbours. */
+  tone?: 'paper' | 'sunk';
+  /** Wide sections (tables, grids) get the full 1240px measure. */
+  wide?: boolean;
+}
+const { id, kicker, title, tone = 'paper', wide = false } = Astro.props;
+---
+
+<section id={id} class:list={['home-section', tone]}>
+  <div class:list={['inner', { wide }]}>
+    <div class="head">
+      <span class="kicker">{kicker}</span>
+      <h2>{title}</h2>
+    </div>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .home-section {
+    padding: clamp(40px, 5vw, 72px) clamp(16px, 4vw, 48px);
+    border-bottom: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .home-section.sunk {
+    background: #f3ede4;
+  }
+
+  .inner {
+    max-width: 820px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .inner.wide {
+    max-width: 1240px;
+  }
+
+  .head {
+    margin-bottom: clamp(18px, 2.5vw, 28px);
+  }
+  .kicker {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: #c41e4f;
+    margin-bottom: 10px;
+  }
+  .head h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.012em;
+    margin: 0;
+    text-wrap: balance;
+  }
+</style>

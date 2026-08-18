@@ -1,0 +1,86 @@
+---
+/**
+ * §2.2 — the site's central claim, given the most visual weight of any
+ * section below the grid. Contains no internal links by design: it is about
+ * trust, and a tool link here would read as a sales interruption.
+ */
+import HomeSection from './HomeSection.astro';
+import { PRIVACY } from '../data/home-content.js';
+---
+
+<HomeSection id="privacy" kicker="THE ONE THAT MATTERS" title={PRIVACY.title} tone="sunk">
+  <div class="split">
+    <div class="prose">
+      {PRIVACY.paragraphs.map((p) => <p>{p}</p>)}
+      <p class="disclosure">{PRIVACY.disclosure}</p>
+    </div>
+
+    <aside class="verify">
+      <span class="v-kicker">{PRIVACY.verify.kicker}</span>
+      <ol>
+        {PRIVACY.verify.steps.map((s) => <li>{s}</li>)}
+      </ol>
+    </aside>
+  </div>
+</HomeSection>
+
+<style>
+  .split {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(20px, 3vw, 36px);
+    align-items: flex-start;
+  }
+  .prose {
+    flex: 1 1 420px;
+    min-width: min(100%, 300px);
+  }
+  .prose p {
+    margin: 0 0 1.05em;
+    font-family: 'Literata', Georgia, serif;
+    font-size: 16.5px;
+    line-height: 1.72;
+    color: #26211a;
+    max-width: 66ch;
+    text-wrap: pretty;
+  }
+  .prose p:last-child {
+    margin-bottom: 0;
+  }
+  .disclosure {
+    border-left: 2px solid #ff2e63;
+    padding-left: 14px;
+    font-size: 15px !important;
+    color: #454037 !important;
+  }
+
+  .verify {
+    flex: 0 1 300px;
+    min-width: min(100%, 260px);
+    background: #17130e;
+    color: #faf7f2;
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .v-kicker {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: #ff2e63;
+    margin-bottom: 12px;
+  }
+  .verify ol {
+    margin: 0;
+    padding-left: 1.15em;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .verify li {
+    margin-bottom: 9px;
+  }
+  .verify li:last-child {
+    margin-bottom: 0;
+  }
+</style>

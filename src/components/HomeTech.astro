@@ -1,0 +1,121 @@
+---
+/**
+ * §2.8 — what the tools are actually made of, which specs they support, and
+ * what they cannot do. The DRM limitation is stated here in full.
+ *
+ * TODO: verify — the repository is private, so no source link is given. Add
+ * one here if the source is ever opened.
+ */
+import HomeSection from './HomeSection.astro';
+import { TECH } from '../data/home-content.js';
+---
+
+<HomeSection id="technical" kicker="TECHNICAL TRANSPARENCY" title={TECH.title} wide>
+  <div class="grid">
+    <div class="panel">
+      <span class="p-kicker">LIBRARIES</span>
+      <dl class="libs">
+        {
+          TECH.libraries.map((l) => (
+            <div class="lib">
+              <dt>{l.name}</dt>
+              <dd>{l.use}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="panel">
+      <span class="p-kicker">SPECIFICATION SUPPORT</span>
+      {TECH.specs.map((s) => <p>{s}</p>)}
+    </div>
+
+    <div class="panel limits">
+      <span class="p-kicker">KNOWN LIMITATIONS</span>
+      <ul>
+        {TECH.limits.map((l) => <li>{l}</li>)}
+      </ul>
+    </div>
+  </div>
+</HomeSection>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 12px;
+    align-items: start;
+  }
+  .panel {
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .panel.limits {
+    border-color: rgba(179, 38, 30, 0.28);
+  }
+  .p-kicker {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #6e675d;
+    margin-bottom: 12px;
+  }
+  .panel.limits .p-kicker {
+    color: #b3261e;
+  }
+
+  .libs {
+    margin: 0;
+  }
+  .lib {
+    padding: 8px 0;
+    border-top: 1px solid rgba(23, 19, 14, 0.1);
+  }
+  .lib:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .lib dt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: #17130e;
+    word-break: break-word;
+  }
+  .lib dd {
+    margin: 3px 0 0;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: #6e675d;
+  }
+
+  .panel p {
+    margin: 0 0 0.9em;
+    font-size: 14px;
+    line-height: 1.62;
+    color: #454037;
+    text-wrap: pretty;
+  }
+  .panel p:last-child {
+    margin-bottom: 0;
+  }
+
+  .panel ul {
+    margin: 0;
+    padding-left: 1.1em;
+    font-size: 14px;
+    line-height: 1.62;
+    color: #454037;
+  }
+  .panel li {
+    margin-bottom: 10px;
+    text-wrap: pretty;
+  }
+  .panel li:last-child {
+    margin-bottom: 0;
+  }
+</style>

@@ -1,0 +1,140 @@
+---
+/**
+ * §2.3 — a real <table>, not a card grid: the structure is the point, both
+ * for assistive tech and for machines reading the page. Scrolls horizontally
+ * inside its wrapper on narrow screens rather than overflowing the body.
+ */
+import HomeSection from './HomeSection.astro';
+import RichText from './RichText.astro';
+import { FORMAT_ROWS } from '../data/home-content.js';
+---
+
+<HomeSection
+  id="formats"
+  kicker="FORMAT COMPARISON"
+  title="Ebook formats compared"
+  wide
+>
+  <p class="lede">
+    Eight formats show up in almost every ebook question. This table sets out what each one is for,
+    whether its text reflows to the screen, and where it opens.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <caption class="sr-caption">Ebook formats compared by purpose, layout behaviour and device support</caption>
+      <thead>
+        <tr>
+          <th scope="col">Format</th>
+          <th scope="col">Best for</th>
+          <th scope="col">Reflowable or fixed</th>
+          <th scope="col">Works on</th>
+          <th scope="col">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          FORMAT_ROWS.map((r) => (
+            <tr>
+              <th scope="row">{r.format}</th>
+              <td>{r.best}</td>
+              <td>{r.flow}</td>
+              <td>{r.works}</td>
+              <td>
+                <RichText parts={r.notes} />
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <p class="scroll-hint" aria-hidden="true">Scroll the table sideways →</p>
+</HomeSection>
+
+<style>
+  .lede {
+    margin: 0 0 18px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #26211a;
+    max-width: 68ch;
+    text-wrap: pretty;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 13.5px;
+    border: 1px solid rgba(23, 19, 14, 0.16);
+    border-radius: 10px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    width: 100%;
+    min-width: 860px;
+    background: #fffdf9;
+  }
+
+  .sr-caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  thead {
+    background: #17130e;
+    color: #faf7f2;
+  }
+  thead th {
+    padding: 11px 12px;
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
+    text-align: left;
+  }
+
+  tbody th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #17130e;
+    text-align: left;
+    white-space: nowrap;
+  }
+  tbody th,
+  tbody td {
+    padding: 11px 12px;
+    border-top: 1px solid rgba(23, 19, 14, 0.1);
+    color: #454037;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tbody tr:nth-child(even) th,
+  tbody tr:nth-child(even) td {
+    background: rgba(23, 19, 14, 0.03);
+  }
+
+  /* The table is wider than a phone by design — say so rather than leaving
+     the cut-off right edge to be discovered. */
+  .scroll-hint {
+    display: none;
+  }
+  @media (max-width: 899.98px) {
+    .scroll-hint {
+      display: block;
+      margin: 10px 0 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: #6e675d;
+    }
+  }
+</style>

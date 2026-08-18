@@ -1,0 +1,41 @@
+---
+/**
+ * Renders the `Part[]` rich-text shape used by src/data/home-content.js:
+ * a string is literal text, an object is a link. Keeping links in the data
+ * (rather than in markup) is what makes the homepage's link budget auditable
+ * from one file.
+ */
+interface Props {
+  parts: (string | { href: string; t: string; ext?: boolean })[];
+}
+const { parts } = Astro.props;
+---
+
+{
+  parts.map((part) =>
+    typeof part === 'string' ? (
+      <Fragment>{part}</Fragment>
+    ) : (
+      <a
+        href={part.href}
+        class="rt-link focus-ring-2"
+        rel={part.ext ? 'noopener' : undefined}
+        target={part.ext ? '_blank' : undefined}
+      >
+        {part.t}
+      </a>
+    ),
+  )
+}
+
+<style>
+  .rt-link {
+    color: #c41e4f;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .rt-link:hover {
+    color: #17130e;
+  }
+</style>

@@ -5,7 +5,18 @@ import SiteFooter from '../components/SiteFooter.astro';
 import MobileTabBar from '../components/MobileTabBar.astro';
 import HeroBook from '../components/islands/HeroBook.vue';
 import HomeDropZone from '../components/islands/HomeDropZone.vue';
+import HomeHowItWorks from '../components/HomeHowItWorks.astro';
+import HomePrivacy from '../components/HomePrivacy.astro';
+import HomeFormatTable from '../components/HomeFormatTable.astro';
+import HomeDeviceGuide from '../components/HomeDeviceGuide.astro';
+import HomeAudiences from '../components/HomeAudiences.astro';
+import HomeAlternatives from '../components/HomeAlternatives.astro';
+import HomeBuiltBy from '../components/HomeBuiltBy.astro';
+import HomeTech from '../components/HomeTech.astro';
+import HomeFaq from '../components/HomeFaq.astro';
+import HomeFreshness from '../components/HomeFreshness.astro';
 import { groups, href, suggestionsByExt, toolBySlug, allTools } from '../data/tools.js';
+import { HOW_IT_WORKS, faqPlain } from '../data/home-content.js';
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '../data/site.js';
 
 // Resolve the extension → slug map into the { n, href } shape the island renders.
@@ -48,6 +59,16 @@ const jsonLd = [
   },
   {
     '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    applicationCategory: 'UtilitiesApplication',
+    operatingSystem: 'Web browser',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  },
+  {
+    '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Epub Studio tools',
     itemListElement: allTools.map((t, i) => ({
@@ -55,6 +76,29 @@ const jsonLd = [
       position: i + 1,
       name: t.n,
       url: `${SITE_URL}/${t.slug}`,
+    })),
+  },
+  // Built from the same array the FAQ section renders, so the marked-up text
+  // and the visible text cannot drift apart.
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqPlain.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: HOW_IT_WORKS.title,
+    description: HOW_IT_WORKS.body,
+    step: HOW_IT_WORKS.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.t,
+      text: s.d,
     })),
   },
 ];
@@ -137,6 +181,19 @@ const nav = [
           </div>
         </div>
       </section>
+
+      <!-- Long-form content, all of it below the tool grid so the tools stay
+           the first and fastest thing on the page. -->
+      <HomeHowItWorks />
+      <HomePrivacy />
+      <HomeFormatTable />
+      <HomeDeviceGuide />
+      <HomeAudiences />
+      <HomeAlternatives />
+      <HomeBuiltBy />
+      <HomeTech />
+      <HomeFaq />
+      <HomeFreshness />
     </main>
 
     <SiteFooter />

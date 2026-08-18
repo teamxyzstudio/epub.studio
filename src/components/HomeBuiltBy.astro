@@ -1,0 +1,115 @@
+---
+/**
+ * §2.7 — the people behind the site. External profile links only; internal
+ * links are deliberately absent so the section reads as attribution rather
+ * than navigation.
+ */
+import HomeSection from './HomeSection.astro';
+import { BUILT_BY } from '../data/home-content.js';
+import { allAuthors } from '../data/authors.js';
+---
+
+<HomeSection id="built-by" kicker="BUILT BY" title={BUILT_BY.title}>
+  <p class="intro">{BUILT_BY.intro}</p>
+
+  <div class="people">
+    {
+      allAuthors.map((a) => (
+        <div class="person">
+          {/* TODO: verify — replace the initial avatar with a real photograph
+              once the owners supply one. No stock image stands in for a person. */}
+          <span class="avatar" aria-hidden="true">
+            {a.initial}
+          </span>
+          <div class="who">
+            <span class="name">{a.name}</span>
+            <p class="bio">{a.bio}</p>
+            {/* Anchor names the person: two links reading "LinkedIn" would be
+                indistinguishable to a screen reader running through the page. */}
+            <a href={a.linkedin} rel="me noopener" target="_blank" class="profile focus-ring-2">
+              {a.name} on LinkedIn →
+            </a>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="why">{BUILT_BY.why}</p>
+</HomeSection>
+
+<style>
+  .intro {
+    margin: 0 0 20px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #26211a;
+    max-width: 66ch;
+    text-wrap: pretty;
+  }
+
+  .people {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: 12px;
+    margin-bottom: clamp(20px, 3vw, 28px);
+  }
+  .person {
+    display: flex;
+    gap: 14px;
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .avatar {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #17130e;
+    color: #fffdf9;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+  }
+  .who {
+    min-width: 0;
+  }
+  .name {
+    display: block;
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    margin-bottom: 6px;
+  }
+  .bio {
+    margin: 0 0 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #454037;
+    text-wrap: pretty;
+  }
+  .profile {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #c41e4f;
+  }
+  .profile:hover {
+    color: #17130e;
+  }
+
+  .why {
+    margin: 0;
+    padding-top: clamp(18px, 2.5vw, 24px);
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+    font-family: 'Literata', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.72;
+    color: #26211a;
+    max-width: 66ch;
+    text-wrap: pretty;
+  }
+</style>

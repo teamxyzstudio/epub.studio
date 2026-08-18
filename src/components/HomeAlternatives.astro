@@ -1,0 +1,77 @@
+---
+/**
+ * §2.6 — the honest three-way comparison. Competitors are named in plain
+ * text and not linked, and the Epub Studio card states real limitations
+ * rather than closing on a win.
+ */
+import HomeSection from './HomeSection.astro';
+import { ALTERNATIVES } from '../data/home-content.js';
+---
+
+<HomeSection id="alternatives" kicker="HONEST COMPARISON" title={ALTERNATIVES.title} tone="sunk" wide>
+  <p class="lede">{ALTERNATIVES.intro}</p>
+
+  <div class="cols">
+    {
+      ALTERNATIVES.options.map((o) => (
+        <div class:list={['col', { self: o.self }]}>
+          <span class="kicker">{o.kicker}</span>
+          <h3>{o.name}</h3>
+          <p>{o.body}</p>
+        </div>
+      ))
+    }
+  </div>
+</HomeSection>
+
+<style>
+  .lede {
+    margin: 0 0 20px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #26211a;
+    max-width: 68ch;
+    text-wrap: pretty;
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+    gap: 12px;
+  }
+  .col {
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .col.self {
+    border-color: rgba(196, 30, 79, 0.4);
+  }
+  .kicker {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #6e675d;
+    margin-bottom: 8px;
+  }
+  .col.self .kicker {
+    color: #c41e4f;
+  }
+  .col h3 {
+    margin: 0 0 10px;
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(21px, 2.2vw, 26px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .col p {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.62;
+    color: #454037;
+    text-wrap: pretty;
+  }
+</style>
