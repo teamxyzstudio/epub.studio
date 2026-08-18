@@ -18,6 +18,7 @@ import HomeFreshness from '../components/HomeFreshness.astro';
 import { groups, href, suggestionsByExt, toolBySlug, allTools } from '../data/tools.js';
 import { HOW_IT_WORKS, faqPlain } from '../data/home-content.js';
 import { allAuthors } from '../data/authors.js';
+import { authorPhoto } from '../lib/author-photo.js';
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '../data/site.js';
 
 // Resolve the extension → slug map into the { n, href } shape the island renders.
@@ -43,6 +44,7 @@ const jsonLd = [
       name: a.name,
       url: `${SITE_URL}/authors/${a.slug}`,
       sameAs: a.sameAs,
+      ...(authorPhoto(a.slug) && { image: `${SITE_URL}${authorPhoto(a.slug)}` }),
     })),
   },
   {

@@ -6,6 +6,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import { allAuthors } from '../../data/authors.js';
+import { authorPhoto } from '../../lib/author-photo.js';
 import { getPosts } from '../../lib/posts.js';
 import { SITE_URL, SITE_NAME } from '../../data/site.js';
 
@@ -14,6 +15,7 @@ export function getStaticPaths() {
 }
 
 const { author } = Astro.props;
+const photo = authorPhoto(author.slug);
 const posts = (await getPosts()).filter((p) => p.data.author.name === author.name);
 
 const fmt = (d) =>
@@ -28,6 +30,7 @@ const jsonLd = [
       name: author.name,
       url: `${SITE_URL}/authors/${author.slug}`,
       sameAs: author.sameAs,
+      ...(photo && { image: new URL(photo, SITE_URL).href }),
       description: author.bio,
       worksFor: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     },
@@ -52,7 +55,15 @@ const nav = [
     <main id="main" class="main">
       <div class="kicker">AUTHOR</div>
       <div class="head">
-        <span class="avatar" aria-hidden="true">{author.initial}</span>
+        {
+          photo ? (
+            <img class="avatar" src={photo} alt="" width="52" height="52" decoding="async" />
+          ) : (
+            <span class="avatar" aria-hidden="true">
+              {author.initial}
+            </span>
+          )
+        }
         <h1>{author.name}</h1>
       </div>
       <p class="bio">{author.bio}</p>
@@ -111,6 +122,10 @@ const nav = [
     align-items: center;
     gap: 14px;
     margin-bottom: 14px;
+  }
+  img.avatar {
+    object-fit: cover;
+    border: 1px solid rgba(23, 19, 14, 0.14);
   }
   .avatar {
     flex: none;

@@ -7,6 +7,9 @@
 import HomeSection from './HomeSection.astro';
 import { BUILT_BY } from '../data/home-content.js';
 import { allAuthors } from '../data/authors.js';
+import { authorPhoto } from '../lib/author-photo.js';
+
+const people = allAuthors.map((a) => ({ ...a, photo: authorPhoto(a.slug) }));
 ---
 
 <HomeSection id="built-by" kicker="BUILT BY" title={BUILT_BY.title}>
@@ -14,13 +17,27 @@ import { allAuthors } from '../data/authors.js';
 
   <div class="people">
     {
-      allAuthors.map((a) => (
+      people.map((a) => (
         <div class="person">
-          {/* TODO: verify — replace the initial avatar with a real photograph
-              once the owners supply one. No stock image stands in for a person. */}
-          <span class="avatar" aria-hidden="true">
-            {a.initial}
-          </span>
+          {/* A real photograph when public/authors/<slug>.* exists, the
+              initial otherwise. No stock image ever stands in for a person.
+              alt="" because the name is right beside it — a screen reader
+              reading it twice is noise. Below the fold, so lazy. */}
+          {a.photo ? (
+            <img
+              class="avatar"
+              src={a.photo}
+              alt=""
+              width="46"
+              height="46"
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <span class="avatar" aria-hidden="true">
+              {a.initial}
+            </span>
+          )}
           <div class="who">
             <span class="name">{a.name}</span>
             <p class="bio">{a.bio}</p>
@@ -78,6 +95,10 @@ import { allAuthors } from '../data/authors.js';
     justify-content: center;
     font-family: 'Instrument Serif', serif;
     font-size: 22px;
+  }
+  img.avatar {
+    object-fit: cover;
+    border: 1px solid rgba(23, 19, 14, 0.14);
   }
   .who {
     min-width: 0;

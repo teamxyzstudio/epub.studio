@@ -28,7 +28,10 @@ const PEOPLE = {
     slug: 'shahid-ansari',
     name: 'Shahid Ansari',
     initial: 'S',
-    links: [{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/ansarishahid/' }],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/ansarishahid' },
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ansarishahid/' },
+    ],
     bio: 'Co-founder of Epub Studio. He works on the product end to end — the tools, the typography, and the words — and reviews what the site publishes so that every guide matches how the converters actually behave.',
   },
 };
