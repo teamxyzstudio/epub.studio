@@ -1,0 +1,68 @@
+---
+/**
+ * §2.1 — the three-step mechanism, plus two sentences on how it actually
+ * works. Deliberately link-free: the drop zone above already carries that
+ * intent, and a link here would compete with it.
+ */
+import HomeSection from './HomeSection.astro';
+import { HOW_IT_WORKS } from '../data/home-content.js';
+---
+
+<HomeSection id="how-it-works" kicker="HOW IT WORKS" title={HOW_IT_WORKS.title}>
+  <ol class="steps">
+    {
+      HOW_IT_WORKS.steps.map((s, i) => (
+        <li>
+          <span class="num">{String(i + 1).padStart(2, '0')}</span>
+          <span class="t">{s.t}</span>
+          <span class="d">{s.d}</span>
+        </li>
+      ))
+    }
+  </ol>
+  <p class="body">{HOW_IT_WORKS.body}</p>
+</HomeSection>
+
+<style>
+  .steps {
+    list-style: none;
+    margin: 0 0 clamp(18px, 2.5vw, 26px);
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    gap: 12px;
+  }
+  .steps li {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #c41e4f;
+  }
+  .t {
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .d {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: #6e675d;
+    text-wrap: pretty;
+  }
+  .body {
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #26211a;
+    max-width: 68ch;
+    text-wrap: pretty;
+  }
+</style>

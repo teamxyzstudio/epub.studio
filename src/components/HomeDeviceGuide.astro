@@ -1,0 +1,75 @@
+---
+/**
+ * §2.4 — device → format. Each row is genuinely about one conversion path,
+ * which is what makes a single contextual link per row appropriate here.
+ */
+import HomeSection from './HomeSection.astro';
+import RichText from './RichText.astro';
+import { DEVICE_GUIDE } from '../data/home-content.js';
+---
+
+<HomeSection id="which-format" kicker="PICK A FORMAT" title="Which format for which device">
+  <dl class="rows">
+    {
+      DEVICE_GUIDE.map((row) => (
+        <div class="row">
+          <dt>
+            <span class="device">{row.device}</span>
+            <span class="fmt">{row.format}</span>
+          </dt>
+          <dd>
+            <RichText parts={row.body} />
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</HomeSection>
+
+<style>
+  .rows {
+    margin: 0;
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px clamp(16px, 3vw, 32px);
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  dt {
+    flex: 0 1 240px;
+    min-width: min(100%, 200px);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .device {
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: #17130e;
+    text-wrap: balance;
+  }
+  .fmt {
+    align-self: flex-start;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    color: #6e675d;
+    background: rgba(23, 19, 14, 0.07);
+    border-radius: 4px;
+    padding: 2px 6px;
+  }
+  dd {
+    flex: 1 1 380px;
+    min-width: min(100%, 280px);
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #454037;
+    max-width: 66ch;
+    text-wrap: pretty;
+  }
+</style>

@@ -68,7 +68,7 @@ const jsonLd = [
       url: SITE_URL,
       ...(authorByName(post.data.author.name) && {
         url: `${SITE_URL}/authors/${authorByName(post.data.author.name).slug}`,
-        sameAs: [authorByName(post.data.author.name).linkedin],
+        sameAs: authorByName(post.data.author.name).sameAs,
       }),
     },
     publisher: {

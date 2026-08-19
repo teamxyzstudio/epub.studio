@@ -1,0 +1,161 @@
+---
+/**
+ * The people behind the site, for /about.
+ *
+ * Renders no heading of its own so the host page keeps its own prose rhythm.
+ * Names link to their author pages; the only other links are external
+ * profiles, which is the whole point of the section.
+ */
+import { allAuthors, TEAM } from '../data/authors.js';
+import { authorPhoto } from '../lib/author-photo.js';
+
+const people = allAuthors.map((a) => ({ ...a, photo: authorPhoto(a.slug) }));
+---
+
+<div class="built-by">
+  <p class="intro">{TEAM.intro}</p>
+
+  <div class="people">
+    {
+      people.map((a) => (
+        <div class="person">
+          {/* A real photograph when public/authors/<slug>.* exists, the
+              initial otherwise. No stock image ever stands in for a person.
+              alt="" because the name is right beside it — a screen reader
+              reading it twice is noise. */}
+          {a.photo ? (
+            <img
+              class="avatar"
+              src={a.photo}
+              alt=""
+              width="46"
+              height="46"
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <span class="avatar" aria-hidden="true">
+              {a.initial}
+            </span>
+          )}
+          <div class="who">
+            <a href={`/authors/${a.slug}`} class="name focus-ring-2">
+              {a.name}
+            </a>
+            <p class="bio">{a.bio}</p>
+            {/* Anchors name the person: several links reading "LinkedIn" would
+                be indistinguishable to a screen reader running through them. */}
+            <span class="profiles">
+              {a.links.map((l) => (
+                <a href={l.href} rel="me noopener" target="_blank" class="profile focus-ring-2">
+                  {l.site ? l.label : `${a.name} on ${l.label}`} →
+                </a>
+              ))}
+            </span>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="why">{TEAM.why}</p>
+</div>
+
+<style>
+  /* Scoped rules beat the host page's global `.prose p` on specificity, so
+     these paragraphs keep the card treatment rather than the reading serif. */
+  .built-by {
+    margin: 0 0 1.2em;
+  }
+
+  .intro {
+    margin: 0 0 16px;
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #26211a;
+    text-wrap: pretty;
+  }
+
+  .people {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .person {
+    display: flex;
+    gap: 14px;
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .avatar {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #17130e;
+    color: #fffdf9;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+  }
+  img.avatar {
+    object-fit: cover;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .who {
+    min-width: 0;
+  }
+  .name {
+    display: block;
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: #17130e;
+    text-decoration: none;
+    margin-bottom: 6px;
+  }
+  .name:hover {
+    color: #c41e4f;
+  }
+  .bio {
+    margin: 0 0 10px;
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #454037;
+    text-wrap: pretty;
+  }
+  .profiles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+  .profile {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #c41e4f;
+    text-decoration: none;
+  }
+  .profile:hover {
+    color: #17130e;
+  }
+
+  .why {
+    margin: 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+    font-family: 'Literata', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.72;
+    color: #26211a;
+    text-wrap: pretty;
+  }
+</style>

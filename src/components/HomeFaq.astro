@@ -1,0 +1,84 @@
+---
+/**
+ * §2.9 — twelve questions. <details> rather than a JS accordion so the
+ * answers stay in the DOM when collapsed: they must be crawlable, and they
+ * are the exact text the FAQPage JSON-LD carries.
+ */
+import HomeSection from './HomeSection.astro';
+import RichText from './RichText.astro';
+import { HOME_FAQS } from '../data/home-content.js';
+---
+
+<HomeSection id="faq" kicker="FAQ" title="Questions people ask">
+  <div class="faq">
+    {
+      HOME_FAQS.map((f, i) => (
+        <details class="faq-item" open={i === 0}>
+          <summary class="focus-ring-inset">
+            <h3>{f.q}</h3>
+            <span class="chev" aria-hidden="true">
+              ＋
+            </span>
+          </summary>
+          <p>
+            <RichText parts={f.a} />
+          </p>
+        </details>
+      ))
+    }
+  </div>
+</HomeSection>
+
+<style>
+  .faq {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .faq-item {
+    border-bottom: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .faq-item summary {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 2px;
+    cursor: pointer;
+    min-height: 44px;
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item summary h3 {
+    margin: 0;
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: #17130e;
+  }
+  .faq-item summary:hover h3 {
+    color: #c41e4f;
+  }
+  .chev {
+    font-size: 18px;
+    color: #ff2e63;
+    transition: transform 0.2s;
+    flex: none;
+  }
+  .faq-item[open] .chev {
+    transform: rotate(45deg);
+  }
+  .faq-item p {
+    margin: 0;
+    padding: 0 2px 18px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #454037;
+    max-width: 70ch;
+    text-wrap: pretty;
+  }
+</style>
