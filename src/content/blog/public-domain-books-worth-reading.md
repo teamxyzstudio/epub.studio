@@ -4,12 +4,34 @@ excerpt: 'Not all free editions are equal. How to tell a carefully produced text
 category: 'How-to'
 ogImage: '/blog-og/public-domain-books-worth-reading.png'
 date: 2026-04-19
+updated: 2026-08-20
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - epub-reader
   - epub-validator
+howToTitle: 'How to improve a rough public domain edition'
+howTo:
+  - t: 'Check Standard Ebooks first'
+    d: 'If they have the title, stop looking — the edition will be better than anything you would repair by hand. Fall back to Project Gutenberg for breadth, and the Internet Archive only when nothing else has the book.'
+  - t: 'Run it through the Validator'
+    d: 'Structural faults come first: a manifest listing a file that is not there, a navigation document that goes nowhere. The Validator names the specific failure rather than reporting a vague error.'
+  - t: 'Fix the metadata'
+    d: 'Rewrite the title, author and language in the Metadata Editor so the book files correctly instead of sitting in your library as "Unknown Author".'
+  - t: 'Re-typeset it in Style Studio'
+    d: 'A decent typeface, a 60–75 character measure and sane leading turn a plain Gutenberg text into something genuinely pleasant to read.'
+faqs:
+  - q: 'Which source has the best-quality public domain ebooks?'
+    a: 'Standard Ebooks, by a wide margin. Volunteers re-typeset each text properly — modernised punctuation, real semantic markup, considered covers, valid EPUB 3 — so the edition is usually better than anything you would produce yourself. The catalogue is small, around a thousand titles, so check there first and fall back to Project Gutenberg for breadth.'
+  - q: 'How can I tell a good free edition from a bad one quickly?'
+    a: 'Open it and jump to a chapter break. A good edition has a real heading and a working table of contents; a bad one has a line of capitals floating in the text and a contents list that goes nowhere. Absent metadata is the other quick tell — a book showing as "Unknown Author" was not made with care.'
+  - q: 'Can OCR errors in a scanned book be repaired?'
+    a: 'Not by any tool. Structural problems, metadata and typography are fixable in minutes; errors in the words themselves need a better source. Search the file for "modem" and "fhall" — if either turns up in a book that has nothing to do with modems, the text was OCRd without proofreading and there will be hundreds more errors you have not found.'
+  - q: 'Does public domain mean every edition of the book is free to use?'
+    a: 'No. Copyright expires a set number of years after the authors death — 70 in the EU, UK and US for most modern works — which frees the text, not every edition of it. A new translation is a new copyrighted work, and so are original annotations, scholarly introductions and often the typesetting and cover design. For reading this rarely matters; for republishing, check which edition you started from.'
+  - q: 'Is Project Gutenberg still worth using?'
+    a: 'Yes, for breadth: it is the largest and oldest archive at over 70,000 titles and the EPUBs are functional. Quality varies because the texts span decades of transcription practice, so expect to fix metadata and typography yourself — both of which take minutes.'
 ---
 
 Public domain books are free, which makes it easy to forget that the *edition* still matters enormously. Two copies of the same novel can differ by decades of editorial work.

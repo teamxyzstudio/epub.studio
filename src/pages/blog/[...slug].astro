@@ -9,7 +9,7 @@ import LogoMark from '../../components/LogoMark.astro';
 import ArticleChrome from '../../components/islands/ArticleChrome.vue';
 import { authorByName } from '../../data/authors.js';
 import ShareButton from '../../components/islands/ShareButton.vue';
-import { getPosts, readTime, formatDate, tocFrom } from '../../lib/posts.js';
+import { getPosts, readTime, formatDate, tocFrom, howToTitle } from '../../lib/posts.js';
 import { toolBySlug } from '../../data/tools.js';
 import { SITE_URL, SITE_NAME, OG_IMAGE } from '../../data/site.js';
 
@@ -31,7 +31,22 @@ export async function getStaticPaths() {
 const { post, posts } = Astro.props;
 const { Content, headings } = await render(post);
 
-const toc = tocFrom(headings);
+/**
+ * One table of contents feeds both the sticky sidebar and the in-article list,
+ * so the two never disagree. The generated sections are real h2s on the page,
+ * so they belong in it alongside the body's own headings.
+ */
+const toc = [
+  ...tocFrom(headings),
+  ...(post.data.howTo.length ? [{ id: 'steps', label: howToTitle(post.data) }] : []),
+  ...(post.data.faqs.length ? [{ id: 'faq', label: 'Frequently asked questions' }] : []),
+];
+/**
+ * The sidebar is desktop-only, so the article carries its own copy — server
+ * rendered, which is what makes the section links crawlable and gives phone
+ * readers the same map of the page.
+ */
+const showToc = post.data.toc && toc.length >= 3;
 const path = `/blog/${post.id}`;
 
 const tools = post.data.tools
@@ -51,10 +66,16 @@ const related = posts
 
 const ogImage = post.data.ogImage || OG_IMAGE;
 
+/**
+ * BlogPosting (not the broader Article) because that is what these pages are,
+ * plus FAQPage and HowTo when the post carries those sections. Every value is
+ * read from frontmatter that the template also renders visibly, which is how
+ * the markup stays consistent with the page by construction.
+ */
 const jsonLd = [
   {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.data.title,
     description: post.data.excerpt,
     articleSection: post.data.category,
@@ -88,6 +109,36 @@ const jsonLd = [
       { '@type': 'ListItem', position: 3, name: post.data.title, item: `${SITE_URL}${path}` },
     ],
   },
+  ...(post.data.howTo.length
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'HowTo',
+          name: howToTitle(post.data),
+          description: post.data.excerpt,
+          step: post.data.howTo.map((s, i) => ({
+            '@type': 'HowToStep',
+            position: i + 1,
+            name: s.t,
+            text: s.d,
+            url: `${SITE_URL}${path}#step-${i + 1}`,
+          })),
+        },
+      ]
+    : []),
+  ...(post.data.faqs.length
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: post.data.faqs.map((f) => ({
+            '@type': 'Question',
+            name: f.q,
+            acceptedAnswer: { '@type': 'Answer', text: f.a },
+          })),
+        },
+      ]
+    : []),
 ];
 ---
 
@@ -164,9 +215,70 @@ const jsonLd = [
           )
         }
 
+        {
+          showToc && (
+            <nav class="toc-card" aria-labelledby="toc-heading">
+              <h2 class="toc-heading" id="toc-heading">
+                What's on this page
+              </h2>
+              <ol class="toc-list">
+                {toc.map((t) => (
+                  <li>
+                    <a href={`#${t.id}`} class="focus-ring-2">
+                      {t.label}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )
+        }
+
         <div class="prose">
           <Content />
         </div>
+
+        {
+          post.data.howTo.length > 0 && (
+            /* A recap of the procedure the body just walked through — the
+               visible counterpart of the HowTo markup, in the same order. */
+            <section class="block" id="steps">
+              <h2 class="block-h2">{howToTitle(post.data)}</h2>
+              <ol class="howto">
+                {post.data.howTo.map((step, i) => (
+                  <li id={`step-${i + 1}`}>
+                    <span class="step-num">{String(i + 1).padStart(2, '0')}</span>
+                    <div class="step-title">{step.t}</div>
+                    <div class="step-body">{step.d}</div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )
+        }
+
+        {
+          post.data.faqs.length > 0 && (
+            <section class="block" id="faq">
+              <h2 class="block-h2">Frequently asked questions</h2>
+              <div class="faq">
+                {/* First one open, the rest closed — the home page's pattern,
+                    so one answer is visible without hiding the whole block. */}
+                {post.data.faqs.map((f, i) => (
+                  <details class="faq-item" open={i === 0}>
+                    <summary class="focus-ring-inset">
+                      <span>{f.q}</span>
+                      <span class="chev" aria-hidden="true">
+                        ＋
+                      </span>
+                    </summary>
+                    <p>{f.a}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )
+        }
 
         <div class="cta-card">
           <div class="cta-copy">
@@ -368,6 +480,160 @@ const jsonLd = [
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11.5px;
     color: #6e675d;
+  }
+
+  /* --- In-article table of contents --- */
+  /* Complements the sticky sidebar rather than repeating it: this card shows
+     exactly where the sidebar does not (under 760px), so no viewport ever
+     renders the same list twice. It is plain server HTML, which is what makes
+     the section links crawlable — and mobile-first indexing renders it at the
+     width where it is the visible one. */
+  .toc-card {
+    border: 1px solid rgba(23, 19, 14, 0.16);
+    border-left: 3px solid #ff2e63;
+    border-radius: 12px;
+    background: #fffdf9;
+    padding: 18px 20px;
+    margin: 0 0 30px;
+  }
+  .toc-heading {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e675d;
+    margin: 0 0 10px;
+  }
+  .toc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc;
+    display: grid;
+    gap: 7px;
+  }
+  .toc-list li {
+    counter-increment: toc;
+    display: flex;
+    gap: 10px;
+    font-size: 14.5px;
+    line-height: 1.4;
+  }
+  .toc-list li::before {
+    content: counter(toc, decimal-leading-zero);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    /* Pink Ink, not Electric Pink: 12px text must clear WCAG AA (4.5:1). */
+    color: #c41e4f;
+    flex: none;
+    padding-top: 2px;
+  }
+  .toc-list a {
+    color: #17130e;
+    text-decoration: none;
+  }
+  .toc-list a:hover {
+    color: #c41e4f;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  @media (min-width: 760px) {
+    .toc-card {
+      display: none;
+    }
+  }
+
+  /* --- Steps recap + FAQ (shared shell) --- */
+  .block {
+    margin-top: clamp(32px, 4.5vw, 48px);
+    scroll-margin-top: 88px;
+  }
+  .block-h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(24px, 2.6vw, 32px);
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+  }
+
+  .howto {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    gap: 14px;
+  }
+  .howto li {
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.14);
+    border-radius: 10px;
+    padding: 16px;
+    scroll-margin-top: 88px;
+  }
+  .step-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #c41e4f;
+  }
+  .step-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 6px 0 4px;
+  }
+  .step-body {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: #6e675d;
+  }
+
+  .faq {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .faq-item {
+    border-bottom: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .faq-item summary {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 2px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #17130e;
+    cursor: pointer;
+    min-height: 44px;
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item summary:hover {
+    color: #c41e4f;
+  }
+  .chev {
+    font-size: 18px;
+    color: #ff2e63;
+    transition: transform 0.2s;
+    transform: rotate(0deg);
+    flex: none;
+  }
+  .faq-item[open] .chev {
+    transform: rotate(45deg);
+  }
+  .faq-item p {
+    margin: 0;
+    padding: 0 2px 16px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #454037;
+    max-width: 65ch;
+    text-wrap: pretty;
   }
 
   /* --- CTA card --- */

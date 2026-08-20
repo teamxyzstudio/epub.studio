@@ -4,12 +4,34 @@ excerpt: 'Amazon dropped MOBI support for docs. Converting your library to EPUB 
 category: 'Kindle'
 ogImage: '/blog-og/mobi-is-dead.png'
 date: 2026-05-12
+updated: 2026-08-20
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - mobi-to-epub
   - azw3-to-epub
+howToTitle: 'How to migrate a MOBI library to EPUB'
+howTo:
+  - t: 'Find the files'
+    d: 'Connect the Kindle by USB and look in the documents folder. Only books downloaded to that device are there; the sidecar folders holding annotations and reading position do not convert and do not need to.'
+  - t: 'Convert to EPUB, not AZW3'
+    d: 'Drop .mobi and .prc files into MOBI to EPUB, and .azw3 and .azw into AZW3 to EPUB. Both run in your browser, so a personal library never leaves your machine.'
+  - t: 'Work in batches and keep the originals'
+    d: 'Conversion is not lossless. For a larger library, convert a batch, check the output, and treat the original files as your fallback until you have.'
+  - t: 'Fix the metadata'
+    d: 'Old MOBI files are notorious for empty author fields and titles like book1. The Metadata Editor rewrites title, author and language without re-encoding the rest of the book.'
+faqs:
+  - q: 'Can I still send MOBI files to my Kindle?'
+    a: 'No. Amazon stopped accepting MOBI through Send-to-Kindle in August 2022. The change ended MOBI only as an input — books already on a device still open — but emailing one to a Kindle no longer works.'
+  - q: 'Should I convert MOBI to AZW3 or to EPUB?'
+    a: 'EPUB. Converting to AZW3 moves a library from one proprietary format to another. EPUB is an open W3C standard that every reader on every platform opens, Kindle included since 2022, and an AZW3, a PDF or a compressed copy can be generated from it whenever a device needs one.'
+  - q: 'Can DRM-protected Kindle books be converted?'
+    a: 'No. Books bought from the Kindle Store are encrypted and no converter can open them, ours included. Conversion works on books you wrote, DRM-free purchases, public domain texts and anything you made yourself.'
+  - q: 'What is the difference between .mobi, .prc, .azw, .azw3 and .kfx?'
+    a: '.mobi and .prc are the same original pre-2011 format under two extensions. .azw is MOBI in an Amazon wrapper. .azw3 is KF8, the format Amazon has built on since 2011. .kfx is the newest and heavily protected, and there is essentially nothing a converter can do with it.'
+  - q: 'Do highlights and reading position survive conversion?'
+    a: 'No. Annotations, highlights and reading position are stored by Amazon against their own position system and do not travel. What does come across is the text, the chapter structure, the table of contents and usually the cover — which is the book.'
 ---
 
 In August 2022 Amazon stopped accepting MOBI through Send-to-Kindle. It was not dramatic — the format had been superseded internally for a decade — but it left a lot of people with folders full of files that no longer have an obvious home.

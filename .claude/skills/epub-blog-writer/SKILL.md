@@ -2,10 +2,10 @@
 name: epub-blog-writer
 description: Write SEO blog posts for epub.studio in two modes. Mode A — the user gives a topic or keyword (or a row from content-ops/backlog.md) and the skill writes the post. Mode B — the user gives no keyword ("find a question on Reddit and write a blog", "write this week's mined blog") and the skill mines public communities, derives the keyword, checks content-ops/keyword-map.csv, announces the pick, and writes. Output is a schema-valid Markdown file in src/content/blog/ plus a generated OG card. Trigger on "write a blog", "blog post about", "mined blog", or any request for an EPUB-related article.
 metadata:
-  version: 3.1.0
+  version: 3.2.0
   site: epub.studio
   stack: Astro content collection (Zod-validated frontmatter) + scripts/og-card.mjs
-  google-alignment: people-first content self-assessment · spam policies (scaled content abuse, keyword stuffing) · AI-content policy · E-E-A-T · structured-data consistency · date honesty
+  google-alignment: people-first content self-assessment · spam policies (scaled content abuse, keyword stuffing) · AI-content policy · E-E-A-T · structured-data consistency (BlogPosting + FAQPage + HowTo) · date honesty
 ---
 
 # EPUB Blog Writer (epub.studio)
@@ -95,22 +95,38 @@ author:
   initial: 'M'           # matching initial from authors.js
 tools:                         # 1–3 slugs from the Link targets list; drives the "Tools mentioned" sidebar
   - epub-validator
+howToTitle: 'How to fix an EPUB cover that will not show'   # only with howTo below
+howTo:                         # ONLY when the post walks an ordered procedure → HowTo schema
+  - t: 'Check the cover is marked, not just present'
+    d: 'One sentence of what to do and what you will see. Restates a step the body already walks through, in the body''s order.'
+  - t: 'Re-mark it'
+    d: 'Second step. Two to six steps total; fewer than two is not a procedure.'
+faqs:                          # MANDATORY, 3–8 questions → FAQPage schema
+  - q: 'Real question, in the reader''s words'
+    a: 'A complete answer in 2–4 sentences, plain text (no Markdown, no links — it renders as a paragraph and ships as schema).'
 draft: false                   # true when the post should build but not publish
 ---
 ```
 
 Escape a literal apostrophe inside single-quoted YAML by doubling it (`Here''s`).
-Do **not** set `readTime` (computed from word count) or `featured` (editorial
-decision, one post site-wide, only on explicit instruction).
+Do **not** set `readTime` (computed from word count), `toc` (the table of
+contents is on by default and the template hides it below three entries) or
+`featured` (editorial decision, one post site-wide, only on explicit
+instruction).
 
 **Category guide:** task walkthrough → How-to · concept/standard/format → Formats
 explained · reading design, fonts, spacing → Typesetting · anything Amazon/Kindle
 → Kindle · troubleshooting an error or broken file → Fix it.
 
-Structured data (Article, BreadcrumbList, dates, author, image) is emitted by
-the template from this frontmatter — which is what keeps Google's
-"structured data must match visible content" rule automatically true. Never
-hand-write schema in the body.
+### Schema — all of it comes from frontmatter
+
+The template emits **BlogPosting** and **BreadcrumbList** on every post, plus
+**FAQPage** from `faqs:` and **HowTo** from `howTo:`. Each of those blocks is
+also rendered visibly on the page from the same frontmatter, which is what
+keeps Google's "structured data must match visible content" rule true by
+construction. Never hand-write JSON-LD, a `<script type="application/ld+json">`
+block, or an FAQ/steps section in the Markdown body — you would duplicate the
+generated one and break the match.
 
 ## Length & structure
 
@@ -146,14 +162,73 @@ Default body shape (h2s only in the TOC, so make them carry the argument):
    Calibre/Sigil is the right answer. This is the corpus's signature move and
    its strongest trust signal.
 6. **Closing section** with a natural next step — the primary tool CTA lives
-   here in prose. No "Conclusion" heading, no summary-of-the-summary. FAQ
-   sections are OPTIONAL and rare (tool pages own FAQPage schema; don't
-   duplicate their questions — and Google no longer shows FAQ rich results for
-   ordinary sites anyway).
+   here in prose. No "Conclusion" heading, no summary-of-the-summary.
+7. **FAQs** — in frontmatter, not the body. See below.
 
-The template auto-renders: byline, reading time, TOC from h2s, "Tools mentioned"
-sidebar (from `tools:`), the end-of-article CTA card, and "Keep reading"
+The template auto-renders: byline, reading time, the table of contents,
+"Tools mentioned" sidebar (from `tools:`), the steps recap (from `howTo:`),
+the FAQ block (from `faqs:`), the end-of-article CTA card, and "Keep reading"
 (same-category posts). Never hand-build any of those in the body.
+
+## Table of contents (automatic — but the h2s are yours)
+
+The template builds it from the post's h2s plus the generated sections, renders
+it as a numbered card under the byline on phones and as the sticky sidebar on
+desktop, and lists it once per viewport either way. Nothing to write — but it
+means **the h2s are the article's outline in public**. A reader decides from
+that list whether to stay, so headings have to name what the section settles
+("Why the mimetype rule is so strict"), not label it ("Background"). A post
+with fewer than three entries renders no card, which is the honest outcome for
+something that short.
+
+## FAQs (mandatory, 3–8 per post)
+
+Every post carries between three and eight questions in `faqs:`. The build
+rejects one and two (a pair of questions is not a FAQ); it rejects nine or more
+(past eight the block stops being scannable and starts padding). Zero is legal
+only for posts published before 2026-08-20, which the daily backfill is working
+through — see `content-ops/faq-backfill.md`.
+
+What makes the block worth its space:
+
+- **Real questions, in the reader's vocabulary.** The ones a person actually
+  types or asks in r/ebooks — "Why does re-zipping an EPUB break it?", not
+  "What are the considerations regarding archive compression?".
+- **Answered from this post.** Every answer must be supported by the body: the
+  FAQ compresses what the article establishes, it does not smuggle in new
+  claims that dodged the verification rules. If an answer needs a fact the post
+  does not have, either the post is incomplete or the question does not belong.
+- **Not a restatement of an h2.** If the answer is "read section three", cut
+  the question. FAQs earn their place by catching the questions the body's
+  structure leaves un-headed.
+- **2–4 sentences, complete on their own.** They render as a paragraph and ship
+  as `acceptedAnswer` text, so a reader who only sees the answer in a search
+  result still gets a straight answer.
+- **Plain text.** No Markdown, no links, no HTML — the value goes into JSON-LD
+  verbatim. Put the link in the body where it belongs.
+- **Don't duplicate the tool pages.** Those own their own FAQPage blocks; a
+  blog FAQ answers the informational question, not "is the converter free".
+- Voice rules apply here exactly as in the body — same directness, same honest
+  edges, same banned phrases.
+
+## HowTo (only where a post genuinely walks a procedure)
+
+Set `howTo:` when the post walks through an ordered procedure someone follows
+to completion — a migration, a repair, a conversion. Do NOT set it for a
+concept explainer, a comparison, or a list of principles: four typography rules
+are not four steps, and a HowTo block that describes no procedure is exactly
+the structured-data mismatch Google penalises.
+
+- **2–6 steps.** Each `t` is the action; each `d` is one or two sentences of
+  what to do and what you will see.
+- **They restate the body's own steps, in the body's own order.** The block
+  renders visibly as a numbered recap, so it has to be a condensation of a
+  procedure the article already walks through — never a step the body omits.
+- `howToTitle` is the recap's heading and the HowTo `name`: phrase it as the
+  task ("How to migrate a MOBI library to EPUB"). Omit it and the block is
+  headed "The steps, in short".
+- Category is not the test. A How-to post with no single ordered procedure gets
+  no `howTo`; a Fix it post that walks a repair start to finish gets one.
 
 ## Proof-of-experience artifacts (mandatory since 2026-08-05)
 
@@ -324,8 +399,9 @@ would fall back to system fonts):
    blog, live) and `content-ops/backlog.md` (remove/annotate the used row; add
    Mode B backups to Queued).
 5. Report in chat: 3–4 lines — keyword + intent, chosen angle, which
-   people-first gates the post passes and with what evidence, word count, file
-   paths. Never paste the full post into chat.
+   people-first gates the post passes and with what evidence, word count, FAQ
+   count, whether a HowTo block was warranted, file paths. Never paste the full
+   post into chat.
 
 ## QA checklist (run silently, fix before delivering)
 
@@ -333,8 +409,8 @@ would fall back to system fonts):
 - [ ] People-first gates pass: information gain named (which two elements?),
       bookmark test, complete-for-scope, honest title, no unmaintained year
 - [ ] Frontmatter: category is one of the 5 exact values; excerpt 140–160 chars
-      with keyword; `date` = today, no backdating; author Epub Studio/E;
-      apostrophes doubled
+      with keyword; `date` = today, no backdating; author is a registered
+      person from authors.js with matching initial; apostrophes doubled
 - [ ] Slug = keyword, kebab-case; file in `src/content/blog/`; slug will never
       need to change
 - [ ] Keyword in title (≤60 chars), first 100 words, one natural heading; no
@@ -347,6 +423,14 @@ would fall back to system fonts):
       was rephrased/cut; prices dated; zero vague authority phrases
 - [ ] Tool-behaviour claims were reproduced this session (or restricted to
       code-verifiable facts); no invented "we tested" voice
+- [ ] 3–8 `faqs:`, each a real reader question, each answered from this post's
+      own body, none restating an h2, 2–4 sentences, plain text
+- [ ] `howTo:` present iff the post walks one ordered procedure; 2–6 steps that
+      restate the body's steps in the body's order; `howToTitle` phrased as the
+      task
+- [ ] No hand-written JSON-LD, FAQ section or steps list in the Markdown body —
+      the template generates all three from frontmatter
+- [ ] h2s read as a usable outline (they are the visible table of contents)
 - [ ] Honest-edges section present; DRM stance intact; no false privacy claims
 - [ ] Voice rules pass a skeptical re-read; banned phrases absent; -ise spelling
 - [ ] OG card generated + `ogImage` set; infographic (if any) matches body

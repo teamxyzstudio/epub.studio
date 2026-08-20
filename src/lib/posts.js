@@ -44,3 +44,10 @@ export const toCard = (post) => ({
  */
 export const tocFrom = (headings) =>
   headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, label: h.text }));
+
+/**
+ * Heading for a post's steps recap, shared by the visible block, the TOC entry
+ * and the HowTo markup so all three read the same. Posts that want different
+ * wording set `howToTitle` in frontmatter.
+ */
+export const howToTitle = (data) => data.howToTitle || 'The steps, in short';

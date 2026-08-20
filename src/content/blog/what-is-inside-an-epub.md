@@ -4,12 +4,25 @@ excerpt: 'Rename it to .zip and look. Understanding the five pieces makes every 
 category: 'Formats explained'
 ogImage: '/blog-og/what-is-inside-an-epub.png'
 date: 2026-04-27
-updated: 2026-08-05
+updated: 2026-08-20
 author:
   name: 'Shahid Ansari'
   initial: 'S'
 tools:
   - epub-validator
+faqs:
+  - q: 'Can I really just rename an EPUB to .zip and open it?'
+    a: 'Yes — an EPUB is a ZIP archive with rules. Copy the file first, rename the copy to .zip, unzip it, and every part of the book is readable in a text editor. Doing this once makes most ebook troubleshooting obvious.'
+  - q: 'What is the difference between the manifest and the spine?'
+    a: 'The manifest is what exists; the spine is what order to read it in. Every file in the book — chapters, stylesheets, images, fonts, the navigation document — has to be listed in the manifest. The spine references manifest ids and covers only documents read in sequence, which is why an image belongs in the manifest and not the spine.'
+  - q: 'Why does re-zipping an EPUB break it?'
+    a: 'Because the mimetype entry must be the first in the archive and stored uncompressed, and a normal archiver compresses everything. ZIP has no type field, so the spec bolts a magic number onto it: a reader identifies an EPUB by reading the first few dozen bytes. Re-zip with a standard tool and the book is intact and unopenable.'
+  - q: 'Why are EPUB chapters XHTML rather than HTML?'
+    a: 'XHTML is XML, so parsing is strict — an unclosed tag is a fatal error rather than something the parser guesses around. It is why a chapter can render perfectly in a browser and still break an e-reader.'
+  - q: 'Does an EPUB 3 file still need toc.ncx?'
+    a: 'EPUB 3 replaced the NCX with nav.xhtml, but well-built books ship both because older devices only understand the NCX. Shipping both costs a couple of kilobytes, which is a cheap price for hardware still in daily use.'
+  - q: 'My book has a cover image but shows a blank thumbnail. Why?'
+    a: 'The file is there but nothing marks it as the cover. EPUB 3 marks it with properties="cover-image" on the manifest item; EPUB 2 used a meta name="cover" pointing at a manifest id. Readers look for either, so a book can carry a perfectly good cover that no library ever displays.'
 ---
 
 An EPUB is a ZIP archive with rules. Copy one, rename the copy to `.zip`, unzip it, and you can read every part of it in a text editor. Doing this once makes most ebook troubleshooting obvious.
