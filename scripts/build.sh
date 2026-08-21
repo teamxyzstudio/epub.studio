@@ -24,3 +24,6 @@ fi
 npx astro build "$@"
 # Human-readable sitemaps (crawlers don't care; the people checking them do).
 node "$(dirname "$0")/format-sitemaps.mjs"
+# Every published post and landing page must be in the sitemap, dated. Fails
+# the build if publishing one silently failed to reach it.
+node "$(dirname "$0")/check-sitemap.mjs"

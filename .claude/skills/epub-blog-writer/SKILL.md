@@ -387,11 +387,28 @@ would fall back to system fonts):
    "This question keeps surfacing in r/ebooks and on MobileRead: …". Only name
    communities actually searched.
 
+## Sitemap (automatic — do not hand-edit)
+
+There is no sitemap file to maintain. `@astrojs/sitemap` regenerates
+`/sitemap-index.xml` from the routes each build produces, so a published page
+is in it as soon as the build runs — and `scripts/check-sitemap.mjs` then fails
+the build if any published page is missing or misdated. Two things follow:
+
+- **`./scripts/build.sh` is the sitemap step.** If it exits 0, the new URL is
+  listed. Never edit `dist/`, never write a sitemap by hand, never add a page
+  to one manually.
+- **`<lastmod>` comes from frontmatter** — `updated` when set, otherwise
+  `date`. That is the same honesty rule as everywhere else: bump `updated` only
+  for a substantive revision, because a false `updated` becomes a false
+  freshness signal in the sitemap too. Pages with no content date (home, tool
+  pages) carry no `<lastmod>`, deliberately.
+
 ## Delivery & bookkeeping (every post)
 
 1. Write `src/content/blog/<slug>.md`.
 2. Generate the OG card; confirm `public/blog-og/<slug>.png` exists.
-3. **Build must pass** — schema violations fail here, which is the point:
+3. **Build must pass** — schema violations fail here, which is the point, and
+   it is also what puts the post in the sitemap (see below):
    ```bash
    ./scripts/build.sh
    ```
@@ -435,7 +452,8 @@ would fall back to system fonts):
 - [ ] Voice rules pass a skeptical re-read; banned phrases absent; -ise spelling
 - [ ] OG card generated + `ogImage` set; infographic (if any) matches body
       claims, brand palette, inline SVG with title/caption
-- [ ] `./scripts/build.sh` exits 0
+- [ ] `./scripts/build.sh` exits 0 (this is also the sitemap step — its
+      `check-sitemap` line must report the post present with the right lastmod)
 - [ ] keyword-map.csv + backlog.md updated
 
 ## Error handling

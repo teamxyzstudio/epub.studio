@@ -164,7 +164,8 @@ It runs two independent jobs per cycle: the FAQ backfill (≤5 existing posts,
 queued in `content-ops/faq-backfill.md`, retires when the queue empties) and
 the publish lane (≤1 new page).
 What already works unattended: both content lanes are data+markdown (no code
-changes per page), the sitemap regenerates on every build (@astrojs/sitemap),
+changes per page), the sitemap regenerates on every build (@astrojs/sitemap)
+and is verified against the published content by `scripts/check-sitemap.mjs`,
 OG cards are scripted, and guidance-type tool pages are pure data
 (`NO_ENGINE` + tools.js). Gaps, in priority order:
 

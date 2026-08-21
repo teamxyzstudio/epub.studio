@@ -147,7 +147,10 @@ Bookkeeping per the skill: content-ops/keyword-map.csv plus the lane's
 backlog file (move/annotate the row as shipped with today's date).
 
 VERIFY: ./scripts/build.sh must exit 0. If it fails, fix and re-run; never
-publish a broken build.
+publish a broken build. The build regenerates the sitemap from the routes it
+just built and then verifies it (`check-sitemap`), so the new page's URL and
+`<lastmod>` are covered by that exit code — there is no sitemap file to edit by
+hand, and a page missing from it fails the build rather than shipping quietly.
 
 PUBLISH (same-branch push; preflight already put you on main). The backfill
 batch is its own commit (above); this is a second one. Commit ONLY the files
