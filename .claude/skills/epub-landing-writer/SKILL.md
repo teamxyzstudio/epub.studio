@@ -113,10 +113,26 @@ the test — enrich the tool page instead.
    node scripts/og-card.mjs --slug <slug> --title "<h1>" --kicker "<TYPE LABEL>" --dir public/landing-og
    ```
    Kicker by type: `FOR <AUDIENCE>` · `COMPARISON` · `THE GUIDE` · `HOW-TO`.
-3. `./scripts/build.sh` must exit 0.
+3. `./scripts/build.sh` must exit 0 — this is also the sitemap step (below).
 4. Register: add the row to `content-ops/keyword-map.csv` (`type=landing`),
    update `content-ops/landing-backlog.md` (verdicts included).
 5. Report 3–4 lines in chat; PR flow for unattended runs, same as the blog.
+
+## Sitemap (automatic — do not hand-edit)
+
+There is no sitemap file to maintain. `@astrojs/sitemap` regenerates
+`/sitemap-index.xml` from the routes each build produces, so a published page
+is in it as soon as the build runs — and `scripts/check-sitemap.mjs` then fails
+the build if any published page is missing or misdated. Two things follow:
+
+- **`./scripts/build.sh` is the sitemap step.** If it exits 0, the new URL is
+  listed. Never edit `dist/`, never write a sitemap by hand, never add a page
+  to one manually.
+- **`<lastmod>` comes from frontmatter** — `updated` when set, otherwise
+  `date`. That is the same honesty rule as everywhere else: bump `updated` only
+  for a substantive revision, because a false `updated` becomes a false
+  freshness signal in the sitemap too. Pages with no content date (home, tool
+  pages) carry no `<lastmod>`, deliberately.
 
 ## Spreadsheet interface (when the user links topic research)
 
@@ -133,4 +149,5 @@ never silently dropped. No web access → work from the backlog only.
 - Comparison: every claim fetch-verified this session, sources dated,
   theirWins non-empty, zero unverifiable claims
 - People-first gates from the blog skill pass (information gain, no doorway)
-- OG card generated; build exits 0; map + backlog updated
+- OG card generated; build exits 0 and its `check-sitemap` line reports the
+  page present with the right lastmod; map + backlog updated

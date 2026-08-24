@@ -4,9 +4,21 @@ excerpt: 'Chapter openings are where a converted file gives itself away. Four fi
 category: 'Typesetting'
 ogImage: '/blog-og/ebook-chapter-openings.png'
 date: 2026-05-04
+updated: 2026-08-20
 author:
   name: 'Shahid Ansari'
   initial: 'S'
+faqs:
+  - q: 'Should the first paragraph of a chapter be indented?'
+    a: 'No. An indent signals "this paragraph continues from the last one", and the first paragraph after a heading has nothing to continue from. The same applies after a scene break, a block quote and an image — in each case something has already announced the break. A uniform indent applied everywhere is the most common tell in a converted file.'
+  - q: 'Indents or blank lines between paragraphs — which should I use?'
+    a: 'One or the other, never both: they solve the same problem twice, and using both reads as a document rather than a book. Fiction and narrative non-fiction conventionally use indents, which keeps the text block dense and even. Technical writing and anything read in fragments uses spacing, which is easier to scan and to re-enter after looking away.'
+  - q: 'How deep should a paragraph indent be?'
+    a: 'About one em — roughly the width of the letter M at your body size. Much less and it does not register at all; much more and it punches a visible hole in the left margin.'
+  - q: 'Are drop caps worth using in a reflowable ebook?'
+    a: 'Only if you can test them. A drop cap has to align to a text block whose size the reader controls, which makes it the easiest thing here to break. Three lines deep, no indent on that paragraph, and check it at the smallest and largest text sizes your readers can pick. A missing drop cap is invisible; a broken one is the first thing anyone sees.'
+  - q: 'How much space belongs above and below a heading?'
+    a: 'More above than below, usually around two to one. The gap belongs to the section that is beginning, and grouping the heading with the text it introduces is what makes the structure legible at a glance. Equal space leaves headings floating between the blocks they separate.'
 ---
 
 You can usually tell an auto-converted ebook from a typeset one within a paragraph, and it is rarely the body text that gives it away. It is the chapter opening.

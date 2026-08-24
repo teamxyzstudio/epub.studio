@@ -4,13 +4,38 @@ excerpt: 'Where the megabytes hide, and the compression settings that are invisi
 category: 'Fix it'
 ogImage: '/blog-og/reduce-epub-file-size.png'
 date: 2026-05-19
-updated: 2026-08-05
+updated: 2026-08-20
 author:
   name: 'Shahid Ansari'
   initial: 'S'
 tools:
   - epub-compressor
   - split-epub
+howToTitle: 'How to shrink an oversized EPUB'
+howTo:
+  - t: 'Look before you compress'
+    d: 'Rename a copy to .zip, unzip it and sort the contents by size. If the biggest file in the book is 40 KB it is not image-heavy and compression has nothing to work on — usually an embedded font set or a stray video is the cause.'
+  - t: 'Pick a level'
+    d: 'Balanced — 1400px at quality 70 — is the right answer for nearly every book. Light (2000px, 85%) suits photography and art; Maximum (1000px, 50%) is for fighting an email limit or reading on e-ink only.'
+  - t: 'Run the Compressor'
+    d: 'Only raster images are re-encoded, and only where the result is actually smaller. Text, markup and metadata come out byte-for-byte identical.'
+  - t: 'Split it if it is still too big'
+    d: 'Some books are legitimately large. Split the book into volumes — each part is a complete, valid EPUB with its own metadata and navigation, small enough to email and to sync.'
+faqs:
+  - q: 'Why is my EPUB so large?'
+    a: 'Almost always a handful of enormous images exported at print resolution. A full-length novel is about 500 KB, and the text of any book is typically under 1% of the file. Unzip a copy and sort the contents by size — the answer is usually immediate.'
+  - q: 'How much smaller does compression actually make a book?'
+    a: 'It depends on how oversized the images were. A two-page comic EPUB run through the Compressor went in at 99,804 bytes and came out at 56,026 — 43.9% smaller, with both pages intact. Nearly all of that saving came from the images, which is the pattern for almost every oversized EPUB.'
+  - q: 'Does compressing an EPUB damage the text?'
+    a: 'No. Only raster images are re-encoded, and only when the result is smaller. Text, markup and metadata come out byte-for-byte identical, SVG is left alone because it is vector and already tiny, and an already-optimised book reports "already optimal" rather than being degraded for no gain.'
+  - q: 'What image resolution does an ebook actually need?'
+    a: 'Roughly 2000 pixels on the long edge at most. A Kindle Paperwhite is 1236×1648 and a large tablet around 2048×2732, so anything beyond that is data no reader will ever display.'
+  - q: 'What does JPEG quality 70 mean in practice?'
+    a: 'It sets how aggressively the encoder discards high-frequency detail — fine texture, sharp edges, subtle gradients. At 85 the losses are essentially invisible on any screen; at 70 you can find them by pixel-peeping a photograph but not by reading; at 50 detailed images soften and smooth gradients can band. Hard-edged content suffers first, so use Light for a book that is mostly diagrams, screenshots or line art.'
+  - q: 'What if the book is still too big after compressing?'
+    a: 'Split it into volumes. Each part is a complete, valid EPUB with its own metadata and navigation, small enough to email and to sync — which for a reference work is often better anyway. If the bulk is embedded fonts rather than images, drop the embedding: four weights of a family can add a couple of hundred kilobytes for a benefit most readers override.'
+  - q: 'Why does file size cost self-publishers money?'
+    a: 'Amazon charges authors a delivery fee based on delivered file size in the 70% royalty band, so an uncompressed image-heavy book costs that difference on every copy sold. Send-to-Kindle also caps attachments at 50 MB, and most email providers stop at 25 MB.'
 ---
 
 A full-length novel is about 500 KB. If your book is 200 MB, the text is a rounding error and the images are the entire file.

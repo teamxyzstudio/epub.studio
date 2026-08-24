@@ -5,7 +5,7 @@ export const CATEGORIES = ['How-to', 'Formats explained', 'Typesetting', 'Kindle
 
 /**
  * Blog posts are Markdown files in src/content/blog. Everything the listing,
- * the article template, the RSS feed and the Article schema need comes from
+ * the article template, the RSS feed and the BlogPosting schema need comes from
  * this frontmatter — nothing about a post is hard-coded in a page.
  */
 const blog = defineCollection({
@@ -34,6 +34,35 @@ const blog = defineCollection({
     ogImage: z.string().optional(),
     /** Overrides the word-count estimate when you want an exact figure. */
     readTime: z.string().optional(),
+    /**
+     * Renders the in-article table of contents (h2s + the generated sections).
+     * Set false only for a post too short to have one — the template already
+     * hides it below three entries.
+     */
+    toc: z.boolean().default(true),
+    /**
+     * Questions answered at the foot of the article and emitted as FAQPage
+     * JSON-LD. A post carries either none or 3–8: one or two questions is not
+     * a FAQ, and past eight the block stops being scannable. Posts published
+     * before the FAQ mandate keep an empty array until the daily backfill
+     * reaches them — see content-ops/faq-backfill.md.
+     */
+    faqs: z
+      .array(z.object({ q: z.string(), a: z.string() }))
+      .max(8)
+      .default([])
+      .refine((f) => f.length === 0 || f.length >= 3, {
+        message: 'A post carries either no faqs or between 3 and 8 of them.',
+      }),
+    /** Heading for the steps recap; defaults to "How to do it, in short". */
+    howToTitle: z.string().optional(),
+    /**
+     * The post's procedure, condensed — rendered as a visible numbered recap
+     * and emitted as HowTo JSON-LD. Only for posts that genuinely walk through
+     * an ordered procedure, and the steps must restate the body's own steps in
+     * the body's own order (structured data has to match what is on the page).
+     */
+    howTo: z.array(z.object({ t: z.string(), d: z.string() })).default([]),
     draft: z.boolean().default(false),
   }),
 });
