@@ -12,6 +12,22 @@ export default defineConfig({
   // Canonicals, internal links, and the sitemap must agree on one URL form.
   // Everything site-side is slashless; this makes the sitemap match.
   trailingSlash: 'never',
+  /**
+   * The half of the slashless contract that `trailingSlash` does not cover.
+   *
+   * `trailingSlash` governs how Astro routes and emits URLs; the file layout
+   * comes from here, and the default ('directory') writes dist/about/index.html.
+   * Cloudflare Pages derives each asset's canonical URL from that layout — a
+   * directory with an index.html canonicalizes to '/about/', so it answered
+   * /about with a 308 to /about/, contradicting the slashless canonical tag on
+   * the page it eventually served.
+   *
+   * 'file' writes dist/about.html instead, so Pages canonicalizes the other
+   * way: /about is 200, /about/ and /about.html both redirect to it. The root
+   * stays dist/index.html and so stays '/'. Applies to every route, present and
+   * future — there is nothing per-page to maintain.
+   */
+  build: { format: 'file' },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
