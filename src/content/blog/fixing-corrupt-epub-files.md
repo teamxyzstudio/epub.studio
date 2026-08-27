@@ -4,13 +4,24 @@ excerpt: 'The five validation errors behind most rejections, and how to repair e
 category: 'Fix it'
 ogImage: '/blog-og/fixing-corrupt-epub-files.png'
 date: 2026-06-09
-updated: 2026-08-05
+updated: 2026-08-27
 author:
   name: 'Shahid Ansari'
   initial: 'S'
 tools:
   - epub-validator
   - epub-metadata-editor
+faqs:
+  - q: 'Is "this file is corrupt" ever literally true for an EPUB?'
+    a: 'Almost never. The message means the reading app hit something it could not parse and gave up without saying what — nearly always one of five structural problems: a compressed or missing mimetype, manifest entries pointing at files that are not there, absent required metadata, malformed XHTML or a missing navigation document. A validator names the specific one in seconds.'
+  - q: 'Why does my ebook break halfway through instead of refusing to open?'
+    a: 'Because readers load files as they need them. A manifest that names chapter-07.xhtml when no such file is in the archive fails at the point a reader reaches it — often mid-book rather than at open. Files listed but missing is the single most common real error, and it is usually the result of hand-editing.'
+  - q: 'Why does a chapter look fine in a browser but break on an e-reader?'
+    a: 'EPUB chapters are XHTML, not HTML, and XML parsing is unforgiving. Browsers silently repair an unclosed paragraph tag or a bare ampersand; an e-reader''s parser stops dead at the first one. That is how the same chapter renders perfectly in Chrome and breaks a Kindle. Converting the book to EPUB again re-serialises the markup cleanly.'
+  - q: 'Why did my EPUB stop opening after I edited it?'
+    a: 'Most likely the re-zip. Unzipping a book, editing a chapter and compressing the folder again produces an archive where the mimetype entry is compressed and not first — both forbidden by the spec — so the contents are perfect and the file opens nowhere. Rebuild the archive with a tool that understands EPUB instead of a general archiver.'
+  - q: 'Can a rejected EPUB be repaired without losing the book?'
+    a: 'Usually. Most fixes are surgical: restore or delist a missing file, add the three required metadata fields, close the malformed tags. The last resort — converting to another format and back — rebuilds the book from its content, which discards whatever was broken but also loses custom CSS and often the images. The text itself survives.'
 ---
 
 "This file is corrupt" almost never means the file is corrupt. It means a reader hit something it could not parse and gave up without telling you what. Here are the five things it usually was.

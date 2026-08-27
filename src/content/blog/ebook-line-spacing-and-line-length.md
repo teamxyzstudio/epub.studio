@@ -4,11 +4,33 @@ excerpt: 'The 60–75 character rule, and how to fix a wall-of-text book in Styl
 category: 'Typesetting'
 ogImage: '/blog-og/ebook-line-spacing-and-line-length.png'
 date: 2026-06-30
+updated: 2026-08-27
 author:
   name: 'Shahid Ansari'
   initial: 'S'
 tools:
   - epub-reader
+howToTitle: 'How to fix the typesetting of a poorly set ebook'
+howTo:
+  - t: 'Set the line length first'
+    d: 'Aim for 60–75 characters per line, counting spaces. In Style Studio the slider marks the comfort band directly on the scale, so you can see when you are inside it.'
+  - t: 'Then set the leading'
+    d: 'Start from the measure-to-leading table — longer lines need more space between them — and confirm with the grey-block test.'
+  - t: 'Then alignment'
+    d: 'If you justify, turn hyphenation on. Justification without it is what produces white rivers down the page.'
+  - t: 'Then paragraph style'
+    d: 'A first-line indent or a blank line between paragraphs, not both — using both is a common tell of an auto-converted file.'
+faqs:
+  - q: 'Why is 60–75 characters the recommended line length?'
+    a: 'Because of the return sweep. Reading is a sequence of small jumps ending in a leap back to the start of the next line, and the eye makes that leap without seeing its target clearly. Long lines make it land on the wrong line; very short lines break the rhythm with constant sweeping. Around 60–75 characters the two costs balance.'
+  - q: 'What line spacing should I use for an ebook?'
+    a: 'For body text on a screen, 1.5 to 1.7 times the font size is the useful range — but it depends on line length. Longer lines need more leading, because the extra vertical space gives the eye''s return sweep a bigger target. At 1.0 the lines touch; past about 2.5 the paragraph stops reading as a block.'
+  - q: 'Why does justified text have white gaps running down the page?'
+    a: 'That is justification without hyphenation. When words cannot break at line ends, the only way to fill each line is to stretch the spaces between words, and the stretched gaps stack up into visible white rivers. Turn hyphenation on and justified text becomes genuinely tidier than ragged-right.'
+  - q: 'Should paragraphs use a first-line indent or a blank line between them?'
+    a: 'One or the other, never both. An indent and a space between paragraphs are two solutions to the same problem — signalling where a paragraph starts — and doubling up is a common tell of an auto-converted file that nobody typeset.'
+  - q: 'Will my typesetting choices apply on every reader''s device?'
+    a: 'No, and that is correct. In a reflowable book your settings are a default, not a mandate: someone reading at 24pt on a phone will blow past your carefully chosen measure, and they should be able to. What you are optimising is the experience of the reader who never opens the settings — which is most of them.'
 ---
 
 Some books are tiring to read and it has nothing to do with the writing. Two measurements are usually responsible, and both take seconds to change.

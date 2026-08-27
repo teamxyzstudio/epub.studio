@@ -4,11 +4,37 @@ excerpt: 'Literata, Garamond, or Hyperlegible? What actually matters when reader
 category: 'Typesetting'
 ogImage: '/blog-og/best-fonts-for-ebooks.png'
 date: 2026-05-28
+updated: 2026-08-27
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - epub-reader
+howToTitle: 'How to choose a font for an ebook'
+howTo:
+  - t: 'Pick a face for the genre and the reader'
+    d: 'Not for yourself. Fiction convention leans serif, technical and reference material leans sans, and an accessibility face is a legitimate general-purpose choice.'
+  - t: 'Set the size so the x-height looks right'
+    d: 'Ignore the number — x-height varies so much between faces that EB Garamond and Inter at the same pixel size read as two different sizes.'
+  - t: 'Set line length to 60–75 characters'
+    d: 'The comfortable range for continuous reading, counting spaces.'
+  - t: 'Set leading to suit that measure'
+    d: 'Adjust the space between lines until it suits the line length you just set.'
+  - t: 'Look at the page unfocused'
+    d: 'Well-set text should read as an even grey block rather than as texture.'
+  - t: 'Check the smallest and largest sizes a reader might choose'
+    d: 'The step people skip, and where decorative choices fall apart — a drop cap that works at 19px can collide with the text at 28px.'
+faqs:
+  - q: 'Can readers override the font I choose for my ebook?'
+    a: 'Yes. In a reflowable book the typeface is a suggestion — any reader app can substitute the reader''s own choice, and many people do. The practical question is which font makes the best default for the people who never open the settings, and when a reader does override it, the format is doing its job.'
+  - q: 'What is x-height and why does it matter for ebook fonts?'
+    a: 'X-height is the height of a lowercase x relative to the capitals. Faces with generous x-heights stay legible at small sizes and on low-resolution e-ink, which makes it the single strongest predictor of screen legibility — and the reason a beautiful print face can read poorly on a Kindle.'
+  - q: 'Will a Kindle display the font embedded in my EPUB?'
+    a: 'Not necessarily. Kindle in particular may substitute its own font regardless of what the book embeds, and some other readers strip embedded faces too. Embedding guarantees the font travels with the book, not that every device honours it — one more reason to pick a sturdy default rather than depend on a specific face.'
+  - q: 'Do I need permission to embed a font in an ebook?'
+    a: 'Yes — embedding is a licensing question, and not every font licence allows it. Checking the licence is the part people skip, and it matters more than the file-size cost. All twelve faces offered in Style Studio are open-licensed and embeddable.'
+  - q: 'Does OpenDyslexic actually help dyslexic readers?'
+    a: 'The evidence is split. The mechanism — weighting the bottom of each letter to reduce the rotation and swapping some dyslexic readers experience — is contested, but the evidence that some readers strongly prefer it is not. Since offering it costs nothing and compromises nothing for anyone else, the practical answer is to include it and let people decide.'
 ---
 
 Here is the uncomfortable part: in a reflowable book, your typeface is a suggestion. Any reader can override it, and many do. So the question is not "which font is best" but "which font is the best default, for the people who never change it."

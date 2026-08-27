@@ -4,11 +4,23 @@ excerpt: 'Reflowable text has no fixed pages. Here''s how locations, percentages
 category: 'Formats explained'
 ogImage: '/blog-og/why-page-numbers-dont-exist-in-epub.png'
 date: 2026-06-15
+updated: 2026-08-27
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - epub-reader
+faqs:
+  - q: 'How do I cite an ebook that has no page numbers?'
+    a: 'Quote the chapter plus a distinctive phrase. That reference is findable by anyone, in any edition, in any format, and it will still be correct in ten years — while a Kindle location only helps someone holding the same Kindle file. When everyone genuinely needs the same fixed reference, convert the book to PDF once and cite that file''s pages.'
+  - q: 'What is a Kindle location, exactly?'
+    a: 'A chunk of the book file, roughly 128 bytes long, numbered in sequence. Locations are stable across devices and font sizes, which makes them comparable between two people reading the same edition — but they scale with file size, so an illustrated book has vastly more locations than a novel of the same length, and they do not transfer between editions or formats at all.'
+  - q: 'Why does my book end at 87 percent?'
+    a: 'Back matter. Percentage measures progress through the file, not the story, so a novel with appendices, notes and an excerpt from the author''s next book reaches the end of the story well before 100 percent. Nothing in the format fixes this, though some reader apps estimate chapter-relative progress instead, which helps.'
+  - q: 'How do highlights stay in the right place when I change the font size?'
+    a: 'Through a CFI — an EPUB Canonical Fragment Identifier. It records a precise path into the book''s structure: this element, this text node, this character offset. Because it points at the content itself rather than at any rendering of it, the 36th character of a paragraph stays the 36th character whatever the font, orientation or device — which is why highlights and reading position sync correctly.'
+  - q: 'Can an EPUB ever show real page numbers?'
+    a: 'In one case, yes. EPUB 3 supports a page-list that maps positions in the text to the pages of a specific printed edition, and readers that support it show those numbers. It only works when the publisher included one, and most do not — for academic or reference work it is worth doing.'
 ---
 
 "What page are you on?" is not answerable for an ebook, and the reason is structural rather than a missing feature.

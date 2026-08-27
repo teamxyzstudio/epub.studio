@@ -41,11 +41,11 @@ is the running Done count after the batch. The prefix is `blog: FAQs`, not
 | 3 | `ebook-chapter-openings` | 2026-05-04 | 5 | no | 2026-08-20 |
 | 4 | `mobi-is-dead` | 2026-05-12 | 5 | yes | 2026-08-20 |
 | 5 | `reduce-epub-file-size` | 2026-05-19 | 7 | yes | 2026-08-20 |
-| 6 | `best-fonts-for-ebooks` | 2026-05-28 | — | — |  |
-| 7 | `fixing-corrupt-epub-files` | 2026-06-09 | — | — |  |
-| 8 | `why-page-numbers-dont-exist-in-epub` | 2026-06-15 | — | — |  |
-| 9 | `convert-word-to-epub` | 2026-06-22 | — | — |  |
-| 10 | `ebook-line-spacing-and-line-length` | 2026-06-30 | — | — |  |
+| 6 | `best-fonts-for-ebooks` | 2026-05-28 | 5 | yes | 2026-08-27 |
+| 7 | `fixing-corrupt-epub-files` | 2026-06-09 | 5 | no | 2026-08-27 |
+| 8 | `why-page-numbers-dont-exist-in-epub` | 2026-06-15 | 5 | no | 2026-08-27 |
+| 9 | `convert-word-to-epub` | 2026-06-22 | 5 | yes | 2026-08-27 |
+| 10 | `ebook-line-spacing-and-line-length` | 2026-06-30 | 5 | yes | 2026-08-27 |
 | 11 | `send-epub-to-kindle` | 2026-07-08 | — | — |  |
 | 12 | `convert-epub-to-pdf-without-losing-formatting` | 2026-07-13 | — | — |  |
 | 13 | `epub-vs-pdf-vs-mobi` | 2026-07-14 | — | — |  |
@@ -73,8 +73,9 @@ is the running Done count after the batch. The prefix is `blog: FAQs`, not
 
 ## Progress
 
-- **Done: 5 / 34**
+- **Done: 10 / 34**
 - Batch 1 — 2026-08-20 — `public-domain-books-worth-reading`, `what-is-inside-an-epub`, `ebook-chapter-openings`, `mobi-is-dead`, `reduce-epub-file-size`
+- Batch 2 — 2026-08-27 — `best-fonts-for-ebooks`, `fixing-corrupt-epub-files`, `why-page-numbers-dont-exist-in-epub`, `convert-word-to-epub`, `ebook-line-spacing-and-line-length`
 
 When the Done column is filled for every row, this queue is finished: delete
 the DISPATCH step that reads it from `content-ops/routines/daily-publisher.md`
