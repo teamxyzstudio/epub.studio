@@ -4,6 +4,7 @@ excerpt: 'Calibre EPUB conversion problems — stray italics, underlines and odd
 category: 'Fix it'
 ogImage: '/blog-og/calibre-epub-conversion-problems.png'
 date: 2026-07-20
+updated: 2026-08-28
 author:
   name: 'Mofid Ansari'
   initial: 'M'
@@ -11,7 +12,17 @@ tools:
   - docx-to-epub
   - epub-validator
   - style-studio
-draft: false
+faqs:
+  - q: 'Why does my converted EPUB have italics that are not in my Word document?'
+    a: 'They are in the document — as direct character formatting you cannot see at a glance, usually carried in by pasting from a web page, an email or a PDF. Calibre copies that formatting faithfully because the file records it as part of the text. The fix is to clear it in Word, not to hunt through converter settings.'
+  - q: 'Why is a random word underlined in my EPUB?'
+    a: 'Most often it is a deleted hyperlink. Word underlines links by default, and removing the link later frequently leaves the underline behind as plain character formatting — styling no reader can explain, which the converter then dutifully carries across.'
+  - q: 'Will Clear All Formatting destroy my chapter headings?'
+    a: 'No — it strips direct character formatting back to the underlying paragraph style, and the styles themselves survive, so a Heading 1 chapter title stays a heading. What you lose is hand-applied emphasis, which is why the step after clearing is re-applying italics only where you genuinely mean them.'
+  - q: 'Can a converter keep my intentional italics but drop the accidental ones?'
+    a: 'No. A deliberate italic and a forgotten one are stored identically in the file, so no converter can tell them apart — both Calibre and our tool carry italics across. The only place to separate intended emphasis from accidental is the Word file itself.'
+  - q: 'Should I stop using Calibre for conversions?'
+    a: 'Not necessarily. For a manuscript with footnotes, tables, mixed languages or carefully tuned formatting, Calibre''s thoroughness is the feature — clean the source and keep its control. The minimalist route suits plain prose that just needs to come out clean; it is the wrong tool for a heavily designed document.'
 ---
 
 A Word manuscript that looks clean on screen can come out of Calibre speckled with formatting nobody applied on purpose. A phrase turns up in italics. A name is underlined. The gap between two paragraphs is suddenly wider than everywhere else. Nothing in the document explains it, so it reads like the converter improvising — and Calibre gets the blame.

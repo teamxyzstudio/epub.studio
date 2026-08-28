@@ -4,12 +4,34 @@ excerpt: 'Send-to-Kindle, USB, or AZW3 conversion — the three routes, and when
 category: 'Kindle'
 ogImage: '/blog-og/send-epub-to-kindle.png'
 date: 2026-07-08
+updated: 2026-08-28
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - epub-to-azw3
   - epub-to-mobi
+howToTitle: 'How to send an EPUB to your Kindle by email'
+howTo:
+  - t: 'Find your Send-to-Kindle address'
+    d: 'It is listed under Manage Your Content and Devices → Preferences on Amazon''s site, and looks like yourname@kindle.com.'
+  - t: 'Add your sending address to the approved list'
+    d: 'Amazon silently discards mail from addresses that are not on the approved sender list — no bounce, no error. This skipped step is the reason most transfers fail.'
+  - t: 'Email the EPUB as an attachment'
+    d: 'The subject line does not matter. Amazon converts the file on its end and delivers it to your library, synced across your devices.'
+faqs:
+  - q: 'I emailed an EPUB to my Kindle and nothing happened. Why?'
+    a: 'Almost always the approved sender list. Amazon silently discards mail from addresses you have not approved — there is no bounce and no error — so add every address you might send from in Manage Your Content and Devices. The other quiet killer is size: Send-to-Kindle rejects attachments over 50 MB, and many mail providers stop at 25 MB.'
+  - q: 'Do Kindles read EPUB files now?'
+    a: 'Yes. Send-to-Kindle has accepted EPUB directly since late 2022 — Amazon converts it to its own format on delivery — and modern Kindles read EPUB copied over USB too. Only older devices refuse it; if a USB-copied book never appears in the library, that is the sign you need to convert first.'
+  - q: 'Do I still need to convert my EPUB to MOBI for a Kindle?'
+    a: 'Only for genuinely old hardware. MOBI cannot handle embedded fonts and flattens complex layouts, so for any Kindle from roughly 2011 onward AZW3 is the better target — and for anything recent you can skip converting entirely and just send the EPUB.'
+  - q: 'What does it mean that my book arrived as a Personal Document?'
+    a: 'Files you send yourself always arrive as Personal Documents rather than Kindle Store books. They sync and back up normally, but they do not get store features like X-Ray, page numbers matched to a print edition, or Whispersync for Voice. Nothing you can change; it is simply how Amazon files sideloaded books.'
+  - q: 'Why can''t I send a book I bought from another ebook store?'
+    a: 'Because it is almost certainly locked with DRM. Books bought from other stores are encrypted, and no converter can open them — nine transfer failures out of ten trace back to this. The file has to be DRM-free: something you wrote, something bought from a DRM-free store, or a public-domain text.'
+  - q: 'Why does my sideloaded book show up as Unknown Author?'
+    a: 'Kindle libraries sort by the title and author stored in the file''s metadata, not by its filename. Fix the metadata before you send the book — once it is in your Kindle library, updating it means removing the document and re-sending it.'
 ---
 
 Amazon spent years refusing EPUB and then quietly started accepting it. If your information is a few years old, you are probably doing this the hard way.

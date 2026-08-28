@@ -4,6 +4,7 @@ excerpt: 'PDF to EPUB formatting problems — broken paragraphs, headers strande
 category: 'Fix it'
 ogImage: '/blog-og/pdf-to-epub-formatting-problems.png'
 date: 2026-07-19
+updated: 2026-08-28
 author:
   name: 'Shahid Ansari'
   initial: 'S'
@@ -11,7 +12,29 @@ tools:
   - pdf-to-epub
   - epub-metadata-editor
   - epub-validator
-draft: false
+howToTitle: 'How to fix PDF to EPUB formatting problems'
+howTo:
+  - t: 'Start from a text-based PDF'
+    d: 'A PDF exported from a word processor carries a clean text layer. If conversion produces a near-empty file, the PDF is a scan — run it through an OCR tool first, then convert the result.'
+  - t: 'Convert, then read the first section'
+    d: 'Run the file through the converter and read the opening section before touching anything else. That first pass tells you which problems you actually have, rather than guessing.'
+  - t: 'Retitle the placeholder sections'
+    d: 'Rename each "Pages 1–10" style heading to its real chapter title in the Metadata Editor. This is the step that turns a mechanical dump into something that reads like a book.'
+  - t: 'Validate before you publish'
+    d: 'If the book is going to a store, run it through the validator last — reconstructed books occasionally carry small structural faults that stores reject in unhelpful terms.'
+faqs:
+  - q: 'Why did my PDF convert to an empty EPUB?'
+    a: 'The PDF is almost certainly a scan — images of pages with no text layer — so there was nothing to extract. Run it through an OCR tool to add a text layer, then convert the result. There is no shortcut around this: you cannot rejoin text that was never stored as text.'
+  - q: 'Why are page numbers and running headers mixed into my paragraphs?'
+    a: 'Because to a PDF they are just more text positioned on the page — nothing marks them as furniture rather than content. When the converter walks the page top to bottom, those stray lines get swept up with the body, which is exactly why something like "Chapter 4 · 87" turns up mid-sentence.'
+  - q: 'Why do paragraphs break mid-sentence, or run together?'
+    a: 'The converter rebuilds paragraphs by guessing where they end, and its only reliable clue is punctuation at the end of a line. Clean prose rebuilds well; a heading with no full stop fuses to the sentence below it, and a line that wraps oddly can split a paragraph in two.'
+  - q: 'Why does the converted book have sections called "Pages 1–10" instead of chapters?'
+    a: 'Because a PDF has pages, not chapters, and inventing chapter breaks the source never contained would mean guessing — a wrong guess is worse than none. The ten-page sections keep the book navigable; renaming them to real chapter titles takes a few minutes and is the step most people skip.'
+  - q: 'Do the images in my PDF come across to the EPUB?'
+    a: 'No. The converter extracts the text layer only, so figures, diagrams and photographs are left behind. For plain prose that keeps the file small; for an illustrated or heavily diagrammed PDF it is a real loss, and there is no setting that changes it.'
+  - q: 'Should I convert the PDF, or the original file it was made from?'
+    a: 'Always the original if it still exists. A PDF is the flattened output of a document, while the Word file or manuscript still knows what is a heading and where paragraphs end — so converting it needs no reconstruction guesswork at all. Only convert the PDF when it is genuinely all you have.'
 ---
 
 A PDF converted to EPUB often comes out wrong in a specific, recognisable way. Paragraphs break mid-sentence. The page number that sat at the foot of every page is now stranded in the middle of a paragraph. The whole book is one undifferentiated run of text with no chapters to jump between. These are the classic PDF to EPUB formatting problems, and none of them means the file is broken.

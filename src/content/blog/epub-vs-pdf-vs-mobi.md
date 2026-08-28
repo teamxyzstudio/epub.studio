@@ -4,7 +4,7 @@ excerpt: 'Reflowable or fixed? Open or locked to one store? A plain-language tou
 category: 'Formats explained'
 ogImage: '/blog-og/epub-vs-pdf-vs-mobi.png'
 date: 2026-07-14
-updated: 2026-08-05
+updated: 2026-08-28
 author:
   name: 'Mofid Ansari'
   initial: 'M'
@@ -12,6 +12,19 @@ featured: true
 tools:
   - pdf-to-epub
   - epub-to-pdf
+faqs:
+  - q: 'Is MOBI dead in 2026?'
+    a: 'Effectively, yes. Amazon retired it for new submissions in 2021, and had already replaced it internally in 2011 with KF8, the format inside AZW3 files. It still matters only because millions of older Kindles read nothing else — so treat MOBI as an output target for old hardware, never as the format you author or archive in.'
+  - q: 'Do ebook stores accept EPUB files?'
+    a: 'Yes — EPUB is the only one of the three formats that every store accepts, and it is an open W3C standard, so nothing about your book is locked to one company. From a clean EPUB you can generate a PDF for print or an AZW3 for a Kindle in seconds; keep the EPUB as the source and treat the rest as disposable copies.'
+  - q: 'Can I turn a PDF into an EPUB?'
+    a: 'Yes, but it is the hard direction. A PDF records glyphs at coordinates, not headings and paragraphs, so a converter has to infer the structure — which is why converted-from-PDF ebooks so often have broken paragraphs. If you still have the manuscript, export an EPUB from it instead and skip the archaeology.'
+  - q: 'Which format is best for readers with dyslexia or low vision?'
+    a: 'EPUB, because it hands typographic control to the reader: they can switch typeface and push the size to whatever works, and the book re-typesets itself instantly. The British Dyslexia Association puts dyslexia alone at ten percent of the population. In a PDF those same readers are left pinching and panning across a page designed for paper.'
+  - q: 'What about picture books and graphic novels, where the layout is the point?'
+    a: 'That is the genuine exception where fixed layout wins — and EPUB 3 supports fixed-layout books for exactly these cases, so EPUB is often still the right container. What you are really choosing is whether the book reflows, not the file extension.'
+  - q: 'Does it matter that MOBI is proprietary?'
+    a: 'In the long run, a lot. EPUB is a W3C standard and PDF has been ISO 32000 since 2008, so anyone can write software that reads them, indefinitely. MOBI was only ever documented by people who reverse-engineered it, which means its future readability depends on a company continuing to care. Open formats get read by software nobody has written yet.'
 ---
 
 You finished the manuscript. Now someone asks for "the file," and you discover there are at least three answers — **EPUB**, **PDF**, and **MOBI** — each behaving differently on every screen it touches. The good news: the choice is simpler than it looks, because the formats disagree on exactly one thing.

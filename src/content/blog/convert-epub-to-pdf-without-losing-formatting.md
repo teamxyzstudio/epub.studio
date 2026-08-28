@@ -4,13 +4,34 @@ excerpt: 'Page size, margins, and the two settings that decide whether your PDF 
 category: 'How-to'
 ogImage: '/blog-og/convert-epub-to-pdf-without-losing-formatting.png'
 date: 2026-07-13
-updated: 2026-08-05
+updated: 2026-08-28
 author:
   name: 'Shahid Ansari'
   initial: 'S'
 tools:
   - epub-to-pdf
   - epub-compressor
+howToTitle: 'How to convert an EPUB to PDF without losing formatting'
+howTo:
+  - t: 'Pick the page size first'
+    d: 'A4 or US Letter if you are printing at home or the office; 6×9″ if you want something that reads like a novel on screen or from a print shop.'
+  - t: 'Then set the margins'
+    d: 'Medium is the default that almost always works. On A4, Wide pulls the line length back into the comfortable range; on a 6×9 trim it can cramp the text block, so Medium usually wins there.'
+  - t: 'Convert and check the first page'
+    d: 'Chapters break onto fresh pages automatically. If the opening paragraph looks cramped, you are usually one margin setting away from fixing it.'
+  - t: 'Compress first if the file comes out enormous'
+    d: 'Image-heavy books produce large PDFs. Run the source EPUB through the compressor and convert again — the text stays identical and the file usually halves.'
+faqs:
+  - q: 'Why do the lines in my converted PDF feel too long to read?'
+    a: 'Because A4 and Letter pages are wide: at a normal body size they give you 90–100 characters per line, which is past the point where the eye loses its place on the return sweep. Convert at a 6×9″ trim for 65–75 characters a line, or keep A4 and switch to Wide margins to pull the measure back in.'
+  - q: 'Is the text in the converted PDF selectable and searchable?'
+    a: 'Yes. The converter typesets your book''s actual text onto pages, so the result is real text you can select, search and copy — not a screenshot. Converters that rasterise pages, which is what most print-to-PDF routes from reader apps do, produce far larger files where none of that works.'
+  - q: 'Why is the PDF so much bigger than the EPUB was?'
+    a: 'Images. A text-only book barely grows — our specimen EPUB went from 5,183 bytes to a 5,906-byte PDF — so a dramatic jump means image weight. Run the source EPUB through the compressor first and convert again; the images are re-encoded, the text is untouched, and the file usually halves.'
+  - q: 'Why did my EPUB convert to pages of images with no real text?'
+    a: 'Because the EPUB itself is image-only — some books, especially comics and public-domain scans, are just a wrapper around page images. There is no text to typeset, so the output is those images at whatever size fits the page. That is expected behaviour, not a conversion bug.'
+  - q: 'Why won''t the converter open my EPUB at all?'
+    a: 'Almost always DRM. Books bought from a store are usually encrypted, and an encrypted file cannot be opened by any converter, so the job fails at the first step. Only DRM-free files — your own books, DRM-free purchases, public-domain texts — will convert.'
 ---
 
 Most "the PDF came out wrong" complaints are not conversion bugs. They are a mismatch between a book that has no pages and a format that is nothing but pages. Once you pick the page, the rest falls into place.

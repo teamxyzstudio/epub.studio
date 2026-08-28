@@ -46,11 +46,11 @@ is the running Done count after the batch. The prefix is `blog: FAQs`, not
 | 8 | `why-page-numbers-dont-exist-in-epub` | 2026-06-15 | 5 | no | 2026-08-27 |
 | 9 | `convert-word-to-epub` | 2026-06-22 | 5 | yes | 2026-08-27 |
 | 10 | `ebook-line-spacing-and-line-length` | 2026-06-30 | 5 | yes | 2026-08-27 |
-| 11 | `send-epub-to-kindle` | 2026-07-08 | — | — |  |
-| 12 | `convert-epub-to-pdf-without-losing-formatting` | 2026-07-13 | — | — |  |
-| 13 | `epub-vs-pdf-vs-mobi` | 2026-07-14 | — | — |  |
-| 14 | `pdf-to-epub-formatting-problems` | 2026-07-19 | — | — |  |
-| 15 | `calibre-epub-conversion-problems` | 2026-07-20 | — | — |  |
+| 11 | `send-epub-to-kindle` | 2026-07-08 | 6 | yes | 2026-08-28 |
+| 12 | `convert-epub-to-pdf-without-losing-formatting` | 2026-07-13 | 5 | yes | 2026-08-28 |
+| 13 | `epub-vs-pdf-vs-mobi` | 2026-07-14 | 6 | no | 2026-08-28 |
+| 14 | `pdf-to-epub-formatting-problems` | 2026-07-19 | 6 | yes | 2026-08-28 |
+| 15 | `calibre-epub-conversion-problems` | 2026-07-20 | 5 | no | 2026-08-28 |
 | 16 | `epub-cover-not-showing` | 2026-07-22 | — | — |  |
 | 17 | `epub-embedded-fonts-not-working` | 2026-07-25 | — | — |  |
 | 18 | `epub-validation-errors-explained` | 2026-07-26 | — | — |  |
@@ -73,9 +73,10 @@ is the running Done count after the batch. The prefix is `blog: FAQs`, not
 
 ## Progress
 
-- **Done: 10 / 34**
+- **Done: 15 / 34**
 - Batch 1 — 2026-08-20 — `public-domain-books-worth-reading`, `what-is-inside-an-epub`, `ebook-chapter-openings`, `mobi-is-dead`, `reduce-epub-file-size`
 - Batch 2 — 2026-08-27 — `best-fonts-for-ebooks`, `fixing-corrupt-epub-files`, `why-page-numbers-dont-exist-in-epub`, `convert-word-to-epub`, `ebook-line-spacing-and-line-length`
+- Batch 3 — 2026-08-28 — `send-epub-to-kindle`, `convert-epub-to-pdf-without-losing-formatting`, `epub-vs-pdf-vs-mobi`, `pdf-to-epub-formatting-problems`, `calibre-epub-conversion-problems`
 
 When the Done column is filled for every row, this queue is finished: delete
 the DISPATCH step that reads it from `content-ops/routines/daily-publisher.md`
