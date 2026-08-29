@@ -4,6 +4,7 @@ excerpt: 'EPUB embedded fonts not working after you send it to Kindle? Amazon''s
 category: 'Kindle'
 ogImage: '/blog-og/epub-embedded-fonts-not-working.png'
 date: 2026-07-25
+updated: 2026-08-29
 author:
   name: 'Mofid Ansari'
   initial: 'M'
@@ -11,6 +12,29 @@ tools:
   - style-studio
   - epub-validator
   - epub-to-azw3
+howToTitle: 'How to get an embedded font to survive on Kindle'
+howTo:
+  - t: 'Embed every weight the book actually uses'
+    d: 'Include the regular master plus the bold and italic files if the text uses them, so the renderer never has to synthesise a weight and smear the result.'
+  - t: 'Let Style Studio write the wiring'
+    d: 'Re-typeset with embedding on and it adds the font to the archive, the manifest entry and the matching @font-face rule — the three things a converter silently drops fonts without.'
+  - t: 'Validate the file'
+    d: 'Run the book through the EPUB validator to confirm the manifest item and the font reference check out before anything converts it.'
+  - t: 'Send through the modern Send-to-Kindle path'
+    d: 'That route produces KF8, the format that can carry fonts — an old MOBI workflow strips them no matter how well they were embedded.'
+faqs:
+  - q: 'Why do bold and italic text look smeared or distorted on my Kindle?'
+    a: 'The book almost certainly embeds only the regular weight of the font, so the renderer has nothing real to draw bold or italic with and fakes them — slanting the uprights, thickening the outlines. The font is not corrupt; it is missing its bold and italic masters. Embed those files too and the synthetic distortion disappears.'
+  - q: 'Does Send-to-Kindle keep embedded fonts?'
+    a: 'Yes, when the book is built correctly. Send-to-Kindle converts to KF8, which supports embedded OpenType and TrueType fonts, so a properly declared face carries through for the body text. The old MOBI route is the one that stripped fonts entirely — that format had no concept of them at all.'
+  - q: 'Can I stop readers changing the font on their Kindle?'
+    a: 'No. The Kindle font menu lets the reader override your body font whenever they like, and Amazon designs for the reader''s comfort over the publisher''s intent. The practical move is to design for the override: pick a face whose absence does not wreck the layout, so the book reads well in the default and better in yours.'
+  - q: 'Should I embed WOFF2 or TTF/OTF fonts?'
+    a: 'For standards EPUB readers like Apple Books and Kobo, the WOFF2 that Style Studio embeds works cleanly. Amazon''s converter documents OpenType and TrueType support specifically, so if a face refuses to stick on Kindle after everything else checks out, an OTF or TTF embed is the safest bet for that one target.'
+  - q: 'Am I allowed to embed any font I own?'
+    a: 'Not necessarily. Many commercial font licences forbid ebook embedding, and a face that is not licensed for it should not go into the file regardless of whether it technically works. Check the licence before embedding.'
+  - q: 'How do I see what my book will really look like on a Kindle?'
+    a: 'Amazon''s own Kindle Previewer converts the file the same way the store does and shows you the real result, which no EPUB preview can promise. Use the EPUB tools to get the file correct, then let the Previewer confirm what the conversion does to it before you publish.'
 draft: false
 ---
 

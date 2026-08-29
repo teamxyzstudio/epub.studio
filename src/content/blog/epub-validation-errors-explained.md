@@ -4,12 +4,26 @@ excerpt: 'EPUB validation errors explained: what epubcheck codes like RSC-005, O
 category: 'Fix it'
 ogImage: '/blog-og/epub-validation-errors-explained.png'
 date: 2026-07-26
+updated: 2026-08-29
 author:
   name: 'Shahid Ansari'
   initial: 'S'
 tools:
   - epub-validator
   - epub-metadata-editor
+faqs:
+  - q: 'What does RSC-005 actually mean?'
+    a: 'On its own, almost nothing — it is epubcheck''s catch-all for a file it could not parse. The real information is the sentence after the colon, which hands you the underlying parser''s complaint with a line and column: an unclosed tag, a stray ampersand, a duplicated attribute. Ignore the label and read the message.'
+  - q: 'Why does epubcheck flag OPF-014 when the book works fine?'
+    a: 'Because it is enforcing bookkeeping, not function. If a chapter uses SVG, scripting, MathML or remote resources, the manifest entry for that document has to advertise it with a properties attribute. The feature renders regardless; what is missing is the declaration — add the property to the manifest item and the error clears.'
+  - q: 'Why can''t I just re-zip the EPUB to fix PKG-006?'
+    a: 'PKG-006 means the mimetype file is missing or is not the first entry in the archive, and a normal desktop archiver cannot guarantee that placement — the file also has to be stored uncompressed, which is its own error. The archive needs rebuilding by an EPUB-aware tool that writes the mimetype first and uncompressed.'
+  - q: 'What is the difference between RSC-007 and OPF-003?'
+    a: 'They are mirror images. RSC-007 means something is referenced — an image, a stylesheet, a chapter — but the file is not in the archive; restore it or drop the reference. OPF-003 means the opposite: a file exists in the archive but the manifest never declares it; add it to the manifest, or delete it if it is genuinely unused.'
+  - q: 'What is the NCX file that NCX-001 complains about?'
+    a: 'The NCX is the legacy navigation file that older readers still use. NCX-001 says the identifier inside it disagrees with the dc:identifier in the OPF — two files describing the same book with different IDs. Make the two values equal and the error clears; a metadata editor settles the dc: side directly.'
+  - q: 'Does epubcheck repair the file for me?'
+    a: 'No — neither epubcheck nor any validator edits the book. Once a code has named the fault, the repair happens elsewhere: in a metadata editor for the dc: fields, in a clean round-trip reconversion for structural damage, or by hand in Sigil or Calibre when a chapter''s XHTML is the problem.'
 draft: false
 ---
 

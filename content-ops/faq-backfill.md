@@ -51,11 +51,11 @@ is the running Done count after the batch. The prefix is `blog: FAQs`, not
 | 13 | `epub-vs-pdf-vs-mobi` | 2026-07-14 | 6 | no | 2026-08-28 |
 | 14 | `pdf-to-epub-formatting-problems` | 2026-07-19 | 6 | yes | 2026-08-28 |
 | 15 | `calibre-epub-conversion-problems` | 2026-07-20 | 5 | no | 2026-08-28 |
-| 16 | `epub-cover-not-showing` | 2026-07-22 | — | — |  |
-| 17 | `epub-embedded-fonts-not-working` | 2026-07-25 | — | — |  |
-| 18 | `epub-validation-errors-explained` | 2026-07-26 | — | — |  |
-| 19 | `best-format-to-convert-to-epub` | 2026-07-29 | — | — |  |
-| 20 | `epub-compatibility-problems` | 2026-08-02 | — | — |  |
+| 16 | `epub-cover-not-showing` | 2026-07-22 | 6 | no | 2026-08-29 |
+| 17 | `epub-embedded-fonts-not-working` | 2026-07-25 | 6 | yes | 2026-08-29 |
+| 18 | `epub-validation-errors-explained` | 2026-07-26 | 6 | no | 2026-08-29 |
+| 19 | `best-format-to-convert-to-epub` | 2026-07-29 | 6 | no | 2026-08-29 |
+| 20 | `epub-compatibility-problems` | 2026-08-02 | 6 | no | 2026-08-29 |
 | 21 | `epub-table-of-contents-problems` | 2026-08-03 | — | — |  |
 | 22 | `epub-images-not-showing` | 2026-08-04 | — | — |  |
 | 23 | `ebook-drm-explained` | 2026-08-05 | — | — |  |
@@ -73,10 +73,11 @@ is the running Done count after the batch. The prefix is `blog: FAQs`, not
 
 ## Progress
 
-- **Done: 15 / 34**
+- **Done: 20 / 34**
 - Batch 1 — 2026-08-20 — `public-domain-books-worth-reading`, `what-is-inside-an-epub`, `ebook-chapter-openings`, `mobi-is-dead`, `reduce-epub-file-size`
 - Batch 2 — 2026-08-27 — `best-fonts-for-ebooks`, `fixing-corrupt-epub-files`, `why-page-numbers-dont-exist-in-epub`, `convert-word-to-epub`, `ebook-line-spacing-and-line-length`
 - Batch 3 — 2026-08-28 — `send-epub-to-kindle`, `convert-epub-to-pdf-without-losing-formatting`, `epub-vs-pdf-vs-mobi`, `pdf-to-epub-formatting-problems`, `calibre-epub-conversion-problems`
+- Batch 4 — 2026-08-29 — `epub-cover-not-showing`, `epub-embedded-fonts-not-working`, `epub-validation-errors-explained`, `best-format-to-convert-to-epub`, `epub-compatibility-problems`
 
 When the Done column is filled for every row, this queue is finished: delete
 the DISPATCH step that reads it from `content-ops/routines/daily-publisher.md`

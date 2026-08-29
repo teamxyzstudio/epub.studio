@@ -4,12 +4,26 @@ excerpt: 'EPUB compatibility problems usually mean one reader enforces rules ano
 category: 'Fix it'
 ogImage: '/blog-og/epub-compatibility-problems.png'
 date: 2026-08-02
+updated: 2026-08-29
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - epub-validator
   - epub-metadata-editor
+faqs:
+  - q: 'Which EPUB readers are strict and which are forgiving?'
+    a: 'Apple Books, Kobo, Adobe Digital Editions and a Kindle after conversion treat chapters as the XML they declare themselves to be and stop at the first well-formedness error. Calibre and Google Play Books lean on an HTML-style parser that patches broken markup as it reads, so a faulty book still renders there. Neither camp is wrong — one enforces the rules, the other repairs on the fly.'
+  - q: 'Why does a single stray ampersand break a whole chapter?'
+    a: 'Because EPUB chapters are XHTML, which is XML, and an XML parser is not permitted to guess. An ampersand typed on its own is not well-formed — it has to be escaped — and when a strict parser meets it, it halts and will not read a byte past the error, so the chapter shows blank or gets skipped entirely.'
+  - q: 'My book stops turning pages partway through. Is the file corrupt?'
+    a: 'Usually not corrupt — mismatched. The spine lists the chapters in order, and when an entry points at a file that is missing or was renamed without its entry being updated, a strict reader follows the list and stops exactly where it breaks. A forgiving reader skips the broken link, which is why the same book turns fine elsewhere.'
+  - q: 'Is it a problem that fonts and margins look different in every app?'
+    a: 'No — that is reflowable text working as designed. A book that justifies differently, substitutes a font or sets its margins a shade wider on another app is adapting to the screen, which is the point of the format. Chasing pixel-for-pixel parity across readers is a fight with the format''s design, not a bug to squash.'
+  - q: 'Can a fully valid EPUB still fail in some readers?'
+    a: 'Yes. Validity is necessary but not sufficient: an EPUB 2-only app or an ancient reader will stumble on a perfectly conformant book, and a fixed-layout or scripted EPUB can be flawless yet fall flat where those features were never implemented. Passing a validator proves the file follows the rules, not that every app supports every feature it uses.'
+  - q: 'Why does a book from one store only open in that store''s app?'
+    a: 'That is DRM, not a compatibility fault. The file carries encryption that is doing exactly what it was added to do, and no tool reads past it to make the book open elsewhere. It is a property of the licence, not of the EPUB format.'
 draft: false
 ---
 

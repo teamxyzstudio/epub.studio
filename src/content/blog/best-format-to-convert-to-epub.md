@@ -4,6 +4,7 @@ excerpt: 'The best format to convert to EPUB is whichever carries structure most
 category: 'How-to'
 ogImage: '/blog-og/best-format-to-convert-to-epub.png'
 date: 2026-07-29
+updated: 2026-08-29
 author:
   name: 'Shahid Ansari'
   initial: 'S'
@@ -11,6 +12,19 @@ tools:
   - docx-to-epub
   - markdown-to-epub
   - html-to-epub
+faqs:
+  - q: 'Why did my chapter headings disappear after converting to EPUB?'
+    a: 'They were visual rather than semantic. A line made to look like a heading — bigger, bold, centred — reads to a converter as an ordinary paragraph that happens to be large, so the structure never carries across. Apply real Heading styles in Word, or hash marks in Markdown, and the chapter breaks and navigation build themselves.'
+  - q: 'Is HTML exported from Google Docs a good source for an EPUB?'
+    a: 'No — exported HTML is usually the worst starting point of all. Website builders, Google Docs and note-taking apps produce deep nests of divs and spans carrying inline styles and editor junk, and markup that declares almost no structure converts into a technically valid but flat ebook. Hand-written semantic HTML, by contrast, is arguably the highest-fidelity route.'
+  - q: 'Do I need to learn Markdown to get a clean EPUB?'
+    a: 'No. A Word document with real heading styles converts cleanly, and for a heavily-collaborated manuscript Word''s live page, track changes and comments are worth more than Markdown''s tidiness. Markdown wins when you already draft in plain text, because it can barely express anything except structure and leaves little room between intent and result.'
+  - q: 'Can I convert a plain TXT file to EPUB?'
+    a: 'Yes, but plain text has no structure at all, so the result is one long chapter with no navigation. That is fine for a short document and wrong for a book. If the manuscript deserves chapters, state them in the source first — in a styled Word file or Markdown — so the converter has breaks to work with.'
+  - q: 'Will a converter add chapter breaks my manuscript never marked?'
+    a: 'No converter invents structure the source does not state. If the manuscript never marked its chapters semantically, the tool cannot conjure them, whichever format you choose — that work happens in the source, before conversion. Conversion gets you a clean structural base, not a finished, hand-tuned book.'
+  - q: 'What should I do right after converting?'
+    a: 'Run the result through an EPUB validator before sending it anywhere. The converter gives you a structurally sound file; validation confirms the metadata and internal references are complete, which is what stores actually check. Clean source in, validate on the way out — that is the whole recipe.'
 draft: false
 ---
 

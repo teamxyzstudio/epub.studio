@@ -4,6 +4,7 @@ excerpt: 'An EPUB cover not showing after sideloading usually means the image is
 category: 'Fix it'
 ogImage: '/blog-og/epub-cover-not-showing.png'
 date: 2026-07-22
+updated: 2026-08-29
 author:
   name: 'Shahid Ansari'
   initial: 'S'
@@ -11,6 +12,19 @@ tools:
   - epub-cover-editor
   - epub-metadata-editor
   - epub-validator
+faqs:
+  - q: 'Why does the cover show in Calibre but not on my e-reader?'
+    a: 'Calibre keeps its own copy of every cover in its library database, separate from the EPUB, so its grid only proves Calibre remembered one. A device that reads nothing but the file looks for the cover declaration in the manifest, and when that line is missing it shows a blank. The cover was undeclared all along — Calibre just never needed the declaration.'
+  - q: 'Why does the cover appear when I open the book but not on the shelf?'
+    a: 'The book has a cover page — a full-page image that renders when you read — but no separate cover image entry for the library shelf to use. Readers build shelf thumbnails from the declared cover image, not from the first page. Adding a proper cover image and registering it fixes the shelf without changing how the book reads.'
+  - q: 'I replaced the cover but the old one still shows. Why?'
+    a: 'The reader is showing a cached thumbnail, and no amount of re-editing the file will change it. Delete the book from the device and add the corrected file back; if the old image still lingers, rename the file before re-adding so the reader stops matching it to its cached entry. Apple Books and the Kindle library are the usual culprits.'
+  - q: 'What size should an EPUB cover image be?'
+    a: 'Portrait artwork at roughly 1600×2560 pixels is the size that looks right across devices. Resolution is not what decides whether a cover shows, though — the manifest declaration does — so treat the size as a quality choice and the registration as the fix.'
+  - q: 'Can I change the cover on a book with DRM?'
+    a: 'No. A file carrying DRM from a store cannot be opened for editing by any tool, here or anywhere — the encryption sits in the way of every edit, by design. Cover replacement only works on DRM-free files.'
+  - q: 'Will the fix work on very old e-readers?'
+    a: 'Not always. The cover tool registers the modern EPUB 3 cover-image property, which is what current apps read; software old enough to understand only the EPUB 2 meta cover tag can still come up blank. For genuinely ancient devices, a full editor like Calibre or Sigil lets you set the legacy tag as well.'
 draft: false
 ---
 
