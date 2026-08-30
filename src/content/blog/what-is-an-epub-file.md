@@ -4,12 +4,24 @@ excerpt: 'An EPUB file is an ebook in an open, reflowable format. What that mean
 category: 'Formats explained'
 ogImage: '/blog-og/what-is-an-epub-file.png'
 date: 2026-08-06
+updated: 2026-08-30
 author:
   name: 'Shahid Ansari'
   initial: 'S'
 tools:
   - epub-to-pdf
   - txt-to-epub
+faqs:
+  - q: 'Is EPUB free to use, or does someone own the format?'
+    a: 'Nobody owns it. EPUB is an open standard whose specification is public, maintained by the W3C and free for anyone to implement. That is much of why it has outlasted a graveyard of proprietary ebook formats — no single company can retire it or lock it away.'
+  - q: 'Why does double-clicking an EPUB do nothing on Windows?'
+    a: 'Because Windows ships with no EPUB reader — nothing on the system is registered to open the file, so the double-click falls flat. Installing any free ebook app, such as Calibre, gives the extension a home. That gap, more than anything else, is why this question gets asked in the first place.'
+  - q: 'Can a Kindle read an EPUB file?'
+    a: 'Yes, though not by opening the file on the device directly. You send the EPUB to your Kindle library and Amazon converts it to its own format behind the scenes — that route has worked since 2022. The one thing not to expect is the Kindle opening the raw file locally.'
+  - q: 'Why don''t EPUB books have real page numbers?'
+    a: 'Because there is no fixed page for a number to live on. An EPUB stores flowing text and lets each device pour it onto its own screen, so making the font bigger quietly re-typesets the book and changes how much fits on every screenful. Fixed pages — and the numbers that go with them — are PDF''s territory.'
+  - q: 'Can I open an EPUB file and look inside it?'
+    a: 'Yes — an EPUB is a ZIP archive containing web pages. Rename the file to end in .zip and any archive tool will show you the chapters as XHTML files, the CSS styling, the images, and the small files that set the reading order. Just be careful editing: the chapters are strict XHTML, and re-zipping a hand-edited book wrongly can stop it opening.'
 draft: false
 ---
 

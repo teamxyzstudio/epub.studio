@@ -4,12 +4,24 @@ excerpt: 'EPUB table of contents problems — stray bullets, a wrong order, miss
 category: 'Fix it'
 ogImage: '/blog-og/epub-table-of-contents-problems.png'
 date: 2026-08-03
+updated: 2026-08-30
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - epub-validator
   - epub-to-docx
+faqs:
+  - q: 'Can an EPUB pass validation and still have a broken table of contents?'
+    a: 'Yes. Nothing in the format cross-checks the navigation file against the spine, so a contents list in the wrong order validates fine — and a missing navigation document is flagged as a warning rather than an error, because the book still opens. A green result means the structure is well-formed, not that the index agrees with the pages.'
+  - q: 'Why does the table of contents look different in different reading apps?'
+    a: 'Many EPUBs carry two navigation files — the modern nav.xhtml and the legacy toc.ncx — and each reader picks one to build its contents menu from. When the two files disagree, what you see depends on which file the app trusted. Rebuilding both from the same reading order makes every app show the same list.'
+  - q: 'Will converting my EPUB out to DOCX and back really fix the contents?'
+    a: 'For the common faults, yes. The round trip discards the broken navigation and writes a fresh nav.xhtml and toc.ncx generated from the reading order itself, so a mis-ordered list, a missing entry or a nav page leaking into the book are fixed by construction. What it cannot preserve is a nested hierarchy or mid-chapter links — those need a hand editor such as Sigil or Calibre.'
+  - q: 'Why do all my chapters show up as "Untitled" in the contents menu?'
+    a: 'The navigation entry for each chapter takes its label from that chapter file''s title element or first heading. When those are empty or identical across files, the contents list faithfully reproduces the blank — repeated or "Untitled" entries. The fix is to give each chapter file a real title or heading, then rebuild the navigation.'
+  - q: 'Is a wrong table of contents a sign the EPUB file is corrupt?'
+    a: 'No. The pages themselves are usually intact — which is why the book reads fine when you turn through it — and the fault is a disagreement between the separate files that list the chapters, not damaged text. Genuinely damaged files are a different problem with different repairs.'
 draft: false
 ---
 

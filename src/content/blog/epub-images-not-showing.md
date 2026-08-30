@@ -4,11 +4,25 @@ excerpt: 'EPUB images not showing after conversion almost always means a broken 
 category: 'Fix it'
 ogImage: '/blog-og/epub-images-not-showing.png'
 date: 2026-08-04
+updated: 2026-08-30
 author:
   name: 'Shahid Ansari'
   initial: 'S'
 tools:
   - epub-validator
+faqs:
+  - q: 'Are the missing images actually gone from my EPUB?'
+    a: 'Almost never. In the overwhelming majority of cases the picture is still inside the archive, byte for byte, exactly where the converter put it. What broke is a reference — the manifest entry or the chapter''s img src points at a path where the file no longer lives — so the fix is reconnecting a name to a file, not recovering an image.'
+  - q: 'Why do the images show in one reading app but not in another?'
+    a: 'Because readers differ in how strictly they resolve the book''s references. A strict reader treats an undeclared or misaddressed resource as if it does not exist; another app may resolve the same reference more leniently and still draw the picture. When a book behaves this way, trace the img src literally from the chapter''s own folder — the path is usually the culprit.'
+  - q: 'Why did the images disappear when I converted my EPUB to Word or plain text?'
+    a: 'That one is by design, not a fault. The converters that turn an EPUB into a DOCX or TXT file carry the text and deliberately leave the pictures behind, rather than mangle them into a format that cannot hold them well. If the images vanished on the way out of EPUB, nothing needs repairing.'
+  - q: 'What does the ../ at the start of an image path mean?'
+    a: 'It means climb one folder up — the same rule a web page follows. Every path in an EPUB is resolved relative to the file it sits in, so a chapter stored in a text folder reaches a picture in a sibling images folder with ../images/name.png. A converter that moves files without rewriting these paths to match is how most images go missing.'
+  - q: 'Can my EPUB pass the validator and still show missing images?'
+    a: 'Yes. The structural check confirms that everything the manifest declares is present in the archive; it does not open each chapter to test every img src, and it does not judge whether a media-type is labelled correctly. A book can pass on the manifest half and still point at the wrong place from inside a chapter — that second pointer is a manual read.'
+  - q: 'Why don''t images with an http address show up in my book?'
+    a: 'A src beginning with http or https points at an image hosted on the web rather than packed into the book. Many readers strip such references, and none of them work offline, so the picture appears only under the right conditions, if at all. The fix is to embed the image in the archive, not to re-point a path.'
 draft: false
 ---
 

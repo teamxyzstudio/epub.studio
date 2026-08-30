@@ -4,12 +4,26 @@ excerpt: 'Every Kindle file format decoded: MOBI, AZW, AZW3, KFX and now EPUB �
 category: 'Kindle'
 ogImage: '/blog-og/kindle-file-format.png'
 date: 2026-08-07
+updated: 2026-08-30
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - azw3-to-epub
   - mobi-to-epub
+faqs:
+  - q: 'What is the difference between AZW and AZW3?'
+    a: 'A generation and an engine. An .azw is the original Mobipocket book — compressed HTML in a Palm database — wrapped in Kindle Store DRM; an .azw3 holds KF8, the 2011 rebuild with proper HTML5 and CSS, inside the same Palm container. Both still spell BOOKMOBI at byte 60, which is why one parser can read the whole family.'
+  - q: 'Do I need to convert my EPUB to AZW3 before putting it on a Kindle?'
+    a: 'No — send the EPUB as it is and Amazon converts it on the way in. Send-to-Kindle has accepted EPUB since 2022, and dropped MOBI as an input the same year, so converting to a Kindle format first is a step the pipeline no longer wants. Conversion is only needed in the other direction, out of the old formats.'
+  - q: 'Why do some AZW3 files contain the book twice?'
+    a: 'For backward compatibility. Many files of that era carry a legacy MOBI section and a KF8 section separated by a boundary record, so older devices could read the half they understood. It is the same book in two generations inside one container; a version field in the MOBI header records what is inside, and parsers read it to handle both.'
+  - q: 'What is a .kpf file and can I read it?'
+    a: 'A .kpf is the publishing package Amazon''s Kindle Create app produces, and it points the opposite way from every other extension here — publisher-side rather than reader-side. Unless you made the file yourself in Kindle Create you will likely never meet one, and it is not a format for reading or converting.'
+  - q: 'Will my notes and highlights survive converting a Kindle book?'
+    a: 'No. Annotations and reading positions never travel with the book — they live in Amazon''s sidecar system, not in the book file itself. Converting a DRM-free Kindle book carries the book across; anything you wrote in the margins stays behind in Amazon''s ecosystem.'
+  - q: 'What is a Topaz (.tpz or .azw1) file?'
+    a: 'Topaz was a parallel Amazon format for scanned books, built around baked-in page images rather than flowing text. It was always rare and is best treated as unconvertible — if you meet one, it is a museum piece rather than a migration candidate.'
 draft: false
 ---
 

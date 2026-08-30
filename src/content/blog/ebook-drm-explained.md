@@ -4,10 +4,24 @@ excerpt: 'Ebook DRM explained: what the lock on a purchased ebook actually is, w
 category: 'Formats explained'
 ogImage: '/blog-og/ebook-drm-explained.png'
 date: 2026-08-05
+updated: 2026-08-30
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools: []
+faqs:
+  - q: 'Is a DRM-protected EPUB still a normal EPUB inside?'
+    a: 'Structurally, yes. It is still a ZIP archive with a mimetype, a container file, a manifest and a spine, and the metadata is usually left readable — which is why your shelf can show the locked book''s title and cover. The difference is the content: the chapter files are ciphertext, declared in an encryption.xml, and the key that unlocks them is never in the file.'
+  - q: 'Why did I download a tiny file instead of my book?'
+    a: 'That scrap is a licence pointer, not the book — an .acsm file tells an authorised reading app where to fetch the real, locked copy. It only works in software that supports the store''s protection scheme and is signed in to the account that made the purchase. Opening it in anything else gets you nothing, because it contains no book to open.'
+  - q: 'Why does a locked book pass validation but still refuse to open?'
+    a: 'Because a structural validator inspects the archive — the mimetype, the container, whether manifest entries resolve, whether the spine has an order — and in a protected book all of that is intact. The lock sits inside the content files the manifest points at. The file is valid and unreadable at the same time: the problem is permission, not damage.'
+  - q: 'Do library ebooks use DRM too?'
+    a: 'Yes — and this is the job DRM was actually designed for. A library loan is protected so it can expire on its own at the end of the lending period instead of accumulating fines. You read it in an authorised app for as long as the loan lasts, and there is nothing to feel guilty about in that arrangement.'
+  - q: 'How do I know whether an ebook has DRM before I buy it?'
+    a: 'Check the product page — stores generally state the protection there, and watermarked or DRM-free shops tend to advertise the fact. It is worth the look, because the posture is the publisher''s or store''s choice, not a property of the format: the same novel can be sold locked in one shop and open in another.'
+  - q: 'Can a converter remove DRM from a book I bought?'
+    a: 'No legitimate converter opens a locked book, this site''s included. A converter has to read the text before it can produce anything, and in a protected file the chapters are ciphertext without the key — random-looking bytes in, nothing out. The realistic alternatives are reading in the store''s app, or preferring watermarked and DRM-free editions at the point of purchase.'
 ---
 
 You bought the book. The money left your account, the file arrived, and on the device you actually wanted to read it on, it will not open. Or it insists on opening in the store's own app. Or what downloaded is not the book at all but a two-kilobyte scrap no reader recognises.
