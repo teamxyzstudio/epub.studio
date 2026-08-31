@@ -4,12 +4,32 @@ excerpt: 'To print an EPUB, convert it to a PDF sized for your paper and print t
 category: 'How-to'
 ogImage: '/blog-og/print-an-epub.png'
 date: 2026-08-08
+updated: 2026-08-31
 author:
   name: 'Shahid Ansari'
   initial: 'S'
 tools:
   - epub-to-pdf
   - split-epub
+howToTitle: 'How to print an EPUB'
+howTo:
+  - t: 'Convert the EPUB to PDF at your paper size'
+    d: 'Drop the book into the EPUB to PDF converter and set the page size to the paper in your printer — A4, or US Letter in North America. Each chapter starts on a fresh sheet, and the output is real, selectable text.'
+  - t: 'Check the PDF on screen first'
+    d: 'Open the PDF and skim the first pages. If the lines feel too long or the text block sits oddly on the sheet, adjust the margins and convert again — it costs seconds, unlike reprinting.'
+  - t: 'Print the PDF from any viewer'
+    d: 'It is a normal document now, so everything you expect from a print dialog works: page ranges, double-sided, two pages per sheet.'
+faqs:
+  - q: 'What paper size should I pick when converting an EPUB for printing?'
+    a: 'Match the paper in your printer — A4 in most of the world, US Letter in North America. The 6×9″ option exists for making screen-readable book pages, not for office printers. If A4''s long lines feel unwieldy on screen, Wide margins tame them; Medium is the safe default.'
+  - q: 'How do I print just one chapter of an EPUB?'
+    a: 'Either convert the whole book to PDF and use a page range in the print dialog, or split the EPUB into per-chapter files first and convert only the part you need. The split route is cleaner: each chapter becomes a self-contained book, so the resulting PDF is exactly the excerpt and the printer''s page count matches what you meant to spend.'
+  - q: 'Is it legal to print an EPUB I bought?'
+    a: 'Printing a DRM-free book you own, for your own use, is the ordinary case print dialogs exist for — the same as printing any document. A DRM-locked store file will not open in a converter at all, and running off multiple copies of a book still in copyright is a licensing question for the publisher, not a printer-settings question.'
+  - q: 'How many pages will my EPUB be when printed?'
+    a: 'There is no answer until you convert, because an EPUB has no pages of its own — the PDF conversion invents them at your chosen paper size. An A4 sheet carries far more text than a paperback page and double-siding halves the sheets again, but a full-length novel still runs to a thick stack; converting first shows the exact count before you spend any paper.'
+  - q: 'Why does my printed comic or scanned book look blurry?'
+    a: 'Because image-only EPUBs — scanned public-domain books and comics — are pictures of pages inside an EPUB wrapper, and they print as those pictures at whatever quality the scan has. No conversion can add sharpness that is not in the file.'
 draft: false
 ---
 

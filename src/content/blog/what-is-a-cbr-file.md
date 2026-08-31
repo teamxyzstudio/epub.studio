@@ -4,12 +4,26 @@ excerpt: 'A CBR file is a comic packed as a RAR archive of page images — CBZ i
 category: 'Formats explained'
 ogImage: '/blog-og/what-is-a-cbr-file.png'
 date: 2026-08-09
+updated: 2026-08-31
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - cbz-to-epub
   - cbz-to-pdf
+faqs:
+  - q: 'How do I convert a CBR file to CBZ?'
+    a: 'Extract the images with an archive utility that handles RAR, repack them as an ordinary ZIP, and rename the result to .cbz. Not elegant, but it is a one-time fix per file — and because CBZ is built on the openly documented ZIP format, it opens up browser-based tools that cannot legally ship RAR-unpacking code.'
+  - q: 'Why won''t my CBZ file open in any reader?'
+    a: 'Very often it is actually a CBR that someone renamed by hand — changing the extension does not change the archive inside, and a ZIP-expecting app cannot unpack a RAR. An archive utility will tell you the real format in one glance where a comic reader just shrugs.'
+  - q: 'Can I search or copy text from a CBR or CBZ comic?'
+    a: 'No. The formats have no text layer — the words are pixels inside the page images — so nothing can be searched, selected or read aloud. There is no standard metadata either, which is why library apps end up guessing title and author from the filename.'
+  - q: 'Does converting a CBZ to EPUB make the file smaller?'
+    a: 'No — expect roughly the same size. The pages are already-compressed JPEG or PNG images, so repacking saves almost nothing; our two-page test archive of 104,129 bytes came out as a 99,802-byte EPUB. What changes is the wrapper: the EPUB adds a manifest, a reading order and a registered cover.'
+  - q: 'Should I convert a comic archive to EPUB or to PDF?'
+    a: 'Pick by destination. E-reader apps and ebook libraries want EPUB; for printing, or for anything that treats PDFs well, a fixed page format suits comics fine, because a comic page is a fixed image anyway and EPUB''s usual reflow advantage barely applies.'
+  - q: 'Why do comic pages sometimes display out of order?'
+    a: 'Reading order in a comic archive is simply filename order. If pages are numbered without padded zeros, an app sorting naively puts page10 after page1 but before page2 — careful zero-padded naming, or a reader that sorts numerically, is what keeps the story in sequence.'
 draft: false
 ---
 

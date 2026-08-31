@@ -4,6 +4,7 @@ excerpt: 'How to create an EPUB from the manuscript you already have: structure 
 category: 'How-to'
 ogImage: '/blog-og/create-an-epub.png'
 date: 2026-08-15
+updated: 2026-08-31
 author:
   name: 'Shahid Ansari'
   initial: 'S'
@@ -11,6 +12,29 @@ tools:
   - docx-to-epub
   - epub-validator
   - epub-metadata-editor
+howToTitle: 'How to create an EPUB from a manuscript'
+howTo:
+  - t: 'Put real structure in the source'
+    d: 'Apply Heading 1 to every chapter title and Heading 2 to sections within chapters. The converter splits chapters by these styles — titles that are merely bold and centred are invisible to it.'
+  - t: 'Convert the file in the browser'
+    d: 'Drop the DOCX on the converter. It builds one chapter document per Heading 1, with the manifest, spine and navigation around them, without the manuscript ever being uploaded.'
+  - t: 'Check and fix the metadata'
+    d: 'Set the title, author and language in the metadata editor — a DOCX does not reliably carry an author, and stores display exactly what the package document says.'
+  - t: 'Validate before sending it anywhere'
+    d: 'Run the finished file through the EPUB validator. A pass means the archive is structurally sound; a failure shows you the store''s rejection message before the store does.'
+faqs:
+  - q: 'Why did my converted EPUB come out as one long chapter?'
+    a: 'Because the converter could not see your chapter titles. It decides where chapters begin by reading real heading styles, and titles that were just selected and made bigger are invisible to it. Apply Heading 1 to every chapter title in the source and reconvert — the fix is in the manuscript, not in trying other converters until one guesses.'
+  - q: 'Do I need to install Calibre or Sigil to make an EPUB?'
+    a: 'Not for a standard prose book — a browser-based converter, metadata editor and validator cover the whole path with nothing installed. Desktop editors earn their place at the edges: fixed-layout picture books, hand-placed footnotes, complex nested navigation, or surgical markup repair on an already-converted file.'
+  - q: 'Why does my new EPUB say the author is Unknown?'
+    a: 'Because a DOCX does not reliably carry an author field, so the converter had nothing to copy across. Stores and reading apps display exactly what the package document says, which means an Unknown author follows the book everywhere — thirty seconds in a metadata editor setting title, author and language is worth it on every freshly created file.'
+  - q: 'Will my fonts and page layout carry over into the EPUB?'
+    a: 'No, and they should not. An EPUB reflows to fit whatever screen it lands on, so what carries across is the text and its structure — fonts, margins and careful page layout are deliberately left behind. If a page must look identical everywhere, that requirement points at a different format, not at a different converter.'
+  - q: 'How long does it take to create an EPUB?'
+    a: 'About ten minutes for a first book made this way, and nearly all of them are spent applying heading styles to the manuscript. The conversion itself takes seconds. That balance is right: the structure work is what becomes your chapter breaks, navigation and the reader''s experience of the book.'
+  - q: 'Does my book need a cover before I publish it?'
+    a: 'A first EPUB works fine without one, but a book heading to a store needs a cover image added as its own deliberate step — conversion does not design or supply covers. Treat it like metadata: something to complete after the structural base is built and validated.'
 draft: false
 ---
 

@@ -4,12 +4,34 @@ excerpt: 'A reader found a typo in your published ebook. How to fix it in the EP
 category: 'How-to'
 ogImage: '/blog-og/fix-typo-in-published-ebook.png'
 date: 2026-08-13
+updated: 2026-08-31
 author:
   name: 'Shahid Ansari'
   initial: 'S'
 tools:
   - epub-metadata-editor
   - epub-validator
+howToTitle: 'How to fix a typo in a published EPUB'
+howTo:
+  - t: 'Find the file that holds the typo'
+    d: 'Copy the .epub, rename the copy to .zip, extract it, and search the chapter files — grep returns the exact file and line, because chapters are plain XHTML text.'
+  - t: 'Fix the word in a text editor'
+    d: 'Change the word and touch nothing else. Save as UTF-8 and do not let the editor tidy the markup — an unclosed tag is how a one-word fix becomes a book that will not open.'
+  - t: 'Re-pack the archive correctly'
+    d: 'Add the mimetype entry first, stored uncompressed (zip -X0), then the rest of the folders — or skip the manual route entirely and edit in Calibre or Sigil, which re-pack correctly on save.'
+  - t: 'Validate, then re-upload'
+    d: 'Run the corrected file through an EPUB validator before it goes near a store. If the hand edit broke the XML or the re-zip dropped a file, it shows up here first, while it still costs nothing.'
+faqs:
+  - q: 'Can I edit an EPUB with a normal text editor?'
+    a: 'Yes for the edit itself — chapters are ordinary XHTML files you can open in any text editor once the archive is extracted. Save as UTF-8 and do not let the editor reformat the markup. The real danger is the re-zip afterwards, which has a layout rule general-purpose zip tools do not know; a container-aware editor like Calibre or Sigil sidesteps it entirely.'
+  - q: 'Why won''t my EPUB open after I unzipped and re-zipped it?'
+    a: 'Almost certainly the archive layout. EPUB requires the mimetype entry to come first in the ZIP, stored without compression, so a reader can identify the file from its opening bytes — and a general zip tool inserts extra header fields ahead of it. In a correctly packed file the string application/epub+zip sits at byte 38; any other offset means the file needs re-packing, not another edit.'
+  - q: 'Will readers who already bought my book get the corrected version?'
+    a: 'Not automatically. Re-uploading fixes the copy the store sells from now on, but nothing you do to the file forces an update onto readers'' devices — some stores push corrections, some wait for a re-download, and each documents its own policy. A copy loaded over USB keeps the typo until its owner replaces it.'
+  - q: 'Do I need to unzip the EPUB to fix a wrong title or author name?'
+    a: 'No. A misspelt title or mangled author name lives in the book''s metadata, not in any chapter, so a metadata editor fixes it in the browser without hand-editing the archive. It rewrites only the fields you change and passes the chapters, styles and images through untouched.'
+  - q: 'What is the safest tool for fixing a typo inside a chapter?'
+    a: 'One that understands the EPUB container — Calibre''s built-in editor or Sigil. Both open the EPUB directly, let you correct the word, and re-pack the archive correctly when you save, so there is no mimetype layout rule to remember. The manual unzip-and-rezip route is for when you want full control over every byte.'
 draft: false
 ---
 

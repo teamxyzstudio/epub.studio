@@ -4,12 +4,26 @@ excerpt: 'Fixed-layout EPUB problems rarely mean a broken file. Three clauses �
 category: 'Formats explained'
 ogImage: '/blog-og/fixed-layout-epub-problems.png'
 date: 2026-08-14
+updated: 2026-08-31
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - epub-validator
   - epub-to-pdf
+faqs:
+  - q: 'Why does my fixed-layout EPUB open as an ordinary reflowable book?'
+    a: 'Because fixed layout is opt-in and reflow is the fallback. Either the rendition:layout declaration is missing, misspelled or somewhere the app does not look, or the app simply does not honour pre-paginated books — both fail silently and produce the same reflowed result. Opening the book in a second app tells you which side the fault is on.'
+  - q: 'Why does a page render tiny, cropped, or at the wrong proportions?'
+    a: 'That is the viewport. Each page''s viewport meta line is the only place the canvas geometry is stated; take it away and the app guesses, and different apps guess differently. A viewport that contradicts the artwork''s real ratio shows up as letterboxing, cropping or overlap, and pages that declare different sizes from each other make the zoom jump on every page turn.'
+  - q: 'Why won''t my facing pages pair into a two-page spread?'
+    a: 'Spreads need both sides of the contract: the file''s spine entries must carry page-spread-left and page-spread-right properties alongside the rendition:spread declaration, and the app must implement spreads at all. If the properties are present and pairing still fails, the app is the missing half — and no edit to the file will fix an app.'
+  - q: 'Does fixed-layout EPUB work on Kindle?'
+    a: 'Not as EPUB directly. Kindle''s formats have their own fixed-layout machinery, and books enter through Amazon''s conversion pipeline rather than being read as EPUB — so nothing about how a book renders in EPUB apps predicts how that pipeline will treat it. If Kindle is the destination, preview with Amazon''s own tools before you publish there.'
+  - q: 'Can I convert a fixed-layout EPUB to PDF without losing the layout?'
+    a: 'Not with reflow-first tooling. A converter reads each page as a document, extracts its text and images in source order, and re-typesets them as ordinary paragraphs — the content survives, the geometry does not. If where things sit on the page is the content, nothing that re-typesets will carry it.'
+  - q: 'Is fixed layout a good choice for a text-only book?'
+    a: 'No — for plain prose it collects every downside and no upside. Text cannot resize for the reader, pages cannot adapt to the screen, and the book inherits all three silent failure modes. Reflowable EPUB exists precisely so prose never needs any of this; fixed layout earns its keep only where the page is a designed object.'
 draft: false
 ---
 

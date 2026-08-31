@@ -61,11 +61,11 @@ is the running Done count after the batch. The prefix is `blog: FAQs`, not
 | 23 | `ebook-drm-explained` | 2026-08-05 | 6 | no | 2026-08-30 |
 | 24 | `what-is-an-epub-file` | 2026-08-06 | 5 | no | 2026-08-30 |
 | 25 | `kindle-file-format` | 2026-08-07 | 6 | no | 2026-08-30 |
-| 26 | `print-an-epub` | 2026-08-08 | — | — |  |
-| 27 | `what-is-a-cbr-file` | 2026-08-09 | — | — |  |
-| 28 | `fix-typo-in-published-ebook` | 2026-08-13 | — | — |  |
-| 29 | `fixed-layout-epub-problems` | 2026-08-14 | — | — |  |
-| 30 | `create-an-epub` | 2026-08-15 | — | — |  |
+| 26 | `print-an-epub` | 2026-08-08 | 5 | yes | 2026-08-31 |
+| 27 | `what-is-a-cbr-file` | 2026-08-09 | 6 | no | 2026-08-31 |
+| 28 | `fix-typo-in-published-ebook` | 2026-08-13 | 5 | yes | 2026-08-31 |
+| 29 | `fixed-layout-epub-problems` | 2026-08-14 | 6 | no | 2026-08-31 |
+| 30 | `create-an-epub` | 2026-08-15 | 6 | yes | 2026-08-31 |
 | 31 | `epub-2-vs-epub-3` | 2026-08-16 | — | — |  |
 | 32 | `edit-an-epub` | 2026-08-17 | — | — |  |
 | 33 | `is-epub-safe` | 2026-08-19 | — | — |  |
@@ -73,12 +73,13 @@ is the running Done count after the batch. The prefix is `blog: FAQs`, not
 
 ## Progress
 
-- **Done: 25 / 34**
+- **Done: 30 / 34**
 - Batch 1 — 2026-08-20 — `public-domain-books-worth-reading`, `what-is-inside-an-epub`, `ebook-chapter-openings`, `mobi-is-dead`, `reduce-epub-file-size`
 - Batch 2 — 2026-08-27 — `best-fonts-for-ebooks`, `fixing-corrupt-epub-files`, `why-page-numbers-dont-exist-in-epub`, `convert-word-to-epub`, `ebook-line-spacing-and-line-length`
 - Batch 3 — 2026-08-28 — `send-epub-to-kindle`, `convert-epub-to-pdf-without-losing-formatting`, `epub-vs-pdf-vs-mobi`, `pdf-to-epub-formatting-problems`, `calibre-epub-conversion-problems`
 - Batch 4 — 2026-08-29 — `epub-cover-not-showing`, `epub-embedded-fonts-not-working`, `epub-validation-errors-explained`, `best-format-to-convert-to-epub`, `epub-compatibility-problems`
 - Batch 5 — 2026-08-30 — `epub-table-of-contents-problems`, `epub-images-not-showing`, `ebook-drm-explained`, `what-is-an-epub-file`, `kindle-file-format`
+- Batch 6 — 2026-08-31 — `print-an-epub`, `what-is-a-cbr-file`, `fix-typo-in-published-ebook`, `fixed-layout-epub-problems`, `create-an-epub`
 
 When the Done column is filled for every row, this queue is finished: delete
 the DISPATCH step that reads it from `content-ops/routines/daily-publisher.md`
