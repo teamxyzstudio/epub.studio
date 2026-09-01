@@ -13,6 +13,12 @@ const PEOPLE = {
     name: 'Mofid Ansari',
     initial: 'M',
     /**
+     * Provenance for public/authors/mofid-ansari.webp. Owner-supplied; vendored
+     * by scripts/fetch-author-photos.mjs and served from this site, never
+     * hotlinked — the homepage promises no third-party requests.
+     */
+    avatar: 'https://avatars.githubusercontent.com/u/9111119?v=4',
+    /**
      * Real, owner-supplied profiles. The first entry is the primary one —
      * templates that have room for a single link use it. Order matters:
      * personal site first, because it is the strongest identity anchor.
@@ -28,6 +34,8 @@ const PEOPLE = {
     slug: 'shahid-ansari',
     name: 'Shahid Ansari',
     initial: 'S',
+    /** Provenance for public/authors/shahid-ansari.webp — see above. */
+    avatar: 'https://avatars.githubusercontent.com/u/112708399?v=4',
     links: [
       { label: 'GitHub', href: 'https://github.com/ansarishahid' },
       { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ansarishahid/' },
@@ -63,10 +71,11 @@ export const allAuthors = Object.values(AUTHORS);
  * than with page content because it is about the same two humans as AUTHORS,
  * and both are rendered by the same component.
  *
- * TODO: verify — the founders should supply real photographs (drop them at
- * public/authors/<slug>.jpg; see lib/author-photo.js) and, if they want one, a
- * first-hand sentence on what prompted them to build the site. Neither is
- * fabricated here.
+ * Photographs: supplied by the founders and vendored into public/authors/ (see
+ * `avatar` above and scripts/fetch-author-photos.mjs).
+ *
+ * TODO: verify — if the founders want one, a first-hand sentence on what
+ * prompted them to build the site. Not fabricated here.
  */
 export const TEAM = {
   intro:

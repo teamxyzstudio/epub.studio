@@ -37,18 +37,6 @@ const showFeatured = computed(
 );
 
 const hasMore = computed(() => filtered.value.length > shown.value);
-
-// --- Newsletter ----------------------------------------------------------
-const email = ref('');
-const subscribed = ref(false);
-const subLabel = computed(() => (subscribed.value ? 'Subscribed ✓' : 'Subscribe'));
-
-function subscribe() {
-  // No list is wired up yet; POST to your provider here. Until then the button
-  // only confirms locally rather than pretending a signup happened server-side.
-  if (!email.value.includes('@')) return;
-  subscribed.value = true;
-}
 </script>
 
 <template>
@@ -71,6 +59,23 @@ function subscribe() {
         <span>{{ featured.category }}</span>
         <span>·</span>
         <span>{{ featured.readTime }} read</span>
+        <span>·</span>
+        <span class="who">
+          <img
+            v-if="featured.author.photo"
+            class="who-avatar"
+            :src="featured.author.photo"
+            alt=""
+            width="20"
+            height="20"
+            loading="lazy"
+            decoding="async"
+          />
+          <span v-else class="who-avatar who-initial" aria-hidden="true">{{
+            featured.author.initial
+          }}</span>
+          {{ featured.author.name }}
+        </span>
       </div>
       <div class="featured-title">{{ featured.title }}</div>
       <p>{{ featured.excerpt }}</p>
@@ -130,6 +135,24 @@ function subscribe() {
       </div>
       <div class="card-title">{{ p.title }}</div>
       <p>{{ p.excerpt }}</p>
+      <!-- The listing showed no byline at all; posts have named humans behind
+           them and the card is where most readers decide to trust one. Plain
+           text, not a link: the whole card is already an <a>, and an author
+           link inside it would be a nested anchor. -->
+      <div class="card-byline">
+        <img
+          v-if="p.author.photo"
+          class="who-avatar"
+          :src="p.author.photo"
+          alt=""
+          width="24"
+          height="24"
+          loading="lazy"
+          decoding="async"
+        />
+        <span v-else class="who-avatar who-initial" aria-hidden="true">{{ p.author.initial }}</span>
+        <span class="card-author">{{ p.author.name }}</span>
+      </div>
       <div class="card-foot"><span>{{ p.date }}</span><span class="read">Read →</span></div>
     </a>
   </div>
@@ -138,23 +161,6 @@ function subscribe() {
 
   <div v-if="hasMore" class="older-wrap">
     <button class="older focus-ring-2" @click="shown += pageSize">Older posts</button>
-  </div>
-
-  <div class="newsletter">
-    <div class="news-copy">
-      <div class="news-title">One useful ebook tip, once a month.</div>
-      <div class="news-sub">No product noise. Unsubscribe anytime.</div>
-    </div>
-    <form class="news-form" @submit.prevent="subscribe">
-      <input
-        v-model="email"
-        type="email"
-        placeholder="you@example.com"
-        aria-label="Email address"
-        required
-      />
-      <button type="submit">{{ subLabel }}</button>
-    </form>
   </div>
 </template>
 
@@ -378,8 +384,50 @@ function subscribe() {
   color: #6e675d;
   text-wrap: pretty;
 }
-.card-foot {
+.who {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.who-avatar {
+  border-radius: 50%;
+  flex: none;
+  object-fit: cover;
+}
+.who-initial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #17130e;
+  color: #faf7f2;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.card-byline {
   margin-top: auto;
+  padding-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-byline .who-avatar {
+  width: 24px;
+  height: 24px;
+}
+.card-byline .who-initial {
+  font-size: 11px;
+}
+.card-author {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #17130e;
+}
+
+.card-foot {
+  margin-top: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -420,72 +468,4 @@ function subscribe() {
   color: #c41e4f;
 }
 
-/* --- Newsletter --- */
-.newsletter {
-  margin-top: clamp(36px, 5vw, 64px);
-  border: 1px solid rgba(23, 19, 14, 0.16);
-  border-radius: 16px;
-  background: #17130e;
-  color: #faf7f2;
-  padding: clamp(22px, 3.5vw, 40px);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: center;
-}
-.news-copy {
-  flex: 1 1 300px;
-  min-width: 240px;
-}
-.news-title {
-  font-family: 'Instrument Serif', serif;
-  font-size: clamp(22px, 2.4vw, 30px);
-  letter-spacing: -0.01em;
-  margin-bottom: 6px;
-}
-.news-sub {
-  font-size: 13.5px;
-  color: rgba(250, 247, 242, 0.65);
-}
-.news-form {
-  flex: 1 1 300px;
-  min-width: 240px;
-  display: flex;
-  gap: 8px;
-}
-.news-form input {
-  flex: 1;
-  min-width: 0;
-  padding: 13px 14px;
-  font-size: 15px;
-  font-family: 'Archivo', sans-serif;
-  border: 1px solid rgba(250, 247, 242, 0.3);
-  border-radius: 10px;
-  background: rgba(250, 247, 242, 0.06);
-  color: #faf7f2;
-}
-.news-form input:focus-visible {
-  outline: 2px solid #ff2e63;
-  outline-offset: 1px;
-}
-.news-form button {
-  flex: none;
-  padding: 13px 20px;
-  border: none;
-  border-radius: 10px;
-  background: #c41e4f;
-  color: #fff;
-  font-family: 'Archivo', sans-serif;
-  font-size: 14.5px;
-  font-weight: 600;
-  cursor: pointer;
-  min-height: 48px;
-}
-.news-form button:hover {
-  box-shadow: 0 5px 16px rgba(196, 30, 79, 0.4);
-}
-.news-form button:focus-visible {
-  outline: 2px solid #faf7f2;
-  outline-offset: 2px;
-}
 </style>

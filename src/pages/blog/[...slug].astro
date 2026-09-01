@@ -8,6 +8,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import LogoMark from '../../components/LogoMark.astro';
 import ArticleChrome from '../../components/islands/ArticleChrome.vue';
 import { authorByName } from '../../data/authors.js';
+import { authorPhoto } from '../../lib/author-photo.js';
 import ShareButton from '../../components/islands/ShareButton.vue';
 import { getPosts, readTime, formatDate, tocFrom, howToTitle } from '../../lib/posts.js';
 import { toolBySlug } from '../../data/tools.js';
@@ -49,10 +50,30 @@ const toc = [
 const showToc = post.data.toc && toc.length >= 3;
 const path = `/blog/${post.id}`;
 
-const tools = post.data.tools
-  .map((slug) => toolBySlug[slug])
-  .filter(Boolean)
-  .map((t) => ({ name: t.n, href: `/${t.slug}` }));
+const toolEntries = post.data.tools.map((slug) => toolBySlug[slug]).filter(Boolean);
+const tools = toolEntries.map((t) => ({ name: t.n, href: `/${t.slug}` }));
+
+/**
+ * The closing CTA, described from the tool it actually points at.
+ *
+ * It used to be fixed copy — "Convert between every major format" above a
+ * button reading "Open the converter" — while the href followed the post's
+ * first `tools:` entry. For 19 of the posts that entry is a validator, a
+ * reader, a metadata editor or, worst, one of the two guide pages, so the
+ * button promised a conversion the destination does not perform.
+ */
+const primary = toolEntries[0] || toolBySlug['epub-to-pdf'];
+const cta = primary.guide
+  ? {
+      title: 'Before you convert',
+      sub: primary.d,
+      label: `Read: ${primary.n} →`,
+    }
+  : {
+      title: 'Try it on your own book',
+      sub: `${primary.d} Free, in your browser — nothing leaves your device.`,
+      label: `Open ${primary.n} →`,
+    };
 
 // "Keep reading": same category first, then most recent, excluding this post.
 const related = posts
@@ -65,6 +86,10 @@ const related = posts
   .slice(0, 3);
 
 const ogImage = post.data.ogImage || OG_IMAGE;
+
+/** Registered authors have a vendored portrait; anyone else keeps the initial. */
+const person = authorByName(post.data.author.name);
+const bylinePhoto = person ? authorPhoto(person.slug) : null;
 
 /**
  * BlogPosting (not the broader Article) because that is what these pages are,
@@ -177,7 +202,25 @@ const jsonLd = [
         <h1>{post.data.title}</h1>
 
         <div class="byline">
-          <span class="avatar" aria-hidden="true">{post.data.author.initial}</span>
+          {
+            /* alt="" — the name is the next thing read out, so describing the
+               portrait again would just be a duplicate. */
+            bylinePhoto ? (
+              <img
+                class="avatar"
+                src={bylinePhoto}
+                alt=""
+                width="38"
+                height="38"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <span class="avatar" aria-hidden="true">
+                {post.data.author.initial}
+              </span>
+            )
+          }
           <div class="byline-text">
             <div class="author">
               {
@@ -282,14 +325,10 @@ const jsonLd = [
 
         <div class="cta-card">
           <div class="cta-copy">
-            <div class="cta-title">Try it on your own book</div>
-            <div class="cta-sub">
-              Convert between every major format free — no signup, nothing leaves your device.
-            </div>
+            <div class="cta-title">{cta.title}</div>
+            <div class="cta-sub">{cta.sub}</div>
           </div>
-          <a href={tools[0]?.href || '/epub-to-pdf'} class="cta-button focus-ring-ink">
-            Open the converter →
-          </a>
+          <a href={`/${primary.slug}`} class="cta-button focus-ring-ink">{cta.label}</a>
         </div>
 
         <div class="keep-reading">
@@ -467,6 +506,10 @@ const jsonLd = [
     justify-content: center;
     font-size: 14px;
     font-weight: 600;
+    flex: none;
+  }
+  img.avatar {
+    object-fit: cover;
   }
   .byline-text {
     flex: 1;

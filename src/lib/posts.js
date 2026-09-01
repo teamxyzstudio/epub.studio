@@ -3,6 +3,8 @@
  * feed, so all three agree on ordering, dates and read time.
  */
 import { getCollection } from 'astro:content';
+import { authorByName } from '../data/authors.js';
+import { authorPhoto } from './author-photo.js';
 
 const WORDS_PER_MINUTE = 200;
 
@@ -26,17 +28,31 @@ export async function getPosts() {
   return posts.sort((a, b) => b.data.date - a.data.date);
 }
 
-/** The plain shape the listing island renders. */
-export const toCard = (post) => ({
-  href: `/blog/${post.id}`,
-  title: post.data.title,
-  excerpt: post.data.excerpt,
-  category: post.data.category,
-  date: formatDate(post.data.date),
-  readTime: readTime(post),
-  /** Branded card PNG, doubling as the listing thumbnail. */
-  image: post.data.ogImage || null,
-});
+/**
+ * The plain shape the listing island renders.
+ *
+ * The island is client-side, so everything it needs is resolved here: the photo
+ * lookup reads the filesystem and the author record lives in a server module.
+ */
+export const toCard = (post) => {
+  const person = authorByName(post.data.author.name);
+  return {
+    href: `/blog/${post.id}`,
+    title: post.data.title,
+    excerpt: post.data.excerpt,
+    category: post.data.category,
+    date: formatDate(post.data.date),
+    readTime: readTime(post),
+    /** Branded card PNG, doubling as the listing thumbnail. */
+    image: post.data.ogImage || null,
+    /** Who wrote it — the listing showed no byline at all before. */
+    author: {
+      name: post.data.author.name,
+      initial: post.data.author.initial,
+      photo: person ? authorPhoto(person.slug) : null,
+    },
+  };
+};
 
 /**
  * Headings for the sticky table of contents. Astro's `getHeadings()` returns

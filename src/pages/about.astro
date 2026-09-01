@@ -1,9 +1,11 @@
 ---
 import ContentPage from '../layouts/ContentPage.astro';
 import BuiltBy from '../components/BuiltBy.astro';
-import { allTools } from '../data/tools.js';
+import { workingTools } from '../data/tools.js';
 
-const toolCount = allTools.length;
+// Counts only pages that actually process a file — /epub-to-mobi and
+// /epub-to-azw3 are explainers, and counting them here would overstate.
+const toolCount = workingTools.length;
 ---
 
 <ContentPage
@@ -65,7 +67,7 @@ const toolCount = allTools.length;
   <h2>Free, and no account</h2>
 
   <p>
-    Every tool, every file size, no sign-up. There is no paid tier and nothing held back. Since the
+    Every tool, no size cap, no sign-up. There is no paid tier and nothing held back. Since the
     work happens on your device, serving these tools costs about as much as serving a blog.
   </p>
 
