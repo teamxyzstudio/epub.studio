@@ -4,12 +4,24 @@ excerpt: 'Is EPUB safe to open? An EPUB is a zip of web pages, so it can carry a
 category: 'Formats explained'
 ogImage: '/blog-og/is-epub-safe.png'
 date: 2026-08-19
+updated: 2026-09-01
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - epub-validator
   - epub-to-pdf
+faqs:
+  - q: 'Can an EPUB file contain a virus?'
+    a: 'Not in the sense of an executable program. An EPUB is a zip archive of markup, styles and images with no place in its design for an installer, and opening one does not execute code the way running a program does. The residual risks are different in kind: a script the reading app may choose to run, a remote image that can act as a beacon, and parser bugs in the reading software itself — which is why keeping the app updated matters more than scanning the book.'
+  - q: 'Can an EPUB run JavaScript?'
+    a: 'It can carry it — chapters are XHTML, and a structurally valid book can include a script block, as the modified specimen in this post did. Whether it runs is the reading app''s decision: a script executes only if the app opening the book hands that markup a JavaScript engine. The converter tested here skips script and style tags before looking at anything else, so their contents never reach the output.'
+  - q: 'Does passing the validator mean a file is safe?'
+    a: 'No — it means the file is a real, intact EPUB, which is a different and still useful fact. A validator checks structure: the container pointer, the package document, the manifest. It has no opinion about what the markup is trying to do, and the specimen carrying a script and a tracking pixel passed here with no problems found. Structural validity is not safety, and no tool honestly certifies both.'
+  - q: 'How do I check a download is really an EPUB and not a disguised program?'
+    a: 'A real EPUB begins with the zip signature PK, and the format requires the label application/epub+zip to be the first thing stored in the archive — it sits at byte 38 of the specimen. A file named something.epub.exe is an executable wearing a book''s name. The quick route is a validator pass: hand it a file that is not a real zip and it stops immediately at Not a valid ZIP archive.'
+  - q: 'Can an EPUB track me when I read it?'
+    a: 'It can try. A remote one-pixel image in a chapter is a beacon: if the reading app fetches it, the server behind it learns the book was opened, roughly when, and from what address. Nothing is installed and nothing is stolen — it is a privacy problem, not an infection. An app that never reaches the network for a book''s assets gives the beacon nothing to work with, which is exactly what the conversion test in this post showed.'
 draft: false
 ---
 

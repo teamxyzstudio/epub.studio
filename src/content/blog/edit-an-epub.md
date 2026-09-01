@@ -4,6 +4,7 @@ excerpt: 'Four jobs hide inside "edit an EPUB file" — metadata, cover, styling
 category: 'How-to'
 ogImage: '/blog-og/edit-an-epub.png'
 date: 2026-08-17
+updated: 2026-09-01
 author:
   name: 'Shahid Ansari'
   initial: 'S'
@@ -11,6 +12,17 @@ tools:
   - epub-metadata-editor
   - epub-cover-editor
   - style-studio
+faqs:
+  - q: 'Can I edit an EPUB without installing anything?'
+    a: 'For three of the four common edits, yes. Metadata, cover and styling changes are structured edits to small, self-contained files inside the archive, and the browser tools on this site make them without the book leaving your machine. Editing the text itself is the exception — that job belongs in a desktop editor like Calibre or Sigil, which understands the chapter markup it is rewriting.'
+  - q: 'Why shouldn''t I just unzip the EPUB, edit it, and zip it back up?'
+    a: 'Because the container format has a strict rule about how the archive is packed, and general-purpose zip tools do not follow it. The rezipped book looks fine right up until a device rejects it. Editors that understand the container — Calibre''s editor, Sigil — repack the archive correctly on save, which is the whole reason to use one instead of a zip utility.'
+  - q: 'Will fixing the metadata change anything else in the book?'
+    a: 'No. A structured metadata edit rewrites only the package document. In the run measured for this post, content.opf grew from 1,314 to 1,371 bytes to carry the corrected author and a new publisher line, while all five chapters, the stylesheet and both navigation files stayed byte-for-byte identical.'
+  - q: 'Why does my reader shelve a book as Unknown, and where is that fixed?'
+    a: 'The shelf entry is rendered from the metadata fields inside the book''s package document, not from the file name or any store listing — if the creator field says Unknown, that is what the shelf shows. Correcting the author with a metadata editor rewrites that one field, and the shelf entry follows the next time the book is loaded.'
+  - q: 'Can a browser-based edit corrupt my book?'
+    a: 'A structured edit cannot mangle your chapters, because the tool never parses them — it rewrites one known file and repacks the rest of the archive untouched. Freehand text editing is where the risk lives: one unclosed tag in a chapter produces a book that strict readers refuse outright. That asymmetry is why text edits get a desktop editor, and every edited book gets a validation pass.'
 draft: false
 ---
 

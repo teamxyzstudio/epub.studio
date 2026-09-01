@@ -4,12 +4,32 @@ excerpt: 'Apple Pages can''t open an EPUB directly. The reliable way to convert 
 category: 'How-to'
 ogImage: '/blog-og/convert-epub-to-pages.png'
 date: 2026-08-20
+updated: 2026-09-01
 author:
   name: 'Shahid Ansari'
   initial: 'S'
 tools:
   - epub-to-docx
   - epub-to-txt
+howToTitle: 'How to convert an EPUB to Pages'
+howTo:
+  - t: 'Convert the EPUB to a Word document'
+    d: 'Run the book through the EPUB-to-Word converter: drop the file on the page and it reads every chapter and writes a single .docx. Nothing is uploaded — the conversion happens in your browser.'
+  - t: 'Open the downloaded .docx in Pages'
+    d: 'File → Open, or just double-click it now that it is a Word file — Pages has imported Word documents for as long as it has existed.'
+  - t: 'Save it as a Pages document'
+    d: 'Pages imports the file and, if it asks, offers to keep a copy in its own format. Save it and you are editing the book.'
+faqs:
+  - q: 'Do images survive converting an EPUB to Pages?'
+    a: 'No. The converter is text-and-structure only, and it drops images rather than mangling them into the wrong place. The comic fixture in this post makes the point starkly: a 99,804-byte EPUB that was almost entirely two PNG page scans came out as an 8,503-byte Word document with no image inside. Text, headings, quotes and lists are what carry over.'
+  - q: 'Do I need Microsoft Word installed for this to work?'
+    a: 'No. The EPUB-to-Word conversion runs in your browser, and Pages opens the resulting .docx directly — Word itself is never involved. The .docx is simply the interchange format both worlds understand, which is what makes it the reliable bridge between an ebook and Pages.'
+  - q: 'I only want to read the book on my Mac — should I convert it?'
+    a: 'No. Apple Books reads EPUB natively on a Mac: add the file and it opens intact, images and layout and all. Convert to Pages only when you genuinely need to edit or reuse the text — trading away images and typography is a poor deal for a book you only wanted to read.'
+  - q: 'Will the chapter headings come through as real headings in Pages?'
+    a: 'Yes. The converter maps structure to structure, and in the run for this post the specimen''s five chapter titles arrived as Word Heading 1 styles. Pages therefore shows them in its outline and table of contents rather than as anonymous bold lines, which is what keeps the imported manuscript workable as a document.'
+  - q: 'How do I get my edited book back out of Pages as an EPUB?'
+    a: 'Run the route in reverse: export from Pages to Word format, then turn that Word document into an EPUB. The return trip keeps more than the outbound one, because you are moving from the richer word-processing format into the ebook rather than squeezing an ebook out of one.'
 draft: false
 ---
 

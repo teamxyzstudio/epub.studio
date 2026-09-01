@@ -4,11 +4,23 @@ excerpt: 'EPUB 2 vs EPUB 3 compared on real files: what changed in the package, 
 category: 'Formats explained'
 ogImage: '/blog-og/epub-2-vs-epub-3.png'
 date: 2026-08-16
+updated: 2026-09-01
 author:
   name: 'Mofid Ansari'
   initial: 'M'
 tools:
   - epub-validator
+faqs:
+  - q: 'Will an EPUB 2 book still open on modern readers and apps?'
+    a: 'Yes, almost everywhere — the machinery that reads EPUB 2 never went away. Strict tools treat an old package as something to flag rather than refuse: the specimen rebuilt as EPUB 2 for this post validated with a warning, not an error. The pressure to upgrade comes from store ingestion systems, accessibility requirements and rich-media features, not from books failing to open.'
+  - q: 'Why do EPUB 3 files contain both a nav.xhtml and a toc.ncx?'
+    a: 'The nav.xhtml is EPUB 3''s table of contents — an ordinary HTML list. The toc.ncx is the legacy EPUB 2 navigation file, and well-built EPUB 3 books keep shipping it because the couple of kilobytes it costs buys a working table of contents on readers that predate the change. Identical information, encoded twice for two generations of software.'
+  - q: 'Can I convert an EPUB 2 file to EPUB 3 on this site?'
+    a: 'Not in place — there is no EPUB 2 to EPUB 3 upgrade tool here. Everything this site''s converters produce is already EPUB 3 with the NCX fallback included, so a book built here is current by construction. Upgrading an existing EPUB 2 file is a job for Calibre''s EPUB-to-EPUB conversion or a hand edit in Sigil, and for a complex book the hand edit is the safer of the two.'
+  - q: 'Does EPUB 3 support audio and video?'
+    a: 'The specification does — audio, video, SVG and scripting all became possible in EPUB 3, none of which were part of EPUB 2. But a feature being in the specification has never forced an app to implement it, and reader support for rich media is genuinely uneven. That gap is a large part of why the same book can behave differently from one app to the next.'
+  - q: 'Is an EPUB 3 file much bigger than the same book in EPUB 2?'
+    a: 'No. Packaged both ways, the five-chapter specimen came to 5,183 bytes as EPUB 3 and 4,675 as EPUB 2 — a difference of 508 bytes, most of it the extra navigation document. The text did not change at all. The version lives in the package declaration, the navigation files and the metadata rules, not in the size or content of the chapters.'
 draft: false
 ---
 
