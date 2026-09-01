@@ -147,6 +147,9 @@ const nav = [
                       <span class="badge">{t.a}</span>
                       <span class="arrow">→</span>
                       <span class="badge">{t.b}</span>
+                      {/* These two pages explain why the conversion cannot run
+                          in a browser; the badge stops the tile promising one. */}
+                      {t.guide && <span class="badge badge-guide">Guide</span>}
                     </span>
                     <span class="tool-name">{t.n}</span>
                     <span class="tool-desc">{t.d}</span>
@@ -162,7 +165,7 @@ const nav = [
         <div class="trust-grid">
           <div class="trust-cell">
             <span class="strong">Free, no signup.</span><span class="muted">
-              Every tool, every file size.</span
+              Every tool, no size cap.</span
             >
           </div>
           <div class="trust-cell">
@@ -332,6 +335,14 @@ const nav = [
   .arrow {
     color: #ff2e63;
     font-weight: 500;
+  }
+  .badge-guide {
+    background: transparent;
+    border: 1px solid rgba(23, 19, 14, 0.28);
+    /* Pink Ink, not Electric Pink: small text must clear WCAG AA (4.5:1). */
+    color: #c41e4f;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
   .tool-name {

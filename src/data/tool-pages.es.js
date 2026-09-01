@@ -29,7 +29,7 @@ const MARGIN_OPTS_ES = {
 const COMMON_ES = {
   size: {
     q: '¿Hay un límite de tamaño?',
-    a: 'Archivos de hasta 100 MB se convierten sin problema. Si el tuyo pesa más, prueba primero el compresor de EPUB — suele reducir a la mitad los libros con muchas imágenes.',
+    a: 'No hay límite de tamaño: nada se sube, así que no se aplica ninguna cuota de servidor. El techo real es la memoria de tu dispositivo, porque el archivo entero se mantiene en RAM mientras se convierte: una novela es trivial en cualquier equipo, pero un libro muy ilustrado puede ir lento o agotar la memoria en un móvil antiguo. Si se atasca, pásalo antes por el compresor de EPUB — suele reducir a la mitad los libros con muchas imágenes.',
   },
   privacy: {
     q: '¿Mis archivos son privados?',
@@ -54,7 +54,7 @@ const pages = {
     accept: '.epub',
     dropHeadline: 'Suelta tu EPUB aquí, o haz clic para elegirlo',
     dropHeadlineMobile: 'Toca para elegir tu EPUB',
-    dropSub: '.epub · hasta 100 MB',
+    dropSub: '.epub · del tamaño que tu dispositivo pueda manejar',
     cta: 'Convertir a PDF',
     doneTitle: 'Tu PDF está listo',
     downloadLabel: 'Descargar PDF',
@@ -108,7 +108,7 @@ const pages = {
     accept: '.pdf',
     dropHeadline: 'Suelta tu PDF aquí, o haz clic para elegirlo',
     dropHeadlineMobile: 'Toca para elegir tu PDF',
-    dropSub: '.pdf · hasta 100 MB',
+    dropSub: '.pdf · del tamaño que tu dispositivo pueda manejar',
     cta: 'Convertir a EPUB',
     doneTitle: 'Tu EPUB está listo',
     downloadLabel: 'Descargar EPUB',
@@ -162,7 +162,7 @@ const pages = {
     accept: '.mobi,.prc,.azw3,.azw',
     dropHeadline: 'Suelta tu MOBI o AZW3 aquí, o haz clic para elegirlo',
     dropHeadlineMobile: 'Toca para elegir tu MOBI o AZW3',
-    dropSub: '.mobi · .azw3 · hasta 100 MB',
+    dropSub: '.mobi · .azw3 · del tamaño que tu dispositivo pueda manejar',
     cta: 'Convertir a EPUB',
     doneTitle: 'Tu EPUB está listo',
     downloadLabel: 'Descargar EPUB',

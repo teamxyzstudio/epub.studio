@@ -10,7 +10,7 @@ embedTool: 'mobi-to-epub'
 embedHeadline: 'Drop a MOBI or AZW3 — convert it right here'
 embedHeadlineMobile: 'Tap to choose a MOBI or AZW3'
 embedAccept: '.mobi,.prc,.azw3,.azw'
-embedDropSub: '.mobi · .azw3 · up to 100 MB'
+embedDropSub: '.mobi · .azw3 · any size your device can handle'
 tools:
   - mobi-to-epub
   - azw3-to-epub

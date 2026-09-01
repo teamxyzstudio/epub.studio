@@ -1,14 +1,25 @@
 /**
  * The tool catalogue — the single source of truth for the home grid, the
- * footer columns, the related-tools rails and the 21 generated tool pages.
+ * footer columns, the related-tools rails and the generated tool pages.
+ *
+ * Two entries are not converters: /epub-to-mobi and /epub-to-azw3 explain why
+ * a browser cannot write those formats and route the reader to what does work.
+ * They are flagged `guide` from NO_ENGINE — the same set the runner checks — so
+ * the grid, the counts and the blog CTA cannot describe them as converters.
  *
  * Names, descriptions and format badges are taken verbatim from
  * `mocks/Home.dc.html`. Slugs follow the README's `/epub-to-pdf` convention.
  */
 
-/** @typedef {{ n: string, d: string, a: string, b: string, slug: string }} Tool */
+import { NO_ENGINE } from '../lib/convert/registry.js';
 
-export const fromEpub = [
+/** @typedef {{ n: string, d: string, a: string, b: string, slug: string, guide?: boolean }} Tool */
+
+/** Tags the entries that explain a conversion rather than performing one. */
+const mark = (tools) =>
+  tools.map((t) => (NO_ENGINE.has(t.slug) ? { ...t, guide: true } : t));
+
+const FROM_EPUB = [
   {
     n: 'EPUB to PDF',
     d: 'Turn a reflowable ebook into a fixed, printable PDF.',
@@ -18,14 +29,14 @@ export const fromEpub = [
   },
   {
     n: 'EPUB to MOBI',
-    d: 'For older Kindles that only read MOBI.',
+    d: 'Guide: why browsers cannot write MOBI, and the route that works.',
     a: 'EPUB',
     b: 'MOBI',
     slug: 'epub-to-mobi',
   },
   {
     n: 'EPUB to AZW3 (Kindle)',
-    d: 'The format modern Kindles like best.',
+    d: 'Guide: why browsers cannot write AZW3, and what to do instead.',
     a: 'EPUB',
     b: 'AZW3',
     slug: 'epub-to-azw3',
@@ -46,7 +57,7 @@ export const fromEpub = [
   },
 ];
 
-export const toEpub = [
+const TO_EPUB = [
   {
     n: 'PDF to EPUB',
     d: 'Make a fixed PDF reflow on any screen.',
@@ -133,7 +144,7 @@ export const toEpub = [
   },
 ];
 
-export const utils = [
+const UTILS = [
   {
     n: 'Online EPUB Reader',
     d: 'Open and read any EPUB right here.',
@@ -185,13 +196,31 @@ export const utils = [
   },
 ];
 
+/**
+ * Counted from the arrays themselves — the hardcoded labels had already drifted
+ * ("9 tools" over a group of twelve) and counted the two guides as converters.
+ */
+export const fromEpub = mark(FROM_EPUB);
+export const toEpub = mark(TO_EPUB);
+export const utils = mark(UTILS);
+
+const countLabel = (tools) => {
+  const guides = tools.filter((t) => t.guide).length;
+  const working = tools.length - guides;
+  const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
+  return guides ? `${plural(working, 'tool')} · ${plural(guides, 'guide')}` : plural(working, 'tool');
+};
+
 export const groups = [
-  { label: 'Convert from EPUB', count: '5 tools', tools: fromEpub },
-  { label: 'Convert to EPUB', count: '9 tools', tools: toEpub },
-  { label: 'EPUB utilities', count: '7 tools', tools: utils },
+  { label: 'Convert from EPUB', count: countLabel(fromEpub), tools: fromEpub },
+  { label: 'Convert to EPUB', count: countLabel(toEpub), tools: toEpub },
+  { label: 'EPUB utilities', count: countLabel(utils), tools: utils },
 ];
 
 export const allTools = [...fromEpub, ...toEpub, ...utils];
+
+/** Everything that actually processes a file — excludes the two guide pages. */
+export const workingTools = allTools.filter((t) => !t.guide);
 
 /** @type {Record<string, Tool>} */
 export const toolBySlug = Object.fromEntries(allTools.map((t) => [t.slug, t]));
