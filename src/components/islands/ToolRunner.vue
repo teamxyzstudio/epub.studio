@@ -231,6 +231,27 @@ const workLines = computed(() =>
         </div>
         <div class="dz-sub">{{ dropSub }}</div>
       </label>
+
+      <!-- Output settings, shown before a file is chosen rather than after.
+           They are the thing this converter has that others do not, and behind
+           the file step nobody discovers them. The same controls re-render at
+           the 'file' stage, so a choice made here is still visible there. -->
+      <div v-if="options.length" class="options options-idle">
+        <div v-for="o in options" :key="o.key" class="option">
+          <div class="option-label">{{ o.label }}</div>
+          <div class="segmented">
+            <button
+              v-for="(c, i) in o.choices"
+              :key="c"
+              class="segment focus-ring-inset"
+              :class="{ on: choice[o.key] === c, first: i === 0 }"
+              @click="choice[o.key] = c"
+            >
+              {{ c }}
+            </button>
+          </div>
+        </div>
+      </div>
     </template>
 
     <!-- ---------- file ---------- -->
@@ -491,6 +512,9 @@ const workLines = computed(() =>
   line-height: 1.5;
 }
 /* --- segmented controls (mock: `seg()`) --- */
+.options-idle {
+  margin-top: 18px;
+}
 .options {
   display: flex;
   gap: clamp(16px, 3vw, 36px);

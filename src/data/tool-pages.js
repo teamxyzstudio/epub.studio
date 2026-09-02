@@ -7,6 +7,7 @@
  * written for this build — they are drafts to review, not handoff content.
  */
 import { allTools, toolBySlug } from './tools.js';
+import { TOOL_SECTIONS } from './tool-sections.js';
 
 const SIZE_OPTS = {
   key: 'pageSize',
@@ -55,7 +56,13 @@ const pages = {
   // =========================================================================
   'epub-to-pdf': {
     h1: 'Convert EPUB to PDF',
-    lede: 'Turn a reflowable ebook into a fixed, printable PDF — free, in your browser, no signup.',
+    seoTitle: 'Convert EPUB to PDF Free — Choose Trim Size, No Upload',
+    metaDescription:
+      'Convert EPUB to PDF free in your browser. Pick A4, US Letter or 6×9 trim, set margins, ' +
+      'and get real selectable text. No upload, no signup, no watermark.',
+    lede:
+      'Set the page size and margins before you convert, and get a PDF with real, selectable ' +
+      'text — not photographs of rendered pages. Nothing is uploaded.',
     accept: '.epub',
     dropHeadline: 'Drop your EPUB here, or click to choose',
     dropSub: '.epub · any size your device can handle',
@@ -91,17 +98,40 @@ const pages = {
     ],
     faqs: [
       {
-        q: 'Will my PDF keep the book’s formatting?',
-        a: 'Chapters, headings, images and lists carry over. Because PDF pages are fixed, line breaks are set at the page size you choose here rather than by your reading app.',
+        q: 'Which page size should I pick for printing?',
+        a: 'For a book you want to read like a book, 6×9 inches — it is the standard trade paperback trim, it is what KDP and IngramSpark default to, and it gives you a line length of roughly 65 characters, which is comfortable. For a document going to an office printer, pick A4 outside North America and US Letter inside it, so nobody has to rescale the file. If you are unsure and the PDF is just for reading on a screen, 6×9 still wins — an A4 page of body text has lines long enough to be tiring.',
+      },
+      {
+        q: 'Why are my line breaks different from my e-reader?',
+        a: 'Because they were never fixed in the first place. An EPUB has no pages and no lines — the text reflows to whatever screen opens it, and your e-reader calculated its own line breaks using its own font, size and margins. A PDF freezes one arrangement. Every line break in the output is computed fresh at the page size and margins you chose here. Nothing has been lost; the layout has simply been recalculated for a different page.',
+      },
+      {
+        q: 'Are the fonts from my EPUB preserved?',
+        a: 'No. Fonts embedded in the EPUB are not carried into the PDF; the output is typeset in the converter’s own text font at the page size you chose. This is also true of most e-readers, which override a book’s fonts with their own settings — so the PDF is usually closer to what you were already seeing than to what the publisher specified. If the typeface matters, set it in Style Studio before converting.',
+      },
+      {
+        q: 'Can I convert a PDF back to EPUB?',
+        a: 'Yes — the PDF to EPUB tool does the reverse, and makes a fixed PDF reflow to any screen. It is worth knowing that the round trip is lossy in both directions. A PDF stores positioned words rather than paragraphs, so the conversion back has to infer where paragraphs and headings were. If you still have the original EPUB, keep it — it is the better master copy.',
       },
       COMMON.size,
-      COMMON.privacy,
-      {
-        q: 'Why does my PDF look different from my e-reader?',
-        a: 'Your e-reader applies its own font and spacing. The PDF is typeset fresh at a fixed page size. Pick 6×9″ with Medium margins for the most book-like result.',
-      },
+      // Kept where the shared privacy answer was dropped as duplication: a
+      // DRM-locked file is the one case this converter cannot open at all.
       COMMON.drm,
     ],
+    schema: {
+      name: 'EPUB to PDF Converter',
+      description:
+        'Converts EPUB files to PDF in the browser with a choice of A4, US Letter or 6 by 9 inch ' +
+        'trim size and adjustable margins. Output is typeset as real selectable, searchable text ' +
+        'rather than page images. No upload, no signup, no watermark and no file size limit.',
+      featureList: [
+        'Choose A4, US Letter or 6 by 9 inch trade paperback trim',
+        'Narrow, Medium or Wide page margins',
+        'Selectable, searchable text output, not rasterised pages',
+        'No file size limit and no daily conversion cap',
+        'Runs entirely in the browser; no upload',
+      ],
+    },
     related: ['epub-to-docx', 'epub-to-azw3', 'pdf-to-epub', 'epub-compressor'],
   },
 
@@ -800,17 +830,19 @@ const pages = {
   },
 
   'epub-validator': {
-    h1: 'Validate an EPUB file',
+    h1: 'EPUB Validator',
+    seoTitle: 'Free EPUB Validator — Check EPUB Files, Nothing Uploaded',
+    metaDescription:
+      'Free EPUB validator that runs in your browser. Check your EPUB file for structure, ' +
+      'manifest and metadata errors before KDP, Apple Books or Kobo reject it.',
     lede: 'Find out exactly why a store or reader is rejecting your book.',
     accept: '.epub',
     cta: 'Check this file',
     doneTitle: 'Check complete',
     mode: 'report',
-    howTo: [
-      { t: 'Choose your EPUB', d: 'Drop the file above or tap to pick one from your device.' },
-      { t: 'Read the report', d: 'Errors break the file. Warnings will still open, but are worth fixing.' },
-      { t: 'Fix and re-check', d: 'Most problems are missing metadata or files listed but not included.' },
-    ],
+    // No how-to block: this page is a diagnostic reference, and "drop a file,
+    // read the report" does not need three numbered cards. The reference
+    // tables in tool-sections.js carry the page instead.
     explainerTitle: 'Errors vs warnings',
     explainer: [
       {
@@ -824,14 +856,45 @@ const pages = {
     ],
     faqs: [
       {
+        q: 'Why did KDP reject my EPUB when it opens fine on my computer?',
+        a: "Because your reading app is forgiving and KDP's ingestion is not. Calibre, Apple Books and most desktop readers will repair or ignore a missing navigation document, an odd doctype, or metadata that is present but empty. A store's pipeline has no reason to be generous — it checks, fails, and moves on. The usual culprits are a missing dc:identifier, a cover image below the minimum size, or a title in the file that disagrees with the title you typed into the dashboard. Run the file through this validator first; if it passes here and KDP still refuses it, the problem is one of KDP's own rules rather than the spec.",
+      },
+      {
+        q: 'What is the difference between an error and a warning?',
+        a: 'An error means the file is broken. A missing mimetype, a broken container, absent required metadata, or a manifest entry pointing at a file that is not in the archive — the book will not open properly and no store will take it. A warning means the file works but carries a cost: no navigation document, or a package still declaring EPUB 2. For a book you will only read yourself, most warnings can wait. For a book headed to a store, clear them too, because ingestion systems often reject on warnings the specification tolerates.',
+      },
+      {
+        q: 'Does passing this mean my book will be accepted?',
+        a: 'No, and we would rather be clear about that than sell you a false pass. This validator runs seven structural checks. EPUBCheck runs hundreds, and stores add their own rules on top of EPUBCheck — cover dimensions, metadata completeness, file size limits, identifier uniqueness. Passing here means the file is structurally sound and none of the common fatal faults are present. It does not mean Apple Books will accept it. For final pre-publication validation, run EPUBCheck.',
+      },
+      {
+        q: 'Can I validate an EPUB 2 file?',
+        a: 'Yes. The validator reads both EPUB 2 and EPUB 3. An EPUB 2 package is reported as a warning with a note rather than an error, because most reading apps still open EPUB 2 without trouble and Kobo accepts it directly. If you are submitting to a store that wants EPUB 3, converting is a separate job from validating — this tool tells you the version, it does not upgrade it.',
+      },
+      {
         q: 'Is this the same as EPUBCheck?',
         a: 'No. EPUBCheck is the official, exhaustive validator. This runs the structural checks that catch the overwhelming majority of real rejections, instantly and without uploading your file.',
       },
-      { q: 'It passes here but my store still refuses it.', a: 'Stores add their own rules on top of the spec — cover dimensions, metadata completeness, file size. Check their guidelines next.' },
-      COMMON.privacy,
-      COMMON.free,
+      // Kept where the shared privacy/free answers were dropped as duplication:
+      // a DRM-locked file is the one case where this tool cannot help at all,
+      // and that admission is load-bearing.
       COMMON.drm,
     ],
+    schema: {
+      name: 'EPUB Validator',
+      description:
+        'A browser-based structural validator for EPUB files. Checks the mimetype entry, ' +
+        'container, package document XML, required metadata, manifest references, spine and ' +
+        'navigation document, and reports each failure in plain English rather than error codes. ' +
+        'Nothing is uploaded.',
+      featureList: [
+        'Seven structural checks against the EPUB package',
+        'Plain-English failure messages, not error codes',
+        'Reads EPUB 2 and EPUB 3',
+        'No file size limit',
+        'Runs entirely in the browser; no upload',
+      ],
+    },
     related: ['epub-metadata-editor', 'epub-cover-editor', 'docx-to-epub', 'epub-compressor'],
   },
 
@@ -970,9 +1033,26 @@ export function getToolPage(slug) {
     cta: page.cta || `Convert to ${tool.b}`,
     doneTitle: page.doneTitle || `Your ${tool.b} is ready`,
     downloadLabel: page.downloadLabel || `Download ${tool.b}`,
+    howTo: page.howTo || [],
     howToTitle: page.howToTitle || defaultHowToTitle(tool, group),
     related: (page.related || []).map((s) => toolBySlug[s]).filter(Boolean),
-    seoTitle: `${page.h1} — free, in your browser | Epub Studio`,
+    /**
+     * A page may set its own <title>; the default carries the brand because
+     * most tool pages need the disambiguation. Pages that have earned a
+     * keyword-led title of their own override it.
+     */
+    seoTitle: page.seoTitle || `${page.h1} — free, in your browser | Epub Studio`,
+    /**
+     * The meta description defaults to the dek. Where the two want to differ —
+     * a dek written to be read, a description written to earn the click — a
+     * page sets `metaDescription` and both stay good at their own job.
+     */
+    metaDescription: page.metaDescription || page.lede,
+    /**
+     * Long-form sections, minus anything still marked `draft`. Draft copy stays
+     * in src/data/tool-sections.js in full but never reaches a built page.
+     */
+    sections: (TOOL_SECTIONS[slug] || []).filter((section) => !section.draft),
   };
 }
 

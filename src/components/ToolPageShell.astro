@@ -6,6 +6,7 @@
  * Layout and every value come from mocks/EPUB to PDF.dc.html.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { inline } from '../lib/inline.js';
 import SiteHeader from './SiteHeader.astro';
 import ToolRunner from './islands/ToolRunner.vue';
 
@@ -19,6 +20,7 @@ interface Props {
 }
 
 const { page, path, jsonLd, chrome, alternates = [], runnerUi = {} } = Astro.props;
+const sections = page.sections || [];
 
 // The language switcher renders only when this page's twin actually exists —
 // a switcher that dead-ends on untranslated pages is worse than none.
@@ -30,7 +32,7 @@ const twin = chrome.switch
 
 <BaseLayout
   title={page.seoTitle}
-  description={page.lede}
+  description={page.metaDescription || page.lede}
   path={path}
   ogImage={page.ogImage}
   jsonLd={jsonLd}
@@ -104,20 +106,24 @@ const twin = chrome.switch
         )
       }
 
-      <section class="block">
-        <h2 class="howto-h2">{page.howToTitle}</h2>
-        <ol class="howto">
-          {
-            page.howTo.map((step, i) => (
-              <li>
-                <span class="step-num">{String(i + 1).padStart(2, '0')}</span>
-                <div class="step-title">{step.t}</div>
-                <div class="step-body">{step.d}</div>
-              </li>
-            ))
-          }
-        </ol>
-      </section>
+      {
+        /* Reference pages carry no steps; without this guard they rendered a
+           how-to heading over an empty list. */
+        page.howTo.length > 0 && (
+          <section class="block">
+            <h2 class="howto-h2">{page.howToTitle}</h2>
+            <ol class="howto">
+              {page.howTo.map((step, i) => (
+                <li>
+                  <span class="step-num">{String(i + 1).padStart(2, '0')}</span>
+                  <div class="step-title">{step.t}</div>
+                  <div class="step-body">{step.d}</div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )
+      }
 
       {
         page.explainer && (
@@ -133,6 +139,81 @@ const twin = chrome.switch
             </div>
           </section>
         )
+      }
+
+      {
+        sections.map((section) => (
+          <section class="block section" id={section.id}>
+            <h2>{section.title}</h2>
+            {section.lead && <p class="section-lead" set:html={inline(section.lead)} />}
+            {section.body?.map((para) => <p set:html={inline(para)} />)}
+
+            {section.groups?.map((g) => (
+              <div class="subsection">
+                <h3 set:html={inline(g.title)} />
+                {g.body.map((para) => (
+                  <p set:html={inline(para)} />
+                ))}
+              </div>
+            ))}
+
+            {section.table && (
+              /* Wrapped so a wide table scrolls inside itself rather than
+                 pushing the whole page sideways on a phone. */
+              <div class="table-wrap">
+                <table class="section-table">
+                  <caption>{section.table.caption}</caption>
+                  <thead>
+                    <tr>
+                      {section.table.head.map((h) => (
+                        <th scope="col" set:html={inline(h)} />
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {section.table.rows.map((row) => (
+                      <tr>
+                        {row.map((cell, i) =>
+                          i === 0 ? (
+                            <th scope="row" set:html={inline(cell)} />
+                          ) : (
+                            <td set:html={inline(cell)} />
+                          ),
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {section.bullets && (
+              <dl class="section-bullets">
+                {section.bullets.map((b) => (
+                  <div class="bullet">
+                    <dt set:html={inline(b.t)} />
+                    <dd set:html={inline(b.d)} />
+                  </div>
+                ))}
+              </dl>
+            )}
+
+            {section.links && (
+              <ul class="section-links">
+                {section.links.map((l) => (
+                  <li>
+                    <a href={l.href} class="focus-ring-2">
+                      {l.label}
+                    </a>
+                    <span set:html={inline(l.d)} />
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {section.note && <p class="section-note" set:html={inline(section.note)} />}
+          </section>
+        ))
       }
 
       <section class="block">
@@ -336,6 +417,152 @@ const twin = chrome.switch
   /* The how-to heading carries 18px, not the 14px the other h2s use. */
   .block h2.howto-h2 {
     margin-bottom: 18px;
+  }
+
+  /* --- Long-form sections (tool-sections.js) --- */
+  .section {
+    scroll-margin-top: 84px;
+    max-width: 76ch;
+  }
+  .section p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #454037;
+    margin: 0 0 14px;
+    text-wrap: pretty;
+  }
+  /* The one pulled-out paragraph per section: larger, with the accent rule. */
+  .section-lead {
+    font-size: 16.5px !important;
+    line-height: 1.6 !important;
+    color: #17130e !important;
+    border-left: 2px solid #ff2e63;
+    padding-left: 16px;
+    margin-bottom: 20px !important;
+  }
+  .section-note {
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.16);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-top: 18px !important;
+    font-size: 14.5px !important;
+  }
+  .subsection {
+    margin-top: 22px;
+  }
+  .subsection h3 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(19px, 2vw, 23px);
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+  }
+  .section :global(code) {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.88em;
+    background: rgba(23, 19, 14, 0.07);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+  .section :global(.rt-link) {
+    color: #c41e4f;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .section :global(.rt-link:hover) {
+    color: #17130e;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 18px 0 0;
+    border: 1px solid rgba(23, 19, 14, 0.16);
+    border-radius: 12px;
+  }
+  .section-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: #fffdf9;
+  }
+  .section-table caption {
+    caption-side: top;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6e675d;
+    padding: 12px 14px 10px;
+  }
+  .section-table th,
+  .section-table td {
+    padding: 11px 14px;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.5;
+    border-top: 1px solid rgba(23, 19, 14, 0.14);
+  }
+  .section-table thead th {
+    background: #17130e;
+    color: #faf7f2;
+    font-size: 12.5px;
+    font-weight: 600;
+    border-top: none;
+    white-space: nowrap;
+  }
+  .section-table tbody th {
+    font-weight: 600;
+    color: #17130e;
+    min-width: 8.5em;
+  }
+  .section-table tbody tr:nth-child(even) {
+    background: rgba(23, 19, 14, 0.025);
+  }
+
+  .section-bullets {
+    margin: 18px 0 0;
+    display: grid;
+    gap: 14px;
+  }
+  .section-bullets .bullet {
+    border-left: 2px solid rgba(23, 19, 14, 0.16);
+    padding-left: 14px;
+  }
+  .section-bullets dt {
+    font-weight: 600;
+    font-size: 14.5px;
+    margin-bottom: 3px;
+  }
+  .section-bullets dd {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6e675d;
+  }
+
+  .section-links {
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .section-links li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6e675d;
+  }
+  .section-links a {
+    display: block;
+    font-weight: 600;
+    font-size: 15px;
+    color: #c41e4f;
+  }
+  .section-links a:hover {
+    color: #17130e;
   }
 
   /* --- How to --- */

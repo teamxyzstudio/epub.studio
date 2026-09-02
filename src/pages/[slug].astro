@@ -32,17 +32,23 @@ const jsonLd = [
       acceptedAnswer: { '@type': 'Answer', text: f.a },
     })),
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: page.howToTitle,
-    step: page.howTo.map((s, i) => ({
-      '@type': 'HowToStep',
-      position: i + 1,
-      name: s.t,
-      text: s.d,
-    })),
-  },
+  // Only where the page renders a how-to block. A reference page with no
+  // visible steps must not claim HowTo markup for steps that are not there.
+  ...(page.howTo.length
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'HowTo',
+          name: page.howToTitle,
+          step: page.howTo.map((s, i) => ({
+            '@type': 'HowToStep',
+            position: i + 1,
+            name: s.t,
+            text: s.d,
+          })),
+        },
+      ]
+    : []),
   {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -55,10 +61,19 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: page.n,
+    name: page.schema?.name || page.n,
     applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'Any',
+    operatingSystem: page.schema ? 'Any modern web browser' : 'Any',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    // A page that has written its own description gets it; the generic entry
+    // stays bare rather than repeating one blurb across twenty-odd tools.
+    // No aggregateRating anywhere: the site collects no reviews, and inventing
+    // star ratings is a manual-action risk as well as a lie.
+    ...(page.schema && {
+      description: page.schema.description,
+      featureList: page.schema.featureList,
+      isAccessibleForFree: true,
+    }),
   },
 ];
 ---
