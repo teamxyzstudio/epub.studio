@@ -18,6 +18,7 @@ spreadsheet is linked, its rows merge into this table (expected columns:
 | /read-epub-on-android | variant | read epub on android | 2026-08-11 (distinct-intent: PASS — no guaranteed .epub handler on Android; system-picker/touch flow, work-profile no-install case; parent /epub-reader; owns "android ereader" phrasings) |
 | /read-epub-on-iphone | variant | read epub on iphone | 2026-08-12 (distinct-intent: PASS — Books is built in and the page says so honestly; serves the shared-device / no-Apple-ID / managed-phone cases; parent /epub-reader; owns "iphone ereader" phrasings) |
 | /read-epub-on-linux | variant | read epub on linux | 2026-09-01 (distinct-intent: PASS — no distro-wide default EPUB handler; desktops detect the zip container and hand the book to the archive manager; no-root / live-session / locked package-manager cases; parent /epub-reader; owns "linux ereader" phrasings) |
+| /read-epub-on-mac | variant | read epub on mac | 2026-09-05 (distinct-intent: PASS — Books is built in and the page says so honestly; Books imports a copy into an iCloud-synced library, so the no-shelve cases and the author draft-preview loop carry the page; parent /epub-reader; owns "mac ereader" phrasings) |
 
 ## Queued
 
@@ -61,7 +62,7 @@ searcher's real situation, not just the phrasing. Each embeds the live reader.
 | ~~read epub on android~~ | variant | 5,750 | SHIPPED 2026-08-11 — no guaranteed .epub handler on Android; app landscape vs no-install browser route; parent /epub-reader |
 | ~~read epub on iphone~~ | variant | 3,070 | SHIPPED 2026-08-12 — Books is built in, the page says so honestly, then serves the no-Apple-ID / shared-device / managed-phone cases; parent /epub-reader |
 | ~~read epub on linux~~ | variant | 1,930 | SHIPPED 2026-09-01 — no distro-wide default handler; the archive manager claims the zip container; browser route needs no root and works in live sessions; parent /epub-reader. (Foliate landscape claims dropped — external fetch-verification unavailable in the publish run; Calibre covered via internal /calibre-alternative link) |
-| read epub on mac | variant | 1,330 | Books built in; same honest framing as iPhone |
+| ~~read epub on mac~~ | variant | 1,330 | SHIPPED 2026-09-05 — Books built in, page says so honestly, then serves the no-shelve / borrowed-Mac / work-machine cases plus the Mac-specific draft-preview loop (Books imports a copy, browser reads the file in place); parent /epub-reader |
 
 Research evidence on existing queued rows: chromebook converter variant is
 thin (reader facet 390, converter facet ~0) — keep behind "verify volume";
