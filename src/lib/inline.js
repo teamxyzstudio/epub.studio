@@ -15,14 +15,21 @@ const ESCAPE = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' };
 
 /**
  * @param {string} text
+ * @param {{ links?: boolean }} [opts] `links: false` renders [label](/href) as
+ *   plain label. Use it anywhere the text already sits inside an <a> — a nested
+ *   anchor is invalid HTML and browsers tear the outer element apart rather
+ *   than nesting it.
  * @returns {string} HTML
  */
-export function inline(text) {
+export function inline(text, { links = true } = {}) {
   return String(text)
     .replace(/[&<>"]/g, (c) => ESCAPE[c])
     // Code first: its contents must not then be read as bold or a link.
     .replace(/`([^`]+)`/g, '<code>$1</code>')
-    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a class="rt-link focus-ring-2" href="$2">$1</a>')
+    .replace(
+      /\[([^\]]+)\]\(([^)\s]+)\)/g,
+      links ? '<a class="rt-link focus-ring-2" href="$2">$1</a>' : '$1',
+    )
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/(^|[\s(])\*([^*]+)\*/g, '$1<em>$2</em>');
 }

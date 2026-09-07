@@ -63,6 +63,12 @@ const twin = chrome.switch
 
       <h1>{page.h1}</h1>
       <p class="lede">{page.lede}</p>
+      {
+        /* One line pointing at the sibling tool for people who landed on the
+           wrong one — above the drop zone, where it can still save them a
+           conversion. */
+        page.sidenote && <p class="sidenote" set:html={inline(page.sidenote)} />
+      }
 
       {
         page.mode === 'guidance' ? (
@@ -196,6 +202,19 @@ const twin = chrome.switch
                   </div>
                 ))}
               </dl>
+            )}
+
+            {section.cards && (
+              /* Tool hand-offs: a grid of targets, not a paragraph of links.
+                 The whole card is the hit area, so a thumb finds it. */
+              <div class="section-cards">
+                {section.cards.map((c) => (
+                  <a href={c.href} class="section-card focus-ring-2">
+                    <span class="card-label">{c.label}</span>
+                    <span class="card-desc" set:html={inline(c.d, { links: false })} />
+                  </a>
+                ))}
+              </div>
             )}
 
             {section.links && (
@@ -419,6 +438,23 @@ const twin = chrome.switch
     margin-bottom: 18px;
   }
 
+  .sidenote {
+    max-width: 68ch;
+    margin: -6px 0 20px;
+    padding: 10px 14px;
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.16);
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #6e675d;
+  }
+  .sidenote :global(.rt-link) {
+    color: #c41e4f;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   /* --- Long-form sections (tool-sections.js) --- */
   .section {
     scroll-margin-top: 84px;
@@ -541,6 +577,55 @@ const twin = chrome.switch
     font-size: 14px;
     line-height: 1.6;
     color: #6e675d;
+  }
+
+  .section-cards {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+    gap: 12px;
+  }
+  .section-card {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 15px 16px;
+    background: #fffdf9;
+    border: 1px solid rgba(23, 19, 14, 0.16);
+    border-radius: 12px;
+    color: #17130e;
+    /* 44px minimum touch target, met comfortably by the padding + two lines. */
+    transition:
+      border-color 0.15s,
+      transform 0.15s;
+  }
+  .section-card:hover {
+    border-color: #ff2e63;
+    transform: translateY(-1px);
+    color: #17130e;
+  }
+  .card-label {
+    font-weight: 600;
+    font-size: 15px;
+    color: #c41e4f;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #6e675d;
+  }
+  /* A link inside a card must not look like a second destination. */
+  .section-card :global(.rt-link) {
+    color: inherit;
+    text-decoration-color: rgba(23, 19, 14, 0.35);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .section-card {
+      transition: none;
+    }
+    .section-card:hover {
+      transform: none;
+    }
   }
 
   .section-links {

@@ -520,8 +520,214 @@ const epubToPdf = [
   },
 ];
 
+const mobiToEpub = [
+  {
+    id: 'why',
+    title: 'Why convert MOBI to EPUB?',
+    lead:
+      'MOBI is Amazon’s original Kindle format, and Amazon has effectively retired it. Send to ' +
+      'Kindle stopped accepting MOBI in 2022, and modern Kindles no longer need it. Outside the ' +
+      'Kindle ecosystem it was never widely supported at all: Kobo, Nook, Apple Books and Google ' +
+      'Play Books do not open it.',
+    body: [
+      'EPUB is the opposite. It is an open standard published by the W3C, it reflows to any screen ' +
+        'size, and it is the native format of every major reading app and e-reader except Kindle — ' +
+        'and Kindle itself now accepts EPUB through Send to Kindle. Converting turns a ' +
+        'format-locked file into one that will keep working on whatever device you own next.',
+    ],
+    bullets: [
+      {
+        t: 'Reading an old library on hardware that never spoke MOBI',
+        d: 'A Kobo, a Nook, an iPad or an Android phone will open the EPUB and would not have opened the MOBI.',
+      },
+      {
+        t: 'Keeping one master copy in an open format',
+        d: 'A library in a proprietary format is a library with a dependency. EPUB is publicly specified, so it outlives the company that shipped your reader.',
+      },
+      {
+        t: 'Editing the book afterwards',
+        d: 'An EPUB is XHTML inside a ZIP. Rename it to .zip and every part of it is readable in a text editor — a MOBI is not.',
+      },
+      {
+        t: 'Fixing a wrong title or author',
+        d: 'Old MOBI files are notorious for empty metadata. Once it is an EPUB, the [Metadata Editor](/epub-metadata-editor) rewrites those fields without re-encoding the book.',
+      },
+    ],
+  },
+
+  {
+    id: 'what-survives',
+    title: 'What survives the conversion',
+    lead:
+      'Checked against the converter itself rather than described in general terms, because two of ' +
+      'these rows are limitations and a page that hid them would be no use to you.',
+    table: {
+      caption:
+        'Each part of a MOBI file and whether this converter carries it into the EPUB it produces',
+      head: ['Element', 'Carried over?'],
+      rows: [
+        ['Chapters and reading order', '**Yes** — rebuilt as the EPUB spine, in the order the MOBI declares.'],
+        [
+          'Paragraphs, bold, italics, lists',
+          '**Yes** — the chapter markup is carried across and re-serialised as well-formed XHTML.',
+        ],
+        [
+          'Title, author, language, publisher',
+          '**Yes** — read from the MOBI’s own metadata record. Where the MOBI has none, the title falls back to the filename.',
+        ],
+        [
+          'Contents entries',
+          '**Partly** — a navigation document is always written, but its labels come from the MOBI’s internal section identifiers, so they can read as `chapter-0` rather than the chapter names you expect. Rename them in any EPUB editor, or ignore them if you only want to read.',
+        ],
+        [
+          'Images and illustrations',
+          '**No** — see the note below. This is the one that matters for an illustrated book.',
+        ],
+        [
+          'Cover image',
+          '**No** — nothing is embedded as the cover. Add one afterwards with the [Cover Editor](/epub-cover-editor).',
+        ],
+        [
+          'DRM-protected content',
+          '**No** — an encrypted file cannot be opened at all, by this or any other converter.',
+        ],
+      ],
+    },
+    note:
+      '**About images.** The converter rebuilds the text of the book, not its picture files: an ' +
+      'illustrated MOBI converts to an EPUB whose images are missing, and a validator will flag ' +
+      'the references left behind. For a novel or any text-only book this changes nothing. For a ' +
+      'comic, a cookbook or a photo book, convert to a fixed format instead — ' +
+      '[MOBI to PDF](/mobi-to-pdf) keeps the pages intact. We would rather tell you that here than ' +
+      'have you find it after converting a shelf.',
+  },
+
+  {
+    id: 'mobi-vs-epub',
+    title: 'MOBI vs EPUB at a glance',
+    table: {
+      caption: 'How the two formats compare on ownership, support and what each is still good for',
+      head: ['', 'MOBI', 'EPUB'],
+      rows: [
+        ['**Owner**', 'Amazon — proprietary', 'W3C — open standard'],
+        ['**Status**', 'Retired; Send to Kindle dropped it in 2022', 'Current; EPUB 3 actively maintained'],
+        ['**Reflowable**', 'Yes', 'Yes'],
+        [
+          '**Opens on**',
+          'Older Kindles, and little else',
+          'Kobo, Nook, Apple Books, Google Play Books, Calibre, browsers — and Kindle via Send to Kindle',
+        ],
+        ['**Editable**', 'Difficult', 'Easy — XHTML inside a ZIP'],
+        ['**Best use today**', 'Legacy Kindle hardware', 'Everything else'],
+      ],
+    },
+  },
+
+  {
+    id: 'privacy',
+    title: 'Your file never leaves your device',
+    lead:
+      'This converter is JavaScript running in the page you are already on. Your file is read from ' +
+      'disk into the tab’s memory, transformed there, and handed back as a download. No server ' +
+      'receives it.',
+    body: [
+      'You can check that rather than take our word for it: open your browser’s developer tools, ' +
+        'switch to the Network tab, and convert a file. No request carries your book.',
+      'That makes it safe for anything you would not hand to a third-party server — DRM-free ' +
+        'purchases, unpublished manuscripts, review copies, anything under an NDA. There are no ' +
+        'accounts, no cookies, no analytics and no size cap. The only ceiling is your device’s ' +
+        'memory, because the whole file is held in RAM while it converts.',
+    ],
+  },
+
+  {
+    id: 'limits',
+    title: 'What this tool cannot do',
+    bullets: [
+      {
+        t: 'Open a DRM-protected book',
+        d: 'Most Kindle Store purchases and all library loans are encrypted. This tool cannot open them, cannot convert them, and does not remove DRM. It works on DRM-free files: your own exports, sideloaded books, and purchases from DRM-free stores.',
+      },
+      {
+        t: 'Carry images across',
+        d: 'Text, structure and metadata are rebuilt; picture files are not. An illustrated book loses its illustrations — use [MOBI to PDF](/mobi-to-pdf) for those.',
+      },
+      {
+        t: 'Cope with a very large book on a small device',
+        d: 'Conversion happens in memory, so a heavy file can exhaust an older phone where a desktop would manage it comfortably.',
+      },
+      {
+        t: 'Go the other way',
+        d: 'Writing MOBI needs Amazon’s own toolchain, which cannot run in a browser. [EPUB to MOBI](/epub-to-mobi) explains the route that does work.',
+      },
+    ],
+  },
+
+  {
+    id: 'after',
+    title: 'After you convert',
+    lead:
+      'A MOBI that has been through several converters often arrives with a wrong title, no author ' +
+      'or no cover. Everything below runs in the same tab, under the same no-upload guarantee.',
+    cards: [
+      {
+        label: 'Metadata Editor',
+        href: '/epub-metadata-editor',
+        d: 'Fix the title, author and language so the book files correctly in your library.',
+      },
+      {
+        label: 'Cover Editor',
+        href: '/epub-cover-editor',
+        d: 'Add the cover this conversion does not carry over, or replace a poor one.',
+      },
+      {
+        label: 'EPUB Validator',
+        href: '/epub-validator',
+        d: 'Check the file before a store sees it — a missing manifest entry or an empty spine.',
+      },
+      {
+        label: 'EPUB Compressor',
+        href: '/epub-compressor',
+        d: 'Shrink a bulky file when oversized images have made it larger than it needs to be.',
+      },
+      {
+        label: 'Merge EPUBs',
+        href: '/merge-epub',
+        d: 'Combine a series or a set of volumes into one book.',
+      },
+      {
+        label: 'Split EPUB',
+        href: '/split-epub',
+        d: 'Break a long book apart by chapters into separate files.',
+      },
+      {
+        label: 'EPUB to PDF',
+        href: '/epub-to-pdf',
+        d: 'Make a fixed, printable copy once the EPUB is the way you want it.',
+      },
+    ],
+    note:
+      'Adding a cover from scratch is walked through in ' +
+      '[how to add a cover to an EPUB](/blog/add-cover-to-epub). If what you actually want is a ' +
+      'printable file rather than a reflowable one, skip the middle step and ' +
+      '[convert MOBI to PDF](/mobi-to-pdf) directly.',
+  },
+
+  {
+    id: 'azw3',
+    title: 'Have an AZW3 instead?',
+    body: [
+      'Newer Kindle downloads are usually AZW3 — the KF8 format — rather than MOBI. The two are ' +
+        'related but not identical: AZW3 replaced MOBI in 2011 with real CSS and better layout ' +
+        'support. Send those through the [AZW3 to EPUB converter](/azw3-to-epub), which reads the ' +
+        'KF8 container.',
+    ],
+  },
+];
+
 /** Slug → long-form sections. Pages absent from here simply have none. */
 export const TOOL_SECTIONS = {
   'epub-validator': validator,
   'epub-to-pdf': epubToPdf,
+  'mobi-to-epub': mobiToEpub,
 };

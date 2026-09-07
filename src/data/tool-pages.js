@@ -190,6 +190,8 @@ const pages = {
   'mobi-to-pdf': {
     h1: 'Convert MOBI to PDF',
     lede: 'Rescue an old MOBI file as a fixed, printable PDF — free, in your browser, no signup.',
+    sidenote:
+      'Prefer a reflowable file that adapts to any screen? [Convert MOBI to EPUB](/mobi-to-epub) instead — though note it does not carry images across, which this does.',
     accept: '.mobi,.prc',
     dropHeadline: 'Drop your MOBI here, or click to choose',
     dropSub: '.mobi · .prc · any size your device can handle',
@@ -545,35 +547,80 @@ const pages = {
   },
 
   'mobi-to-epub': {
-    h1: 'Convert MOBI to EPUB',
-    lede: 'Move books out of Amazon’s old format and into the one every other reader speaks.',
+    h1: 'Convert MOBI to EPUB Online, Free',
+    seoTitle: 'Free MOBI to EPUB Converter Online: No Upload, No Signup',
+    metaDescription:
+      'Convert MOBI to EPUB free in your browser. Chapters, metadata and reading order rebuilt ' +
+      'as EPUB 3. No signup, no upload, nothing leaves your device.',
+    lede:
+      'Move books out of Amazon’s retired MOBI format and into EPUB, the open standard every ' +
+      'other reader speaks.',
     accept: '.mobi,.prc',
     dropSub: '.mobi · any size your device can handle',
     cta: 'Convert to EPUB',
     doneTitle: 'Your EPUB is ready',
     downloadLabel: 'Download EPUB',
     options: [],
+    howToTitle: 'How to convert MOBI to EPUB',
     howTo: [
-      { t: 'Choose your MOBI', d: 'Drop the file above or tap to pick one from your device.' },
-      { t: 'Convert', d: 'Chapters, headings and the reading order are rebuilt as EPUB 3.' },
-      { t: 'Read it anywhere', d: 'Apple Books, Kobo, Google Play Books and our own reader all open it.' },
+      { t: 'Choose your MOBI', d: 'Drop the file above or tap to pick one from your device. .mobi and .prc both work.' },
+      { t: 'Convert', d: 'The MOBI container is read and its chapters, reading order and metadata are rebuilt as a clean EPUB 3 file.' },
+      { t: 'Read it anywhere', d: 'Apple Books, Kobo, Google Play Books and Calibre all open it — or read it straight away in the online EPUB reader.' },
     ],
     faqs: [
       {
         q: 'Will books I bought from Amazon work?',
-        a: 'Only if they are DRM-free. Purchased Kindle books carry DRM and cannot be opened by any converter.',
+        a: 'Only if they are DRM-free. Most Kindle Store purchases carry DRM and cannot be opened by any converter, this one included.',
       },
-      { q: 'Does my cover survive?', a: 'The cover is carried over when the source file has one embedded.' },
-      COMMON.privacy,
+      {
+        q: 'Does my cover survive?',
+        a: 'No. This converter rebuilds the text, structure and metadata of the book, but it does not embed a cover in the EPUB it writes — so the result arrives without one even when the MOBI had a cover. Add one afterwards with the Cover Editor; it takes a few seconds and you can use a better image than the MOBI carried.',
+      },
+      {
+        q: 'What happens to the images inside the book?',
+        a: 'They are not carried across. The converter rebuilds the text of the book rather than its picture files, so an illustrated MOBI becomes an EPUB with its illustrations missing. For a novel this changes nothing. For a comic, a cookbook or anything picture-led, convert to a fixed format instead — MOBI to PDF keeps the pages intact.',
+      },
+      {
+        q: 'Which EPUB version does it produce?',
+        a: 'EPUB 3, the current version of the standard. It opens in every modern reading app, and being EPUB 3 rather than EPUB 2 means no version warning at Apple Books, Kobo or KDP ingestion.',
+      },
+      {
+        q: 'Can I read the converted EPUB on a Kindle?',
+        a: 'Yes. Send to Kindle has accepted EPUB since 2022, so you can email or upload the converted file and Amazon converts it on their side. That is also why converting MOBI to AZW3 is rarely worth the trouble.',
+      },
+      {
+        q: 'What is the difference between MOBI and AZW3?',
+        a: 'MOBI is Amazon’s original format from 2007; AZW3 — KF8 — replaced it in 2011 with real CSS and better layout support. Newer Kindle downloads are usually AZW3. Send those through the AZW3 to EPUB tool instead, which reads the KF8 container.',
+      },
+      {
+        q: 'Does it work offline?',
+        a: 'Once the page has loaded, yes. The conversion needs no network connection, and losing your connection partway through does not interrupt it — nothing was being sent anywhere.',
+      },
       COMMON.drm,
-      COMMON.free,
     ],
-    related: ['azw3-to-epub', 'epub-to-mobi', 'epub-reader', 'epub-metadata-editor'],
+    schema: {
+      name: 'MOBI to EPUB Converter',
+      description:
+        'Converts MOBI and PRC files to EPUB 3 entirely in the browser. Chapters, reading order, ' +
+        'text formatting and metadata are rebuilt as a valid EPUB; images and cover art are not ' +
+        'carried across. Nothing is uploaded and there is no file size cap.',
+      featureList: [
+        'Reads .mobi and .prc files',
+        'Outputs EPUB 3, the current version of the standard',
+        'Rebuilds chapters, reading order and metadata',
+        'No file size limit; no account',
+        'Runs entirely in the browser; no upload',
+      ],
+    },
+    related: ['azw3-to-epub', 'mobi-to-pdf', 'epub-to-mobi', 'epub-reader', 'epub-metadata-editor', 'epub-validator'],
   },
 
   'azw3-to-epub': {
     h1: 'Convert AZW3 to EPUB',
     lede: 'Read your Kindle files in any app — Apple Books, Kobo, Play Books or right here.',
+    sidenote:
+      'If your file is `.mobi` rather than `.azw3`, use the [MOBI to EPUB converter](/mobi-to-epub) ' +
+      'instead — the two formats use different containers.',
     accept: '.azw3,.azw,.kfx',
     dropSub: '.azw3 · any size your device can handle',
     cta: 'Convert to EPUB',
