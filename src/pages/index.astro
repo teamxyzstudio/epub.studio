@@ -21,6 +21,19 @@ import { authorPhoto } from '../lib/author-photo.js';
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '../data/site.js';
 
 // Resolve the extension → slug map into the { n, href } shape the island renders.
+/**
+ * The homepage's own meta description. SITE_DESCRIPTION stays the site-wide
+ * default for pages that set none and keeps describing the whole site; this one
+ * leads on the conversion job most searches are actually for.
+ *
+ * "five more" is checked, not rounded up: nine tools output EPUB — PDF, DOCX,
+ * MOBI, AZW3, TXT, Markdown, HTML, FB2 and CBZ — and four of them are named in
+ * the sentence. A number in a meta description is a claim like any other.
+ */
+const HOME_DESCRIPTION =
+  'Convert PDF, DOCX, MOBI, AZW3 and five more formats to EPUB free in your browser. ' +
+  'No signup, no upload, files never leave your device. Read and edit EPUBs too.';
+
 const suggestionMap = Object.fromEntries(
   Object.entries(suggestionsByExt).map(([ext, slugs]) => [
     ext,
@@ -108,8 +121,8 @@ const nav = [
 ---
 
 <BaseLayout
-  title="Epub Studio — free online EPUB tools, converters and reader"
-  description={SITE_DESCRIPTION}
+  title="Free Online EPUB Converter: EPUB to PDF, DOCX & More"
+  description={HOME_DESCRIPTION}
   path="/"
   jsonLd={jsonLd}
 >
