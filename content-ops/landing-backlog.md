@@ -19,12 +19,13 @@ spreadsheet is linked, its rows merge into this table (expected columns:
 | /read-epub-on-iphone | variant | read epub on iphone | 2026-08-12 (distinct-intent: PASS — Books is built in and the page says so honestly; serves the shared-device / no-Apple-ID / managed-phone cases; parent /epub-reader; owns "iphone ereader" phrasings) |
 | /read-epub-on-linux | variant | read epub on linux | 2026-09-01 (distinct-intent: PASS — no distro-wide default EPUB handler; desktops detect the zip container and hand the book to the archive manager; no-root / live-session / locked package-manager cases; parent /epub-reader; owns "linux ereader" phrasings) |
 | /read-epub-on-mac | variant | read epub on mac | 2026-09-05 (distinct-intent: PASS — Books is built in and the page says so honestly; Books imports a copy into an iCloud-synced library, so the no-shelve cases and the author draft-preview loop carry the page; parent /epub-reader; owns "mac ereader" phrasings) |
+| /epub-tools-for-teachers | audience | epub tools for teachers | 2026-09-09 (dedup: PASS — unowned in keyword-map; distinct from /epub-tools-for-self-publishers: the job is many small documents → one distributable course reader, not one manuscript → one store file; embeds docx-to-epub; merge/split/compress/browser-reader workflow; copyright + DRM honesty for course materials) |
 
 ## Queued
 
 | Keyword | Type | Notes |
 |---|---|---|
-| epub tools for teachers | audience | Course readers, handouts; embed docx-to-epub; guides: best-format, reduce-epub-file-size |
+| ~~epub tools for teachers~~ | audience | SHIPPED 2026-09-09 — course readers, handouts; embeds docx-to-epub; guides best-format + reduce-epub-file-size (+ print-an-epub, public-domain) |
 | fix my epub | audience | Reader-in-distress hub; embed epub-validator; links the whole Fix cluster |
 | kindle format guide | pillar | Hub for the Kindle cluster (send-epub, mobi-is-dead, embedded-fonts) + guidance pages; check overlap with /blog/send-epub-to-kindle before writing — hub must add structure, not restate |
 | convert epub to pdf on chromebook | variant | Distinct-intent: likely PASS (no-install is the whole point on ChromeOS); verify volume before writing |
@@ -37,8 +38,9 @@ spreadsheet is linked, its rows merge into this table (expected columns:
   toward August's quota; read-epub-on-windows shipped 2026-08-10;
   read-epub-on-android shipped 2026-08-11; read-epub-on-iphone shipped
   2026-08-12
-- **Sep**: read-epub-on-linux, read-epub-on-mac, epub-tools-for-teachers,
-  fix-my-epub, kindle-format-guide, sigil-alternative, fanfiction-readers
+- **Sep**: ~~read-epub-on-linux~~ (shipped 09-01), ~~read-epub-on-mac~~
+  (shipped 09-05), ~~epub-tools-for-teachers~~ (shipped 09-09), fix-my-epub,
+  kindle-format-guide, sigil-alternative, fanfiction-readers
 - **Oct**: chromebook (verify gate) · es queue continues — cbr a pdf
   (cbz-to-pdf is live), epub a mobi, lector epub online (mine the no-pair es
   rows first) · comics hub (tool-gated) · refresh buffer. Note: es i18n
