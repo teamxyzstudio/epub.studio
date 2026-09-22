@@ -21,6 +21,7 @@ spreadsheet is linked, its rows merge into this table (expected columns:
 | /read-epub-on-mac | variant | read epub on mac | 2026-09-05 (distinct-intent: PASS — Books is built in and the page says so honestly; Books imports a copy into an iCloud-synced library, so the no-shelve cases and the author draft-preview loop carry the page; parent /epub-reader; owns "mac ereader" phrasings) |
 | /epub-tools-for-teachers | audience | epub tools for teachers | 2026-09-09 (dedup: PASS — unowned in keyword-map; distinct from /epub-tools-for-self-publishers: the job is many small documents → one distributable course reader, not one manuscript → one store file; embeds docx-to-epub; merge/split/compress/browser-reader workflow; copyright + DRM honesty for course materials) |
 | /fix-my-epub | audience | fix my epub | 2026-09-13 (dedup: PASS — unowned in keyword-map; distinct-intent vs the Fix posts: each post owns one symptom's repair, the hub owns triage — the searcher who does not yet know which fault they have; embeds epub-validator honestly as seven checks / not EPUBCheck; symptom→cause→guide table links all 10 Fix-cluster posts; one-tool repairs via cover + metadata editors; DRM named as unfixable here) |
+| /epub-tools-for-fanfiction-readers | audience | epub tools for fanfiction readers | 2026-09-22 (dedup: PASS — unowned in keyword-map; distinct from self-publishers/teachers: this audience consumes downloads — read + curate a library of downloaded works, not produce a file; embeds epub-reader; AO3 claims fetch-verified from otwcode/otwarchive on GitHub this run — config.yml DOWNLOAD_FORMATS ['azw3','epub','mobi','pdf','html'] quoted, download preface template renders text-only preface with no cover image (archiveofourown.org itself egress-blocked); Wattpad: no export, no scraping tools linked, read-in-app stance; library workflow metadata→cover→merge; Kindle routed via /blog/send-epub-to-kindle) |
 | /kindle-format-guide | pillar | kindle format guide | 2026-09-18 (dedup: PASS — unowned; /blog/kindle-file-format keeps the format-family reference intent, the hub owns cluster routing; overlap gate vs /blog/send-epub-to-kindle PASS — hub names the three routes in one paragraph and links, adds routing table + edges/DRM structure instead of restating; Read mode, no first-viewport runner — same recorded carve-out as /epub-format-guide, shelf carries mobi/azw3 converters + guidance pages; external citations dropped: amazon.com egress-blocked this run, claims restricted to corpus-established facts) |
 
 ## Queued
@@ -42,8 +43,9 @@ spreadsheet is linked, its rows merge into this table (expected columns:
   2026-08-12
 - **Sep**: ~~read-epub-on-linux~~ (shipped 09-01), ~~read-epub-on-mac~~
   (shipped 09-05), ~~epub-tools-for-teachers~~ (shipped 09-09), ~~fix-my-epub~~
-  (shipped 09-13), ~~kindle-format-guide~~ (shipped 09-18), sigil-alternative,
-  fanfiction-readers
+  (shipped 09-13), ~~kindle-format-guide~~ (shipped 09-18), sigil-alternative
+  (SKIPPED 09-22 run: comparison fetch-verification impossible — sigil-ebook.com
+  egress-blocked; retry when fetchable), ~~fanfiction-readers~~ (shipped 09-22)
 - **Oct**: chromebook (verify gate) · es queue continues — cbr a pdf
   (cbz-to-pdf is live), epub a mobi, lector epub online (mine the no-pair es
   rows first) · comics hub (tool-gated) · refresh buffer. Note: es i18n
@@ -85,7 +87,7 @@ Tier 3 candidates once the five ship: read epub on chromebook (390), and a
 
 | Keyword | Type | Gate | Notes |
 |---|---|---|---|
-| epub tools for fanfiction readers | audience | none — data supports now (~460/mo ao3/fanfic + wattpad demand) | AO3 exports EPUB natively; page teaches legit routes + embeds epub-reader; NEVER wattpad scraping |
+| ~~epub tools for fanfiction readers~~ | audience | SHIPPED 2026-09-22 | AO3 formats verified from otwcode/otwarchive config this run; legit routes only, no wattpad scraping — stance recorded on the page |
 | comic book formats guide (cbz/cbr hub) | pillar | after cbz-to-pdf + images-to-cbz ship | Clusters: cbz pairs ≈7k combined + "what is cbr" post; hub only when ≥3 comic tools exist |
 | read epub on chromebook | variant | after the 5 reader variants ship + GSC check | 390/mo facet; thin — verify demand held |
 
