@@ -22,6 +22,7 @@ spreadsheet is linked, its rows merge into this table (expected columns:
 | /epub-tools-for-teachers | audience | epub tools for teachers | 2026-09-09 (dedup: PASS — unowned in keyword-map; distinct from /epub-tools-for-self-publishers: the job is many small documents → one distributable course reader, not one manuscript → one store file; embeds docx-to-epub; merge/split/compress/browser-reader workflow; copyright + DRM honesty for course materials) |
 | /fix-my-epub | audience | fix my epub | 2026-09-13 (dedup: PASS — unowned in keyword-map; distinct-intent vs the Fix posts: each post owns one symptom's repair, the hub owns triage — the searcher who does not yet know which fault they have; embeds epub-validator honestly as seven checks / not EPUBCheck; symptom→cause→guide table links all 10 Fix-cluster posts; one-tool repairs via cover + metadata editors; DRM named as unfixable here) |
 | /epub-tools-for-fanfiction-readers | audience | epub tools for fanfiction readers | 2026-09-22 (dedup: PASS — unowned in keyword-map; distinct from self-publishers/teachers: this audience consumes downloads — read + curate a library of downloaded works, not produce a file; embeds epub-reader; AO3 claims fetch-verified from otwcode/otwarchive on GitHub this run — config.yml DOWNLOAD_FORMATS ['azw3','epub','mobi','pdf','html'] quoted, download preface template renders text-only preface with no cover image (archiveofourown.org itself egress-blocked); Wattpad: no export, no scraping tools linked, read-in-app stance; library workflow metadata→cover→merge; Kindle routed via /blog/send-epub-to-kindle) |
+| /sigil-alternative | comparison | sigil alternative | 2026-09-27 (dedup: PASS — comparison head reserved for this URL by /blog/sigil-epub-editor's recorded intent split; fetch-verification satisfied via Sigil's own GitHub repo this run (raw.githubusercontent: README + version.xml 2.8.1 + ChangeLog 2.8.5-beta EPUB 3.4 work + PageEdit README) — sigil-ebook.com still egress-blocked, so user-guide/website claims omitted, repo-verifiable facts only; embeds epub-metadata-editor; theirWins: source editing, markup validation, plugins, book-wide tooling, active development; no privacy advantage claimed, chapter-markup editing honestly routed to Sigil/Calibre) |
 | /kindle-format-guide | pillar | kindle format guide | 2026-09-18 (dedup: PASS — unowned; /blog/kindle-file-format keeps the format-family reference intent, the hub owns cluster routing; overlap gate vs /blog/send-epub-to-kindle PASS — hub names the three routes in one paragraph and links, adds routing table + edges/DRM structure instead of restating; Read mode, no first-viewport runner — same recorded carve-out as /epub-format-guide, shelf carries mobi/azw3 converters + guidance pages; external citations dropped: amazon.com egress-blocked this run, claims restricted to corpus-established facts) |
 
 ## Queued
@@ -32,7 +33,7 @@ spreadsheet is linked, its rows merge into this table (expected columns:
 | ~~fix my epub~~ | audience | SHIPPED 2026-09-13 — reader-in-distress hub; embeds epub-validator; symptom→cause→guide table links the whole Fix cluster |
 | ~~kindle format guide~~ | pillar | SHIPPED 2026-09-18 — Kindle cluster hub; overlap gate vs send-epub-to-kindle passed (routes named + linked, not restated); Read-mode carve-out recorded |
 | convert epub to pdf on chromebook | variant | Distinct-intent: likely PASS (no-install is the whole point on ChromeOS); verify volume before writing |
-| sigil alternative | comparison | Needs fetch-verification of Sigil's current state; theirWins: real code-level EPUB editing |
+| ~~sigil alternative~~ | comparison | SHIPPED 2026-09-27 — verification unblocked via Sigil's GitHub repo (raw files fetchable this run); theirWins recorded incl. real code-level EPUB editing |
 | online epub converter | comparison | Category comparison (us vs upload-style sites); careful: transactional phrasing may belong to tool pages — check intent before writing |
 
 ## Production schedule (7 pages/month, aligned to an August 2026 start)
@@ -43,9 +44,10 @@ spreadsheet is linked, its rows merge into this table (expected columns:
   2026-08-12
 - **Sep**: ~~read-epub-on-linux~~ (shipped 09-01), ~~read-epub-on-mac~~
   (shipped 09-05), ~~epub-tools-for-teachers~~ (shipped 09-09), ~~fix-my-epub~~
-  (shipped 09-13), ~~kindle-format-guide~~ (shipped 09-18), sigil-alternative
-  (SKIPPED 09-22 run: comparison fetch-verification impossible — sigil-ebook.com
-  egress-blocked; retry when fetchable), ~~fanfiction-readers~~ (shipped 09-22)
+  (shipped 09-13), ~~kindle-format-guide~~ (shipped 09-18), ~~sigil-alternative~~
+  (skipped 09-22: sigil-ebook.com egress-blocked; SHIPPED 09-27 — verified from
+  the Sigil GitHub repo instead), ~~fanfiction-readers~~ (shipped 09-22)
+  — **Sep COMPLETE, 7 of 7**
 - **Oct**: chromebook (verify gate) · es queue continues — cbr a pdf
   (cbz-to-pdf is live), epub a mobi, lector epub online (mine the no-pair es
   rows first) · comics hub (tool-gated) · refresh buffer. Note: es i18n
