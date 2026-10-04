@@ -105,6 +105,12 @@ kws), `topic:question` (275), `topic:kindle-app` (443), `topic:device-nook`
 (924), `brand:app:*` long tails. Weekly Mode B pulls the top unanswered
 question from these instead of (or alongside) Reddit mining.
 
+Mode B record (2026-10-04): "combine epub files" written → /blog/combine-epub-files
+(full gate/evidence record in keyword-map.csv; every assigned Oct row 26–31
+shipped or gated this run, re-verified). Backup recorded: "how to merge cbz
+files" 20 + "merge cbz files online" 20 (job:merge tails) — tool-gated, no CBZ
+merge slug in tools.js; revisit if one ships.
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
