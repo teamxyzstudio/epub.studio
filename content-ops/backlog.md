@@ -111,6 +111,17 @@ shipped or gated this run, re-verified). Backup recorded: "how to merge cbz
 files" 20 + "merge cbz files online" 20 (job:merge tails) — tool-gated, no CBZ
 merge slug in tools.js; revisit if one ships.
 
+Mode B record (2026-10-05): "google docs to epub" written →
+/blog/google-docs-to-epub (full gate/evidence record in keyword-map.csv;
+every assigned Oct row 26–31 shipped or gated this run, re-verified —
+26/28/29/31 egress-gated, 27 overlap+egress-gated, 30 shipped; landing lane
+all gated: chromebook verify-volume FAIL, comics hub tool-gated, es rows
+route-gated). Pair:google-docs-to-epub cluster ≈100/mo consumed; the post
+dissects a real Docs EPUB export produced this run. Backups recorded:
+split-epub informational sibling (job:split 20/mo — deferred, would mirror
+combine-epub-files back-to-back); turn-off-justified-text (deferred again,
+would be the fourth book-CSS-vs-app-toggle post in 8 days).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
