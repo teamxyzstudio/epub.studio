@@ -111,6 +111,18 @@ shipped or gated this run, re-verified). Backup recorded: "how to merge cbz
 files" 20 + "merge cbz files online" 20 (job:merge tails) — tool-gated, no CBZ
 merge slug in tools.js; revisit if one ships.
 
+Mode B record (2026-10-07): "epub justified text" written →
+/blog/epub-justified-text (full gate/evidence record in keyword-map.csv;
+every assigned Oct row 26–31 shipped or gated this run, re-verified —
+26/29/31 egress-gated, 27 overlap+egress-gated, 28 enrichment-not-a-URL,
+30 shipped; landing lane checked first per dispatch (Oct pace 2, count 0)
+but all Oct rows gated: chromebook verify-volume FAIL, comics hub
+tool-gated, es rows engineering-lane/route-gated). The twice-deferred
+turn-off-justified-text candidate, taken after three differently shaped
+posts spaced the book-vs-app styling family. Backups recorded: split-epub
+informational sibling (job:split 20/mo — still thin); ereader-shows-wrong-
+title/author (dedup-risky vs fix-typo + fix-my-epub, re-recorded).
+
 Mode B record (2026-10-05): "google docs to epub" written →
 /blog/google-docs-to-epub (full gate/evidence record in keyword-map.csv;
 every assigned Oct row 26–31 shipped or gated this run, re-verified —
