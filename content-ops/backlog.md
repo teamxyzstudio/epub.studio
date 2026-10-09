@@ -123,6 +123,24 @@ posts spaced the book-vs-app styling family. Backups recorded: split-epub
 informational sibling (job:split 20/mo — still thin); ereader-shows-wrong-
 title/author (dedup-risky vs fix-typo + fix-my-epub, re-recorded).
 
+Mode B record (2026-10-09): "epub shows wrong title" written →
+/blog/epub-shows-wrong-title (full gate/evidence record in keyword-map.csv;
+every assigned Oct row 26–31 shipped or gated this run, re-verified —
+26/29/31 egress-gated (amazon.com, barnesandnoble.com, support.apple.com
+EGRESS_BLOCKED), 27 overlap-gated, 28 enrichment-not-a-URL, 30 shipped;
+landing lane checked first per dispatch (Oct pace 3, count 0) but all Oct
+rows gated: chromebook verify-volume FAIL, comics hub tool-gated (no
+images-to-cbz), es rows engineering-lane — tool mirrors live in
+tool-pages.es.js and the es landing route template is still absent).
+The twice-deferred ereader-shows-wrong-title/author candidate, taken with
+its dedup risk resolved by scope: fix-typo-in-published-ebook keeps the
+publisher re-upload workflow, this post owns the reader-side symptom and
+the born-at-conversion mechanism. Backups recorded: split-epub
+informational sibling (MobileRead recurrence re-verified this run across
+2014–2024 threads; job:split still ~20/mo — thin); "ebook word count"
+(epub-to-txt route gives an exact count; recurrence on literatureandlatte
++ Goodreads this run; family absent from keywords.csv feeds).
+
 Mode B record (2026-10-05): "google docs to epub" written →
 /blog/google-docs-to-epub (full gate/evidence record in keyword-map.csv;
 every assigned Oct row 26–31 shipped or gated this run, re-verified —
