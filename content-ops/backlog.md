@@ -152,6 +152,21 @@ split-epub informational sibling (job:split 20/mo — deferred, would mirror
 combine-epub-files back-to-back); turn-off-justified-text (deferred again,
 would be the fourth book-CSS-vs-app-toggle post in 8 days).
 
+Mode B record (2026-10-10): "ebook word count" written →
+/blog/ebook-word-count (full gate/evidence record in keyword-map.csv;
+every assigned Oct row 26–31 shipped or gated this run, re-verified —
+26/29/31 egress-gated (amazon.com, support.apple.com, barnesandnoble.com
+all ENOTFOUND), 27 overlap-gated, 28 enrichment-not-a-URL, 30 shipped;
+landing lane checked first per dispatch (Oct pace 3, count 0) but all Oct
+rows gated: chromebook verify-volume FAIL, comics hub tool-gated (no
+images-to-cbz), es rows engineering-lane/route-gated). The backup recorded
+on 2026-10-09, taken with recurrence re-verified this run (Literature &
+Latte, MobileRead ×2, LibriVox; the epub-wordcount npm package and ropensci
+epubr exist for exactly this question). Backups recorded: split-epub
+informational sibling (job:split still ~20/mo — thin, deferred again);
+"how to read .cbr files" 40/mo (dedup-risky vs what-is-a-cbr-file's
+open-intent coverage — check scope split before writing).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
