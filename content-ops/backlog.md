@@ -167,6 +167,24 @@ informational sibling (job:split still ~20/mo — thin, deferred again);
 "how to read .cbr files" 40/mo (dedup-risky vs what-is-a-cbr-file's
 open-intent coverage — check scope split before writing).
 
+Mode B record (2026-10-11): "epub page breaks" written →
+/blog/epub-page-breaks (full gate/evidence record in keyword-map.csv;
+every assigned Oct row 26–31 shipped or gated this run, re-verified —
+26/29/31 egress-gated (www.amazon.com, www.barnesandnoble.com ENOTFOUND),
+27 overlap-gated, 28 enrichment-not-a-URL, 30 shipped; landing lane checked
+first per dispatch (Oct pace 3, count 0) but all Oct rows gated: chromebook
+verify-volume FAIL, comics hub tool-gated (no images-to-cbz), es rows
+engineering-lane/route-gated). Fresh mine: decade-long MobileRead +
+InDesign-community recurrence on chapters not starting on a new page;
+consumes the long-deferred split-epub informational sibling (the splitter's
+real job and its one-part honest edge are this post's edge section).
+Backups recorded: "epub hyphenation" (recurrence verified this run —
+MobileRead 2021 hyphens-auto-dead-in-Books/ADE thread + Zotero forums;
+dedup-risky vs epub-justified-text, which already owns the justify+hyphens
+pairing — scope split would be where-words-break + the lang-attribute
+dependency); "how to read .cbr files" 40/mo (dedup-risky vs
+what-is-a-cbr-file, re-recorded).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
