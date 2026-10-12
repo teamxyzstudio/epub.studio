@@ -185,6 +185,27 @@ pairing — scope split would be where-words-break + the lang-attribute
 dependency); "how to read .cbr files" 40/mo (dedup-risky vs
 what-is-a-cbr-file, re-recorded).
 
+Mode B record (2026-10-12): "epub hyphenation" written →
+/blog/epub-hyphenation (full gate/evidence record in keyword-map.csv;
+every assigned Oct row 26–31 shipped or gated this run, re-verified —
+26/29/31 egress-gated (www.amazon.com, support.apple.com,
+www.barnesandnoble.com CONNECT 403 this run), 27 overlap-gated, 28
+enrichment-not-a-URL, 30 shipped; landing lane checked first per dispatch
+(Oct pace 3, count 0) but all Oct rows gated: chromebook verify-volume
+FAIL (converter facet ~0 in keywords.csv, re-verified), comics hub
+tool-gated (no images-to-cbz in tools.js, re-verified), es rows
+engineering-lane/route-gated (tool mirrors live in tool-pages.es.js;
+src/pages/es/ holds only [slug].astro — no landing route, re-verified)).
+The backup recorded on 2026-10-11, taken with its dedup risk resolved by
+scope: epub-justified-text keeps alignment and the gap aesthetics, this
+post owns where-words-break — the CSS-grant/lang-tag/engine-dictionary
+chain, soft hyphens, hyphens:none. Honest negative recorded: env Chromium
+ships no hyphenation dictionaries, so the lang-dependency demo stayed
+spec-sourced; the dictionary-less engine itself became the reader-side
+demo. Backups recorded: "how to read .cbr files" 40/mo (dedup-risky vs
+what-is-a-cbr-file, re-recorded); kindle-highlights family ~400/mo
+(egress-gated, amazon.com blocked re-verified this run).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
