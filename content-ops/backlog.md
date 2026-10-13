@@ -206,6 +206,31 @@ demo. Backups recorded: "how to read .cbr files" 40/mo (dedup-risky vs
 what-is-a-cbr-file, re-recorded); kindle-highlights family ~400/mo
 (egress-gated, amazon.com blocked re-verified this run).
 
+Mode B record (2026-10-13): "epubcheck errors" written →
+/blog/epubcheck-errors (full gate/evidence record in keyword-map.csv;
+every assigned Oct row 26–31 shipped or gated this run, re-verified —
+26/29/31 egress-gated (amazon.com, barnesandnoble.com, support.apple.com,
+apps.apple.com all CONNECT-blocked this run), 27 overlap-gated, 28
+enrichment-not-a-URL, 30 shipped; landing lane checked first per dispatch
+(Oct pace 3, count 0) but all Oct rows gated: chromebook verify-volume
+FAIL, comics hub tool-gated (no images-to-cbz), es rows
+engineering-lane/route-gated, all re-verified). First pick "epub page
+numbers" dedup-FAILED at write time — owned by
+/blog/why-page-numbers-dont-exist-in-epub (2026-06-15), which the map also
+marks as the kindle-locations owned-enrich target, killing that ~1,500/mo
+backup as a new URL too; lesson recorded: dedup against the FULL
+keyword-map, not its tail. Also dedup-failed this pass: "how to read .cbr
+files" (what-is-a-cbr-file owns open intent via its "How to open one" h2 +
+CBR→CBZ FAQ — now a firm FAIL, stop re-recording it), "epub to kepub"
+how-to (kepub-vs-epub carries the conversion howTo), drop caps (owned by
+ebook-chapter-openings). Written instead: the real EPUBCheck 5.2.1 run
+under env Java on seven single-fault specimen variants — see keyword-map
+for the artifact inventory. Backups recorded: "epub starts at wrong
+place"/start-position-landmarks mechanism post (unmined volume, fixture
+provable offline — check overlap vs epub-table-of-contents-problems first);
+"ebook cover size" (store-dimension claims egress-gated; kobolabs passage
+fetchable — partial coverage only).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
