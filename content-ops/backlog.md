@@ -206,6 +206,47 @@ demo. Backups recorded: "how to read .cbr files" 40/mo (dedup-risky vs
 what-is-a-cbr-file, re-recorded); kindle-highlights family ~400/mo
 (egress-gated, amazon.com blocked re-verified this run).
 
+Mode B record (2026-10-13): NO PAGE THIS CYCLE — two consecutive dedup
+failures, the second caught only after push and reverted. (Gates re-verified
+first, all standing: Oct rows 26/29/31 egress-gated — amazon.com,
+barnesandnoble.com, support.apple.com, apps.apple.com all CONNECT-blocked
+this run; 27 overlap-gated, 28 enrichment-not-a-URL, 30 shipped; landing
+lane checked first per dispatch (Oct pace 3, count 0): chromebook
+verify-volume FAIL, comics hub tool-gated (no images-to-cbz), es rows
+engineering-lane/route-gated, all re-verified.) First pick "epub page
+numbers" (recurrence verified: MobileRead 2008–2017 threads + university
+library citation FAQs; page-list artifacts built and live-tool-proven)
+dedup-FAILED pre-write: owned by /blog/why-page-numbers-dont-exist-in-epub
+(2026-06-15), whose map row also owns the kindle-locations family
+(owned-enrich) — that ~1,500/mo backup is dead as a new URL too. Second
+pick "epubcheck errors" was WRITTEN AND PUSHED as /blog/epubcheck-errors
+(fc8b770) before the collision surfaced: /blog/epub-validation-errors-
+explained (2026-07-26) already owns the intent — its title is literally
+"epubcheck decoded", its FAQ opens with the same RSC-005 question, and its
+map notes say so. Reverted in 6d09876 within minutes, same run. COUNTING
+NOTE for the dispatcher: `git log --grep="^blog: add"` for October now
+counts fc8b770 although it is reverted — subtract 1 from the October
+blog_count for the rest of the month (real published Oct count = grep − 1).
+PROCESS FIX adopted: the dedup check is `grep -i <keyword stem>` across the
+FULL keyword-map.csv (keyword AND notes columns) plus an `ls` of
+src/content/blog/ slugs — never an eyeballed head/tail of the map, and
+run it before artifacts are built, not after. Salvage recorded: this run's
+EPUBCheck 5.2.1 evidence (7 single-fault specimen variants, verbatim
+PKG-006/PKG-007/RSC-001/RSC-005×2/RSC-016-cascade output, two honest
+passes — undeclared file is USAGE-only with -u, broken fragment link
+wholly silent — plus live /epub-validator catches-missing-file /
+passes-unclosed-tag contrast screenshots) belongs to
+/blog/epub-validation-errors-explained as a refresh: that post decodes
+codes from documentation, has zero reproduced runs, and predates
+EPUBCheck 5.2.1 — strongest refresh candidate on the board, alongside
+convert-word-to-epub below. Also firmly dedup-dead this pass, stop
+re-recording: "how to read .cbr files" (what-is-a-cbr-file owns open
+intent), "epub to kepub" how-to (kepub-vs-epub carries the conversion
+howTo), drop caps (ebook-chapter-openings). Live backups: "epub starts at
+wrong place" / start-position-landmarks mechanism (check overlap vs
+epub-table-of-contents-problems first); "ebook cover size"
+(store-dimension claims egress-gated; kobolabs passage fetchable).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
