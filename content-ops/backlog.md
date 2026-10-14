@@ -247,6 +247,26 @@ wrong place" / start-position-landmarks mechanism (check overlap vs
 epub-table-of-contents-problems first); "ebook cover size"
 (store-dimension claims egress-gated; kobolabs passage fetchable).
 
+Mode B record (2026-10-14): "epub opens at wrong page" written →
+/blog/epub-opens-at-wrong-page (full gate/evidence record in
+keyword-map.csv; every assigned Oct row 26–31 shipped or gated this run,
+re-verified — 26/29/31 egress-gated (amazon.com, barnesandnoble.com,
+support.apple.com, apps.apple.com all CONNECT 403 this run), 27
+overlap-gated, 28 enrichment-not-a-URL, 30 shipped; landing lane checked
+first per dispatch (Oct pace 4, landing count 0) but all Oct rows gated:
+chromebook verify-volume FAIL, comics hub tool-gated (no images-to-cbz,
+re-verified), es rows engineering-lane/route-gated (re-verified)). The
+2026-10-13 "epub starts at wrong place" live backup, taken with its
+overlap check passed by scope: epub-table-of-contents-problems owns the
+contents-list-vs-spine drift, this post owns the start-position pin
+(landmarks bodymatter / legacy guide / linear). Dedup run per the adopted
+process fix (full-map grep + slug ls) BEFORE artifacts. Dispatcher note:
+October real published count is now 11 (grep says 12; fc8b770 still
+reverted — keep subtracting 1). Backups recorded: "ebook cover size"
+(store-dimension claims still egress-gated this run; kobolabs passage
+fetchable — partial-proof only); kindle-highlights family ~400/mo
+(egress-gated, amazon.com re-verified blocked this run).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
