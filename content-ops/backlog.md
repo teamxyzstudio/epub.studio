@@ -267,6 +267,37 @@ reverted — keep subtracting 1). Backups recorded: "ebook cover size"
 fetchable — partial-proof only); kindle-highlights family ~400/mo
 (egress-gated, amazon.com re-verified blocked this run).
 
+Mode B record (2026-10-15): "math in epub" written → /blog/math-in-epub
+(full gate/evidence record in keyword-map.csv; every assigned Oct row
+26–31 shipped or gated this run, re-verified — 26/29/31 egress-gated
+(amazon.com, support.apple.com, barnesandnoble.com all CONNECT 403 this
+run), 27 overlap-gated, 28 enrichment-not-a-URL, 30 shipped; landing lane
+checked first per dispatch (Oct pace 4, landing count 0) but all Oct rows
+gated: chromebook verify-volume FAIL, comics hub tool-gated (no
+images-to-cbz, re-verified), es rows engineering-lane/route-gated
+([...landing].astro still renders locale==='en' only, re-verified)).
+Fresh mine: MathML recurrence on MobileRead (2011 + 2024 threads) +
+Adobe InDesign community; math/equation family absent from keywords.csv
+feeds entirely. Three-failure structure, all first-hand: OMML silently
+dropped by live /docx-to-epub (hand-built math.docx), xmlns stripped by
+live /html-to-epub (sanitizeToXhtml regex, code-verified) with Chromium
+twin render 37.3 px fraction vs 17 px linear "½→12", reader
+fragmentation with mathbook.epub rendering real MathML Core in Chromium
+141. Two own-tool faults documented honestly. NOTE for engineering,
+found this run: sanitizeToXhtml's blanket xmlns-stripping regex in
+to-epub.js breaks any embedded MathML (and would break inline SVG the
+same way) — preserving the MathML/SVG namespaces and emitting
+properties="mathml" in write.js would make html-to-epub math-clean.
+Dispatcher note: October real published count is now 12 (grep says 13;
+fc8b770 still reverted — keep subtracting 1). Backups recorded: "epub
+paragraph indents / first-line indent" (recurrence verified this run —
+MobileRead ×4 + Adobe + Literature & Latte threads; dedup-risky vs the
+six-member book-vs-app styling family: margins post already normalised
+the gap+indent double signal — needs a scope split that survives the
+information-gain gate); "ebook cover size" (store-dimension claims still
+egress-gated; kobolabs passage fetchable — partial proof only,
+re-recorded).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
