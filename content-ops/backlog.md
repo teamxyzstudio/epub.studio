@@ -298,6 +298,33 @@ information-gain gate); "ebook cover size" (store-dimension claims still
 egress-gated; kobolabs passage fetchable — partial proof only,
 re-recorded).
 
+Mode B record (2026-10-16): "epub paragraph indents" written →
+/blog/epub-paragraph-indents (full gate/evidence record in keyword-map.csv;
+every assigned Oct row 26–31 shipped or gated this run, re-verified —
+26/29/31 egress-gated (www.amazon.com, support.apple.com,
+www.barnesandnoble.com all ENOTFOUND this run), 27 overlap-gated, 28
+enrichment-not-a-URL, 30 shipped; landing lane checked first per dispatch
+(Oct pace 4, landing count 0) but all Oct rows gated: chromebook
+verify-volume FAIL (no convert/pdf+chromebook row in keywords.csv,
+re-verified), comics hub tool-gated (no images-to-cbz in tools.js,
+re-verified), es rows engineering-lane/route-gated (src/pages/es/ holds
+only [slug].astro; [...landing].astro renders locale==='en' only,
+re-verified)). The 2026-10-15 "paragraph indents" backup, taken with its
+dedup risk resolved by scope: chapter-openings keeps the convention,
+line-spacing keeps measure/leading, margins keeps page-edge whitespace —
+this post owns the conversion mechanism (whitespace collapsing,
+style-vs-character, converter house style, reader defaults). Strong
+own-tool finding recorded in the post: docx-to-epub drops w:ind firstLine
+but passes literal tabs/spaces through into markup where rendering
+collapses them — the properly made indent dies, the "wrong" ones survive
+as invisible bytes. Dispatcher note: October real published count is now
+13 (grep says 14; fc8b770 still reverted — keep subtracting 1). Backups
+recorded: "ebook cover size" (store-dimension claims still egress-gated;
+kobolabs passage fetchable — partial proof only, re-recorded); "epub pages
+turn the wrong way" / page-progression-direction rtl (fresh candidate,
+recurrence NOT yet verified — check before writing; manga/comics angle
+would pair with cbz tools).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
