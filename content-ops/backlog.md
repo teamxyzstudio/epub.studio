@@ -325,6 +325,30 @@ turn the wrong way" / page-progression-direction rtl (fresh candidate,
 recurrence NOT yet verified — check before writing; manga/comics angle
 would pair with cbz tools).
 
+Mode B record (2026-10-17): "epub right to left" written →
+/blog/epub-right-to-left (full gate/evidence record in keyword-map.csv;
+every assigned Oct row 26–31 shipped or gated this run, re-verified —
+26/29/31 egress-gated (www.amazon.com, support.apple.com,
+www.barnesandnoble.com, archiveofourown.org all CONNECT 403 this run),
+27 overlap+egress-gated, 28 enrichment-not-a-URL, 30 shipped; landing
+lane checked first per dispatch (Oct pace 4, landing count 0) but all
+Oct rows gated: chromebook verify-volume FAIL (converter facet ~0 in
+keywords.csv, re-verified), comics hub tool-gated (only cbz-to-pdf +
+cbz-to-epub in tools.js, no images-to-cbz, re-verified), es rows
+engineering-lane/route-gated (tool mirrors live in tool-pages.es.js,
+re-verified)). The 2026-10-16 fresh candidate, taken with its recurrence
+check passed this run: MobileRead 2010–2024 (manga scan order, Sony CBZ
+page order, Arabic rtl spine ignored, ADE Hebrew), Adobe InDesign
+community fixed-layout manga, KDE bug 364682. Own-tool finding recorded
+in the post: write.js emits the spine with no page-progression-direction
+code path, so every converted comic reads ltr until hand-edited; the
++33-char hand fix proven live end-to-end. Dispatcher note: October real
+published count is now 14 (grep says 15; fc8b770 still reverted — keep
+subtracting 1). Backups recorded: "ebook cover size" (store-dimension
+claims still egress-gated; kobolabs passage fetchable — partial proof
+only, re-recorded); kindle-highlights family ~400/mo (egress-gated,
+amazon.com re-verified blocked this run).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
