@@ -349,6 +349,34 @@ claims still egress-gated; kobolabs passage fetchable — partial proof
 only, re-recorded); kindle-highlights family ~400/mo (egress-gated,
 amazon.com re-verified blocked this run).
 
+Mode B record (2026-10-27): "epub images sideways" written →
+/blog/epub-images-sideways (full gate/evidence record in keyword-map.csv;
+every assigned Oct row 26–31 shipped or gated this run, re-verified —
+26/29/31 egress-gated (www.amazon.com, support.apple.com,
+www.barnesandnoble.com, apps.apple.com all connection-refused via proxy
+this run), 27 overlap-gated, 28 enrichment-not-a-URL, 30 shipped; landing
+lane checked first per dispatch (Oct pace 7, landing count 0) but all Oct
+rows gated: chromebook verify-volume FAIL (converter facet ~0 in
+keywords.csv, re-verified), comics hub tool-gated (no images-to-cbz in
+tools.js, re-verified), es rows engineering-lane/route-gated (src/pages/es/
+holds only [slug].astro, re-verified)). Fresh mine: MobileRead
+image-saved-sideways + landscape-chart + Kobo CBZ manga threads,
+WebSearch-verified; scope split recorded — images-not-showing owns missing,
+right-to-left owns page direction, this URL owns single-image orientation.
+Own-tool finding recorded in the post: /epub-compressor bakes EXIF
+orientation into pixels as a side effect (createImageBitmap honours the
+flag, canvas re-encode drops it) while /epub-to-pdf hands jsPDF raw bytes
+and reproduces the sideways symptom — both proven live on one hand-built
+EXIF-6 fixture. Dispatcher note: October real published count is now 15
+(grep says 16; fc8b770 still reverted — keep subtracting 1) — OCTOBER BLOG
+QUOTA REACHED, blog lane closed until Nov 1. Backups recorded: "emoji in
+ebooks" (recurrence WebSearch-verified this run — MobileRead Kobo
+empty-box threads + a LibreOffice emoji-blank-in-PDF bug; font-coverage
+mechanism partially provable offline, device claims egress-gated); "epub
+series metadata" (dedup-risky vs the 2026-09-20 owned-enrich job:metadata
+verdict — needs a recorded scope split (series-on-device vs title/author
+editing) before it can be a URL).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
