@@ -377,6 +377,34 @@ series metadata" (dedup-risky vs the 2026-09-20 owned-enrich job:metadata
 verdict — needs a recorded scope split (series-on-device vs title/author
 editing) before it can be a URL).
 
+Mode B record (2026-11-01): "epub emoji not showing" written →
+/blog/epub-emoji-not-showing (full gate/evidence record in keyword-map.csv;
+every assigned Nov row 32–35 shipped or gated this run — 32 shipped
+2026-08-09; 33 reader-gated (/epub-reader still absent from registry.js
+engines, re-verified) + egress-gated (www.amazon.com and
+www.barnesandnoble.com CONNECT 000 via proxy this run — the current-state
+editorial comparison is unverifiable); 34 egress-gated (B&N/Nook export and
+DRM claims unverifiable, barnesandnoble.com blocked); 35 egress-gated
+(amazon.com blocked) + information-gain-risky vs kindle-file-format +
+send-epub-to-kindle + /kindle-format-guide; landing lane checked first per
+dispatch (Nov pace 1, landing count 0) but all Nov rows gated: djvu a pdf
+tool-gated (no djvu slug in tools.js, re-verified), next-locale decision
+needs es GSC data (not a publishable page), refresh rows are not
+landing-add pages). The 2026-10-27 emoji backup taken with recurrence
+re-verified this run (MobileRead Kobo empty-box + KOReader AppleColorEmoji
++ Readest-vs-KOReader threads; Adobe community CJK siblings); scope split
+recorded — epub-weird-characters owns encoding mojibake, this URL owns
+glyph coverage. Unicode ages fetch-verified from unicode-org/unicodetools
+DerivedAge.txt via raw.githubusercontent (unicode.org ENOTFOUND this run).
+Own-tool finding recorded in the post: epub-to-pdf leaks non-WinAnsi
+characters as UTF-16 code-unit bytes through built-in Helvetica (☺ → "&:",
+😀 → "Ø=Þ") — range check or fallback font would fix. Backups recorded:
+"epub series metadata" (still dedup-risky vs the 2026-09-20 owned-enrich
+job:metadata verdict — needs a recorded scope split (series-on-device vs
+title/author editing) before it can be a URL); "ebook cover size"
+(store-dimension claims still egress-gated; kobolabs passage fetchable —
+partial proof only, re-recorded).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
