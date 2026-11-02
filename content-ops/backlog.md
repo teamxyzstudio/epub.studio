@@ -405,6 +405,30 @@ title/author editing) before it can be a URL); "ebook cover size"
 (store-dimension claims still egress-gated; kobolabs passage fetchable —
 partial proof only, re-recorded).
 
+Mode B record (2026-11-02): "epub series metadata" written →
+/blog/epub-series-metadata (full gate/evidence record in keyword-map.csv;
+every assigned Nov row 32–35 shipped or gated this run — 32 shipped
+2026-08-09; 33 reader-gated (/epub-reader absent from registry.js engines,
+re-verified) + egress-gated (www.amazon.com and www.barnesandnoble.com
+ENOTFOUND this run); 34/35 egress-gated (same hosts); landing lane checked
+first per dispatch (Nov pace 1, landing count 0) but all Nov rows gated:
+djvu a pdf tool-gated (no djvu slug in tools.js, re-verified), next-locale
+decision needs es GSC data (not a publishable page), refresh rows are not
+landing-add pages). The 2026-10-27 "epub series metadata" backup taken with
+its dedup risk resolved by the recorded scope split: the 2026-09-20
+owned-enrich job:metadata verdict keeps general metadata editing
+(/epub-metadata-editor + /blog/edit-an-epub), epub-shows-wrong-title keeps
+the title/author symptom — this URL owns series grouping (two conventions,
+device parsing, group-position). Recurrence re-verified this run (decade of
+MobileRead sideload-series threads). Own-tool proof: converter output born
+series-less (write.js has no collection path), metadata editor preserves
+but cannot write series (4-field form, retitle diff = one line). Primary
+sources all GitHub-fetchable this run: w3c vocab/meta-property, calibre
+opf2.py, NickelSeries README. Backups recorded: "ebook cover size"
+(store-dimension claims still egress-gated; kobolabs passage fetchable —
+partial proof only, re-recorded); turn-off-justified-text family fully
+consumed (epub-justified-text shipped 10-07 — stop re-recording).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
