@@ -429,6 +429,30 @@ opf2.py, NickelSeries README. Backups recorded: "ebook cover size"
 partial proof only, re-recorded); turn-off-justified-text family fully
 consumed (epub-justified-text shipped 10-07 — stop re-recording).
 
+Mode B record (2026-11-03): "epub language" written → /blog/epub-language
+(full gate/evidence record in keyword-map.csv; every assigned Nov row 32–35
+shipped or gated this run — 32 shipped 2026-08-09; 33 reader-gated
+(/epub-reader absent from registry.js engines, re-verified) + egress-gated
+(www.amazon.com and www.barnesandnoble.com CONNECT 000 via proxy this run);
+34/35 egress-gated (same hosts); landing lane checked first per dispatch
+(Nov pace 1, landing count 0) but all Nov rows gated: djvu a pdf tool-gated
+(no djvu slug in tools.js, re-verified), next-locale decision needs es GSC
+data (not a publishable page), refresh rows are not landing-add pages).
+Fresh mine: wrong-dictionary/wrong-language recurrence WebSearch-verified
+(MobileRead UND-breaks-iBooks + Kobo-labels-English-as-Dutch +
+Polish-gets-English-hyphenation threads, Calibre tracker
+language-from-system-default bug, Literature & Latte, Adobe InDesign
+community). Scope split recorded: epub-hyphenation keeps where-words-break,
+this URL owns the declaration — dc:language + chapter xml:lang, the consumer
+set, converter-born mislabelling, the one-field fix. Own-tool findings
+recorded in the post: all six no-metadata converters default to 'en' with no
+language picker, and htmlToEpub drops the source's own <html lang>; fb2/mobi
+carry language through. Backups recorded: ebook cover size (store-dimension
+claims still egress-gated; kobolabs passage fetchable — partial proof only,
+re-recorded); epub chapter heading duplicated (fb2ToEpub title-paragraph
+own-bug angle per row 23's engineering note + 2010 Kobo TOC-duplication
+thread — recurrence thin, re-verify before writing).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
