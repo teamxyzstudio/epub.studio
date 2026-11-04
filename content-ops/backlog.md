@@ -453,6 +453,34 @@ re-recorded); epub chapter heading duplicated (fb2ToEpub title-paragraph
 own-bug angle per row 23's engineering note + 2010 Kobo TOC-duplication
 thread — recurrence thin, re-verify before writing).
 
+Mode B record (2026-11-04): "epub chapter title duplicated" written →
+/blog/epub-chapter-title-duplicated (full gate/evidence record in
+keyword-map.csv; every assigned Nov row 32–35 shipped or gated this run —
+32 shipped 2026-08-09; 33 reader-gated (/epub-reader absent from
+registry.js engines, re-verified) + egress-gated (www.amazon.com and
+www.barnesandnoble.com CONNECT 000 via proxy this run); 34/35 egress-gated
+(same hosts); landing lane checked first per dispatch (Nov pace 1, landing
+count 0) but all Nov rows gated: djvu a pdf tool-gated (no djvu slug in
+tools.js, re-verified), next-locale decision needs es GSC data (not a
+publishable page), refresh rows are not landing-add pages). The 2026-11-03
+backup taken with its thin-recurrence doubt resolved: MobileRead GitBook
+double-h1, Literature & Latte ePub3 title-twice, Pleco duplicated-chapters
+and Adobe InDesign threads found via WebSearch this run. Scope split
+recorded: what-is-an-fb2-file keeps the format tour (it logged the
+title-repeat as cosmetic), epub-table-of-contents-problems keeps nav/NCX
+doubles, this URL owns the body-text double. Own-tool proof: hand-built
+schema-valid dupbook.fb2 (xmllint vs official gribuser/fb2 XSD) through
+live /fb2-to-epub — every h1 repeated as its first paragraph AND both
+nested sections emitted twice; validator passes the doubled book;
+/epub-to-txt dump as the diagnostic. Engineering note in keyword-map: the
+two fb2ToEpub faults are isolated and fixture-reproducible. Backups
+recorded: "ebook cover size" (store-dimension claims still egress-gated —
+kdp.amazon.com, help.kobo.com, itunespartner.apple.com all CONNECT 000
+re-verified this run; kobolabs passage fetchable — partial proof only,
+re-recorded); "conversion changed my chapter order/running titles in PDF"
+family (seen on Calibre launchpad this run — recurrence NOT yet verified
+beyond two bug reports, check before writing).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
