@@ -481,6 +481,37 @@ re-recorded); "conversion changed my chapter order/running titles in PDF"
 family (seen on Calibre launchpad this run — recurrence NOT yet verified
 beyond two bug reports, check before writing).
 
+Mode B record (2026-11-05): "epub author sort" written →
+/blog/epub-author-sort (full gate/evidence record in keyword-map.csv;
+every assigned Nov row 32–35 shipped or gated this run — 32 shipped
+2026-08-09; 33 reader-gated (/epub-reader absent from registry.js
+engines, re-verified) + egress-gated (www.amazon.com and
+www.barnesandnoble.com CONNECT 000 via proxy this run); 34/35
+egress-gated (same hosts); landing lane checked first per dispatch (Nov
+pace 2, landing count 0) but all Nov rows gated: djvu a pdf tool-gated
+(no djvu slug in tools.js, re-verified), next-locale decision needs es
+GSC data (not a publishable page), refresh rows are not landing-add
+pages). Fresh mine: author-sort family absent from keywords.csv feeds;
+recurrence WebSearch-verified this run (MobileRead 2010–2025: file-as
+reader threads, Fire HD first-name sorting, Kobo-parses-author-field +
+plugboard workaround, 2025 Kindle-update author_sort-comma thread).
+Scope split recorded: epub-shows-wrong-title keeps the wrong display
+name (its body carves out sort-order refinements), epub-series-metadata
+keeps series grouping — this URL owns alphabetical filing (dc:creator
+vs file-as, both conventions, the drift trap). Own-tool proof all live:
+born-bare dc:creator with no id (write.js), one-line editor diff,
+hand-added keys validate, and the editor rename that leaves both keys
+stale. The 2026-11-04 "chapter order/running titles in PDF" backup
+checked this run and stays unverified: WebSearch found one Calibre bug
+(2035338, Fix Released) and no matching forum recurrence — dropped
+rather than re-recorded unless new evidence surfaces. Backups recorded:
+"ebook cover size" (store-dimension claims still egress-gated —
+kdp.amazon.com, help.kobo.com, itunespartner.apple.com all CONNECT 000
+re-verified this run; kobolabs passage fetchable — partial proof only,
+re-recorded); "epub title sort / articles (The/A) filing under T"
+(same file-as mechanism on dc:title — likely too thin alone after this
+post; fold into a refresh of this URL if demand shows).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
