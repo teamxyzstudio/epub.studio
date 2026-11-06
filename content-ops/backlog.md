@@ -512,6 +512,40 @@ re-recorded); "epub title sort / articles (The/A) filing under T"
 (same file-as mechanism on dc:title — likely too thin alone after this
 post; fold into a refresh of this URL if demand shows).
 
+Mode B record (2026-11-06): "epub scene breaks" written →
+/blog/epub-scene-breaks (full gate/evidence record in keyword-map.csv;
+every assigned Nov row 32–35 shipped or gated this run — 32 shipped
+2026-08-09; 33 reader-gated (/epub-reader absent from registry.js
+engines, re-verified) + egress-gated (www.amazon.com and
+www.barnesandnoble.com CONNECT 403 via proxy this run); 34/35
+egress-gated (same hosts); landing lane checked first per dispatch (Nov
+pace 2, landing count 0) but all Nov rows gated: djvu a pdf tool-gated
+(no djvu slug in tools.js, re-verified), next-locale decision needs es
+GSC data (not a publishable page), refresh rows are not landing-add
+pages). Fresh mine: scene/section-break family absent from keywords.csv
+feeds; recurrence WebSearch-verified this run (MobileRead
+remove-spacing/section-break threads + PDF-conversion asterisk-eating
+thread, Literature & Latte Scrivener MultiMarkdown-eats-asterisks +
+accessible-section-breaks threads, Storyist scene-break thread, KDP
+blank-line reports). Scope split recorded: epub-page-breaks keeps
+forcing new pages, ebook-chapter-openings keeps opening conventions,
+epub-paragraph-indents keeps indents, poetry-in-epub keeps verse line
+folding — this URL owns the separator itself at three depths
+(whitespace/characters/markup). Own-tool proof all live: blank-line
+break erased by /txt-to-epub while '* * *' survives, markdown '***' →
+real <hr/>, docx empty para dropped (mammoth default code-verified),
+and the round-trip finding — /epub-to-txt deletes <hr/> breaks
+(htmlToBlocks keeps text-bearing blocks only; reported as our own
+limitation in the post). whatwg hr definition + commonmark
+thematic-break rule fetched via raw.githubusercontent. Backups
+recorded: "epub italics lost after conversion" (recurrence verified —
+MobileRead 2010–2014 span-vs-em threads, Kobo firmware threads — but
+dedup-risky vs epub-embedded-fonts-not-working's faux-bold/italic
+coverage; needs a clean scope split before writing); "epub drop caps"
+(recurrence verified 2009–2024 MobileRead but the complaint set is
+device-behaviour-heavy — Kobo page-split, K3 bugs — and those claims
+are egress-gated; partial browser-mechanism proof only).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
