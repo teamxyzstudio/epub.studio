@@ -546,6 +546,35 @@ coverage; needs a clean scope split before writing); "epub drop caps"
 device-behaviour-heavy — Kobo page-split, K3 bugs — and those claims
 are egress-gated; partial browser-mechanism proof only).
 
+Mode B record (2026-11-07): "epub italics lost" written →
+/blog/epub-italics-lost (full gate/evidence record in keyword-map.csv;
+every assigned Nov row 32–35 shipped or gated this run — 32 shipped
+2026-08-09; 33 reader-gated (/epub-reader absent from registry.js
+engines, re-verified) + egress-gated (www.amazon.com and
+www.barnesandnoble.com CONNECT 000 via proxy this run); 34/35
+egress-gated (same hosts); landing lane checked first per dispatch (Nov
+pace 2, landing count 0) but all Nov rows gated: djvu a pdf tool-gated
+(no djvu slug in tools.js, re-verified), next-locale decision needs es
+GSC data (not a publishable page), refresh rows are not landing-add
+pages). The 2026-11-06 "italics lost after conversion" backup taken
+with its dedup risk resolved by scope: epub-embedded-fonts-not-working
+keeps font-file/faux-italic rendering on Kindle, epub-font-wont-change
+keeps the reader-side override — this URL owns the emphasis markup
+vanishing in conversion (semantic tag vs classed span vs no-channel
+formats). Recurrence re-verified this run (MobileRead span-vs-em +
+inline-emphasis-dropped threads, 2010–2019). Own-tool proof all live:
+four-italics html fixture through /html-to-epub (em+i survive, spans
+stripped — sanitizeToXhtml class/style removal code-verified),
+hand-built fb2 through /fb2-to-epub (<emphasis>+<strong> flattened —
+reported as our fault), hand-built docx through /docx-to-epub (<em>
+intact, mammoth default cited), validator passes the stripped book.
+"epub drop caps" backup DROPPED from the board — recorded dedup-dead
+2026-10-13 (ebook-chapter-openings owns it); stop re-recording. Backups
+recorded: "ebook cover size" (store-dimension claims still egress-gated
+— kdp/kobo/apple hosts blocked re-verified this run; kobolabs passage
+fetchable — partial proof only, re-recorded); "epub italics lost on
+Kindle specifically" folded into this URL's scope, not a sibling.
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
