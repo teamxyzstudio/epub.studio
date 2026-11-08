@@ -575,6 +575,34 @@ recorded: "ebook cover size" (store-dimension claims still egress-gated
 fetchable — partial proof only, re-recorded); "epub italics lost on
 Kindle specifically" folded into this URL's scope, not a sibling.
 
+Mode B record (2026-11-08): "epub images blurry" written →
+/blog/epub-images-blurry (full gate/evidence record in keyword-map.csv;
+every assigned Nov row 32–35 shipped or gated this run — 32 shipped
+2026-08-09; 33 reader-gated (/epub-reader absent from registry.js
+engines, re-verified) + egress-gated (www.amazon.com and
+www.barnesandnoble.com CONNECT 000 this run); 34/35 egress-gated (same
+hosts); landing lane checked first per dispatch (Nov pace 2, landing
+count 0) but all Nov rows gated: djvu a pdf tool-gated (no djvu slug in
+tools.js, re-verified), next-locale decision needs es GSC data (not a
+publishable page), refresh rows are not landing-add pages). Fresh mine:
+blurry/pixelated-after-conversion recurrence WebSearch-verified
+(MobileRead 2013–2025: Calibre default-profile downscaling of Word
+figures, Tablet-profile workaround, KindleGen blocky images, Kobo kepub
+pixelation). Scope split recorded: reduce-epub-file-size owns deliberate
+shrinking, images-not-showing owns missing, images-sideways owns
+orientation — this URL owns unintended quality loss. Calibre
+RescaleImages + profile caps fetch-verified from the calibre repo via
+raw.githubusercontent. Own-tool proof live: 2400×3200 PNG diagram →
+Balanced = 1400×1867 JPEG under the old .png name (media-type mismatch,
+engineering note recorded), Light = keeps-original guard proven.
+Backups recorded: "epub alt text" (fresh accessibility territory —
+L&L alt-text thread + KDP's new "Are your images accessible?" question
++ 2024 open-access study of missing alt text; converter-audit angle is
+provable with our own tools and w3c/epub-specs a11y passages are
+raw-fetchable; recurrence modest, re-verify before writing); "ebook
+cover size" (store-dimension claims still egress-gated; kobolabs
+passage fetchable — partial proof only, re-recorded).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
