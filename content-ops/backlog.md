@@ -603,6 +603,35 @@ raw-fetchable; recurrence modest, re-verify before writing); "ebook
 cover size" (store-dimension claims still egress-gated; kobolabs
 passage fetchable — partial proof only, re-recorded).
 
+Mode B record (2026-11-09): "epub alt text" written → /blog/epub-alt-text
+(full gate/evidence record in keyword-map.csv; every assigned Nov row 32–35
+shipped or gated this run — 32 shipped 2026-08-09; 33 reader-gated
+(/epub-reader absent from registry.js engines, re-verified) + egress-gated
+(www.amazon.com and www.barnesandnoble.com CONNECT 000 via proxy this run);
+34/35 egress-gated (same hosts); landing lane checked first per dispatch
+(Nov pace 3, landing count 0) but all Nov rows gated: djvu a pdf tool-gated
+(no djvu slug in tools.js, re-verified), next-locale decision needs es GSC
+data (not a publishable page), refresh rows are not landing-add pages).
+The 2026-11-08 alt-text backup taken with recurrence re-verified this run
+(Literature & Latte compile threads ×2 incl. feature request, MobileRead
+missing-alt/ImageAltGen/is-alt-read threads, Adobe InDesign community);
+KDP question CUT — kdp.amazon.com + indieauthormagazine.com both blocked,
+no secondhand citation. Scope split recorded: images-not-showing owns
+missing, images-blurry owns quality, images-sideways owns orientation —
+this URL owns the description layer. Own-tool proof live: hand-built
+altbook.docx descr → alt verbatim through /docx-to-epub (undescribed image
+ships with NO alt at all), /markdown-to-epub keeps alt + alt='' but packs
+no images (own limitation, doubles as the fallback-render demo),
+/epub-to-docx round trip drops images+alt (htmlToBlocks keeps src only,
+code-verified), validator passes the missing-alt book, /cbz-to-epub emits
+alt="Page N". EPUBCheck 5.2.1 downloaded but execution denied by env
+policy — no EPUBCheck claims. Backups recorded: "ebook cover size"
+(store-dimension claims still egress-gated — kdp/kobo/apple hosts blocked,
+re-verified this run; kobolabs passage fetchable — partial proof only,
+re-recorded); "epub table of contents levels / nested TOC" (fresh candidate
+seen in this run's L&L results — recurrence NOT yet verified, check
+overlap vs epub-table-of-contents-problems before writing).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
