@@ -632,6 +632,31 @@ re-recorded); "epub table of contents levels / nested TOC" (fresh candidate
 seen in this run's L&L results — recurrence NOT yet verified, check
 overlap vs epub-table-of-contents-problems before writing).
 
+Mode B record (2026-11-10): "epub nested table of contents" written →
+/blog/epub-nested-table-of-contents (full gate/evidence record in
+keyword-map.csv; every assigned Nov row 32–35 shipped or gated this run —
+32 shipped 2026-08-09; 33 reader-gated (/epub-reader absent from
+registry.js engines, re-verified) + egress-gated (www.amazon.com and
+www.barnesandnoble.com CONNECT 000 via proxy this run); 34/35 egress-gated
+(same hosts); landing lane checked first per dispatch (Nov pace 3, landing
+count 0) but all Nov rows gated: djvu a pdf tool-gated (no djvu slug in
+tools.js, re-verified), next-locale decision needs es GSC data (not a
+publishable page), refresh rows are not landing-add pages). The 2026-11-09
+nested-TOC backup taken with recurrence verified this run (MobileRead
+2010–2023 Apple Books/Kobo/PW4/Nook threads, Literature & Latte flat-TOC
+compile option, InDesignSecrets) and its overlap check passed by scope:
+epub-table-of-contents-problems keeps broken/drifted flat TOCs and routes
+nesting away as an edge — this URL owns hierarchy/depth. Core finding
+proven live: regeneration flattens file-level entries but DELETES
+anchor-level ones (merge run, nav quoted; born-flat docx run; write.js
+no-sublist path code-verified). Backups recorded: "ebook cover size"
+(store-dimension claims still egress-gated — kdp.amazon.com, help.kobo.com,
+itunespartner.apple.com all CONNECT 000 re-verified this run; kobolabs
+passage fetchable — partial proof only, re-recorded); "epub landmarks /
+go-to menu missing" (landmarks nav single-ol + bodymatter mechanism —
+adjacent to epub-opens-at-wrong-page's recorded landmarks scope, needs a
+clean split + recurrence check before writing).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
