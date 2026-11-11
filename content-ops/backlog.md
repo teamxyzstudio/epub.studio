@@ -657,6 +657,35 @@ go-to menu missing" (landmarks nav single-ol + bodymatter mechanism —
 adjacent to epub-opens-at-wrong-page's recorded landmarks scope, needs a
 clean split + recurrence check before writing).
 
+Mode B record (2026-11-11): "epub smart quotes" written →
+/blog/epub-smart-quotes (full gate/evidence record in keyword-map.csv;
+every assigned Nov row 32–35 shipped or gated this run, re-verified —
+32 shipped 2026-08-09; 33 reader-gated (/epub-reader absent from
+registry.js engines, re-verified) + egress-gated; 34/35 egress-gated
+(www.amazon.com and www.barnesandnoble.com CONNECT 000 this run);
+landing lane checked first per dispatch (Nov pace 3, landing count 0)
+but all Nov rows gated: djvu a pdf tool-gated (no djvu slug in tools.js,
+re-verified), next-locale decision needs es GSC data (not a publishable
+page), refresh rows are not landing-add pages). Fresh mine: straight-vs-
+curly recurrence verified across MobileRead 2009–2023 (Smarten/UnSmarten
+confusion, mixed-quote books, Supernote reader unsmartening) + DocBook
+list; scope split vs epub-weird-characters clean — that URL owns byte
+damage, this one owns shape choice. One passage typed four ways through
+three live converters, live merge produces the mixed book, validator
+passes it; Calibre smarten/unsmarten help strings + SmartyPants
+leading-apostrophe caveat fetched and quoted. The 2026-11-10 "epub
+landmarks / go-to menu" backup was checked first and dropped this run:
+epub-opens-at-wrong-page already owns the landmarks/guide mechanism (16
+mentions) and the remaining Go To-menu angle is device-behaviour claims,
+egress-gated — recorded as dedup-dead, stop re-recording. Backups
+recorded: "ebook cover size" (store-dimension claims still egress-gated;
+kobolabs passage fetchable — partial proof only, re-recorded); "epub
+index / back-of-book index" checked this run — recurrence is real
+(InDesign community, CreativePro, Jan Wright scripts) but the pain is
+InDesign-export-specific (not reproducible here) and the link-breakage
+mechanism is owned by epub-links-not-working — information-gain FAIL as
+a standalone, revisit only with a genuinely distinct angle.
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
