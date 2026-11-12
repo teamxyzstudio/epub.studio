@@ -686,6 +686,36 @@ InDesign-export-specific (not reproducible here) and the link-breakage
 mechanism is owned by epub-links-not-working — information-gain FAIL as
 a standalone, revisit only with a genuinely distinct angle.
 
+Mode B record (2026-11-12): "lists in epub" written → /blog/lists-in-epub
+(full gate/evidence record in keyword-map.csv; every assigned Nov row 32–35
+shipped or gated this run, re-verified — 32 shipped 2026-08-09; 33
+reader-gated (/epub-reader absent from registry.js engines, re-verified) +
+egress-gated; 34/35 egress-gated (www.amazon.com and www.barnesandnoble.com
+CONNECT-rejected via proxy this run); landing lane checked first per
+dispatch (Nov pace 3, landing count 0) but all Nov rows gated: djvu a pdf
+tool-gated (no djvu slug in tools.js, re-verified), next-locale decision
+needs es GSC data (not a publishable page), refresh rows are not
+landing-add pages). Fresh mine: list/bullet family absent from keywords.csv
+feeds; recurrence WebSearch-verified — MobileRead 2011–2020 (vanished
+bullets blamed on unsupported list CSS, double bullets after Calibre
+conversion, numbering cannot resume after interruption), Literature & Latte
+"Bulleted List Snafu", LibreOffice bug 131513, InDesign hard-coded-numbers
+writeup (all hosts egress-blocked — named, not linked). Scope split:
+tables-in-epub keeps tables, poetry keeps verse lines, scene-breaks keeps
+separators, paragraph-indents keeps indents — this URL owns ul/ol/li and
+generated markers. Core proof live: packing.md → /markdown-to-epub with
+nested ul + ol + ol start="4", body's only digit is the start attribute
+(render screenshot); lists.docx (real numbering.xml) → /docx-to-epub keeps
+ul AND ol; typed-list.txt → /txt-to-epub folds items into run-on
+paragraphs; round trips lose numbering in all three exporters (txt/docx/pdf
+— own-tool limitation reported, htmlToBlocks engineering note recorded in
+keyword-map). Backups recorded: "epub file got bigger after editing"
+(MobileRead recurrence seen this run — calibre bookmark file, embedded
+fonts, image growth; needs a scope split vs reduce-epub-file-size before it
+can be a URL); "ebook cover size" (store-dimension claims still
+egress-gated; kobolabs passage fetchable — partial proof only,
+re-recorded).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
