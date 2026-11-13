@@ -716,6 +716,34 @@ can be a URL); "ebook cover size" (store-dimension claims still
 egress-gated; kobolabs passage fetchable — partial proof only,
 re-recorded).
 
+Mode B record (2026-11-13): "epub file size increased" written →
+/blog/epub-file-size-increased (full gate/evidence record in keyword-map.csv;
+every assigned Nov row 32–35 shipped or gated this run, re-verified — 32
+shipped 2026-08-09; 33 reader-gated (/epub-reader absent from registry.js
+engines, re-verified) + egress-gated; 34/35 egress-gated (www.amazon.com and
+www.barnesandnoble.com CONNECT 000 via curl this run); landing lane checked
+first per dispatch (Nov pace 4, landing count 0) but all Nov rows gated:
+djvu a pdf tool-gated (no djvu slug in tools.js, re-verified), next-locale
+decision needs es GSC data (not a publishable page), refresh rows are not
+landing-add pages). The 2026-11-12 "epub file got bigger after editing"
+backup taken with recurrence re-verified this run (MobileRead 2010–2026:
+stored reading position, cover doubling, GIF→JPEG re-encode, 820KB→2.6MB
+accidental Arial embed, Apr 2026 14MB→140MB thread; Calibre Launchpad) and
+its scope split recorded: reduce-epub-file-size keeps deliberate shrinking,
+epub-images-blurry keeps quality loss — this URL owns unintended growth.
+Three growth mechanisms proven live on specimen.epub: metadata-editor
+one-field edit +10 B with the zipOut mimetype-deflation fault surfaced
+honestly (spec MUST NOT quote fetched), Style Studio font embed 5,183→23,001
+B itemised to the byte incl. the orphaned style.css, stored-vs-deflate
+repack spread 8,460 vs 5,183 B on identical content; grown book passes the
+live validator. w3c epub33 core + calibre bookmarks.py fetched as primary
+sources (blob links). Backups recorded: "ebook cover size" (store-dimension
+claims still egress-gated — amazon/B&N re-verified blocked this run;
+kobolabs passage fetchable — partial proof only, re-recorded); "epub title
+sort / articles (The/A) filing under T" (recorded 2026-11-05 as likely too
+thin alone — fold into an epub-author-sort refresh if demand shows, not a
+new URL without fresh evidence).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
