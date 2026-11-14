@@ -744,6 +744,35 @@ sort / articles (The/A) filing under T" (recorded 2026-11-05 as likely too
 thin alone — fold into an epub-author-sort refresh if demand shows, not a
 new URL without fresh evidence).
 
+Mode B record (2026-11-14): "epub cover shows twice" written →
+/blog/epub-cover-shows-twice (full gate/evidence record in keyword-map.csv;
+every assigned Nov row 32–35 shipped or gated this run, re-verified — 32
+shipped 2026-08-09; 33 reader-gated (/epub-reader absent from registry.js
+engines, re-verified) + egress-gated; 34/35 egress-gated (www.amazon.com and
+www.barnesandnoble.com CONNECT 000 via curl this run); landing lane checked
+first per dispatch (Nov pace 4, landing count 0) but all Nov rows gated:
+djvu a pdf tool-gated (no djvu slug in tools.js, re-verified), next-locale
+decision needs es GSC data (not a publishable page), refresh rows are not
+landing-add pages). Fresh mine: duplicate-cover recurrence WebSearch-verified
+— MobileRead 2010–2017 threads (titlepage.xhtml inserted ahead of an
+unrecognised first-page cover), Adobe InDesign community "epub duplicate
+cover image", Calibre Launchpad CBZ remove-first-image bug (launchpad +
+mobileread + github.com HTML all egress-blocked this run — named, not
+linked; raw.githubusercontent fetchable). Scope split: cover-not-showing
+owns the absent cover, add-cover owns the workflow, file-size-increased
+owns byte growth — this URL owns the cover rendered twice (flag + spine
+titlepage + reader synthesis). Hand-built doublecover/onecover pair in a
+Chromium flag-honouring harness, live cbz-to-epub OPF quoted (own-tool
+instance of the Calibre class, engineering note in keyword-map), live
+validator pass, live epub-to-pdf 1-image/4-page contrast. Backups recorded:
+"epub text not selectable / can't search" (recurrence seen this run —
+Zotero forums iOS selection bug + Adobe community fixed-layout search +
+ebooks.com support page; mechanism = image-only pages, needs a scope split
+vs convert-pdf-to-ebook's scan wall before it can be a URL); "ebook cover
+size" (store-dimension claims still egress-gated — amazon/B&N re-verified
+blocked this run; kobolabs passage fetchable — partial proof only,
+re-recorded).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
