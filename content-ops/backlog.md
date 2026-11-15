@@ -773,6 +773,33 @@ size" (store-dimension claims still egress-gated — amazon/B&N re-verified
 blocked this run; kobolabs passage fetchable — partial proof only,
 re-recorded).
 
+Mode B record (2026-11-15): "epub text not selectable" written →
+/blog/epub-text-not-selectable (full gate/evidence record in keyword-map.csv;
+every assigned Nov row 32–35 shipped or gated this run, re-verified — 32
+shipped 2026-08-09; 33 reader-gated (/epub-reader absent from registry.js
+engines, re-verified) + egress-gated; 34/35 egress-gated (www.amazon.com,
+www.barnesandnoble.com, apps.apple.com, support.apple.com all ENOTFOUND via
+proxy this run); landing lane checked first per dispatch (Nov pace 4, landing
+count 0) but all Nov rows gated: djvu a pdf tool-gated (no djvu slug in
+tools.js, re-verified), next-locale decision needs es GSC data (not a
+publishable page), refresh rows are not landing-add pages). The 2026-11-14
+"epub text not selectable / can't search" backup taken with recurrence
+re-verified this run (Zotero forums iOS selection bug + in-text search
+glitch, Adobe ADE cannot-select + fixed-layout search threads +
+Google-Books-PDF images-without-text answer, Apple discussions, MobileRead —
+forum hosts egress-blocked, named not linked) and its scope split recorded:
+convert-pdf-to-ebook keeps the input-side scan wall, fixed-layout keeps
+layout rendering — this URL owns the reader-side symptom and the
+pages-are-pictures mechanism. Proven live: comic.epub 99,804 B → 26 B txt
+(all metadata), specimen 5,183 B → 1,582 B contrast, Chromium select-all 0
+vs 482 chars side-by-side, validator passes the image book; WCAG
+images-of-text fetched + cited. Backups recorded: "ebook cover size"
+(store-dimension claims still egress-gated — amazon/B&N/apps.apple all
+blocked this run; kobolabs passage fetchable — partial proof only,
+re-recorded); "epub drop caps / first letter huge or missing" (seen in
+passing on InDesign community this run while verifying selection threads —
+recurrence NOT yet established, verify before writing).
+
 ## Owned — refresh only (do not write new posts)
 
 | Question | Owned by | Action if revisited |
